@@ -1,0 +1,19 @@
+{
+  "title": "Code, prompts, data and results for: Safety Rules, Algorithm Prompts and Guideline Retrieval for Local Language Models in Emergency Triage",
+  "upload_type": "software",
+  "description": "Code, prompts, data and results for an ablation study of the JeevanSetu triage pipeline: fixed safety rules with a hard override, a summary of the Emergency Severity Index (ESI) algorithm in the prompt, and guideline retrieval, tested with open-weight language models run locally through Ollama on 207 visits from the MIMIC-IV-ED demo dataset, against the triage nurse's ESI level. The code is under the MIT licence. The MIMIC-IV-ED Demo and MIMIC-IV Demo files and the run results derived from them are under the Open Database License (ODbL) 1.0. ESI handbook text is withheld from the retrieval caches; the README explains how to restore it from a purchased copy.",
+  "creators": [
+    {"name": "Singh, Arjun", "affiliation": "Department of Computer Science and Engineering, Thapar Institute of Engineering and Technology, Patiala, India"},
+    {"name": "Singh, Garima", "affiliation": "Department of Computer Science and Engineering, Thapar Institute of Engineering and Technology, Patiala, India"}
+  ],
+  "license": "mit",
+  "access_right": "open",
+  "keywords": [
+    "emergency department triage",
+    "Emergency Severity Index",
+    "large language models",
+    "retrieval-augmented generation",
+    "patient safety",
+    "MIMIC-IV-ED"
+  ]
+}
