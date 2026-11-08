@@ -1,0 +1,1833 @@
+{
+  "seed": 2026,
+  "systems": {
+    "baseline": "research/retrieval_cache_baseline.json",
+    "improved": "research/retrieval_cache.json"
+  },
+  "cases": [
+    {
+      "stayId": "31660580",
+      "passages": [
+        {
+          "key": "c1-p1",
+          "chunkId": "chunk-9d42947af3bc6274d19e",
+          "baselineRank": 3,
+          "improvedRank": null
+        },
+        {
+          "key": "c1-p2",
+          "chunkId": "chunk-1f0c1fbe3d606a905c93",
+          "baselineRank": null,
+          "improvedRank": 1
+        },
+        {
+          "key": "c1-p3",
+          "chunkId": "chunk-89acf05479aa07a1d1e6",
+          "baselineRank": 4,
+          "improvedRank": null
+        },
+        {
+          "key": "c1-p4",
+          "chunkId": "chunk-11e45bbf1877e1af49b1",
+          "baselineRank": null,
+          "improvedRank": 4
+        },
+        {
+          "key": "c1-p5",
+          "chunkId": "chunk-cfa0a046dea33d366895",
+          "baselineRank": null,
+          "improvedRank": 3
+        },
+        {
+          "key": "c1-p6",
+          "chunkId": "chunk-c506855c843c4745915c",
+          "baselineRank": null,
+          "improvedRank": 5
+        },
+        {
+          "key": "c1-p7",
+          "chunkId": "chunk-6d8b2182f6ae5253f007",
+          "baselineRank": 2,
+          "improvedRank": null
+        },
+        {
+          "key": "c1-p8",
+          "chunkId": "chunk-800eaedc56f1dc56689b",
+          "baselineRank": null,
+          "improvedRank": 2
+        },
+        {
+          "key": "c1-p9",
+          "chunkId": "chunk-8d0dd47a919445578d3b",
+          "baselineRank": 5,
+          "improvedRank": null
+        },
+        {
+          "key": "c1-p10",
+          "chunkId": "chunk-7c358a6d9bc33f4c7703",
+          "baselineRank": 1,
+          "improvedRank": null
+        }
+      ]
+    },
+    {
+      "stayId": "34391979",
+      "passages": [
+        {
+          "key": "c2-p1",
+          "chunkId": "chunk-7b1298c4dd46b29ed778",
+          "baselineRank": 3,
+          "improvedRank": null
+        },
+        {
+          "key": "c2-p2",
+          "chunkId": "chunk-800eaedc56f1dc56689b",
+          "baselineRank": null,
+          "improvedRank": 2
+        },
+        {
+          "key": "c2-p3",
+          "chunkId": "chunk-1f0c1fbe3d606a905c93",
+          "baselineRank": null,
+          "improvedRank": 3
+        },
+        {
+          "key": "c2-p4",
+          "chunkId": "chunk-7fb2ce3aa0eddda52488",
+          "baselineRank": 4,
+          "improvedRank": null
+        },
+        {
+          "key": "c2-p5",
+          "chunkId": "curated-esi-5",
+          "baselineRank": null,
+          "improvedRank": 1
+        },
+        {
+          "key": "c2-p6",
+          "chunkId": "chunk-64a35498771f9b17ec64",
+          "baselineRank": null,
+          "improvedRank": 4
+        },
+        {
+          "key": "c2-p7",
+          "chunkId": "chunk-510cde84719929c45611",
+          "baselineRank": null,
+          "improvedRank": 5
+        },
+        {
+          "key": "c2-p8",
+          "chunkId": "chunk-6d8b2182f6ae5253f007",
+          "baselineRank": 5,
+          "improvedRank": null
+        },
+        {
+          "key": "c2-p9",
+          "chunkId": "chunk-812a3fd9a699fac13e59",
+          "baselineRank": 1,
+          "improvedRank": null
+        },
+        {
+          "key": "c2-p10",
+          "chunkId": "chunk-40909e8de77c558ab9d6",
+          "baselineRank": 2,
+          "improvedRank": null
+        }
+      ]
+    },
+    {
+      "stayId": "36686656",
+      "passages": [
+        {
+          "key": "c3-p1",
+          "chunkId": "chunk-5d94030da473a327f779",
+          "baselineRank": null,
+          "improvedRank": 5
+        },
+        {
+          "key": "c3-p2",
+          "chunkId": "chunk-142962a614cd1628d455",
+          "baselineRank": null,
+          "improvedRank": 4
+        },
+        {
+          "key": "c3-p3",
+          "chunkId": "chunk-e5fda20e3d29784f4388",
+          "baselineRank": 4,
+          "improvedRank": null
+        },
+        {
+          "key": "c3-p4",
+          "chunkId": "chunk-f839be7d91edff3fd92f",
+          "baselineRank": null,
+          "improvedRank": 2
+        },
+        {
+          "key": "c3-p5",
+          "chunkId": "chunk-8610626ce019a9678f13",
+          "baselineRank": 5,
+          "improvedRank": null
+        },
+        {
+          "key": "c3-p6",
+          "chunkId": "chunk-7fb2ce3aa0eddda52488",
+          "baselineRank": 2,
+          "improvedRank": null
+        },
+        {
+          "key": "c3-p7",
+          "chunkId": "chunk-02ff22580b4c84b0d45b",
+          "baselineRank": 3,
+          "improvedRank": null
+        },
+        {
+          "key": "c3-p8",
+          "chunkId": "chunk-c506855c843c4745915c",
+          "baselineRank": null,
+          "improvedRank": 3
+        },
+        {
+          "key": "c3-p9",
+          "chunkId": "chunk-c8721b1fcaac6c4ae301",
+          "baselineRank": null,
+          "improvedRank": 1
+        },
+        {
+          "key": "c3-p10",
+          "chunkId": "chunk-905d01755025fd5d4cbf",
+          "baselineRank": 1,
+          "improvedRank": null
+        }
+      ]
+    },
+    {
+      "stayId": "37036523",
+      "passages": [
+        {
+          "key": "c4-p1",
+          "chunkId": "chunk-391c6891590cb8291e6a",
+          "baselineRank": 3,
+          "improvedRank": null
+        },
+        {
+          "key": "c4-p2",
+          "chunkId": "chunk-11e45bbf1877e1af49b1",
+          "baselineRank": null,
+          "improvedRank": 1
+        },
+        {
+          "key": "c4-p3",
+          "chunkId": "chunk-afa97018a00f035153a3",
+          "baselineRank": 4,
+          "improvedRank": null
+        },
+        {
+          "key": "c4-p4",
+          "chunkId": "chunk-f839be7d91edff3fd92f",
+          "baselineRank": null,
+          "improvedRank": 4
+        },
+        {
+          "key": "c4-p5",
+          "chunkId": "chunk-811820c70484c0a80ceb",
+          "baselineRank": null,
+          "improvedRank": 3
+        },
+        {
+          "key": "c4-p6",
+          "chunkId": "chunk-73e75a187b1d9ac5c0eb",
+          "baselineRank": 2,
+          "improvedRank": null
+        },
+        {
+          "key": "c4-p7",
+          "chunkId": "chunk-91a5466a698cf71638ac",
+          "baselineRank": null,
+          "improvedRank": 5
+        },
+        {
+          "key": "c4-p8",
+          "chunkId": "chunk-b312651829ba252696f6",
+          "baselineRank": 1,
+          "improvedRank": null
+        },
+        {
+          "key": "c4-p9",
+          "chunkId": "chunk-b778f7a2347d26b00eee",
+          "baselineRank": 5,
+          "improvedRank": null
+        },
+        {
+          "key": "c4-p10",
+          "chunkId": "chunk-c506855c843c4745915c",
+          "baselineRank": null,
+          "improvedRank": 2
+        }
+      ]
+    },
+    {
+      "stayId": "38566596",
+      "passages": [
+        {
+          "key": "c5-p1",
+          "chunkId": "chunk-c506855c843c4745915c",
+          "baselineRank": null,
+          "improvedRank": 3
+        },
+        {
+          "key": "c5-p2",
+          "chunkId": "chunk-1fc6cac19b101a63477d",
+          "baselineRank": 1,
+          "improvedRank": null
+        },
+        {
+          "key": "c5-p3",
+          "chunkId": "chunk-a5995e94d26d98aea289",
+          "baselineRank": 5,
+          "improvedRank": null
+        },
+        {
+          "key": "c5-p4",
+          "chunkId": "chunk-8410567242daec52cd98",
+          "baselineRank": 2,
+          "improvedRank": null
+        },
+        {
+          "key": "c5-p5",
+          "chunkId": "chunk-7668896efdbe0b14c396",
+          "baselineRank": null,
+          "improvedRank": 1
+        },
+        {
+          "key": "c5-p6",
+          "chunkId": "chunk-16c706b82d9e84166311",
+          "baselineRank": 4,
+          "improvedRank": null
+        },
+        {
+          "key": "c5-p7",
+          "chunkId": "chunk-950ddfe64ddf0951aa9d",
+          "baselineRank": null,
+          "improvedRank": 2
+        },
+        {
+          "key": "c5-p8",
+          "chunkId": "chunk-346c63dca7e8113f9db7",
+          "baselineRank": 3,
+          "improvedRank": null
+        },
+        {
+          "key": "c5-p9",
+          "chunkId": "chunk-6afd97b3aed837317694",
+          "baselineRank": null,
+          "improvedRank": 5
+        },
+        {
+          "key": "c5-p10",
+          "chunkId": "chunk-da23bafe2808a03a5ca0",
+          "baselineRank": null,
+          "improvedRank": 4
+        }
+      ]
+    },
+    {
+      "stayId": "31612436",
+      "passages": [
+        {
+          "key": "c6-p1",
+          "chunkId": "chunk-a9c71a3fe96677815d0a",
+          "baselineRank": 5,
+          "improvedRank": null
+        },
+        {
+          "key": "c6-p2",
+          "chunkId": "chunk-b305339655b6d79a67f5",
+          "baselineRank": null,
+          "improvedRank": 3
+        },
+        {
+          "key": "c6-p3",
+          "chunkId": "chunk-c8721b1fcaac6c4ae301",
+          "baselineRank": null,
+          "improvedRank": 5
+        },
+        {
+          "key": "c6-p4",
+          "chunkId": "chunk-8c97968eb79d1f2eebe0",
+          "baselineRank": null,
+          "improvedRank": 2
+        },
+        {
+          "key": "c6-p5",
+          "chunkId": "chunk-7d678c167e8d49a35bbd",
+          "baselineRank": 4,
+          "improvedRank": null
+        },
+        {
+          "key": "c6-p6",
+          "chunkId": "chunk-017e15ebb05e2fb3b700",
+          "baselineRank": 2,
+          "improvedRank": null
+        },
+        {
+          "key": "c6-p7",
+          "chunkId": "chunk-033feda35105c16c0f30",
+          "baselineRank": 3,
+          "improvedRank": null
+        },
+        {
+          "key": "c6-p8",
+          "chunkId": "curated-esi-7",
+          "baselineRank": null,
+          "improvedRank": 1
+        },
+        {
+          "key": "c6-p9",
+          "chunkId": "chunk-3f575d5dad442ba8aa38",
+          "baselineRank": 1,
+          "improvedRank": null
+        },
+        {
+          "key": "c6-p10",
+          "chunkId": "chunk-c506855c843c4745915c",
+          "baselineRank": null,
+          "improvedRank": 4
+        }
+      ]
+    },
+    {
+      "stayId": "32891808",
+      "passages": [
+        {
+          "key": "c7-p1",
+          "chunkId": "chunk-11e45bbf1877e1af49b1",
+          "baselineRank": null,
+          "improvedRank": 3
+        },
+        {
+          "key": "c7-p2",
+          "chunkId": "chunk-1775ba76aefa7c2f0183",
+          "baselineRank": null,
+          "improvedRank": 1
+        },
+        {
+          "key": "c7-p3",
+          "chunkId": "chunk-16c706b82d9e84166311",
+          "baselineRank": 4,
+          "improvedRank": null
+        },
+        {
+          "key": "c7-p4",
+          "chunkId": "chunk-36334eafa784679d38a0",
+          "baselineRank": null,
+          "improvedRank": 5
+        },
+        {
+          "key": "c7-p5",
+          "chunkId": "chunk-fe56ab98a79026542141",
+          "baselineRank": 3,
+          "improvedRank": null
+        },
+        {
+          "key": "c7-p6",
+          "chunkId": "chunk-a5995e94d26d98aea289",
+          "baselineRank": 1,
+          "improvedRank": null
+        },
+        {
+          "key": "c7-p7",
+          "chunkId": "chunk-db31fe3bccf51b824546",
+          "baselineRank": 5,
+          "improvedRank": null
+        },
+        {
+          "key": "c7-p8",
+          "chunkId": "chunk-94e7b94fc3caaf013ea8",
+          "baselineRank": null,
+          "improvedRank": 2
+        },
+        {
+          "key": "c7-p9",
+          "chunkId": "chunk-c506855c843c4745915c",
+          "baselineRank": null,
+          "improvedRank": 4
+        },
+        {
+          "key": "c7-p10",
+          "chunkId": "chunk-e7f4f25f921c21267b97",
+          "baselineRank": 2,
+          "improvedRank": null
+        }
+      ]
+    },
+    {
+      "stayId": "38000722",
+      "passages": [
+        {
+          "key": "c8-p1",
+          "chunkId": "chunk-c0c8950a0fd4b39dc7f6",
+          "baselineRank": 3,
+          "improvedRank": null
+        },
+        {
+          "key": "c8-p2",
+          "chunkId": "chunk-f3b6ae1007c79694255c",
+          "baselineRank": null,
+          "improvedRank": 5
+        },
+        {
+          "key": "c8-p3",
+          "chunkId": "chunk-8410567242daec52cd98",
+          "baselineRank": 1,
+          "improvedRank": null
+        },
+        {
+          "key": "c8-p4",
+          "chunkId": "curated-esi-7",
+          "baselineRank": null,
+          "improvedRank": 1
+        },
+        {
+          "key": "c8-p5",
+          "chunkId": "chunk-346c63dca7e8113f9db7",
+          "baselineRank": 2,
+          "improvedRank": null
+        },
+        {
+          "key": "c8-p6",
+          "chunkId": "chunk-c506855c843c4745915c",
+          "baselineRank": null,
+          "improvedRank": 4
+        },
+        {
+          "key": "c8-p7",
+          "chunkId": "chunk-1fc6cac19b101a63477d",
+          "baselineRank": 5,
+          "improvedRank": null
+        },
+        {
+          "key": "c8-p8",
+          "chunkId": "chunk-f839be7d91edff3fd92f",
+          "baselineRank": null,
+          "improvedRank": 3
+        },
+        {
+          "key": "c8-p9",
+          "chunkId": "chunk-a5995e94d26d98aea289",
+          "baselineRank": 4,
+          "improvedRank": null
+        },
+        {
+          "key": "c8-p10",
+          "chunkId": "chunk-8c97968eb79d1f2eebe0",
+          "baselineRank": null,
+          "improvedRank": 2
+        }
+      ]
+    },
+    {
+      "stayId": "38216551",
+      "passages": [
+        {
+          "key": "c9-p1",
+          "chunkId": "chunk-056452de959423e1de4c",
+          "baselineRank": null,
+          "improvedRank": 4
+        },
+        {
+          "key": "c9-p2",
+          "chunkId": "chunk-15249f7c8a9c2175c40c",
+          "baselineRank": null,
+          "improvedRank": 2
+        },
+        {
+          "key": "c9-p3",
+          "chunkId": "chunk-a5995e94d26d98aea289",
+          "baselineRank": 1,
+          "improvedRank": null
+        },
+        {
+          "key": "c9-p4",
+          "chunkId": "chunk-8abd34bd2eba3fb50e4b",
+          "baselineRank": 2,
+          "improvedRank": null
+        },
+        {
+          "key": "c9-p5",
+          "chunkId": "chunk-c2f0dd905a5d256f393e",
+          "baselineRank": null,
+          "improvedRank": 3
+        },
+        {
+          "key": "c9-p6",
+          "chunkId": "chunk-f4395899ca8e998122a8",
+          "baselineRank": null,
+          "improvedRank": 5
+        },
+        {
+          "key": "c9-p7",
+          "chunkId": "chunk-346c63dca7e8113f9db7",
+          "baselineRank": 3,
+          "improvedRank": null
+        },
+        {
+          "key": "c9-p8",
+          "chunkId": "chunk-8410567242daec52cd98",
+          "baselineRank": 4,
+          "improvedRank": null
+        },
+        {
+          "key": "c9-p9",
+          "chunkId": "chunk-94e7b94fc3caaf013ea8",
+          "baselineRank": 5,
+          "improvedRank": 1
+        }
+      ]
+    },
+    {
+      "stayId": "37401157",
+      "passages": [
+        {
+          "key": "c10-p1",
+          "chunkId": "chunk-c8721b1fcaac6c4ae301",
+          "baselineRank": 2,
+          "improvedRank": null
+        },
+        {
+          "key": "c10-p2",
+          "chunkId": "chunk-7d678c167e8d49a35bbd",
+          "baselineRank": 5,
+          "improvedRank": 2
+        },
+        {
+          "key": "c10-p3",
+          "chunkId": "chunk-14a705e8abc9de66a09c",
+          "baselineRank": null,
+          "improvedRank": 4
+        },
+        {
+          "key": "c10-p4",
+          "chunkId": "chunk-3d8632b85033906036aa",
+          "baselineRank": 1,
+          "improvedRank": null
+        },
+        {
+          "key": "c10-p5",
+          "chunkId": "chunk-017e15ebb05e2fb3b700",
+          "baselineRank": 4,
+          "improvedRank": null
+        },
+        {
+          "key": "c10-p6",
+          "chunkId": "chunk-9be8ac11923a584dcdee",
+          "baselineRank": 3,
+          "improvedRank": 1
+        },
+        {
+          "key": "c10-p7",
+          "chunkId": "chunk-9be33e34f67e2413fad6",
+          "baselineRank": null,
+          "improvedRank": 5
+        },
+        {
+          "key": "c10-p8",
+          "chunkId": "chunk-c506855c843c4745915c",
+          "baselineRank": null,
+          "improvedRank": 3
+        }
+      ]
+    },
+    {
+      "stayId": "35568186",
+      "passages": [
+        {
+          "key": "c11-p1",
+          "chunkId": "chunk-811820c70484c0a80ceb",
+          "baselineRank": null,
+          "improvedRank": 5
+        },
+        {
+          "key": "c11-p2",
+          "chunkId": "chunk-950ddfe64ddf0951aa9d",
+          "baselineRank": null,
+          "improvedRank": 3
+        },
+        {
+          "key": "c11-p3",
+          "chunkId": "chunk-11e45bbf1877e1af49b1",
+          "baselineRank": null,
+          "improvedRank": 2
+        },
+        {
+          "key": "c11-p4",
+          "chunkId": "chunk-cbbf5315fcc65a49f859",
+          "baselineRank": 2,
+          "improvedRank": null
+        },
+        {
+          "key": "c11-p5",
+          "chunkId": "chunk-c506855c843c4745915c",
+          "baselineRank": null,
+          "improvedRank": 4
+        },
+        {
+          "key": "c11-p6",
+          "chunkId": "chunk-da23bafe2808a03a5ca0",
+          "baselineRank": 4,
+          "improvedRank": null
+        },
+        {
+          "key": "c11-p7",
+          "chunkId": "chunk-8610626ce019a9678f13",
+          "baselineRank": 1,
+          "improvedRank": null
+        },
+        {
+          "key": "c11-p8",
+          "chunkId": "chunk-913e55fe4ef3f5a69d6e",
+          "baselineRank": 5,
+          "improvedRank": null
+        },
+        {
+          "key": "c11-p9",
+          "chunkId": "chunk-c8721b1fcaac6c4ae301",
+          "baselineRank": null,
+          "improvedRank": 1
+        },
+        {
+          "key": "c11-p10",
+          "chunkId": "chunk-391c6891590cb8291e6a",
+          "baselineRank": 3,
+          "improvedRank": null
+        }
+      ]
+    },
+    {
+      "stayId": "37714209",
+      "passages": [
+        {
+          "key": "c12-p1",
+          "chunkId": "chunk-26f64d4c284c9c6b2a6e",
+          "baselineRank": null,
+          "improvedRank": 4
+        },
+        {
+          "key": "c12-p2",
+          "chunkId": "chunk-09687c8b9aaaf293baf1",
+          "baselineRank": 2,
+          "improvedRank": null
+        },
+        {
+          "key": "c12-p3",
+          "chunkId": "chunk-521b1c24ec6d226a9b65",
+          "baselineRank": 1,
+          "improvedRank": null
+        },
+        {
+          "key": "c12-p4",
+          "chunkId": "chunk-70f84bb1ead78453faec",
+          "baselineRank": 5,
+          "improvedRank": null
+        },
+        {
+          "key": "c12-p5",
+          "chunkId": "chunk-4782fc8993d207f11e7e",
+          "baselineRank": 3,
+          "improvedRank": null
+        },
+        {
+          "key": "c12-p6",
+          "chunkId": "chunk-b1aaabaac540f384cf9c",
+          "baselineRank": 4,
+          "improvedRank": null
+        },
+        {
+          "key": "c12-p7",
+          "chunkId": "chunk-c8721b1fcaac6c4ae301",
+          "baselineRank": null,
+          "improvedRank": 5
+        },
+        {
+          "key": "c12-p8",
+          "chunkId": "chunk-100594bc9ba3e8bcc781",
+          "baselineRank": null,
+          "improvedRank": 3
+        },
+        {
+          "key": "c12-p9",
+          "chunkId": "chunk-5e3d2b6cc2b626ae49e2",
+          "baselineRank": null,
+          "improvedRank": 2
+        },
+        {
+          "key": "c12-p10",
+          "chunkId": "chunk-950ddfe64ddf0951aa9d",
+          "baselineRank": null,
+          "improvedRank": 1
+        }
+      ]
+    },
+    {
+      "stayId": "37330786",
+      "passages": [
+        {
+          "key": "c13-p1",
+          "chunkId": "chunk-89acf05479aa07a1d1e6",
+          "baselineRank": 3,
+          "improvedRank": null
+        },
+        {
+          "key": "c13-p2",
+          "chunkId": "chunk-5dab3227477e97c43046",
+          "baselineRank": 2,
+          "improvedRank": null
+        },
+        {
+          "key": "c13-p3",
+          "chunkId": "chunk-8d0dd47a919445578d3b",
+          "baselineRank": 5,
+          "improvedRank": null
+        },
+        {
+          "key": "c13-p4",
+          "chunkId": "curated-esi-7",
+          "baselineRank": null,
+          "improvedRank": 1
+        },
+        {
+          "key": "c13-p5",
+          "chunkId": "curated-esi-5",
+          "baselineRank": null,
+          "improvedRank": 5
+        },
+        {
+          "key": "c13-p6",
+          "chunkId": "chunk-9e279a55b91319514f53",
+          "baselineRank": null,
+          "improvedRank": 3
+        },
+        {
+          "key": "c13-p7",
+          "chunkId": "chunk-8c97968eb79d1f2eebe0",
+          "baselineRank": null,
+          "improvedRank": 4
+        },
+        {
+          "key": "c13-p8",
+          "chunkId": "chunk-c506855c843c4745915c",
+          "baselineRank": null,
+          "improvedRank": 2
+        },
+        {
+          "key": "c13-p9",
+          "chunkId": "chunk-2716d34d5421cd1db861",
+          "baselineRank": 4,
+          "improvedRank": null
+        },
+        {
+          "key": "c13-p10",
+          "chunkId": "chunk-39c1b1b182c21e5ce340",
+          "baselineRank": 1,
+          "improvedRank": null
+        }
+      ]
+    },
+    {
+      "stayId": "39394858",
+      "passages": [
+        {
+          "key": "c14-p1",
+          "chunkId": "chunk-da23bafe2808a03a5ca0",
+          "baselineRank": 4,
+          "improvedRank": null
+        },
+        {
+          "key": "c14-p2",
+          "chunkId": "chunk-8abd34bd2eba3fb50e4b",
+          "baselineRank": 2,
+          "improvedRank": null
+        },
+        {
+          "key": "c14-p3",
+          "chunkId": "curated-esi-6",
+          "baselineRank": null,
+          "improvedRank": 2
+        },
+        {
+          "key": "c14-p4",
+          "chunkId": "chunk-11f4e96a0f2207f992cf",
+          "baselineRank": 5,
+          "improvedRank": null
+        },
+        {
+          "key": "c14-p5",
+          "chunkId": "chunk-7b08c1340ddd91b0fc5a",
+          "baselineRank": null,
+          "improvedRank": 5
+        },
+        {
+          "key": "c14-p6",
+          "chunkId": "chunk-97fb49d082d10c2d0c2c",
+          "baselineRank": null,
+          "improvedRank": 3
+        },
+        {
+          "key": "c14-p7",
+          "chunkId": "chunk-8d0dd47a919445578d3b",
+          "baselineRank": 1,
+          "improvedRank": null
+        },
+        {
+          "key": "c14-p8",
+          "chunkId": "chunk-8c97968eb79d1f2eebe0",
+          "baselineRank": null,
+          "improvedRank": 4
+        },
+        {
+          "key": "c14-p9",
+          "chunkId": "chunk-017e15ebb05e2fb3b700",
+          "baselineRank": 3,
+          "improvedRank": null
+        },
+        {
+          "key": "c14-p10",
+          "chunkId": "curated-esi-7",
+          "baselineRank": null,
+          "improvedRank": 1
+        }
+      ]
+    },
+    {
+      "stayId": "36381328",
+      "passages": [
+        {
+          "key": "c15-p1",
+          "chunkId": "chunk-142962a614cd1628d455",
+          "baselineRank": null,
+          "improvedRank": 4
+        },
+        {
+          "key": "c15-p2",
+          "chunkId": "chunk-c506855c843c4745915c",
+          "baselineRank": null,
+          "improvedRank": 5
+        },
+        {
+          "key": "c15-p3",
+          "chunkId": "chunk-db31fe3bccf51b824546",
+          "baselineRank": 2,
+          "improvedRank": null
+        },
+        {
+          "key": "c15-p4",
+          "chunkId": "chunk-a5995e94d26d98aea289",
+          "baselineRank": 3,
+          "improvedRank": null
+        },
+        {
+          "key": "c15-p5",
+          "chunkId": "chunk-8c97968eb79d1f2eebe0",
+          "baselineRank": null,
+          "improvedRank": 2
+        },
+        {
+          "key": "c15-p6",
+          "chunkId": "chunk-7925d7ef1f6687b022a3",
+          "baselineRank": 4,
+          "improvedRank": null
+        },
+        {
+          "key": "c15-p7",
+          "chunkId": "chunk-9a1c43557d83895c24f3",
+          "baselineRank": 1,
+          "improvedRank": null
+        },
+        {
+          "key": "c15-p8",
+          "chunkId": "chunk-7b1298c4dd46b29ed778",
+          "baselineRank": 5,
+          "improvedRank": null
+        },
+        {
+          "key": "c15-p9",
+          "chunkId": "chunk-cd834004d5c793328f9c",
+          "baselineRank": null,
+          "improvedRank": 3
+        },
+        {
+          "key": "c15-p10",
+          "chunkId": "curated-esi-7",
+          "baselineRank": null,
+          "improvedRank": 1
+        }
+      ]
+    },
+    {
+      "stayId": "37953392",
+      "passages": [
+        {
+          "key": "c16-p1",
+          "chunkId": "chunk-99c7077f19698b6c52cf",
+          "baselineRank": 3,
+          "improvedRank": 4
+        },
+        {
+          "key": "c16-p2",
+          "chunkId": "chunk-e5408c48293ef573289a",
+          "baselineRank": 1,
+          "improvedRank": 5
+        },
+        {
+          "key": "c16-p3",
+          "chunkId": "chunk-f578a32ef2360f63ce2d",
+          "baselineRank": 5,
+          "improvedRank": 3
+        },
+        {
+          "key": "c16-p4",
+          "chunkId": "chunk-5e3d2b6cc2b626ae49e2",
+          "baselineRank": 4,
+          "improvedRank": null
+        },
+        {
+          "key": "c16-p5",
+          "chunkId": "chunk-9e279a55b91319514f53",
+          "baselineRank": null,
+          "improvedRank": 1
+        },
+        {
+          "key": "c16-p6",
+          "chunkId": "chunk-3dfcc6f90a882b89135e",
+          "baselineRank": 2,
+          "improvedRank": 2
+        }
+      ]
+    },
+    {
+      "stayId": "35933027",
+      "passages": [
+        {
+          "key": "c17-p1",
+          "chunkId": "curated-esi-7",
+          "baselineRank": null,
+          "improvedRank": 1
+        },
+        {
+          "key": "c17-p2",
+          "chunkId": "chunk-09687c8b9aaaf293baf1",
+          "baselineRank": 2,
+          "improvedRank": 2
+        },
+        {
+          "key": "c17-p3",
+          "chunkId": "chunk-521b1c24ec6d226a9b65",
+          "baselineRank": 1,
+          "improvedRank": 3
+        },
+        {
+          "key": "c17-p4",
+          "chunkId": "chunk-1819ab960c59b1303f8f",
+          "baselineRank": 3,
+          "improvedRank": 5
+        },
+        {
+          "key": "c17-p5",
+          "chunkId": "chunk-cbbf5315fcc65a49f859",
+          "baselineRank": 4,
+          "improvedRank": null
+        },
+        {
+          "key": "c17-p6",
+          "chunkId": "chunk-8abd34bd2eba3fb50e4b",
+          "baselineRank": 5,
+          "improvedRank": null
+        },
+        {
+          "key": "c17-p7",
+          "chunkId": "chunk-8c97968eb79d1f2eebe0",
+          "baselineRank": null,
+          "improvedRank": 4
+        }
+      ]
+    },
+    {
+      "stayId": "33007927",
+      "passages": [
+        {
+          "key": "c18-p1",
+          "chunkId": "chunk-7b1298c4dd46b29ed778",
+          "baselineRank": 4,
+          "improvedRank": null
+        },
+        {
+          "key": "c18-p2",
+          "chunkId": "chunk-8c93887a9a5e847fc090",
+          "baselineRank": 2,
+          "improvedRank": null
+        },
+        {
+          "key": "c18-p3",
+          "chunkId": "chunk-f839be7d91edff3fd92f",
+          "baselineRank": null,
+          "improvedRank": 4
+        },
+        {
+          "key": "c18-p4",
+          "chunkId": "chunk-1fc6cac19b101a63477d",
+          "baselineRank": 5,
+          "improvedRank": null
+        },
+        {
+          "key": "c18-p5",
+          "chunkId": "chunk-7fb2ce3aa0eddda52488",
+          "baselineRank": 3,
+          "improvedRank": null
+        },
+        {
+          "key": "c18-p6",
+          "chunkId": "chunk-e375a516a37bd2919c91",
+          "baselineRank": 1,
+          "improvedRank": null
+        },
+        {
+          "key": "c18-p7",
+          "chunkId": "chunk-5d94030da473a327f779",
+          "baselineRank": null,
+          "improvedRank": 1
+        },
+        {
+          "key": "c18-p8",
+          "chunkId": "chunk-142962a614cd1628d455",
+          "baselineRank": null,
+          "improvedRank": 3
+        },
+        {
+          "key": "c18-p9",
+          "chunkId": "chunk-0cd0321acb086d26d377",
+          "baselineRank": null,
+          "improvedRank": 2
+        },
+        {
+          "key": "c18-p10",
+          "chunkId": "chunk-812a3fd9a699fac13e59",
+          "baselineRank": null,
+          "improvedRank": 5
+        }
+      ]
+    },
+    {
+      "stayId": "30094124",
+      "passages": [
+        {
+          "key": "c19-p1",
+          "chunkId": "chunk-7b1298c4dd46b29ed778",
+          "baselineRank": 2,
+          "improvedRank": null
+        },
+        {
+          "key": "c19-p2",
+          "chunkId": "chunk-a5995e94d26d98aea289",
+          "baselineRank": 1,
+          "improvedRank": null
+        },
+        {
+          "key": "c19-p3",
+          "chunkId": "chunk-36334eafa784679d38a0",
+          "baselineRank": null,
+          "improvedRank": 3
+        },
+        {
+          "key": "c19-p4",
+          "chunkId": "chunk-510cde84719929c45611",
+          "baselineRank": null,
+          "improvedRank": 2
+        },
+        {
+          "key": "c19-p5",
+          "chunkId": "chunk-94e7b94fc3caaf013ea8",
+          "baselineRank": null,
+          "improvedRank": 1
+        },
+        {
+          "key": "c19-p6",
+          "chunkId": "chunk-8c93887a9a5e847fc090",
+          "baselineRank": 3,
+          "improvedRank": null
+        },
+        {
+          "key": "c19-p7",
+          "chunkId": "chunk-37a87cd5862b42718148",
+          "baselineRank": 5,
+          "improvedRank": null
+        },
+        {
+          "key": "c19-p8",
+          "chunkId": "chunk-99c7077f19698b6c52cf",
+          "baselineRank": 4,
+          "improvedRank": null
+        },
+        {
+          "key": "c19-p9",
+          "chunkId": "chunk-f4395899ca8e998122a8",
+          "baselineRank": null,
+          "improvedRank": 4
+        },
+        {
+          "key": "c19-p10",
+          "chunkId": "chunk-100594bc9ba3e8bcc781",
+          "baselineRank": null,
+          "improvedRank": 5
+        }
+      ]
+    },
+    {
+      "stayId": "38133986",
+      "passages": [
+        {
+          "key": "c20-p1",
+          "chunkId": "chunk-5dab3227477e97c43046",
+          "baselineRank": 1,
+          "improvedRank": null
+        },
+        {
+          "key": "c20-p2",
+          "chunkId": "chunk-081dcd88bcd8b4a2ae21",
+          "baselineRank": 3,
+          "improvedRank": null
+        },
+        {
+          "key": "c20-p3",
+          "chunkId": "chunk-39c1b1b182c21e5ce340",
+          "baselineRank": 4,
+          "improvedRank": null
+        },
+        {
+          "key": "c20-p4",
+          "chunkId": "chunk-b312651829ba252696f6",
+          "baselineRank": 2,
+          "improvedRank": null
+        },
+        {
+          "key": "c20-p5",
+          "chunkId": "chunk-11e45bbf1877e1af49b1",
+          "baselineRank": null,
+          "improvedRank": 2
+        },
+        {
+          "key": "c20-p6",
+          "chunkId": "chunk-c506855c843c4745915c",
+          "baselineRank": null,
+          "improvedRank": 1
+        },
+        {
+          "key": "c20-p7",
+          "chunkId": "chunk-990d85f825016e53a4c4",
+          "baselineRank": 5,
+          "improvedRank": 3
+        },
+        {
+          "key": "c20-p8",
+          "chunkId": "chunk-f578a32ef2360f63ce2d",
+          "baselineRank": null,
+          "improvedRank": 5
+        },
+        {
+          "key": "c20-p9",
+          "chunkId": "chunk-c8721b1fcaac6c4ae301",
+          "baselineRank": null,
+          "improvedRank": 4
+        }
+      ]
+    },
+    {
+      "stayId": "31270431",
+      "passages": [
+        {
+          "key": "c21-p1",
+          "chunkId": "chunk-9be33e34f67e2413fad6",
+          "baselineRank": 4,
+          "improvedRank": null
+        },
+        {
+          "key": "c21-p2",
+          "chunkId": "chunk-7668896efdbe0b14c396",
+          "baselineRank": null,
+          "improvedRank": 4
+        },
+        {
+          "key": "c21-p3",
+          "chunkId": "chunk-c506855c843c4745915c",
+          "baselineRank": null,
+          "improvedRank": 1
+        },
+        {
+          "key": "c21-p4",
+          "chunkId": "chunk-8410567242daec52cd98",
+          "baselineRank": 5,
+          "improvedRank": null
+        },
+        {
+          "key": "c21-p5",
+          "chunkId": "chunk-0cd0321acb086d26d377",
+          "baselineRank": 2,
+          "improvedRank": null
+        },
+        {
+          "key": "c21-p6",
+          "chunkId": "chunk-6afd97b3aed837317694",
+          "baselineRank": null,
+          "improvedRank": 2
+        },
+        {
+          "key": "c21-p7",
+          "chunkId": "chunk-8abd34bd2eba3fb50e4b",
+          "baselineRank": 1,
+          "improvedRank": null
+        },
+        {
+          "key": "c21-p8",
+          "chunkId": "chunk-97fb49d082d10c2d0c2c",
+          "baselineRank": null,
+          "improvedRank": 3
+        },
+        {
+          "key": "c21-p9",
+          "chunkId": "chunk-8c97968eb79d1f2eebe0",
+          "baselineRank": null,
+          "improvedRank": 5
+        },
+        {
+          "key": "c21-p10",
+          "chunkId": "chunk-8d0dd47a919445578d3b",
+          "baselineRank": 3,
+          "improvedRank": null
+        }
+      ]
+    },
+    {
+      "stayId": "31628990",
+      "passages": [
+        {
+          "key": "c22-p1",
+          "chunkId": "curated-esi-6",
+          "baselineRank": null,
+          "improvedRank": 1
+        },
+        {
+          "key": "c22-p2",
+          "chunkId": "chunk-8abd34bd2eba3fb50e4b",
+          "baselineRank": 2,
+          "improvedRank": null
+        },
+        {
+          "key": "c22-p3",
+          "chunkId": "chunk-11f4e96a0f2207f992cf",
+          "baselineRank": 5,
+          "improvedRank": null
+        },
+        {
+          "key": "c22-p4",
+          "chunkId": "chunk-da23bafe2808a03a5ca0",
+          "baselineRank": 4,
+          "improvedRank": 3
+        },
+        {
+          "key": "c22-p5",
+          "chunkId": "chunk-8d0dd47a919445578d3b",
+          "baselineRank": 1,
+          "improvedRank": null
+        },
+        {
+          "key": "c22-p6",
+          "chunkId": "chunk-97fb49d082d10c2d0c2c",
+          "baselineRank": null,
+          "improvedRank": 2
+        },
+        {
+          "key": "c22-p7",
+          "chunkId": "chunk-017e15ebb05e2fb3b700",
+          "baselineRank": 3,
+          "improvedRank": 4
+        },
+        {
+          "key": "c22-p8",
+          "chunkId": "chunk-800eaedc56f1dc56689b",
+          "baselineRank": null,
+          "improvedRank": 5
+        }
+      ]
+    },
+    {
+      "stayId": "33693488",
+      "passages": [
+        {
+          "key": "c23-p1",
+          "chunkId": "chunk-8c97968eb79d1f2eebe0",
+          "baselineRank": null,
+          "improvedRank": 5
+        },
+        {
+          "key": "c23-p2",
+          "chunkId": "chunk-97fb49d082d10c2d0c2c",
+          "baselineRank": 4,
+          "improvedRank": 1
+        },
+        {
+          "key": "c23-p3",
+          "chunkId": "chunk-8c93887a9a5e847fc090",
+          "baselineRank": 5,
+          "improvedRank": null
+        },
+        {
+          "key": "c23-p4",
+          "chunkId": "chunk-521b1c24ec6d226a9b65",
+          "baselineRank": null,
+          "improvedRank": 3
+        },
+        {
+          "key": "c23-p5",
+          "chunkId": "chunk-09687c8b9aaaf293baf1",
+          "baselineRank": null,
+          "improvedRank": 4
+        },
+        {
+          "key": "c23-p6",
+          "chunkId": "chunk-e2f5e513a44527ff1252",
+          "baselineRank": 2,
+          "improvedRank": null
+        },
+        {
+          "key": "c23-p7",
+          "chunkId": "chunk-dd6d28e8384061c24b54",
+          "baselineRank": 1,
+          "improvedRank": 2
+        },
+        {
+          "key": "c23-p8",
+          "chunkId": "chunk-efa6f475351821447f39",
+          "baselineRank": 3,
+          "improvedRank": null
+        }
+      ]
+    },
+    {
+      "stayId": "31588683",
+      "passages": [
+        {
+          "key": "c24-p1",
+          "chunkId": "chunk-017e15ebb05e2fb3b700",
+          "baselineRank": 4,
+          "improvedRank": null
+        },
+        {
+          "key": "c24-p2",
+          "chunkId": "chunk-950ddfe64ddf0951aa9d",
+          "baselineRank": null,
+          "improvedRank": 2
+        },
+        {
+          "key": "c24-p3",
+          "chunkId": "chunk-c506855c843c4745915c",
+          "baselineRank": null,
+          "improvedRank": 1
+        },
+        {
+          "key": "c24-p4",
+          "chunkId": "chunk-c8721b1fcaac6c4ae301",
+          "baselineRank": null,
+          "improvedRank": 5
+        },
+        {
+          "key": "c24-p5",
+          "chunkId": "chunk-71d8c554d57ccae91c8b",
+          "baselineRank": 3,
+          "improvedRank": null
+        },
+        {
+          "key": "c24-p6",
+          "chunkId": "chunk-033feda35105c16c0f30",
+          "baselineRank": 1,
+          "improvedRank": null
+        },
+        {
+          "key": "c24-p7",
+          "chunkId": "chunk-a9c71a3fe96677815d0a",
+          "baselineRank": null,
+          "improvedRank": 4
+        },
+        {
+          "key": "c24-p8",
+          "chunkId": "chunk-eed5582be104d80f775a",
+          "baselineRank": null,
+          "improvedRank": 3
+        },
+        {
+          "key": "c24-p9",
+          "chunkId": "chunk-3f575d5dad442ba8aa38",
+          "baselineRank": 2,
+          "improvedRank": null
+        },
+        {
+          "key": "c24-p10",
+          "chunkId": "chunk-d2afa05ad23e54a6d704",
+          "baselineRank": 5,
+          "improvedRank": null
+        }
+      ]
+    },
+    {
+      "stayId": "35958431",
+      "passages": [
+        {
+          "key": "c25-p1",
+          "chunkId": "chunk-09687c8b9aaaf293baf1",
+          "baselineRank": 2,
+          "improvedRank": null
+        },
+        {
+          "key": "c25-p2",
+          "chunkId": "chunk-5dab3227477e97c43046",
+          "baselineRank": 1,
+          "improvedRank": null
+        },
+        {
+          "key": "c25-p3",
+          "chunkId": "chunk-c1c361bd94e83830d15e",
+          "baselineRank": 5,
+          "improvedRank": null
+        },
+        {
+          "key": "c25-p4",
+          "chunkId": "chunk-8410567242daec52cd98",
+          "baselineRank": 4,
+          "improvedRank": null
+        },
+        {
+          "key": "c25-p5",
+          "chunkId": "chunk-c506855c843c4745915c",
+          "baselineRank": null,
+          "improvedRank": 3
+        },
+        {
+          "key": "c25-p6",
+          "chunkId": "chunk-1819ab960c59b1303f8f",
+          "baselineRank": 3,
+          "improvedRank": null
+        },
+        {
+          "key": "c25-p7",
+          "chunkId": "chunk-da23bafe2808a03a5ca0",
+          "baselineRank": null,
+          "improvedRank": 5
+        },
+        {
+          "key": "c25-p8",
+          "chunkId": "chunk-6afd97b3aed837317694",
+          "baselineRank": null,
+          "improvedRank": 4
+        },
+        {
+          "key": "c25-p9",
+          "chunkId": "chunk-950ddfe64ddf0951aa9d",
+          "baselineRank": null,
+          "improvedRank": 2
+        },
+        {
+          "key": "c25-p10",
+          "chunkId": "chunk-11e45bbf1877e1af49b1",
+          "baselineRank": null,
+          "improvedRank": 1
+        }
+      ]
+    },
+    {
+      "stayId": "30225689",
+      "passages": [
+        {
+          "key": "c26-p1",
+          "chunkId": "chunk-8c97968eb79d1f2eebe0",
+          "baselineRank": null,
+          "improvedRank": 2
+        },
+        {
+          "key": "c26-p2",
+          "chunkId": "chunk-09687c8b9aaaf293baf1",
+          "baselineRank": 2,
+          "improvedRank": 3
+        },
+        {
+          "key": "c26-p3",
+          "chunkId": "chunk-06b1d421b81d9fee0091",
+          "baselineRank": 4,
+          "improvedRank": null
+        },
+        {
+          "key": "c26-p4",
+          "chunkId": "chunk-cbbf5315fcc65a49f859",
+          "baselineRank": 5,
+          "improvedRank": null
+        },
+        {
+          "key": "c26-p5",
+          "chunkId": "chunk-1819ab960c59b1303f8f",
+          "baselineRank": 3,
+          "improvedRank": 5
+        },
+        {
+          "key": "c26-p6",
+          "chunkId": "chunk-521b1c24ec6d226a9b65",
+          "baselineRank": 1,
+          "improvedRank": 4
+        },
+        {
+          "key": "c26-p7",
+          "chunkId": "curated-esi-7",
+          "baselineRank": null,
+          "improvedRank": 1
+        }
+      ]
+    },
+    {
+      "stayId": "39054681",
+      "passages": [
+        {
+          "key": "c27-p1",
+          "chunkId": "chunk-3f575d5dad442ba8aa38",
+          "baselineRank": 2,
+          "improvedRank": null
+        },
+        {
+          "key": "c27-p2",
+          "chunkId": "chunk-c8721b1fcaac6c4ae301",
+          "baselineRank": null,
+          "improvedRank": 5
+        },
+        {
+          "key": "c27-p3",
+          "chunkId": "chunk-c506855c843c4745915c",
+          "baselineRank": null,
+          "improvedRank": 1
+        },
+        {
+          "key": "c27-p4",
+          "chunkId": "chunk-7d678c167e8d49a35bbd",
+          "baselineRank": 4,
+          "improvedRank": null
+        },
+        {
+          "key": "c27-p5",
+          "chunkId": "chunk-a9c71a3fe96677815d0a",
+          "baselineRank": 5,
+          "improvedRank": null
+        },
+        {
+          "key": "c27-p6",
+          "chunkId": "chunk-017e15ebb05e2fb3b700",
+          "baselineRank": 1,
+          "improvedRank": 3
+        },
+        {
+          "key": "c27-p7",
+          "chunkId": "chunk-9be8ac11923a584dcdee",
+          "baselineRank": 3,
+          "improvedRank": 2
+        },
+        {
+          "key": "c27-p8",
+          "chunkId": "chunk-f839be7d91edff3fd92f",
+          "baselineRank": null,
+          "improvedRank": 4
+        }
+      ]
+    },
+    {
+      "stayId": "39501852",
+      "passages": [
+        {
+          "key": "c28-p1",
+          "chunkId": "chunk-c506855c843c4745915c",
+          "baselineRank": null,
+          "improvedRank": 2
+        },
+        {
+          "key": "c28-p2",
+          "chunkId": "chunk-cd834004d5c793328f9c",
+          "baselineRank": null,
+          "improvedRank": 4
+        },
+        {
+          "key": "c28-p3",
+          "chunkId": "chunk-7d678c167e8d49a35bbd",
+          "baselineRank": 4,
+          "improvedRank": null
+        },
+        {
+          "key": "c28-p4",
+          "chunkId": "chunk-a9c71a3fe96677815d0a",
+          "baselineRank": 5,
+          "improvedRank": null
+        },
+        {
+          "key": "c28-p5",
+          "chunkId": "chunk-3f575d5dad442ba8aa38",
+          "baselineRank": 1,
+          "improvedRank": null
+        },
+        {
+          "key": "c28-p6",
+          "chunkId": "chunk-950ddfe64ddf0951aa9d",
+          "baselineRank": null,
+          "improvedRank": 5
+        },
+        {
+          "key": "c28-p7",
+          "chunkId": "curated-esi-12",
+          "baselineRank": null,
+          "improvedRank": 1
+        },
+        {
+          "key": "c28-p8",
+          "chunkId": "chunk-033feda35105c16c0f30",
+          "baselineRank": 3,
+          "improvedRank": null
+        },
+        {
+          "key": "c28-p9",
+          "chunkId": "chunk-017e15ebb05e2fb3b700",
+          "baselineRank": 2,
+          "improvedRank": null
+        },
+        {
+          "key": "c28-p10",
+          "chunkId": "chunk-5762aebee82de8cc8399",
+          "baselineRank": null,
+          "improvedRank": 3
+        }
+      ]
+    },
+    {
+      "stayId": "38967799",
+      "passages": [
+        {
+          "key": "c29-p1",
+          "chunkId": "chunk-7b1298c4dd46b29ed778",
+          "baselineRank": 4,
+          "improvedRank": null
+        },
+        {
+          "key": "c29-p2",
+          "chunkId": "chunk-64a35498771f9b17ec64",
+          "baselineRank": null,
+          "improvedRank": 1
+        },
+        {
+          "key": "c29-p3",
+          "chunkId": "chunk-de67e98894250458e156",
+          "baselineRank": 5,
+          "improvedRank": null
+        },
+        {
+          "key": "c29-p4",
+          "chunkId": "chunk-9a7cec998293ed070e69",
+          "baselineRank": null,
+          "improvedRank": 4
+        },
+        {
+          "key": "c29-p5",
+          "chunkId": "chunk-5d5cfe59d6be154c2e87",
+          "baselineRank": null,
+          "improvedRank": 5
+        },
+        {
+          "key": "c29-p6",
+          "chunkId": "chunk-5b28e5f95563b64f15cb",
+          "baselineRank": null,
+          "improvedRank": 3
+        },
+        {
+          "key": "c29-p7",
+          "chunkId": "chunk-8d0dd47a919445578d3b",
+          "baselineRank": 3,
+          "improvedRank": null
+        },
+        {
+          "key": "c29-p8",
+          "chunkId": "chunk-8abd34bd2eba3fb50e4b",
+          "baselineRank": 1,
+          "improvedRank": 2
+        },
+        {
+          "key": "c29-p9",
+          "chunkId": "chunk-40909e8de77c558ab9d6",
+          "baselineRank": 2,
+          "improvedRank": null
+        }
+      ]
+    },
+    {
+      "stayId": "34387871",
+      "passages": [
+        {
+          "key": "c30-p1",
+          "chunkId": "chunk-5793a654a78ce90316e0",
+          "baselineRank": null,
+          "improvedRank": 5
+        },
+        {
+          "key": "c30-p2",
+          "chunkId": "chunk-e69108977960dfb49fc1",
+          "baselineRank": null,
+          "improvedRank": 4
+        },
+        {
+          "key": "c30-p3",
+          "chunkId": "chunk-081dcd88bcd8b4a2ae21",
+          "baselineRank": 3,
+          "improvedRank": null
+        },
+        {
+          "key": "c30-p4",
+          "chunkId": "chunk-11e45bbf1877e1af49b1",
+          "baselineRank": null,
+          "improvedRank": 3
+        },
+        {
+          "key": "c30-p5",
+          "chunkId": "chunk-89acf05479aa07a1d1e6",
+          "baselineRank": 2,
+          "improvedRank": null
+        },
+        {
+          "key": "c30-p6",
+          "chunkId": "chunk-2716d34d5421cd1db861",
+          "baselineRank": 1,
+          "improvedRank": null
+        },
+        {
+          "key": "c30-p7",
+          "chunkId": "chunk-97fb49d082d10c2d0c2c",
+          "baselineRank": null,
+          "improvedRank": 2
+        },
+        {
+          "key": "c30-p8",
+          "chunkId": "chunk-49737dcce32bb7f64651",
+          "baselineRank": 4,
+          "improvedRank": null
+        },
+        {
+          "key": "c30-p9",
+          "chunkId": "chunk-39c1b1b182c21e5ce340",
+          "baselineRank": null,
+          "improvedRank": 1
+        },
+        {
+          "key": "c30-p10",
+          "chunkId": "chunk-99c7077f19698b6c52cf",
+          "baselineRank": 5,
+          "improvedRank": null
+        }
+      ]
+    }
+  ]
+}

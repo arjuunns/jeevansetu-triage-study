@@ -1,0 +1,3154 @@
+{
+  "bootstrapSamples": 2000,
+  "seed": 42,
+  "runs": [
+    {
+      "run": "gemma3-12b__rag-off__safety-off",
+      "config": {
+        "run": "gemma3-12b__rag-off__safety-off",
+        "mode": "llm",
+        "provider": "ollama",
+        "model": "gemma3:12b",
+        "useRag": false,
+        "useSafety": false,
+        "useGuide": false,
+        "temperature": 0,
+        "seed": 42,
+        "dataset": "data/mimic_ed_cohort.json",
+        "retrievalCache": null,
+        "retrievalCacheCreatedAt": null,
+        "esiGuideSha256": null,
+        "systemPromptSha256": "87295fd016286c01"
+      },
+      "complete": true,
+      "total": 207,
+      "done": 207,
+      "ok": 207,
+      "fallback": 0,
+      "error": 0,
+      "meanLatencyMs": 70376,
+      "retrievalBackends": {
+        "disabled": 207
+      },
+      "metrics": {
+        "exact": {
+          "value": 0.2318840579710145,
+          "ci95": [
+            0.17391304347826086,
+            0.2898550724637681
+          ]
+        },
+        "withinOne": {
+          "value": 0.7101449275362319,
+          "ci95": [
+            0.6473429951690821,
+            0.7681159420289855
+          ]
+        },
+        "underTriage": {
+          "value": 0.7584541062801933,
+          "ci95": [
+            0.7004830917874396,
+            0.8164251207729468
+          ]
+        },
+        "overTriage": {
+          "value": 0.00966183574879227,
+          "ci95": [
+            0.0,
+            0.024154589371980676
+          ]
+        },
+        "quadraticKappa": {
+          "value": 0.13364888023596055,
+          "ci95": [
+            0.058438054120730665,
+            0.2073037674090239
+          ]
+        },
+        "severeUnderTriage": {
+          "value": 0.2898550724637681,
+          "ci95": [
+            0.2318840579710145,
+            0.3526570048309179
+          ]
+        },
+        "highAcuitySensitivity": {
+          "value": 0.06086956521739131,
+          "ci95": [
+            0.019230769230769232,
+            0.1092436974789916
+          ]
+        },
+        "highAcuitySpecificity": {
+          "value": 1.0,
+          "ci95": [
+            1.0,
+            1.0
+          ]
+        },
+        "highAcuityPPV": {
+          "value": 1.0,
+          "ci95": [
+            1.0,
+            1.0
+          ]
+        },
+        "highAcuityNPV": {
+          "value": 0.46,
+          "ci95": [
+            0.3902439024390244,
+            0.5306122448979592
+          ]
+        }
+      },
+      "perLevel": {
+        "1": {
+          "n": 18,
+          "exact": 0.2777777777777778,
+          "underTriage": 0.7222222222222222
+        },
+        "2": {
+          "n": 97,
+          "exact": 0.0,
+          "underTriage": 0.979381443298969
+        },
+        "3": {
+          "n": 90,
+          "exact": 0.45555555555555555,
+          "underTriage": 0.5444444444444444
+        },
+        "4": {
+          "n": 2,
+          "exact": 1.0,
+          "underTriage": 0.0
+        }
+      },
+      "admitted": {
+        "n": 139,
+        "underTriage": 0.7553956834532374,
+        "missedHighAcuity": 85
+      },
+      "calibration": {
+        "ece": 0.4579710144927552,
+        "meanConfidence": 0.6888888888888891,
+        "accuracy": 0.2318840579710145,
+        "n": 207
+      }
+    },
+    {
+      "run": "gemma3-12b__rag-off__safety-on",
+      "config": {
+        "run": "gemma3-12b__rag-off__safety-on",
+        "mode": "llm",
+        "provider": "ollama",
+        "model": "gemma3:12b",
+        "useRag": false,
+        "useSafety": true,
+        "useGuide": false,
+        "temperature": 0,
+        "seed": 42,
+        "dataset": "data/mimic_ed_cohort.json",
+        "retrievalCache": null,
+        "retrievalCacheCreatedAt": null,
+        "esiGuideSha256": null,
+        "systemPromptSha256": "87295fd016286c01"
+      },
+      "complete": true,
+      "total": 207,
+      "done": 207,
+      "ok": 207,
+      "fallback": 0,
+      "error": 0,
+      "meanLatencyMs": 57920,
+      "retrievalBackends": {
+        "disabled": 207
+      },
+      "metrics": {
+        "exact": {
+          "value": 0.2222222222222222,
+          "ci95": [
+            0.16908212560386474,
+            0.28019323671497587
+          ]
+        },
+        "withinOne": {
+          "value": 0.7198067632850241,
+          "ci95": [
+            0.6570048309178744,
+            0.782608695652174
+          ]
+        },
+        "underTriage": {
+          "value": 0.7536231884057971,
+          "ci95": [
+            0.6956521739130435,
+            0.8067632850241546
+          ]
+        },
+        "overTriage": {
+          "value": 0.024154589371980676,
+          "ci95": [
+            0.004830917874396135,
+            0.04830917874396135
+          ]
+        },
+        "quadraticKappa": {
+          "value": 0.1777166068011682,
+          "ci95": [
+            0.08930834458101944,
+            0.2686099735003614
+          ]
+        },
+        "severeUnderTriage": {
+          "value": 0.27053140096618356,
+          "ci95": [
+            0.21256038647342995,
+            0.3333333333333333
+          ]
+        },
+        "highAcuitySensitivity": {
+          "value": 0.10434782608695652,
+          "ci95": [
+            0.05217391304347826,
+            0.16666666666666666
+          ]
+        },
+        "highAcuitySpecificity": {
+          "value": 0.9782608695652174,
+          "ci95": [
+            0.9431818181818182,
+            1.0
+          ]
+        },
+        "highAcuityPPV": {
+          "value": 0.8571428571428571,
+          "ci95": [
+            0.6428571428571429,
+            1.0
+          ]
+        },
+        "highAcuityNPV": {
+          "value": 0.46632124352331605,
+          "ci95": [
+            0.3958333333333333,
+            0.5384615384615384
+          ]
+        }
+      },
+      "perLevel": {
+        "1": {
+          "n": 18,
+          "exact": 0.5,
+          "underTriage": 0.5
+        },
+        "2": {
+          "n": 97,
+          "exact": 0.0,
+          "underTriage": 0.9690721649484536
+        },
+        "3": {
+          "n": 90,
+          "exact": 0.3888888888888889,
+          "underTriage": 0.5888888888888889
+        },
+        "4": {
+          "n": 2,
+          "exact": 1.0,
+          "underTriage": 0.0
+        }
+      },
+      "admitted": {
+        "n": 139,
+        "underTriage": 0.7697841726618705,
+        "missedHighAcuity": 81
+      },
+      "calibration": {
+        "ece": 0.4850241545893734,
+        "meanConfidence": 0.7072463768115945,
+        "accuracy": 0.2222222222222222,
+        "n": 207
+      }
+    },
+    {
+      "run": "gemma3-12b__rag-off__safety-on__notice-off",
+      "config": {
+        "run": "gemma3-12b__rag-off__safety-on__notice-off",
+        "mode": "llm",
+        "provider": "ollama",
+        "model": "gemma3:12b",
+        "useRag": false,
+        "useSafety": true,
+        "useGuide": false,
+        "safetyNotice": false,
+        "temperature": 0,
+        "seed": 42,
+        "dataset": "data/mimic_ed_cohort.json",
+        "retrievalCache": null,
+        "retrievalCacheCreatedAt": null,
+        "esiGuideSha256": null,
+        "systemPromptSha256": "87295fd016286c01"
+      },
+      "complete": false,
+      "total": 207,
+      "done": 99,
+      "ok": 99,
+      "fallback": 0,
+      "error": 0,
+      "meanLatencyMs": 66491,
+      "retrievalBackends": {
+        "disabled": 99
+      },
+      "metrics": {
+        "exact": {
+          "value": 0.26262626262626265,
+          "ci95": [
+            0.18181818181818182,
+            0.35353535353535354
+          ]
+        },
+        "withinOne": {
+          "value": 0.7575757575757576,
+          "ci95": [
+            0.6666666666666666,
+            0.8383838383838383
+          ]
+        },
+        "underTriage": {
+          "value": 0.6868686868686869,
+          "ci95": [
+            0.5959595959595959,
+            0.7777777777777778
+          ]
+        },
+        "overTriage": {
+          "value": 0.050505050505050504,
+          "ci95": [
+            0.010101010101010102,
+            0.09090909090909091
+          ]
+        },
+        "quadraticKappa": {
+          "value": 0.2243810717643372,
+          "ci95": [
+            0.07650273224043713,
+            0.3673024523160764
+          ]
+        },
+        "severeUnderTriage": {
+          "value": 0.23232323232323232,
+          "ci95": [
+            0.15151515151515152,
+            0.32323232323232326
+          ]
+        },
+        "highAcuitySensitivity": {
+          "value": 0.18,
+          "ci95": [
+            0.08,
+            0.2978723404255319
+          ]
+        },
+        "highAcuitySpecificity": {
+          "value": 0.9795918367346939,
+          "ci95": [
+            0.9318181818181818,
+            1.0
+          ]
+        },
+        "highAcuityPPV": {
+          "value": 0.9,
+          "ci95": [
+            0.6666666666666666,
+            1.0
+          ]
+        },
+        "highAcuityNPV": {
+          "value": 0.5393258426966292,
+          "ci95": [
+            0.43333333333333335,
+            0.6444444444444445
+          ]
+        }
+      },
+      "perLevel": {
+        "1": {
+          "n": 7,
+          "exact": 0.7142857142857143,
+          "underTriage": 0.2857142857142857
+        },
+        "2": {
+          "n": 43,
+          "exact": 0.0,
+          "underTriage": 0.9069767441860465
+        },
+        "3": {
+          "n": 49,
+          "exact": 0.42857142857142855,
+          "underTriage": 0.5510204081632653
+        }
+      },
+      "admitted": {
+        "n": 71,
+        "underTriage": 0.647887323943662,
+        "missedHighAcuity": 33
+      },
+      "calibration": {
+        "ece": 0.44141414141414204,
+        "meanConfidence": 0.7040404040404049,
+        "accuracy": 0.26262626262626265,
+        "n": 99
+      }
+    },
+    {
+      "run": "llama3.1-8b__rag-off__safety-off",
+      "config": {
+        "run": "llama3.1-8b__rag-off__safety-off",
+        "mode": "llm",
+        "provider": "ollama",
+        "model": "llama3.1:8b",
+        "useRag": false,
+        "useSafety": false,
+        "useGuide": false,
+        "temperature": 0,
+        "seed": 42,
+        "dataset": "data/mimic_ed_cohort.json",
+        "retrievalCache": null,
+        "retrievalCacheCreatedAt": null,
+        "esiGuideSha256": null,
+        "systemPromptSha256": "87295fd016286c01"
+      },
+      "complete": true,
+      "total": 207,
+      "done": 207,
+      "ok": 207,
+      "fallback": 0,
+      "error": 0,
+      "meanLatencyMs": 34439,
+      "retrievalBackends": {
+        "disabled": 207
+      },
+      "metrics": {
+        "exact": {
+          "value": 0.41545893719806765,
+          "ci95": [
+            0.34782608695652173,
+            0.4830917874396135
+          ]
+        },
+        "withinOne": {
+          "value": 0.8599033816425121,
+          "ci95": [
+            0.8115942028985508,
+            0.9082125603864735
+          ]
+        },
+        "underTriage": {
+          "value": 0.5120772946859904,
+          "ci95": [
+            0.4444444444444444,
+            0.5797101449275363
+          ]
+        },
+        "overTriage": {
+          "value": 0.07246376811594203,
+          "ci95": [
+            0.03864734299516908,
+            0.1111111111111111
+          ]
+        },
+        "quadraticKappa": {
+          "value": -0.16434546171568543,
+          "ci95": [
+            -0.2498957609451009,
+            -0.06127929687500022
+          ]
+        },
+        "severeUnderTriage": {
+          "value": 0.10144927536231885,
+          "ci95": [
+            0.06280193236714976,
+            0.14492753623188406
+          ]
+        },
+        "highAcuitySensitivity": {
+          "value": 0.0782608695652174,
+          "ci95": [
+            0.034782608695652174,
+            0.13
+          ]
+        },
+        "highAcuitySpecificity": {
+          "value": 0.9021739130434783,
+          "ci95": [
+            0.8387096774193549,
+            0.9583333333333334
+          ]
+        },
+        "highAcuityPPV": {
+          "value": 0.5,
+          "ci95": [
+            0.2777777777777778,
+            0.7368421052631579
+          ]
+        },
+        "highAcuityNPV": {
+          "value": 0.43915343915343913,
+          "ci95": [
+            0.3670212765957447,
+            0.5133689839572193
+          ]
+        }
+      },
+      "perLevel": {
+        "1": {
+          "n": 18,
+          "exact": 0.0,
+          "underTriage": 1.0
+        },
+        "2": {
+          "n": 97,
+          "exact": 0.05154639175257732,
+          "underTriage": 0.9072164948453608
+        },
+        "3": {
+          "n": 90,
+          "exact": 0.9,
+          "underTriage": 0.0
+        },
+        "4": {
+          "n": 2,
+          "exact": 0.0,
+          "underTriage": 0.0
+        }
+      },
+      "admitted": {
+        "n": 139,
+        "underTriage": 0.6187050359712231,
+        "missedHighAcuity": 86
+      },
+      "calibration": {
+        "ece": 0.3946859903381637,
+        "meanConfidence": 0.8101449275362329,
+        "accuracy": 0.41545893719806765,
+        "n": 207
+      }
+    },
+    {
+      "run": "llama3.1-8b__rag-off__safety-off__guide-on",
+      "config": {
+        "run": "llama3.1-8b__rag-off__safety-off__guide-on",
+        "mode": "llm",
+        "provider": "ollama",
+        "model": "llama3.1:8b",
+        "useRag": false,
+        "useSafety": false,
+        "useGuide": true,
+        "temperature": 0,
+        "seed": 42,
+        "dataset": "data/mimic_ed_cohort.json",
+        "retrievalCache": null,
+        "retrievalCacheCreatedAt": null,
+        "esiGuideSha256": "9af38a8f91481c6b",
+        "systemPromptSha256": "87295fd016286c01"
+      },
+      "complete": true,
+      "total": 207,
+      "done": 207,
+      "ok": 207,
+      "fallback": 0,
+      "error": 0,
+      "meanLatencyMs": 32037,
+      "retrievalBackends": {
+        "disabled": 207
+      },
+      "metrics": {
+        "exact": {
+          "value": 0.3526570048309179,
+          "ci95": [
+            0.2898550724637681,
+            0.42028985507246375
+          ]
+        },
+        "withinOne": {
+          "value": 0.6908212560386473,
+          "ci95": [
+            0.6280193236714976,
+            0.7536231884057971
+          ]
+        },
+        "underTriage": {
+          "value": 0.6280193236714976,
+          "ci95": [
+            0.5603864734299517,
+            0.6908212560386473
+          ]
+        },
+        "overTriage": {
+          "value": 0.01932367149758454,
+          "ci95": [
+            0.004830917874396135,
+            0.03864734299516908
+          ]
+        },
+        "quadraticKappa": {
+          "value": 0.04849725504792035,
+          "ci95": [
+            -0.024696319298566305,
+            0.12256005023810768
+          ]
+        },
+        "severeUnderTriage": {
+          "value": 0.30917874396135264,
+          "ci95": [
+            0.2463768115942029,
+            0.3719806763285024
+          ]
+        },
+        "highAcuitySensitivity": {
+          "value": 0.08695652173913043,
+          "ci95": [
+            0.03968253968253968,
+            0.14018691588785046
+          ]
+        },
+        "highAcuitySpecificity": {
+          "value": 0.9782608695652174,
+          "ci95": [
+            0.9438202247191011,
+            1.0
+          ]
+        },
+        "highAcuityPPV": {
+          "value": 0.8333333333333334,
+          "ci95": [
+            0.5833333333333334,
+            1.0
+          ]
+        },
+        "highAcuityNPV": {
+          "value": 0.46153846153846156,
+          "ci95": [
+            0.39086294416243655,
+            0.5326633165829145
+          ]
+        }
+      },
+      "perLevel": {
+        "1": {
+          "n": 18,
+          "exact": 0.16666666666666666,
+          "underTriage": 0.8333333333333334
+        },
+        "2": {
+          "n": 97,
+          "exact": 0.07216494845360824,
+          "underTriage": 0.9278350515463918
+        },
+        "3": {
+          "n": 90,
+          "exact": 0.7,
+          "underTriage": 0.2777777777777778
+        },
+        "4": {
+          "n": 2,
+          "exact": 0.0,
+          "underTriage": 0.0
+        }
+      },
+      "admitted": {
+        "n": 139,
+        "underTriage": 0.6762589928057554,
+        "missedHighAcuity": 83
+      },
+      "calibration": {
+        "ece": 0.4565217391304347,
+        "meanConfidence": 0.8091787439613539,
+        "accuracy": 0.3526570048309179,
+        "n": 207
+      }
+    },
+    {
+      "run": "llama3.1-8b__rag-off__safety-on",
+      "config": {
+        "run": "llama3.1-8b__rag-off__safety-on",
+        "mode": "llm",
+        "provider": "ollama",
+        "model": "llama3.1:8b",
+        "useRag": false,
+        "useSafety": true,
+        "useGuide": false,
+        "temperature": 0,
+        "seed": 42,
+        "dataset": "data/mimic_ed_cohort.json",
+        "retrievalCache": null,
+        "retrievalCacheCreatedAt": null,
+        "esiGuideSha256": null,
+        "systemPromptSha256": "87295fd016286c01"
+      },
+      "complete": true,
+      "total": 207,
+      "done": 207,
+      "ok": 207,
+      "fallback": 0,
+      "error": 0,
+      "meanLatencyMs": 23816,
+      "retrievalBackends": {
+        "disabled": 207
+      },
+      "metrics": {
+        "exact": {
+          "value": 0.43478260869565216,
+          "ci95": [
+            0.3671497584541063,
+            0.5024154589371981
+          ]
+        },
+        "withinOne": {
+          "value": 0.9130434782608695,
+          "ci95": [
+            0.8695652173913043,
+            0.9516908212560387
+          ]
+        },
+        "underTriage": {
+          "value": 0.463768115942029,
+          "ci95": [
+            0.3961352657004831,
+            0.5314009661835749
+          ]
+        },
+        "overTriage": {
+          "value": 0.10144927536231885,
+          "ci95": [
+            0.06280193236714976,
+            0.14492753623188406
+          ]
+        },
+        "quadraticKappa": {
+          "value": 0.15325122381920997,
+          "ci95": [
+            -0.01654836579729313,
+            0.3096712720343019
+          ]
+        },
+        "severeUnderTriage": {
+          "value": 0.03864734299516908,
+          "ci95": [
+            0.014492753623188406,
+            0.06763285024154589
+          ]
+        },
+        "highAcuitySensitivity": {
+          "value": 0.16521739130434782,
+          "ci95": [
+            0.0990990990990991,
+            0.23423423423423423
+          ]
+        },
+        "highAcuitySpecificity": {
+          "value": 0.8695652173913043,
+          "ci95": [
+            0.797752808988764,
+            0.9354838709677419
+          ]
+        },
+        "highAcuityPPV": {
+          "value": 0.6129032258064516,
+          "ci95": [
+            0.43333333333333335,
+            0.782608695652174
+          ]
+        },
+        "highAcuityNPV": {
+          "value": 0.45454545454545453,
+          "ci95": [
+            0.3795180722891566,
+            0.5307262569832403
+          ]
+        }
+      },
+      "perLevel": {
+        "1": {
+          "n": 18,
+          "exact": 0.5555555555555556,
+          "underTriage": 0.4444444444444444
+        },
+        "2": {
+          "n": 97,
+          "exact": 0.020618556701030927,
+          "underTriage": 0.9072164948453608
+        },
+        "3": {
+          "n": 90,
+          "exact": 0.8666666666666667,
+          "underTriage": 0.0
+        },
+        "4": {
+          "n": 2,
+          "exact": 0.0,
+          "underTriage": 0.0
+        }
+      },
+      "admitted": {
+        "n": 139,
+        "underTriage": 0.5539568345323741,
+        "missedHighAcuity": 77
+      },
+      "calibration": {
+        "ece": 0.3801932367149758,
+        "meanConfidence": 0.8149758454106292,
+        "accuracy": 0.43478260869565216,
+        "n": 207
+      }
+    },
+    {
+      "run": "llama3.1-8b__rag-off__safety-on__guide-on",
+      "config": {
+        "run": "llama3.1-8b__rag-off__safety-on__guide-on",
+        "mode": "llm",
+        "provider": "ollama",
+        "model": "llama3.1:8b",
+        "useRag": false,
+        "useSafety": true,
+        "useGuide": true,
+        "temperature": 0,
+        "seed": 42,
+        "dataset": "data/mimic_ed_cohort.json",
+        "retrievalCache": null,
+        "retrievalCacheCreatedAt": null,
+        "esiGuideSha256": "9af38a8f91481c6b",
+        "systemPromptSha256": "87295fd016286c01"
+      },
+      "complete": true,
+      "total": 207,
+      "done": 207,
+      "ok": 207,
+      "fallback": 0,
+      "error": 0,
+      "meanLatencyMs": 46230,
+      "retrievalBackends": {
+        "disabled": 207
+      },
+      "metrics": {
+        "exact": {
+          "value": 0.3864734299516908,
+          "ci95": [
+            0.32367149758454106,
+            0.45410628019323673
+          ]
+        },
+        "withinOne": {
+          "value": 0.782608695652174,
+          "ci95": [
+            0.7246376811594203,
+            0.8357487922705314
+          ]
+        },
+        "underTriage": {
+          "value": 0.5797101449275363,
+          "ci95": [
+            0.5169082125603864,
+            0.6473429951690821
+          ]
+        },
+        "overTriage": {
+          "value": 0.033816425120772944,
+          "ci95": [
+            0.00966183574879227,
+            0.06280193236714976
+          ]
+        },
+        "quadraticKappa": {
+          "value": 0.17970693945258487,
+          "ci95": [
+            0.08538996704503832,
+            0.2750965159853126
+          ]
+        },
+        "severeUnderTriage": {
+          "value": 0.20772946859903382,
+          "ci95": [
+            0.15458937198067632,
+            0.26570048309178745
+          ]
+        },
+        "highAcuitySensitivity": {
+          "value": 0.13043478260869565,
+          "ci95": [
+            0.075,
+            0.1941747572815534
+          ]
+        },
+        "highAcuitySpecificity": {
+          "value": 0.9782608695652174,
+          "ci95": [
+            0.9431818181818182,
+            1.0
+          ]
+        },
+        "highAcuityPPV": {
+          "value": 0.8823529411764706,
+          "ci95": [
+            0.7,
+            1.0
+          ]
+        },
+        "highAcuityNPV": {
+          "value": 0.47368421052631576,
+          "ci95": [
+            0.40106951871657753,
+            0.5459459459459459
+          ]
+        }
+      },
+      "perLevel": {
+        "1": {
+          "n": 18,
+          "exact": 0.5,
+          "underTriage": 0.5
+        },
+        "2": {
+          "n": 97,
+          "exact": 0.030927835051546393,
+          "underTriage": 0.9381443298969072
+        },
+        "3": {
+          "n": 90,
+          "exact": 0.7555555555555555,
+          "underTriage": 0.2222222222222222
+        },
+        "4": {
+          "n": 2,
+          "exact": 0.0,
+          "underTriage": 0.0
+        }
+      },
+      "admitted": {
+        "n": 139,
+        "underTriage": 0.6330935251798561,
+        "missedHighAcuity": 78
+      },
+      "calibration": {
+        "ece": 0.4391304347826076,
+        "meanConfidence": 0.8256038647343009,
+        "accuracy": 0.3864734299516908,
+        "n": 207
+      }
+    },
+    {
+      "run": "llama3.1-8b__rag-off__safety-on__notice-off",
+      "config": {
+        "run": "llama3.1-8b__rag-off__safety-on__notice-off",
+        "mode": "llm",
+        "provider": "ollama",
+        "model": "llama3.1:8b",
+        "useRag": false,
+        "useSafety": true,
+        "useGuide": false,
+        "safetyNotice": false,
+        "temperature": 0,
+        "seed": 42,
+        "dataset": "data/mimic_ed_cohort.json",
+        "retrievalCache": null,
+        "retrievalCacheCreatedAt": null,
+        "esiGuideSha256": null,
+        "systemPromptSha256": "87295fd016286c01"
+      },
+      "complete": true,
+      "total": 207,
+      "done": 207,
+      "ok": 207,
+      "fallback": 0,
+      "error": 0,
+      "meanLatencyMs": 21956,
+      "retrievalBackends": {
+        "disabled": 207
+      },
+      "metrics": {
+        "exact": {
+          "value": 0.4492753623188406,
+          "ci95": [
+            0.38164251207729466,
+            0.5217391304347826
+          ]
+        },
+        "withinOne": {
+          "value": 0.893719806763285,
+          "ci95": [
+            0.8502415458937198,
+            0.9323671497584541
+          ]
+        },
+        "underTriage": {
+          "value": 0.45410628019323673,
+          "ci95": [
+            0.3864734299516908,
+            0.5217391304347826
+          ]
+        },
+        "overTriage": {
+          "value": 0.0966183574879227,
+          "ci95": [
+            0.057971014492753624,
+            0.13526570048309178
+          ]
+        },
+        "quadraticKappa": {
+          "value": 0.08843578452072132,
+          "ci95": [
+            -0.06776677667766773,
+            0.2489211413358523
+          ]
+        },
+        "severeUnderTriage": {
+          "value": 0.057971014492753624,
+          "ci95": [
+            0.028985507246376812,
+            0.09178743961352658
+          ]
+        },
+        "highAcuitySensitivity": {
+          "value": 0.1826086956521739,
+          "ci95": [
+            0.11666666666666667,
+            0.256
+          ]
+        },
+        "highAcuitySpecificity": {
+          "value": 0.8804347826086957,
+          "ci95": [
+            0.8117647058823529,
+            0.9431818181818182
+          ]
+        },
+        "highAcuityPPV": {
+          "value": 0.65625,
+          "ci95": [
+            0.4827586206896552,
+            0.8181818181818182
+          ]
+        },
+        "highAcuityNPV": {
+          "value": 0.46285714285714286,
+          "ci95": [
+            0.38857142857142857,
+            0.5402298850574713
+          ]
+        }
+      },
+      "perLevel": {
+        "1": {
+          "n": 18,
+          "exact": 0.5,
+          "underTriage": 0.5
+        },
+        "2": {
+          "n": 97,
+          "exact": 0.05154639175257732,
+          "underTriage": 0.8762886597938144
+        },
+        "3": {
+          "n": 90,
+          "exact": 0.8777777777777778,
+          "underTriage": 0.0
+        },
+        "4": {
+          "n": 2,
+          "exact": 0.0,
+          "underTriage": 0.0
+        }
+      },
+      "admitted": {
+        "n": 139,
+        "underTriage": 0.539568345323741,
+        "missedHighAcuity": 75
+      },
+      "calibration": {
+        "ece": 0.3710144927536223,
+        "meanConfidence": 0.8202898550724648,
+        "accuracy": 0.4492753623188406,
+        "n": 207
+      }
+    },
+    {
+      "run": "llama3.1-8b__rag-on__safety-off",
+      "config": {
+        "run": "llama3.1-8b__rag-on__safety-off",
+        "mode": "llm",
+        "provider": "ollama",
+        "model": "llama3.1:8b",
+        "useRag": true,
+        "useSafety": false,
+        "useGuide": false,
+        "temperature": 0,
+        "seed": 42,
+        "dataset": "data/mimic_ed_cohort.json",
+        "retrievalCache": "research/retrieval_cache.json",
+        "retrievalCacheCreatedAt": "2026-10-27T09:20:39.732Z",
+        "esiGuideSha256": null,
+        "systemPromptSha256": "87295fd016286c01"
+      },
+      "complete": true,
+      "total": 207,
+      "done": 207,
+      "ok": 207,
+      "fallback": 0,
+      "error": 0,
+      "meanLatencyMs": 42922,
+      "retrievalBackends": {
+        "local-hybrid": 207
+      },
+      "metrics": {
+        "exact": {
+          "value": 0.4251207729468599,
+          "ci95": [
+            0.357487922705314,
+            0.4927536231884058
+          ]
+        },
+        "withinOne": {
+          "value": 0.9082125603864735,
+          "ci95": [
+            0.8695652173913043,
+            0.9468599033816425
+          ]
+        },
+        "underTriage": {
+          "value": 0.34782608695652173,
+          "ci95": [
+            0.28502415458937197,
+            0.4106280193236715
+          ]
+        },
+        "overTriage": {
+          "value": 0.22705314009661837,
+          "ci95": [
+            0.16908212560386474,
+            0.28502415458937197
+          ]
+        },
+        "quadraticKappa": {
+          "value": -0.10631071795276825,
+          "ci95": [
+            -0.23996901626646006,
+            0.043751374868623794
+          ]
+        },
+        "severeUnderTriage": {
+          "value": 0.057971014492753624,
+          "ci95": [
+            0.028985507246376812,
+            0.09178743961352658
+          ]
+        },
+        "highAcuitySensitivity": {
+          "value": 0.43478260869565216,
+          "ci95": [
+            0.3418803418803419,
+            0.5294117647058824
+          ]
+        },
+        "highAcuitySpecificity": {
+          "value": 0.4891304347826087,
+          "ci95": [
+            0.38823529411764707,
+            0.5930232558139535
+          ]
+        },
+        "highAcuityPPV": {
+          "value": 0.5154639175257731,
+          "ci95": [
+            0.41836734693877553,
+            0.6170212765957447
+          ]
+        },
+        "highAcuityNPV": {
+          "value": 0.4090909090909091,
+          "ci95": [
+            0.3148148148148148,
+            0.5048543689320388
+          ]
+        }
+      },
+      "perLevel": {
+        "1": {
+          "n": 18,
+          "exact": 0.1111111111111111,
+          "underTriage": 0.8888888888888888
+        },
+        "2": {
+          "n": 97,
+          "exact": 0.422680412371134,
+          "underTriage": 0.5773195876288659
+        },
+        "3": {
+          "n": 90,
+          "exact": 0.5,
+          "underTriage": 0.0
+        },
+        "4": {
+          "n": 2,
+          "exact": 0.0,
+          "underTriage": 0.0
+        }
+      },
+      "admitted": {
+        "n": 139,
+        "underTriage": 0.41007194244604317,
+        "missedHighAcuity": 50
+      },
+      "calibration": {
+        "ece": 0.3734299516908211,
+        "meanConfidence": 0.7985507246376822,
+        "accuracy": 0.4251207729468599,
+        "n": 207
+      }
+    },
+    {
+      "run": "llama3.1-8b__rag-on__safety-on",
+      "config": {
+        "run": "llama3.1-8b__rag-on__safety-on",
+        "mode": "llm",
+        "provider": "ollama",
+        "model": "llama3.1:8b",
+        "useRag": true,
+        "useSafety": true,
+        "useGuide": false,
+        "temperature": 0,
+        "seed": 42,
+        "dataset": "data/mimic_ed_cohort.json",
+        "retrievalCache": "research/retrieval_cache.json",
+        "retrievalCacheCreatedAt": "2026-10-27T09:20:39.732Z",
+        "esiGuideSha256": null,
+        "systemPromptSha256": "87295fd016286c01"
+      },
+      "complete": true,
+      "total": 207,
+      "done": 207,
+      "ok": 207,
+      "fallback": 0,
+      "error": 0,
+      "meanLatencyMs": 42201,
+      "retrievalBackends": {
+        "local-hybrid": 207
+      },
+      "metrics": {
+        "exact": {
+          "value": 0.43478260869565216,
+          "ci95": [
+            0.3671497584541063,
+            0.5024154589371981
+          ]
+        },
+        "withinOne": {
+          "value": 0.927536231884058,
+          "ci95": [
+            0.8888888888888888,
+            0.961352657004831
+          ]
+        },
+        "underTriage": {
+          "value": 0.3333333333333333,
+          "ci95": [
+            0.27053140096618356,
+            0.3961352657004831
+          ]
+        },
+        "overTriage": {
+          "value": 0.2318840579710145,
+          "ci95": [
+            0.17391304347826086,
+            0.2898550724637681
+          ]
+        },
+        "quadraticKappa": {
+          "value": 0.09484992442237095,
+          "ci95": [
+            -0.07337469652009743,
+            0.2541436464088399
+          ]
+        },
+        "severeUnderTriage": {
+          "value": 0.028985507246376812,
+          "ci95": [
+            0.00966183574879227,
+            0.05314009661835749
+          ]
+        },
+        "highAcuitySensitivity": {
+          "value": 0.4260869565217391,
+          "ci95": [
+            0.3333333333333333,
+            0.5196078431372549
+          ]
+        },
+        "highAcuitySpecificity": {
+          "value": 0.5108695652173914,
+          "ci95": [
+            0.4090909090909091,
+            0.6111111111111112
+          ]
+        },
+        "highAcuityPPV": {
+          "value": 0.5212765957446809,
+          "ci95": [
+            0.4175824175824176,
+            0.6226415094339622
+          ]
+        },
+        "highAcuityNPV": {
+          "value": 0.415929203539823,
+          "ci95": [
+            0.32142857142857145,
+            0.5081967213114754
+          ]
+        }
+      },
+      "perLevel": {
+        "1": {
+          "n": 18,
+          "exact": 0.5,
+          "underTriage": 0.5
+        },
+        "2": {
+          "n": 97,
+          "exact": 0.35051546391752575,
+          "underTriage": 0.6185567010309279
+        },
+        "3": {
+          "n": 90,
+          "exact": 0.5222222222222223,
+          "underTriage": 0.0
+        },
+        "4": {
+          "n": 2,
+          "exact": 0.0,
+          "underTriage": 0.0
+        }
+      },
+      "admitted": {
+        "n": 139,
+        "underTriage": 0.39568345323741005,
+        "missedHighAcuity": 52
+      },
+      "calibration": {
+        "ece": 0.37536231884057975,
+        "meanConfidence": 0.810144927536233,
+        "accuracy": 0.43478260869565216,
+        "n": 207
+      }
+    },
+    {
+      "run": "qwen2.5-7b__rag-off__safety-off",
+      "config": {
+        "run": "qwen2.5-7b__rag-off__safety-off",
+        "mode": "llm",
+        "provider": "ollama",
+        "model": "qwen2.5:7b",
+        "useRag": false,
+        "useSafety": false,
+        "useGuide": false,
+        "temperature": 0,
+        "seed": 42,
+        "dataset": "data/mimic_ed_cohort.json",
+        "retrievalCache": null,
+        "retrievalCacheCreatedAt": null,
+        "esiGuideSha256": null,
+        "systemPromptSha256": "87295fd016286c01"
+      },
+      "complete": true,
+      "total": 207,
+      "done": 207,
+      "ok": 207,
+      "fallback": 0,
+      "error": 0,
+      "meanLatencyMs": 34266,
+      "retrievalBackends": {
+        "disabled": 207
+      },
+      "metrics": {
+        "exact": {
+          "value": 0.42028985507246375,
+          "ci95": [
+            0.3526570048309179,
+            0.48792270531400966
+          ]
+        },
+        "withinOne": {
+          "value": 0.9033816425120773,
+          "ci95": [
+            0.8599033816425121,
+            0.9420289855072463
+          ]
+        },
+        "underTriage": {
+          "value": 0.30917874396135264,
+          "ci95": [
+            0.2463768115942029,
+            0.3719806763285024
+          ]
+        },
+        "overTriage": {
+          "value": 0.27053140096618356,
+          "ci95": [
+            0.21256038647342995,
+            0.3333333333333333
+          ]
+        },
+        "quadraticKappa": {
+          "value": 0.3348091548541434,
+          "ci95": [
+            0.2082832477324884,
+            0.4485212288807203
+          ]
+        },
+        "severeUnderTriage": {
+          "value": 0.014492753623188406,
+          "ci95": [
+            0.0,
+            0.033816425120772944
+          ]
+        },
+        "highAcuitySensitivity": {
+          "value": 0.4434782608695652,
+          "ci95": [
+            0.35454545454545455,
+            0.5354330708661418
+          ]
+        },
+        "highAcuitySpecificity": {
+          "value": 0.8043478260869565,
+          "ci95": [
+            0.7209302325581395,
+            0.8837209302325582
+          ]
+        },
+        "highAcuityPPV": {
+          "value": 0.7391304347826086,
+          "ci95": [
+            0.6285714285714286,
+            0.8382352941176471
+          ]
+        },
+        "highAcuityNPV": {
+          "value": 0.5362318840579711,
+          "ci95": [
+            0.4485294117647059,
+            0.6212121212121212
+          ]
+        }
+      },
+      "perLevel": {
+        "1": {
+          "n": 18,
+          "exact": 0.8333333333333334,
+          "underTriage": 0.16666666666666666
+        },
+        "2": {
+          "n": 97,
+          "exact": 0.0,
+          "underTriage": 0.6288659793814433
+        },
+        "3": {
+          "n": 90,
+          "exact": 0.8,
+          "underTriage": 0.0
+        },
+        "4": {
+          "n": 2,
+          "exact": 0.0,
+          "underTriage": 0.0
+        }
+      },
+      "admitted": {
+        "n": 139,
+        "underTriage": 0.34532374100719426,
+        "missedHighAcuity": 48
+      },
+      "calibration": {
+        "ece": 0.45193236714975815,
+        "meanConfidence": 0.8722222222222227,
+        "accuracy": 0.42028985507246375,
+        "n": 207
+      }
+    },
+    {
+      "run": "qwen2.5-7b__rag-off__safety-off__guide-on",
+      "config": {
+        "run": "qwen2.5-7b__rag-off__safety-off__guide-on",
+        "mode": "llm",
+        "provider": "ollama",
+        "model": "qwen2.5:7b",
+        "useRag": false,
+        "useSafety": false,
+        "useGuide": true,
+        "temperature": 0,
+        "seed": 42,
+        "dataset": "data/mimic_ed_cohort.json",
+        "retrievalCache": null,
+        "retrievalCacheCreatedAt": null,
+        "esiGuideSha256": "9af38a8f91481c6b",
+        "systemPromptSha256": "87295fd016286c01"
+      },
+      "complete": true,
+      "total": 207,
+      "done": 207,
+      "ok": 207,
+      "fallback": 0,
+      "error": 0,
+      "meanLatencyMs": 66863,
+      "retrievalBackends": {
+        "disabled": 207
+      },
+      "metrics": {
+        "exact": {
+          "value": 0.10144927536231885,
+          "ci95": [
+            0.06280193236714976,
+            0.14009661835748793
+          ]
+        },
+        "withinOne": {
+          "value": 0.5893719806763285,
+          "ci95": [
+            0.5217391304347826,
+            0.6570048309178744
+          ]
+        },
+        "underTriage": {
+          "value": 0.01932367149758454,
+          "ci95": [
+            0.004830917874396135,
+            0.03864734299516908
+          ]
+        },
+        "overTriage": {
+          "value": 0.8792270531400966,
+          "ci95": [
+            0.8357487922705314,
+            0.9227053140096618
+          ]
+        },
+        "quadraticKappa": {
+          "value": 0.014816221863424683,
+          "ci95": [
+            -0.009574073888616308,
+            0.04099011648429218
+          ]
+        },
+        "severeUnderTriage": {
+          "value": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        "highAcuitySensitivity": {
+          "value": 0.9652173913043478,
+          "ci95": [
+            0.9298245614035088,
+            0.9918032786885246
+          ]
+        },
+        "highAcuitySpecificity": {
+          "value": 0.03260869565217391,
+          "ci95": [
+            0.0,
+            0.07526881720430108
+          ]
+        },
+        "highAcuityPPV": {
+          "value": 0.555,
+          "ci95": [
+            0.4897959183673469,
+            0.625
+          ]
+        },
+        "highAcuityNPV": {
+          "value": 0.42857142857142855,
+          "ci95": [
+            0.0,
+            0.8333333333333334
+          ]
+        }
+      },
+      "perLevel": {
+        "1": {
+          "n": 18,
+          "exact": 1.0,
+          "underTriage": 0.0
+        },
+        "2": {
+          "n": 97,
+          "exact": 0.0,
+          "underTriage": 0.041237113402061855
+        },
+        "3": {
+          "n": 90,
+          "exact": 0.03333333333333333,
+          "underTriage": 0.0
+        },
+        "4": {
+          "n": 2,
+          "exact": 0.0,
+          "underTriage": 0.0
+        }
+      },
+      "admitted": {
+        "n": 139,
+        "underTriage": 0.02877697841726619,
+        "missedHighAcuity": 4
+      },
+      "calibration": {
+        "ece": 0.8891304347826086,
+        "meanConfidence": 0.9905797101449273,
+        "accuracy": 0.10144927536231885,
+        "n": 207
+      }
+    },
+    {
+      "run": "qwen2.5-7b__rag-off__safety-on",
+      "config": {
+        "run": "qwen2.5-7b__rag-off__safety-on",
+        "mode": "llm",
+        "provider": "ollama",
+        "model": "qwen2.5:7b",
+        "useRag": false,
+        "useSafety": true,
+        "useGuide": false,
+        "temperature": 0,
+        "seed": 42,
+        "dataset": "data/mimic_ed_cohort.json",
+        "retrievalCache": null,
+        "retrievalCacheCreatedAt": null,
+        "esiGuideSha256": null,
+        "systemPromptSha256": "87295fd016286c01"
+      },
+      "complete": true,
+      "total": 207,
+      "done": 207,
+      "ok": 207,
+      "fallback": 0,
+      "error": 0,
+      "meanLatencyMs": 37822,
+      "retrievalBackends": {
+        "disabled": 207
+      },
+      "metrics": {
+        "exact": {
+          "value": 0.463768115942029,
+          "ci95": [
+            0.3961352657004831,
+            0.5314009661835749
+          ]
+        },
+        "withinOne": {
+          "value": 0.9565217391304348,
+          "ci95": [
+            0.927536231884058,
+            0.9806763285024155
+          ]
+        },
+        "underTriage": {
+          "value": 0.391304347826087,
+          "ci95": [
+            0.3285024154589372,
+            0.45893719806763283
+          ]
+        },
+        "overTriage": {
+          "value": 0.14492753623188406,
+          "ci95": [
+            0.10144927536231885,
+            0.19806763285024154
+          ]
+        },
+        "quadraticKappa": {
+          "value": 0.34908626896960304,
+          "ci95": [
+            0.20805246857351067,
+            0.4720670391061452
+          ]
+        },
+        "severeUnderTriage": {
+          "value": 0.024154589371980676,
+          "ci95": [
+            0.004830917874396135,
+            0.04830917874396135
+          ]
+        },
+        "highAcuitySensitivity": {
+          "value": 0.2956521739130435,
+          "ci95": [
+            0.21238938053097345,
+            0.3813559322033898
+          ]
+        },
+        "highAcuitySpecificity": {
+          "value": 0.8478260869565217,
+          "ci95": [
+            0.7708333333333334,
+            0.9183673469387755
+          ]
+        },
+        "highAcuityPPV": {
+          "value": 0.7083333333333334,
+          "ci95": [
+            0.574468085106383,
+            0.8305084745762712
+          ]
+        },
+        "highAcuityNPV": {
+          "value": 0.49056603773584906,
+          "ci95": [
+            0.4129032258064516,
+            0.5696969696969697
+          ]
+        }
+      },
+      "perLevel": {
+        "1": {
+          "n": 18,
+          "exact": 0.7222222222222222,
+          "underTriage": 0.2777777777777778
+        },
+        "2": {
+          "n": 97,
+          "exact": 0.07216494845360824,
+          "underTriage": 0.7835051546391752
+        },
+        "3": {
+          "n": 90,
+          "exact": 0.8444444444444444,
+          "underTriage": 0.0
+        },
+        "4": {
+          "n": 2,
+          "exact": 0.0,
+          "underTriage": 0.0
+        }
+      },
+      "admitted": {
+        "n": 139,
+        "underTriage": 0.460431654676259,
+        "missedHighAcuity": 64
+      },
+      "calibration": {
+        "ece": 0.39734299516908106,
+        "meanConfidence": 0.8562801932367159,
+        "accuracy": 0.463768115942029,
+        "n": 207
+      }
+    },
+    {
+      "run": "qwen2.5-7b__rag-off__safety-on__guide-on",
+      "config": {
+        "run": "qwen2.5-7b__rag-off__safety-on__guide-on",
+        "mode": "llm",
+        "provider": "ollama",
+        "model": "qwen2.5:7b",
+        "useRag": false,
+        "useSafety": true,
+        "useGuide": true,
+        "temperature": 0,
+        "seed": 42,
+        "dataset": "data/mimic_ed_cohort.json",
+        "retrievalCache": null,
+        "retrievalCacheCreatedAt": null,
+        "esiGuideSha256": "9af38a8f91481c6b",
+        "systemPromptSha256": "87295fd016286c01"
+      },
+      "complete": true,
+      "total": 207,
+      "done": 207,
+      "ok": 207,
+      "fallback": 0,
+      "error": 0,
+      "meanLatencyMs": 32553,
+      "retrievalBackends": {
+        "disabled": 207
+      },
+      "metrics": {
+        "exact": {
+          "value": 0.3333333333333333,
+          "ci95": [
+            0.27053140096618356,
+            0.3961352657004831
+          ]
+        },
+        "withinOne": {
+          "value": 0.8743961352657005,
+          "ci95": [
+            0.8260869565217391,
+            0.9178743961352657
+          ]
+        },
+        "underTriage": {
+          "value": 0.17391304347826086,
+          "ci95": [
+            0.12560386473429952,
+            0.22705314009661837
+          ]
+        },
+        "overTriage": {
+          "value": 0.4927536231884058,
+          "ci95": [
+            0.42995169082125606,
+            0.5603864734299517
+          ]
+        },
+        "quadraticKappa": {
+          "value": 0.2790639035536996,
+          "ci95": [
+            0.17647790141107733,
+            0.3742179543139822
+          ]
+        },
+        "severeUnderTriage": {
+          "value": 0.00966183574879227,
+          "ci95": [
+            0.0,
+            0.024154589371980676
+          ]
+        },
+        "highAcuitySensitivity": {
+          "value": 0.6956521739130435,
+          "ci95": [
+            0.6126126126126126,
+            0.7766990291262136
+          ]
+        },
+        "highAcuitySpecificity": {
+          "value": 0.4782608695652174,
+          "ci95": [
+            0.37373737373737376,
+            0.5813953488372093
+          ]
+        },
+        "highAcuityPPV": {
+          "value": 0.625,
+          "ci95": [
+            0.5433070866141733,
+            0.7049180327868853
+          ]
+        },
+        "highAcuityNPV": {
+          "value": 0.5569620253164557,
+          "ci95": [
+            0.45121951219512196,
+            0.6666666666666666
+          ]
+        }
+      },
+      "perLevel": {
+        "1": {
+          "n": 18,
+          "exact": 0.9444444444444444,
+          "underTriage": 0.05555555555555555
+        },
+        "2": {
+          "n": 97,
+          "exact": 0.09278350515463918,
+          "underTriage": 0.35051546391752575
+        },
+        "3": {
+          "n": 90,
+          "exact": 0.4777777777777778,
+          "underTriage": 0.011111111111111112
+        },
+        "4": {
+          "n": 2,
+          "exact": 0.0,
+          "underTriage": 0.0
+        }
+      },
+      "admitted": {
+        "n": 139,
+        "underTriage": 0.2014388489208633,
+        "missedHighAcuity": 28
+      },
+      "calibration": {
+        "ece": 0.5939613526570059,
+        "meanConfidence": 0.92729468599034,
+        "accuracy": 0.3333333333333333,
+        "n": 207
+      }
+    },
+    {
+      "run": "qwen2.5-7b__rag-off__safety-on__notice-off",
+      "config": {
+        "run": "qwen2.5-7b__rag-off__safety-on__notice-off",
+        "mode": "llm",
+        "provider": "ollama",
+        "model": "qwen2.5:7b",
+        "useRag": false,
+        "useSafety": true,
+        "useGuide": false,
+        "safetyNotice": false,
+        "temperature": 0,
+        "seed": 42,
+        "dataset": "data/mimic_ed_cohort.json",
+        "retrievalCache": null,
+        "retrievalCacheCreatedAt": null,
+        "esiGuideSha256": null,
+        "systemPromptSha256": "87295fd016286c01"
+      },
+      "complete": true,
+      "total": 207,
+      "done": 207,
+      "ok": 207,
+      "fallback": 0,
+      "error": 0,
+      "meanLatencyMs": 22787,
+      "retrievalBackends": {
+        "disabled": 207
+      },
+      "metrics": {
+        "exact": {
+          "value": 0.4251207729468599,
+          "ci95": [
+            0.357487922705314,
+            0.4927536231884058
+          ]
+        },
+        "withinOne": {
+          "value": 0.9082125603864735,
+          "ci95": [
+            0.8695652173913043,
+            0.9468599033816425
+          ]
+        },
+        "underTriage": {
+          "value": 0.2995169082125604,
+          "ci95": [
+            0.23671497584541062,
+            0.36231884057971014
+          ]
+        },
+        "overTriage": {
+          "value": 0.2753623188405797,
+          "ci95": [
+            0.21739130434782608,
+            0.33816425120772947
+          ]
+        },
+        "quadraticKappa": {
+          "value": 0.3565751827911412,
+          "ci95": [
+            0.23226886281073467,
+            0.4677203689100695
+          ]
+        },
+        "severeUnderTriage": {
+          "value": 0.00966183574879227,
+          "ci95": [
+            0.0,
+            0.024154589371980676
+          ]
+        },
+        "highAcuitySensitivity": {
+          "value": 0.4608695652173913,
+          "ci95": [
+            0.37037037037037035,
+            0.5573770491803278
+          ]
+        },
+        "highAcuitySpecificity": {
+          "value": 0.8043478260869565,
+          "ci95": [
+            0.7209302325581395,
+            0.8837209302325582
+          ]
+        },
+        "highAcuityPPV": {
+          "value": 0.7464788732394366,
+          "ci95": [
+            0.640625,
+            0.8412698412698413
+          ]
+        },
+        "highAcuityNPV": {
+          "value": 0.5441176470588235,
+          "ci95": [
+            0.4573643410852713,
+            0.6287878787878788
+          ]
+        }
+      },
+      "perLevel": {
+        "1": {
+          "n": 18,
+          "exact": 0.8888888888888888,
+          "underTriage": 0.1111111111111111
+        },
+        "2": {
+          "n": 97,
+          "exact": 0.0,
+          "underTriage": 0.6185567010309279
+        },
+        "3": {
+          "n": 90,
+          "exact": 0.8,
+          "underTriage": 0.0
+        },
+        "4": {
+          "n": 2,
+          "exact": 0.0,
+          "underTriage": 0.0
+        }
+      },
+      "admitted": {
+        "n": 139,
+        "underTriage": 0.33093525179856115,
+        "missedHighAcuity": 46
+      },
+      "calibration": {
+        "ece": 0.4509661835748789,
+        "meanConfidence": 0.8760869565217397,
+        "accuracy": 0.4251207729468599,
+        "n": 207
+      }
+    },
+    {
+      "run": "qwen2.5-7b__rag-on__safety-off",
+      "config": {
+        "run": "qwen2.5-7b__rag-on__safety-off",
+        "mode": "llm",
+        "provider": "ollama",
+        "model": "qwen2.5:7b",
+        "useRag": true,
+        "useSafety": false,
+        "useGuide": false,
+        "temperature": 0,
+        "seed": 42,
+        "dataset": "data/mimic_ed_cohort.json",
+        "retrievalCache": "research/retrieval_cache.json",
+        "retrievalCacheCreatedAt": "2026-10-27T09:20:39.732Z",
+        "esiGuideSha256": null,
+        "systemPromptSha256": "87295fd016286c01"
+      },
+      "complete": true,
+      "total": 207,
+      "done": 207,
+      "ok": 207,
+      "fallback": 0,
+      "error": 0,
+      "meanLatencyMs": 59208,
+      "retrievalBackends": {
+        "local-hybrid": 207
+      },
+      "metrics": {
+        "exact": {
+          "value": 0.4396135265700483,
+          "ci95": [
+            0.3719806763285024,
+            0.5072463768115942
+          ]
+        },
+        "withinOne": {
+          "value": 0.9227053140096618,
+          "ci95": [
+            0.8840579710144928,
+            0.9565217391304348
+          ]
+        },
+        "underTriage": {
+          "value": 0.1932367149758454,
+          "ci95": [
+            0.14009661835748793,
+            0.25120772946859904
+          ]
+        },
+        "overTriage": {
+          "value": 0.3671497584541063,
+          "ci95": [
+            0.30434782608695654,
+            0.43478260869565216
+          ]
+        },
+        "quadraticKappa": {
+          "value": 0.20374174935524758,
+          "ci95": [
+            0.05344058178612743,
+            0.3341158059467918
+          ]
+        },
+        "severeUnderTriage": {
+          "value": 0.01932367149758454,
+          "ci95": [
+            0.004830917874396135,
+            0.03864734299516908
+          ]
+        },
+        "highAcuitySensitivity": {
+          "value": 0.7391304347826086,
+          "ci95": [
+            0.6551724137931034,
+            0.8173913043478261
+          ]
+        },
+        "highAcuitySpecificity": {
+          "value": 0.40217391304347827,
+          "ci95": [
+            0.3,
+            0.5056179775280899
+          ]
+        },
+        "highAcuityPPV": {
+          "value": 0.6071428571428571,
+          "ci95": [
+            0.5251798561151079,
+            0.6879432624113475
+          ]
+        },
+        "highAcuityNPV": {
+          "value": 0.5522388059701493,
+          "ci95": [
+            0.42028985507246375,
+            0.6716417910447762
+          ]
+        }
+      },
+      "perLevel": {
+        "1": {
+          "n": 18,
+          "exact": 0.4444444444444444,
+          "underTriage": 0.5555555555555556
+        },
+        "2": {
+          "n": 97,
+          "exact": 0.4948453608247423,
+          "underTriage": 0.28865979381443296
+        },
+        "3": {
+          "n": 90,
+          "exact": 0.3888888888888889,
+          "underTriage": 0.022222222222222223
+        },
+        "4": {
+          "n": 2,
+          "exact": 0.0,
+          "underTriage": 0.0
+        }
+      },
+      "admitted": {
+        "n": 139,
+        "underTriage": 0.2302158273381295,
+        "missedHighAcuity": 23
+      },
+      "calibration": {
+        "ece": 0.4531400966183583,
+        "meanConfidence": 0.8927536231884055,
+        "accuracy": 0.4396135265700483,
+        "n": 207
+      }
+    },
+    {
+      "run": "qwen2.5-7b__rag-on__safety-on",
+      "config": {
+        "run": "qwen2.5-7b__rag-on__safety-on",
+        "mode": "llm",
+        "provider": "ollama",
+        "model": "qwen2.5:7b",
+        "useRag": true,
+        "useSafety": true,
+        "useGuide": false,
+        "temperature": 0,
+        "seed": 42,
+        "dataset": "data/mimic_ed_cohort.json",
+        "retrievalCache": "research/retrieval_cache.json",
+        "retrievalCacheCreatedAt": "2026-10-27T09:20:39.732Z",
+        "esiGuideSha256": null,
+        "systemPromptSha256": "87295fd016286c01"
+      },
+      "complete": true,
+      "total": 207,
+      "done": 207,
+      "ok": 207,
+      "fallback": 0,
+      "error": 0,
+      "meanLatencyMs": 61217,
+      "retrievalBackends": {
+        "local-hybrid": 207
+      },
+      "metrics": {
+        "exact": {
+          "value": 0.463768115942029,
+          "ci95": [
+            0.3961352657004831,
+            0.5362318840579711
+          ]
+        },
+        "withinOne": {
+          "value": 0.9565217391304348,
+          "ci95": [
+            0.927536231884058,
+            0.9806763285024155
+          ]
+        },
+        "underTriage": {
+          "value": 0.34782608695652173,
+          "ci95": [
+            0.28502415458937197,
+            0.4106280193236715
+          ]
+        },
+        "overTriage": {
+          "value": 0.18840579710144928,
+          "ci95": [
+            0.13526570048309178,
+            0.2463768115942029
+          ]
+        },
+        "quadraticKappa": {
+          "value": 0.2892615445859872,
+          "ci95": [
+            0.14600300042863257,
+            0.41836084153857045
+          ]
+        },
+        "severeUnderTriage": {
+          "value": 0.014492753623188406,
+          "ci95": [
+            0.0,
+            0.033816425120772944
+          ]
+        },
+        "highAcuitySensitivity": {
+          "value": 0.41739130434782606,
+          "ci95": [
+            0.3269230769230769,
+            0.5079365079365079
+          ]
+        },
+        "highAcuitySpecificity": {
+          "value": 0.6956521739130435,
+          "ci95": [
+            0.5977011494252874,
+            0.7901234567901234
+          ]
+        },
+        "highAcuityPPV": {
+          "value": 0.631578947368421,
+          "ci95": [
+            0.5166666666666667,
+            0.7391304347826086
+          ]
+        },
+        "highAcuityNPV": {
+          "value": 0.48854961832061067,
+          "ci95": [
+            0.40310077519379844,
+            0.572463768115942
+          ]
+        }
+      },
+      "perLevel": {
+        "1": {
+          "n": 18,
+          "exact": 0.5555555555555556,
+          "underTriage": 0.4444444444444444
+        },
+        "2": {
+          "n": 97,
+          "exact": 0.24742268041237114,
+          "underTriage": 0.6597938144329897
+        },
+        "3": {
+          "n": 90,
+          "exact": 0.6888888888888889,
+          "underTriage": 0.0
+        },
+        "4": {
+          "n": 2,
+          "exact": 0.0,
+          "underTriage": 0.0
+        }
+      },
+      "admitted": {
+        "n": 139,
+        "underTriage": 0.39568345323741005,
+        "missedHighAcuity": 50
+      },
+      "calibration": {
+        "ece": 0.3937198067632841,
+        "meanConfidence": 0.8574879227053142,
+        "accuracy": 0.463768115942029,
+        "n": 207
+      }
+    },
+    {
+      "run": "rules-only",
+      "config": {
+        "run": "rules-only",
+        "mode": "rules-only",
+        "provider": null,
+        "model": null,
+        "useRag": false,
+        "useSafety": true,
+        "useGuide": false,
+        "temperature": null,
+        "seed": null,
+        "dataset": "data/mimic_ed_cohort.json",
+        "retrievalCache": null,
+        "retrievalCacheCreatedAt": null,
+        "esiGuideSha256": null,
+        "systemPromptSha256": "87295fd016286c01"
+      },
+      "complete": true,
+      "total": 207,
+      "done": 207,
+      "ok": 207,
+      "fallback": 0,
+      "error": 0,
+      "meanLatencyMs": 0,
+      "retrievalBackends": {
+        "disabled": 207
+      },
+      "metrics": {
+        "exact": {
+          "value": 0.30434782608695654,
+          "ci95": [
+            0.24154589371980675,
+            0.3719806763285024
+          ]
+        },
+        "withinOne": {
+          "value": 0.6956521739130435,
+          "ci95": [
+            0.6376811594202898,
+            0.7536231884057971
+          ]
+        },
+        "underTriage": {
+          "value": 0.642512077294686,
+          "ci95": [
+            0.5748792270531401,
+            0.7053140096618358
+          ]
+        },
+        "overTriage": {
+          "value": 0.05314009661835749,
+          "ci95": [
+            0.024154589371980676,
+            0.08695652173913043
+          ]
+        },
+        "quadraticKappa": {
+          "value": 0.17437999955435723,
+          "ci95": [
+            0.07926707827126078,
+            0.2699825817689182
+          ]
+        },
+        "severeUnderTriage": {
+          "value": 0.2946859903381642,
+          "ci95": [
+            0.23671497584541062,
+            0.357487922705314
+          ]
+        },
+        "highAcuitySensitivity": {
+          "value": 0.2956521739130435,
+          "ci95": [
+            0.21551724137931033,
+            0.38317757009345793
+          ]
+        },
+        "highAcuitySpecificity": {
+          "value": 0.9239130434782609,
+          "ci95": [
+            0.8651685393258427,
+            0.972972972972973
+          ]
+        },
+        "highAcuityPPV": {
+          "value": 0.8292682926829268,
+          "ci95": [
+            0.7142857142857143,
+            0.9354838709677419
+          ]
+        },
+        "highAcuityNPV": {
+          "value": 0.5120481927710844,
+          "ci95": [
+            0.43373493975903615,
+            0.5900621118012422
+          ]
+        }
+      },
+      "perLevel": {
+        "1": {
+          "n": 18,
+          "exact": 0.5,
+          "underTriage": 0.5
+        },
+        "2": {
+          "n": 97,
+          "exact": 0.18556701030927836,
+          "underTriage": 0.7835051546391752
+        },
+        "3": {
+          "n": 90,
+          "exact": 0.3888888888888889,
+          "underTriage": 0.5333333333333333
+        },
+        "4": {
+          "n": 2,
+          "exact": 0.5,
+          "underTriage": 0.0
+        }
+      },
+      "admitted": {
+        "n": 139,
+        "underTriage": 0.6474820143884892,
+        "missedHighAcuity": 61
+      },
+      "calibration": null
+    }
+  ],
+  "comparisons": [
+    {
+      "model": "gemma3:12b",
+      "a": "LLM only",
+      "b": "LLM + safety",
+      "n": 207,
+      "underTriage": {
+        "a": 0.7584541062801933,
+        "b": 0.7536231884057971,
+        "onlyA": 20,
+        "onlyB": 19,
+        "p": 1.0,
+        "pHolm": 1.0
+      },
+      "exact": {
+        "a": 0.2318840579710145,
+        "b": 0.2222222222222222,
+        "onlyA": 19,
+        "onlyB": 17,
+        "p": 0.8679394004284404,
+        "pHolm": 0.8679394004284404
+      },
+      "exploratory": false
+    },
+    {
+      "model": "gemma3:12b",
+      "a": "LLM only",
+      "b": "LLM + safety, no negative notice (exploratory)",
+      "n": 99,
+      "underTriage": {
+        "a": 0.7373737373737373,
+        "b": 0.6868686868686869,
+        "onlyA": 5,
+        "onlyB": 0,
+        "p": 0.0625,
+        "pHolm": 0.125
+      },
+      "exact": {
+        "a": 0.24242424242424243,
+        "b": 0.26262626262626265,
+        "onlyA": 1,
+        "onlyB": 3,
+        "p": 0.625,
+        "pHolm": 1.0
+      },
+      "exploratory": true
+    },
+    {
+      "model": "gemma3:12b",
+      "a": "LLM + safety",
+      "b": "LLM + safety, no negative notice (exploratory)",
+      "n": 99,
+      "underTriage": {
+        "a": 0.7070707070707071,
+        "b": 0.6868686868686869,
+        "onlyA": 9,
+        "onlyB": 7,
+        "p": 0.803619384765625,
+        "pHolm": 0.803619384765625
+      },
+      "exact": {
+        "a": 0.26262626262626265,
+        "b": 0.26262626262626265,
+        "onlyA": 7,
+        "onlyB": 7,
+        "p": 1.0,
+        "pHolm": 1.0
+      },
+      "exploratory": true
+    },
+    {
+      "model": "llama3.1:8b",
+      "a": "LLM only",
+      "b": "LLM + safety",
+      "n": 207,
+      "underTriage": {
+        "a": 0.5120772946859904,
+        "b": 0.463768115942029,
+        "onlyA": 14,
+        "onlyB": 4,
+        "p": 0.0308837890625,
+        "pHolm": 0.0926513671875
+      },
+      "exact": {
+        "a": 0.41545893719806765,
+        "b": 0.43478260869565216,
+        "onlyA": 7,
+        "onlyB": 11,
+        "p": 0.480682373046875,
+        "pHolm": 1.0
+      },
+      "exploratory": false
+    },
+    {
+      "model": "llama3.1:8b",
+      "a": "LLM only",
+      "b": "LLM + RAG",
+      "n": 207,
+      "underTriage": {
+        "a": 0.5120772946859904,
+        "b": 0.34782608695652173,
+        "onlyA": 40,
+        "onlyB": 6,
+        "p": 3.1028037028590916e-07,
+        "pHolm": 1.861682221715455e-06
+      },
+      "exact": {
+        "a": 0.41545893719806765,
+        "b": 0.4251207729468599,
+        "onlyA": 43,
+        "onlyB": 45,
+        "p": 0.9151865048428769,
+        "pHolm": 1.0
+      },
+      "exploratory": false
+    },
+    {
+      "model": "llama3.1:8b",
+      "a": "LLM only",
+      "b": "LLM + ESI guide",
+      "n": 207,
+      "underTriage": {
+        "a": 0.5120772946859904,
+        "b": 0.6280193236714976,
+        "onlyA": 10,
+        "onlyB": 34,
+        "p": 0.00038813090293388086,
+        "pHolm": 0.0015525236117355234
+      },
+      "exact": {
+        "a": 0.41545893719806765,
+        "b": 0.3526570048309179,
+        "onlyA": 23,
+        "onlyB": 10,
+        "p": 0.03508203336969018,
+        "pHolm": 0.28065626695752144
+      },
+      "exploratory": false
+    },
+    {
+      "model": "llama3.1:8b",
+      "a": "LLM + RAG",
+      "b": "LLM + ESI guide",
+      "n": 207,
+      "underTriage": {
+        "a": 0.34782608695652173,
+        "b": 0.6280193236714976,
+        "onlyA": 1,
+        "onlyB": 59,
+        "p": 1.0581813203458523e-16,
+        "pHolm": 9.52363188311267e-16
+      },
+      "exact": {
+        "a": 0.4251207729468599,
+        "b": 0.3526570048309179,
+        "onlyA": 53,
+        "onlyB": 38,
+        "p": 0.14179337454474722,
+        "pHolm": 0.9925536218132305
+      },
+      "exploratory": false
+    },
+    {
+      "model": "llama3.1:8b",
+      "a": "LLM + RAG",
+      "b": "Full (LLM + RAG + safety)",
+      "n": 207,
+      "underTriage": {
+        "a": 0.34782608695652173,
+        "b": 0.3333333333333333,
+        "onlyA": 12,
+        "onlyB": 9,
+        "p": 0.6636238098144531,
+        "pHolm": 0.6636238098144531
+      },
+      "exact": {
+        "a": 0.4251207729468599,
+        "b": 0.43478260869565216,
+        "onlyA": 10,
+        "onlyB": 12,
+        "p": 0.8318119049072266,
+        "pHolm": 1.0
+      },
+      "exploratory": false
+    },
+    {
+      "model": "llama3.1:8b",
+      "a": "LLM + safety",
+      "b": "Full (LLM + RAG + safety)",
+      "n": 207,
+      "underTriage": {
+        "a": 0.463768115942029,
+        "b": 0.3333333333333333,
+        "onlyA": 32,
+        "onlyB": 5,
+        "p": 7.427530363202095e-06,
+        "pHolm": 3.7137651816010475e-05
+      },
+      "exact": {
+        "a": 0.43478260869565216,
+        "b": 0.43478260869565216,
+        "onlyA": 38,
+        "onlyB": 38,
+        "p": 1.0,
+        "pHolm": 1.0
+      },
+      "exploratory": false
+    },
+    {
+      "model": "llama3.1:8b",
+      "a": "LLM + ESI guide",
+      "b": "LLM + ESI guide + safety",
+      "n": 207,
+      "underTriage": {
+        "a": 0.6280193236714976,
+        "b": 0.5797101449275363,
+        "onlyA": 15,
+        "onlyB": 5,
+        "p": 0.04138946533203125,
+        "pHolm": 0.0926513671875
+      },
+      "exact": {
+        "a": 0.3526570048309179,
+        "b": 0.3864734299516908,
+        "onlyA": 7,
+        "onlyB": 14,
+        "p": 0.18924713134765625,
+        "pHolm": 1.0
+      },
+      "exploratory": false
+    },
+    {
+      "model": "llama3.1:8b",
+      "a": "Full (LLM + RAG + safety)",
+      "b": "LLM + ESI guide + safety",
+      "n": 207,
+      "underTriage": {
+        "a": 0.3333333333333333,
+        "b": 0.5797101449275363,
+        "onlyA": 0,
+        "onlyB": 51,
+        "p": 8.881784197001252e-16,
+        "pHolm": 7.105427357601002e-15
+      },
+      "exact": {
+        "a": 0.43478260869565216,
+        "b": 0.3864734299516908,
+        "onlyA": 44,
+        "onlyB": 34,
+        "p": 0.30816823194368076,
+        "pHolm": 1.0
+      },
+      "exploratory": false
+    },
+    {
+      "model": "llama3.1:8b",
+      "a": "LLM only",
+      "b": "LLM + safety, no negative notice (exploratory)",
+      "n": 207,
+      "underTriage": {
+        "a": 0.5120772946859904,
+        "b": 0.45410628019323673,
+        "onlyA": 12,
+        "onlyB": 0,
+        "p": 0.00048828125,
+        "pHolm": 0.0009765625
+      },
+      "exact": {
+        "a": 0.41545893719806765,
+        "b": 0.4492753623188406,
+        "onlyA": 2,
+        "onlyB": 9,
+        "p": 0.0654296875,
+        "pHolm": 0.130859375
+      },
+      "exploratory": true
+    },
+    {
+      "model": "llama3.1:8b",
+      "a": "LLM + safety",
+      "b": "LLM + safety, no negative notice (exploratory)",
+      "n": 207,
+      "underTriage": {
+        "a": 0.463768115942029,
+        "b": 0.45410628019323673,
+        "onlyA": 4,
+        "onlyB": 2,
+        "p": 0.6875,
+        "pHolm": 0.6875
+      },
+      "exact": {
+        "a": 0.43478260869565216,
+        "b": 0.4492753623188406,
+        "onlyA": 2,
+        "onlyB": 5,
+        "p": 0.453125,
+        "pHolm": 0.453125
+      },
+      "exploratory": true
+    },
+    {
+      "model": "llama3.1:8b",
+      "a": "Rules only",
+      "b": "Full (LLM + RAG + safety)",
+      "n": 207,
+      "underTriage": {
+        "a": 0.642512077294686,
+        "b": 0.3333333333333333,
+        "onlyA": 78,
+        "onlyB": 14,
+        "p": 6.162186756126439e-12,
+        "pHolm": 4.313530729288507e-11
+      },
+      "exact": {
+        "a": 0.30434782608695654,
+        "b": 0.43478260869565216,
+        "onlyA": 39,
+        "onlyB": 66,
+        "p": 0.010817905625818658,
+        "pHolm": 0.09736115063236793
+      },
+      "exploratory": false
+    },
+    {
+      "model": "qwen2.5:7b",
+      "a": "LLM only",
+      "b": "LLM + safety",
+      "n": 207,
+      "underTriage": {
+        "a": 0.30917874396135264,
+        "b": 0.391304347826087,
+        "onlyA": 6,
+        "onlyB": 23,
+        "p": 0.002315700054168701,
+        "pHolm": 0.004631400108337402
+      },
+      "exact": {
+        "a": 0.42028985507246375,
+        "b": 0.463768115942029,
+        "onlyA": 6,
+        "onlyB": 15,
+        "p": 0.0783538818359375,
+        "pHolm": 0.31341552734375
+      },
+      "exploratory": false
+    },
+    {
+      "model": "qwen2.5:7b",
+      "a": "LLM only",
+      "b": "LLM + RAG",
+      "n": 207,
+      "underTriage": {
+        "a": 0.30917874396135264,
+        "b": 0.1932367149758454,
+        "onlyA": 37,
+        "onlyB": 13,
+        "p": 0.000936222910851825,
+        "pHolm": 0.002808668732555475
+      },
+      "exact": {
+        "a": 0.42028985507246375,
+        "b": 0.4396135265700483,
+        "onlyA": 53,
+        "onlyB": 57,
+        "p": 0.7750029828306244,
+        "pHolm": 1.0
+      },
+      "exploratory": false
+    },
+    {
+      "model": "qwen2.5:7b",
+      "a": "LLM only",
+      "b": "LLM + ESI guide",
+      "n": 207,
+      "underTriage": {
+        "a": 0.30917874396135264,
+        "b": 0.01932367149758454,
+        "onlyA": 61,
+        "onlyB": 1,
+        "p": 2.7321894746634712e-17,
+        "pHolm": 2.458970527197124e-16
+      },
+      "exact": {
+        "a": 0.42028985507246375,
+        "b": 0.10144927536231885,
+        "onlyA": 69,
+        "onlyB": 3,
+        "p": 2.6371947296289014e-17,
+        "pHolm": 2.3734752566660113e-16
+      },
+      "exploratory": false
+    },
+    {
+      "model": "qwen2.5:7b",
+      "a": "LLM + RAG",
+      "b": "LLM + ESI guide",
+      "n": 207,
+      "underTriage": {
+        "a": 0.1932367149758454,
+        "b": 0.01932367149758454,
+        "onlyA": 38,
+        "onlyB": 2,
+        "p": 1.4933903003111482e-09,
+        "pHolm": 8.960341801866889e-09
+      },
+      "exact": {
+        "a": 0.4396135265700483,
+        "b": 0.10144927536231885,
+        "onlyA": 81,
+        "onlyB": 11,
+        "p": 2.5015050632200852e-14,
+        "pHolm": 2.0012040505760682e-13
+      },
+      "exploratory": false
+    },
+    {
+      "model": "qwen2.5:7b",
+      "a": "LLM + RAG",
+      "b": "Full (LLM + RAG + safety)",
+      "n": 207,
+      "underTriage": {
+        "a": 0.1932367149758454,
+        "b": 0.34782608695652173,
+        "onlyA": 6,
+        "onlyB": 38,
+        "p": 9.430375484953402e-07,
+        "pHolm": 3.7721501939813606e-06
+      },
+      "exact": {
+        "a": 0.4396135265700483,
+        "b": 0.463768115942029,
+        "onlyA": 31,
+        "onlyB": 36,
+        "p": 0.6254068289416487,
+        "pHolm": 1.0
+      },
+      "exploratory": false
+    },
+    {
+      "model": "qwen2.5:7b",
+      "a": "LLM + safety",
+      "b": "Full (LLM + RAG + safety)",
+      "n": 207,
+      "underTriage": {
+        "a": 0.391304347826087,
+        "b": 0.34782608695652173,
+        "onlyA": 24,
+        "onlyB": 15,
+        "p": 0.19959086691960692,
+        "pHolm": 0.19959086691960692
+      },
+      "exact": {
+        "a": 0.463768115942029,
+        "b": 0.463768115942029,
+        "onlyA": 31,
+        "onlyB": 31,
+        "p": 1.0,
+        "pHolm": 1.0
+      },
+      "exploratory": false
+    },
+    {
+      "model": "qwen2.5:7b",
+      "a": "LLM + ESI guide",
+      "b": "LLM + ESI guide + safety",
+      "n": 207,
+      "underTriage": {
+        "a": 0.01932367149758454,
+        "b": 0.17391304347826086,
+        "onlyA": 0,
+        "onlyB": 32,
+        "p": 4.656612873077393e-10,
+        "pHolm": 3.259629011154175e-09
+      },
+      "exact": {
+        "a": 0.10144927536231885,
+        "b": 0.3333333333333333,
+        "onlyA": 1,
+        "onlyB": 49,
+        "p": 9.059419880941277e-14,
+        "pHolm": 6.341593916658894e-13
+      },
+      "exploratory": false
+    },
+    {
+      "model": "qwen2.5:7b",
+      "a": "Full (LLM + RAG + safety)",
+      "b": "LLM + ESI guide + safety",
+      "n": 207,
+      "underTriage": {
+        "a": 0.34782608695652173,
+        "b": 0.17391304347826086,
+        "onlyA": 40,
+        "onlyB": 4,
+        "p": 1.7051434042514302e-08,
+        "pHolm": 8.525717021257151e-08
+      },
+      "exact": {
+        "a": 0.463768115942029,
+        "b": 0.3333333333333333,
+        "onlyA": 42,
+        "onlyB": 15,
+        "p": 0.00046000500864878946,
+        "pHolm": 0.0027600300518927368
+      },
+      "exploratory": false
+    },
+    {
+      "model": "qwen2.5:7b",
+      "a": "LLM only",
+      "b": "LLM + safety, no negative notice (exploratory)",
+      "n": 207,
+      "underTriage": {
+        "a": 0.30917874396135264,
+        "b": 0.2995169082125604,
+        "onlyA": 2,
+        "onlyB": 0,
+        "p": 0.5,
+        "pHolm": 0.5
+      },
+      "exact": {
+        "a": 0.42028985507246375,
+        "b": 0.4251207729468599,
+        "onlyA": 0,
+        "onlyB": 1,
+        "p": 1.0,
+        "pHolm": 1.0
+      },
+      "exploratory": true
+    },
+    {
+      "model": "qwen2.5:7b",
+      "a": "LLM + safety",
+      "b": "LLM + safety, no negative notice (exploratory)",
+      "n": 207,
+      "underTriage": {
+        "a": 0.391304347826087,
+        "b": 0.2995169082125604,
+        "onlyA": 23,
+        "onlyB": 4,
+        "p": 0.000310748815536499,
+        "pHolm": 0.000621497631072998
+      },
+      "exact": {
+        "a": 0.463768115942029,
+        "b": 0.4251207729468599,
+        "onlyA": 14,
+        "onlyB": 6,
+        "p": 0.11531829833984375,
+        "pHolm": 0.2306365966796875
+      },
+      "exploratory": true
+    },
+    {
+      "model": "qwen2.5:7b",
+      "a": "Rules only",
+      "b": "Full (LLM + RAG + safety)",
+      "n": 207,
+      "underTriage": {
+        "a": 0.642512077294686,
+        "b": 0.34782608695652173,
+        "onlyA": 74,
+        "onlyB": 13,
+        "p": 1.5938987081347696e-11,
+        "pHolm": 1.2751189665078157e-10
+      },
+      "exact": {
+        "a": 0.30434782608695654,
+        "b": 0.463768115942029,
+        "onlyA": 33,
+        "onlyB": 66,
+        "p": 0.0011852314254676957,
+        "pHolm": 0.005926157127338479
+      },
+      "exploratory": false
+    }
+  ],
+  "safety": {
+    "cases": 207,
+    "fired": 14,
+    "precisionEsi1": 0.6428571428571429,
+    "precisionEsi1or2": 0.8571428571428571,
+    "sensitivityEsi1": 0.5,
+    "perRule": {
+      "CARDIAC_ARREST": {
+        "fired": 2,
+        "trueEsi": {
+          "1": 2
+        },
+        "precisionEsi1": 1.0,
+        "precisionEsi1or2": 1.0
+      },
+      "CRITICAL_HYPOXIA": {
+        "fired": 3,
+        "trueEsi": {
+          "1": 1,
+          "2": 2
+        },
+        "precisionEsi1": 0.3333333333333333,
+        "precisionEsi1or2": 1.0
+      },
+      "SEVERE_HYPOTENSION": {
+        "fired": 4,
+        "trueEsi": {
+          "1": 3,
+          "2": 1
+        },
+        "precisionEsi1": 0.75,
+        "precisionEsi1or2": 1.0
+      },
+      "SEVERE_RESPIRATORY_DISTRESS": {
+        "fired": 3,
+        "trueEsi": {
+          "1": 2,
+          "2": 1
+        },
+        "precisionEsi1": 0.6666666666666666,
+        "precisionEsi1or2": 1.0
+      },
+      "SEVERE_TACHYCARDIA": {
+        "fired": 1,
+        "trueEsi": {
+          "1": 1
+        },
+        "precisionEsi1": 1.0,
+        "precisionEsi1or2": 1.0
+      },
+      "SEVERE_TRAUMA": {
+        "fired": 2,
+        "trueEsi": {
+          "3": 2
+        },
+        "precisionEsi1": 0.0,
+        "precisionEsi1or2": 0.0
+      }
+    }
+  },
+  "overrides": [
+    {
+      "run": "gemma3-12b__rag-off__safety-on",
+      "okCases": 207,
+      "overrides": 0,
+      "correctedUnderTriage": 0,
+      "nowExact": 0,
+      "nowOverTriaged": 0,
+      "modelEsiBeforeOverride": {}
+    },
+    {
+      "run": "gemma3-12b__rag-off__safety-on__notice-off",
+      "okCases": 99,
+      "overrides": 0,
+      "correctedUnderTriage": 0,
+      "nowExact": 0,
+      "nowOverTriaged": 0,
+      "modelEsiBeforeOverride": {}
+    },
+    {
+      "run": "llama3.1-8b__rag-off__safety-on",
+      "okCases": 207,
+      "overrides": 14,
+      "correctedUnderTriage": 12,
+      "nowExact": 9,
+      "nowOverTriaged": 5,
+      "modelEsiBeforeOverride": {
+        "3": 11,
+        "5": 3
+      }
+    },
+    {
+      "run": "llama3.1-8b__rag-off__safety-on__guide-on",
+      "okCases": 207,
+      "overrides": 1,
+      "correctedUnderTriage": 1,
+      "nowExact": 1,
+      "nowOverTriaged": 0,
+      "modelEsiBeforeOverride": {
+        "2": 1
+      }
+    },
+    {
+      "run": "llama3.1-8b__rag-off__safety-on__notice-off",
+      "okCases": 207,
+      "overrides": 14,
+      "correctedUnderTriage": 12,
+      "nowExact": 9,
+      "nowOverTriaged": 5,
+      "modelEsiBeforeOverride": {
+        "3": 11,
+        "5": 3
+      }
+    },
+    {
+      "run": "llama3.1-8b__rag-on__safety-on",
+      "okCases": 207,
+      "overrides": 6,
+      "correctedUnderTriage": 4,
+      "nowExact": 3,
+      "nowOverTriaged": 3,
+      "modelEsiBeforeOverride": {
+        "2": 3,
+        "5": 3
+      }
+    },
+    {
+      "run": "qwen2.5-7b__rag-off__safety-on",
+      "okCases": 207,
+      "overrides": 0,
+      "correctedUnderTriage": 0,
+      "nowExact": 0,
+      "nowOverTriaged": 0,
+      "modelEsiBeforeOverride": {}
+    },
+    {
+      "run": "qwen2.5-7b__rag-off__safety-on__guide-on",
+      "okCases": 207,
+      "overrides": 0,
+      "correctedUnderTriage": 0,
+      "nowExact": 0,
+      "nowOverTriaged": 0,
+      "modelEsiBeforeOverride": {}
+    },
+    {
+      "run": "qwen2.5-7b__rag-off__safety-on__notice-off",
+      "okCases": 207,
+      "overrides": 0,
+      "correctedUnderTriage": 0,
+      "nowExact": 0,
+      "nowOverTriaged": 0,
+      "modelEsiBeforeOverride": {}
+    },
+    {
+      "run": "qwen2.5-7b__rag-on__safety-on",
+      "okCases": 207,
+      "overrides": 5,
+      "correctedUnderTriage": 3,
+      "nowExact": 2,
+      "nowOverTriaged": 3,
+      "modelEsiBeforeOverride": {
+        "2": 2,
+        "5": 3
+      }
+    }
+  ]
+}

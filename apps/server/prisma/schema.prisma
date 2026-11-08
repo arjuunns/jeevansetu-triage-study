@@ -1,0 +1,826 @@
+// JeevanSetu — Prisma schema (Phase 3)
+// PostgreSQL primary datastore. Every clinically/operationally significant table
+// carries audit fields (createdAt/updatedAt/createdBy/updatedBy) and a soft-delete
+// marker (deletedAt). Indexes are placed on every foreign key and on the columns
+// used by the dashboards, routing scorer, and audit queries.
+
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["postgresqlExtensions"]
+}
+
+datasource db {
+  provider   = "postgresql"
+  url        = env("DATABASE_URL")
+  extensions = [pgcrypto]
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Enums (mirror packages/types/src/enums.ts exactly)
+// ─────────────────────────────────────────────────────────────────────────────
+
+enum UserRole {
+  NURSE
+  DOCTOR
+  HOSPITAL_ADMIN
+  CMO
+  SUPER_ADMIN
+}
+
+enum Gender {
+  MALE
+  FEMALE
+  OTHER
+  UNKNOWN
+}
+
+enum BloodGroup {
+  A_POSITIVE
+  A_NEGATIVE
+  B_POSITIVE
+  B_NEGATIVE
+  AB_POSITIVE
+  AB_NEGATIVE
+  O_POSITIVE
+  O_NEGATIVE
+  UNKNOWN
+}
+
+enum SeverityLevel {
+  CRITICAL
+  HIGH
+  MODERATE
+  LOW
+}
+
+enum SymptomSeverity {
+  MILD
+  MODERATE
+  SEVERE
+}
+
+enum VisitStatus {
+  REGISTERED
+  SAFETY_SCREENED
+  TRIAGED
+  UNDER_REVIEW
+  APPROVED
+  REFERRED
+  ADMITTED
+  DISCHARGED
+  CANCELLED
+}
+
+enum ReviewAction {
+  APPROVE
+  MODIFY
+  OVERRIDE
+  REJECT
+}
+
+enum ReferralStatus {
+  DRAFT
+  GENERATED
+  SENT
+  ACKNOWLEDGED
+  ACCEPTED
+  DECLINED
+  COMPLETED
+  CANCELLED
+}
+
+enum ReferralDocFormat {
+  PDF
+  FHIR_JSON
+  QR_CODE
+}
+
+enum EmergencyLevel {
+  NONE
+  BASIC
+  INTERMEDIATE
+  ADVANCED
+  COMPREHENSIVE
+}
+
+enum NotificationChannel {
+  EMAIL
+  SMS
+  IN_APP
+}
+
+enum NotificationType {
+  EMERGENCY_ALERT
+  REFERRAL_GENERATED
+  DOCTOR_REVIEW_REQUIRED
+  CAPACITY_WARNING
+  ROUTING_COMPLETED
+}
+
+enum NotificationStatus {
+  PENDING
+  SENT
+  DELIVERED
+  FAILED
+  READ
+}
+
+enum AuditAction {
+  PATIENT_CREATED
+  PATIENT_UPDATED
+  VITALS_RECORDED
+  VITALS_UPDATED
+  SYMPTOMS_RECORDED
+  VISIT_CREATED
+  SAFETY_SCREEN_EXECUTED
+  AI_TRIAGE_EXECUTED
+  GUIDELINES_RETRIEVED
+  DOCTOR_REVIEW_STARTED
+  DOCTOR_APPROVED
+  DOCTOR_MODIFIED
+  DOCTOR_OVERRIDDEN
+  DOCTOR_REJECTED
+  ROUTING_EXECUTED
+  HOSPITAL_ASSIGNED
+  REFERRAL_GENERATED
+  CAPACITY_UPDATED
+  GUIDELINE_UPLOADED
+  USER_ROLE_CHANGED
+}
+
+enum AgentType {
+  PATIENT_INTAKE
+  TRIAGE
+  GUIDELINE_RETRIEVAL
+  RISK_ASSESSMENT
+  ROUTING
+  REFERRAL_GENERATION
+  SUPERVISOR
+}
+
+enum AgentExecutionStatus {
+  PENDING
+  RUNNING
+  SUCCEEDED
+  FAILED
+  REJECTED_BY_SUPERVISOR
+}
+
+enum GuidelineSource {
+  WHO
+  ICMR
+  ESI
+  MTS
+  AIIMS
+  OTHER
+}
+
+enum GuidelineStatus {
+  UPLOADING
+  PROCESSING
+  INDEXED
+  FAILED
+}
+
+enum EmergencyAlertStatus {
+  ACTIVE
+  ACKNOWLEDGED
+  RESOLVED
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Identity & access
+// ─────────────────────────────────────────────────────────────────────────────
+
+model User {
+  id          String    @id @default(cuid())
+  clerkUserId String    @unique
+  email       String    @unique
+  firstName   String?
+  lastName    String?
+  role        UserRole  @default(NURSE)
+  hospitalId  String?
+  hospital    Hospital? @relation("HospitalStaff", fields: [hospitalId], references: [id])
+  isActive    Boolean   @default(true)
+  lastLoginAt DateTime?
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  createdBy String?
+  updatedBy String?
+  deletedAt DateTime?
+
+  registeredPatients Patient[]          @relation("PatientRegisteredBy")
+  reviews            DoctorReview[]
+  specialistProfile  Specialist?
+  auditLogs          AuditLog[]
+  notifications      Notification[]
+
+  @@index([role])
+  @@index([hospitalId])
+  @@index([deletedAt])
+  @@map("users")
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Patient domain
+// ─────────────────────────────────────────────────────────────────────────────
+
+model Patient {
+  id              String     @id @default(cuid())
+  mrn             String     @unique @default(cuid()) // medical record number
+  name            String
+  age             Int
+  gender          Gender
+  phone           String?
+  guardianName    String?
+  guardianPhone   String?
+  bloodGroup      BloodGroup @default(UNKNOWN)
+  heightCm        Float?
+  weightKg        Float?
+  allergies       String[]
+  existingDiseases String[]
+  medications     String[]
+
+  registeredById String?
+  registeredBy   User?   @relation("PatientRegisteredBy", fields: [registeredById], references: [id])
+
+  medicalHistory MedicalHistory[]
+  visits         Visit[]
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  createdBy String?
+  updatedBy String?
+  deletedAt DateTime?
+
+  @@index([phone])
+  @@index([registeredById])
+  @@index([deletedAt])
+  @@index([createdAt])
+  @@map("patients")
+}
+
+model MedicalHistory {
+  id          String   @id @default(cuid())
+  patientId   String
+  patient     Patient  @relation(fields: [patientId], references: [id], onDelete: Cascade)
+  condition   String
+  diagnosedAt DateTime?
+  notes       String?
+  isChronic   Boolean  @default(false)
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  createdBy String?
+  deletedAt DateTime?
+
+  @@index([patientId])
+  @@index([deletedAt])
+  @@map("medical_histories")
+}
+
+model Visit {
+  id             String      @id @default(cuid())
+  patientId      String
+  patient        Patient     @relation(fields: [patientId], references: [id], onDelete: Cascade)
+  status         VisitStatus @default(REGISTERED)
+  chiefComplaint String?
+  arrivalAt      DateTime    @default(now())
+
+  vitals       VitalSigns[]
+  symptoms     Symptom[]
+  assessment   TriageAssessment?
+  routing      HospitalRouting?
+  referral     Referral?
+  agentRuns    AgentExecution[]
+  alerts       EmergencyAlert[]
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  createdBy String?
+  updatedBy String?
+  deletedAt DateTime?
+
+  @@index([patientId])
+  @@index([status])
+  @@index([arrivalAt])
+  @@index([deletedAt])
+  @@map("visits")
+}
+
+model VitalSigns {
+  id               String   @id @default(cuid())
+  visitId          String
+  visit            Visit    @relation(fields: [visitId], references: [id], onDelete: Cascade)
+  temperatureC     Float?
+  oxygenSaturation Int?
+  heartRate        Int?
+  respiratoryRate  Int?
+  systolicBp       Int?
+  diastolicBp      Int?
+  glasgowComaScale Int?
+  isUnconscious    Boolean  @default(false)
+  recordedAt       DateTime @default(now())
+
+  createdAt DateTime  @default(now())
+  createdBy String?
+  deletedAt DateTime?
+
+  @@index([visitId])
+  @@index([recordedAt])
+  @@map("vital_signs")
+}
+
+model Symptom {
+  id        String          @id @default(cuid())
+  visitId   String
+  visit     Visit           @relation(fields: [visitId], references: [id], onDelete: Cascade)
+  name      String
+  severity  SymptomSeverity @default(MODERATE)
+  isPrimary Boolean         @default(false)
+  duration  String?
+  notes     String?
+
+  createdAt DateTime  @default(now())
+  createdBy String?
+  deletedAt DateTime?
+
+  @@index([visitId])
+  @@index([isPrimary])
+  @@map("symptoms")
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Hospital domain
+// ─────────────────────────────────────────────────────────────────────────────
+
+model Hospital {
+  id             String         @id @default(cuid())
+  name           String
+  address        String
+  city           String?
+  state          String?
+  latitude       Float
+  longitude      Float
+  phone          String?
+  email          String?
+  emergencyLevel EmergencyLevel @default(BASIC)
+  isTraumaCenter Boolean        @default(false)
+  isActive       Boolean        @default(true)
+
+  staff       User[]            @relation("HospitalStaff")
+  departments Department[]
+  specialists Specialist[]
+  capacity    HospitalCapacity?
+  resources   HospitalResource[]
+  routings    HospitalRouting[]
+  referrals   Referral[]
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  createdBy String?
+  updatedBy String?
+  deletedAt DateTime?
+
+  @@index([emergencyLevel])
+  @@index([isTraumaCenter])
+  @@index([latitude, longitude])
+  @@index([deletedAt])
+  @@map("hospitals")
+}
+
+model Department {
+  id          String       @id @default(cuid())
+  hospitalId  String
+  hospital    Hospital     @relation(fields: [hospitalId], references: [id], onDelete: Cascade)
+  name        String
+  code        String?
+  isAvailable Boolean      @default(true)
+  specialists Specialist[]
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+
+  @@unique([hospitalId, name])
+  @@index([hospitalId])
+  @@index([deletedAt])
+  @@map("departments")
+}
+
+model Specialist {
+  id           String      @id @default(cuid())
+  hospitalId   String
+  hospital     Hospital    @relation(fields: [hospitalId], references: [id], onDelete: Cascade)
+  departmentId String?
+  department   Department? @relation(fields: [departmentId], references: [id])
+  userId       String?     @unique
+  user         User?       @relation(fields: [userId], references: [id])
+  name         String
+  specialty    String
+  registrationNo String?
+  isOnDuty     Boolean     @default(false)
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+
+  @@index([hospitalId])
+  @@index([departmentId])
+  @@index([specialty])
+  @@index([deletedAt])
+  @@map("specialists")
+}
+
+model HospitalCapacity {
+  id              String   @id @default(cuid())
+  hospitalId      String   @unique
+  hospital        Hospital @relation(fields: [hospitalId], references: [id], onDelete: Cascade)
+  icuBedsTotal    Int      @default(0)
+  icuBedsAvailable Int     @default(0)
+  generalBedsTotal Int     @default(0)
+  generalBedsAvailable Int @default(0)
+  ventilatorsTotal Int     @default(0)
+  ventilatorsAvailable Int @default(0)
+  ambulancesTotal Int      @default(0)
+  ambulancesAvailable Int  @default(0)
+  updatedAt       DateTime @updatedAt
+  updatedBy       String?
+
+  @@index([hospitalId])
+  @@map("hospital_capacities")
+}
+
+model HospitalResource {
+  id          String   @id @default(cuid())
+  hospitalId  String
+  hospital    Hospital @relation(fields: [hospitalId], references: [id], onDelete: Cascade)
+  name        String   // e.g. "CT Scanner", "Cath Lab", "Dialysis"
+  category    String?
+  quantity    Int      @default(1)
+  isOperational Boolean @default(true)
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+
+  @@index([hospitalId])
+  @@index([name])
+  @@map("hospital_resources")
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Triage & human-in-the-loop
+// ─────────────────────────────────────────────────────────────────────────────
+
+model TriageAssessment {
+  id                  String        @id @default(cuid())
+  visitId             String        @unique
+  visit               Visit         @relation(fields: [visitId], references: [id], onDelete: Cascade)
+
+  // Deterministic safety overlay (Phase 5)
+  safetyIsCritical    Boolean       @default(false)
+  safetyForcedSeverity SeverityLevel?
+  safetyTriggeredRules Json         @default("[]")
+
+  // AI output (Phase 6)
+  aiSeverity          SeverityLevel?
+  esiLevel            Int?
+  aiConfidence        Float?
+  recommendedDepartment String?
+  possibleConditions  Json          @default("[]")
+  recommendedTests    String[]
+  riskFactors         String[]
+  redFlags            String[]
+
+  // Final, post-review effective severity
+  finalSeverity       SeverityLevel?
+
+  reasoning  AIReasoning?
+  decision   TriageDecision?
+  review     DoctorReview?
+  citations  GuidelineCitationRecord[]
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  createdBy String?
+  deletedAt DateTime?
+
+  @@index([visitId])
+  @@index([aiSeverity])
+  @@index([finalSeverity])
+  @@index([safetyIsCritical])
+  @@map("triage_assessments")
+}
+
+model AIReasoning {
+  id           String           @id @default(cuid())
+  assessmentId String           @unique
+  assessment   TriageAssessment @relation(fields: [assessmentId], references: [id], onDelete: Cascade)
+  model        String
+  promptTokens Int?
+  completionTokens Int?
+  /// Full chain-of-reasoning text the model produced (explainability).
+  reasoningText String
+  /// Raw structured JSON the model returned, retained for audit.
+  rawOutput    Json
+  retries      Int              @default(0)
+
+  createdAt DateTime @default(now())
+
+  @@index([assessmentId])
+  @@map("ai_reasonings")
+}
+
+model GuidelineCitationRecord {
+  id           String           @id @default(cuid())
+  assessmentId String
+  assessment   TriageAssessment @relation(fields: [assessmentId], references: [id], onDelete: Cascade)
+  guidelineId  String?
+  guideline    Guideline?       @relation(fields: [guidelineId], references: [id])
+  chunkId      String?
+  source       String
+  title        String
+  snippet      String
+  page         Int?
+  score        Float
+
+  createdAt DateTime @default(now())
+
+  @@index([assessmentId])
+  @@index([guidelineId])
+  @@map("guideline_citations")
+}
+
+model TriageDecision {
+  id            String           @id @default(cuid())
+  assessmentId  String           @unique
+  assessment    TriageAssessment @relation(fields: [assessmentId], references: [id], onDelete: Cascade)
+  finalSeverity SeverityLevel
+  decidedByAi   Boolean          @default(true)
+  notes         String?
+
+  createdAt DateTime @default(now())
+
+  @@index([assessmentId])
+  @@map("triage_decisions")
+}
+
+model DoctorReview {
+  id            String           @id @default(cuid())
+  assessmentId  String           @unique
+  assessment    TriageAssessment @relation(fields: [assessmentId], references: [id], onDelete: Cascade)
+  doctorId      String
+  doctor        User             @relation(fields: [doctorId], references: [id])
+  action        ReviewAction
+  /// Required when action is OVERRIDE or MODIFY — never silently changed.
+  justification String?
+  overrideSeverity SeverityLevel?
+  overrideDepartment String?
+  reviewedAt    DateTime         @default(now())
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+
+  @@index([assessmentId])
+  @@index([doctorId])
+  @@index([action])
+  @@map("doctor_reviews")
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Routing & referral
+// ─────────────────────────────────────────────────────────────────────────────
+
+model HospitalRouting {
+  id                 String    @id @default(cuid())
+  visitId            String    @unique
+  visit              Visit     @relation(fields: [visitId], references: [id], onDelete: Cascade)
+  selectedHospitalId String?
+  selectedHospital   Hospital? @relation(fields: [selectedHospitalId], references: [id])
+  /// Full ranked candidate list with scores & explanations (RoutingResult JSON).
+  rankedCandidates   Json      @default("[]")
+  weightsUsed        Json
+  requiredDepartment String?
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  createdBy String?
+  deletedAt DateTime?
+
+  @@index([visitId])
+  @@index([selectedHospitalId])
+  @@map("hospital_routings")
+}
+
+model Referral {
+  id          String         @id @default(cuid())
+  visitId     String         @unique
+  visit       Visit          @relation(fields: [visitId], references: [id], onDelete: Cascade)
+  hospitalId  String?
+  hospital    Hospital?      @relation(fields: [hospitalId], references: [id])
+  status      ReferralStatus @default(DRAFT)
+  referralCode String        @unique @default(cuid())
+  /// Snapshot of the approved ReferralPayload at generation time.
+  payload     Json
+  documents   ReferralDocument[]
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  createdBy String?
+  updatedBy String?
+  deletedAt DateTime?
+
+  @@index([visitId])
+  @@index([hospitalId])
+  @@index([status])
+  @@index([createdAt])
+  @@map("referrals")
+}
+
+model ReferralDocument {
+  id         String            @id @default(cuid())
+  referralId String
+  referral   Referral          @relation(fields: [referralId], references: [id], onDelete: Cascade)
+  format     ReferralDocFormat
+  url        String
+  checksum   String
+  sizeBytes  Int?
+
+  createdAt DateTime @default(now())
+  createdBy String?
+
+  @@index([referralId])
+  @@index([format])
+  @@map("referral_documents")
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Knowledge base (RAG)
+// ─────────────────────────────────────────────────────────────────────────────
+
+model Guideline {
+  id          String          @id @default(cuid())
+  title       String
+  source      GuidelineSource
+  version     String?
+  description String?
+  /// S3 key of the original uploaded PDF.
+  s3Key       String?
+  status      GuidelineStatus @default(UPLOADING)
+  chunkCount  Int             @default(0)
+
+  chunks    GuidelineChunk[]
+  citations GuidelineCitationRecord[]
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  createdBy String?
+  deletedAt DateTime?
+
+  @@index([source])
+  @@index([status])
+  @@index([deletedAt])
+  @@map("guidelines")
+}
+
+model GuidelineChunk {
+  id          String    @id @default(cuid())
+  guidelineId String
+  guideline   Guideline @relation(fields: [guidelineId], references: [id], onDelete: Cascade)
+  chunkIndex  Int
+  content     String
+  page        Int?
+  tokenCount  Int?
+  /// Pinecone vector id this chunk maps to.
+  vectorId    String?   @unique
+
+  createdAt DateTime @default(now())
+
+  @@unique([guidelineId, chunkIndex])
+  @@index([guidelineId])
+  @@map("guideline_chunks")
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Notifications, audit, agents, alerts, metrics
+// ─────────────────────────────────────────────────────────────────────────────
+
+model Notification {
+  id        String              @id @default(cuid())
+  userId    String?
+  user      User?               @relation(fields: [userId], references: [id])
+  type      NotificationType
+  channel   NotificationChannel
+  status    NotificationStatus  @default(PENDING)
+  title     String
+  body      String
+  payload   Json?
+  readAt    DateTime?
+  sentAt    DateTime?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([userId])
+  @@index([type])
+  @@index([status])
+  @@index([createdAt])
+  @@map("notifications")
+}
+
+model AuditLog {
+  id           String      @id @default(cuid())
+  action       AuditAction
+  entityType   String
+  entityId     String
+  userId       String?
+  user         User?       @relation(fields: [userId], references: [id])
+  /// State before the change (null for creates).
+  previousState Json?
+  /// State after the change (null for deletes).
+  newState     Json?
+  ipAddress    String?
+  userAgent    String?
+  /// Free-form contextual metadata (request id, reason, etc.).
+  metadata     Json?
+
+  createdAt DateTime @default(now())
+
+  @@index([action])
+  @@index([entityType, entityId])
+  @@index([userId])
+  @@index([createdAt])
+  @@map("audit_logs")
+}
+
+model AgentExecution {
+  id          String               @id @default(cuid())
+  visitId     String?
+  visit       Visit?               @relation(fields: [visitId], references: [id], onDelete: SetNull)
+  agentType   AgentType
+  status      AgentExecutionStatus @default(PENDING)
+  /// Input passed to the agent.
+  input       Json?
+  /// Validated output the agent produced.
+  output      Json?
+  error       String?
+  /// Supervisor validation verdict & notes.
+  supervisorVerdict Json?
+  latencyMs   Int?
+  tokensUsed  Int?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([visitId])
+  @@index([agentType])
+  @@index([status])
+  @@index([createdAt])
+  @@map("agent_executions")
+}
+
+model EmergencyAlert {
+  id        String               @id @default(cuid())
+  visitId   String?
+  visit     Visit?               @relation(fields: [visitId], references: [id], onDelete: SetNull)
+  status    EmergencyAlertStatus @default(ACTIVE)
+  severity  SeverityLevel        @default(CRITICAL)
+  title     String
+  message   String
+  /// Safety rule ids that triggered the alert.
+  triggeredRules String[]
+  acknowledgedBy String?
+  acknowledgedAt DateTime?
+  resolvedAt DateTime?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([visitId])
+  @@index([status])
+  @@index([severity])
+  @@index([createdAt])
+  @@map("emergency_alerts")
+}
+
+model SystemMetrics {
+  id              String   @id @default(cuid())
+  /// Bucket timestamp (e.g. hourly rollup).
+  capturedAt      DateTime @default(now())
+  totalPatients   Int      @default(0)
+  criticalPatients Int     @default(0)
+  referralCount   Int      @default(0)
+  avgTriageSeconds Float?
+  routingSuccessRate Float?
+  overrideRate    Float?
+  avgAiConfidence Float?
+  hospitalOccupancy Float?
+  /// Arbitrary additional metric dimensions.
+  dimensions      Json?
+
+  @@index([capturedAt])
+  @@map("system_metrics")
+}

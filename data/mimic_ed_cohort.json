@@ -1,0 +1,6150 @@
+{
+  "meta": {
+    "source": "MIMIC-IV-ED Demo v2.2 + MIMIC-IV Demo v2.2 (patients), PhysioNet, ODbL 1.0",
+    "generatedBy": "research/build_cohort.py",
+    "inclusion": "ED stays in triage.csv with a recorded acuity",
+    "excluded": {
+      "missing acuity": 15
+    },
+    "n": 207,
+    "esiCounts": {
+      "1": 18,
+      "2": 97,
+      "3": 90,
+      "4": 2
+    },
+    "casesWithNoTriageVitals": 8,
+    "droppedImplausibleValues": [
+      {
+        "stayId": "34820898",
+        "field": "pain",
+        "raw": "UA"
+      },
+      {
+        "stayId": "35758326",
+        "field": "pain",
+        "raw": "13"
+      },
+      {
+        "stayId": "33335871",
+        "field": "pain",
+        "raw": "UA"
+      },
+      {
+        "stayId": "39399961",
+        "field": "pain",
+        "raw": "13"
+      },
+      {
+        "stayId": "38233644",
+        "field": "pain",
+        "raw": "13"
+      },
+      {
+        "stayId": "38890884",
+        "field": "pain",
+        "raw": "13"
+      },
+      {
+        "stayId": "32259566",
+        "field": "pain",
+        "raw": "o"
+      },
+      {
+        "stayId": "33065303",
+        "field": "pain",
+        "raw": "unable"
+      },
+      {
+        "stayId": "37298974",
+        "field": "dbp",
+        "raw": "879"
+      },
+      {
+        "stayId": "36976997",
+        "field": "pain",
+        "raw": "13"
+      },
+      {
+        "stayId": "32272346",
+        "field": "pain",
+        "raw": "uta"
+      },
+      {
+        "stayId": "32822973",
+        "field": "pain",
+        "raw": "unable"
+      },
+      {
+        "stayId": "30272878",
+        "field": "pain",
+        "raw": "Critical"
+      },
+      {
+        "stayId": "34391979",
+        "field": "pain",
+        "raw": "ett"
+      },
+      {
+        "stayId": "37036523",
+        "field": "pain",
+        "raw": "13"
+      },
+      {
+        "stayId": "31660580",
+        "field": "pain",
+        "raw": "Critical"
+      },
+      {
+        "stayId": "39297781",
+        "field": "pain",
+        "raw": "UA"
+      },
+      {
+        "stayId": "39738665",
+        "field": "pain",
+        "raw": "unable"
+      },
+      {
+        "stayId": "34205403",
+        "field": "pain",
+        "raw": "unable"
+      },
+      {
+        "stayId": "31579293",
+        "field": "pain",
+        "raw": "13"
+      }
+    ]
+  },
+  "cases": [
+    {
+      "stayId": "30094124",
+      "subjectId": "10014354",
+      "input": {
+        "age": 61,
+        "gender": "MALE",
+        "arrivalTransport": "AMBULANCE",
+        "chiefComplaint": "Fatigue, s/p Fall",
+        "vitals": {
+          "heartRate": 80,
+          "respiratoryRate": 18,
+          "oxygenSaturation": 99,
+          "systolicBp": 138,
+          "diastolicBp": 78,
+          "temperatureC": 36.3
+        },
+        "painScore": 4
+      },
+      "label": {
+        "esi": 2
+      },
+      "outcome": {
+        "disposition": "ADMITTED",
+        "dischargeDiagnoses": [
+          "Weakness",
+          "Dehydration"
+        ]
+      }
+    },
+    {
+      "stayId": "30193781",
+      "subjectId": "10002930",
+      "input": {
+        "age": 53,
+        "gender": "FEMALE",
+        "arrivalTransport": "WALK IN",
+        "chiefComplaint": "ETOH, Hallucinations",
+        "vitals": {
+          "heartRate": 88,
+          "respiratoryRate": 16,
+          "oxygenSaturation": 100,
+          "systolicBp": 150,
+          "diastolicBp": 98,
+          "temperatureC": 36.8
+        },
+        "painScore": 6
+      },
+      "label": {
+        "esi": 3
+      },
+      "outcome": {
+        "disposition": "ADMITTED",
+        "dischargeDiagnoses": [
+          "Alcohol dependence with withdrawal, unspecified",
+          "Elevated white blood cell count, unspecified",
+          "Oth psych disorder not due to a sub or known physiol cond"
+        ]
+      }
+    },
+    {
+      "stayId": "30225689",
+      "subjectId": "10005866",
+      "input": {
+        "age": 60,
+        "gender": "MALE",
+        "arrivalTransport": "WALK IN",
+        "chiefComplaint": "Right sided abdominal pain",
+        "vitals": {
+          "heartRate": 72,
+          "respiratoryRate": 16,
+          "oxygenSaturation": 100,
+          "systolicBp": 163,
+          "diastolicBp": 81,
+          "temperatureC": 36.4
+        },
+        "painScore": 10
+      },
+      "label": {
+        "esi": 3
+      },
+      "outcome": {
+        "disposition": "ADMITTED",
+        "dischargeDiagnoses": [
+          "Unspecified abdominal pain"
+        ]
+      }
+    },
+    {
+      "stayId": "30272878",
+      "subjectId": "10038999",
+      "input": {
+        "age": 45,
+        "gender": "MALE",
+        "arrivalTransport": "UNKNOWN",
+        "chiefComplaint": "Transfer",
+        "vitals": {},
+        "painScore": null
+      },
+      "label": {
+        "esi": 1
+      },
+      "outcome": {
+        "disposition": "ADMITTED",
+        "dischargeDiagnoses": [
+          "Pericardial effusion (noninflammatory)"
+        ]
+      }
+    },
+    {
+      "stayId": "30279522",
+      "subjectId": "10014354",
+      "input": {
+        "age": 63,
+        "gender": "MALE",
+        "arrivalTransport": "AMBULANCE",
+        "chiefComplaint": "Weakness",
+        "vitals": {
+          "heartRate": 73,
+          "respiratoryRate": 20,
+          "oxygenSaturation": 99,
+          "systolicBp": 122,
+          "diastolicBp": 60,
+          "temperatureC": 36.8
+        },
+        "painScore": 0
+      },
+      "label": {
+        "esi": 3
+      },
+      "outcome": {
+        "disposition": "ADMITTED",
+        "dischargeDiagnoses": [
+          "Weakness"
+        ]
+      }
+    },
+    {
+      "stayId": "30324772",
+      "subjectId": "10019385",
+      "input": {
+        "age": 44,
+        "gender": "MALE",
+        "arrivalTransport": "WALK IN",
+        "chiefComplaint": "Chest pain, Jaw pain, L Arm pain",
+        "vitals": {
+          "heartRate": 55,
+          "respiratoryRate": 14,
+          "oxygenSaturation": 97,
+          "systolicBp": 120,
+          "diastolicBp": 59,
+          "temperatureC": 36.6
+        },
+        "painScore": 0
+      },
+      "label": {
+        "esi": 2
+      },
+      "outcome": {
+        "disposition": "ADMITTED",
+        "dischargeDiagnoses": [
+          "Chest pain, unspecified"
+        ]
+      }
+    },
+    {
+      "stayId": "30373795",
+      "subjectId": "10015860",
+      "input": {
+        "age": 60,
+        "gender": "MALE",
+        "arrivalTransport": "AMBULANCE",
+        "chiefComplaint": "L Arm numbness, L Arm swelling",
+        "vitals": {
+          "heartRate": 100,
+          "respiratoryRate": 16,
+          "oxygenSaturation": 100,
+          "systolicBp": 119,
+          "diastolicBp": 64,
+          "temperatureC": 36.7
+        },
+        "painScore": 0
+      },
+      "label": {
+        "esi": 2
+      },
+      "outcome": {
+        "disposition": "HOME",
+        "dischargeDiagnoses": [
+          "Other specified soft tissue disorders",
+          "Thrombosis due to vascular prosth dev/grft, init",
+          "Anastomos,bypass or grft cause abn react/compl, w/o misadvnt",
+          "Type 2 diabetes mellitus without complications",
+          "End stage renal disease",
+          "Dependence on renal dialysis"
+        ]
+      }
+    },
+    {
+      "stayId": "30390242",
+      "subjectId": "10014354",
+      "input": {
+        "age": 63,
+        "gender": "MALE",
+        "arrivalTransport": "UNKNOWN",
+        "chiefComplaint": "Abd pain, Back pain",
+        "vitals": {
+          "heartRate": 78,
+          "respiratoryRate": 19,
+          "oxygenSaturation": 100,
+          "systolicBp": 151,
+          "diastolicBp": 75,
+          "temperatureC": 37.1
+        },
+        "painScore": 9
+      },
+      "label": {
+        "esi": 3
+      },
+      "outcome": {
+        "disposition": "LEFT WITHOUT BEING SEEN",
+        "dischargeDiagnoses": [
+          "Unspecified abdominal pain"
+        ]
+      }
+    },
+    {
+      "stayId": "30667562",
+      "subjectId": "10010867",
+      "input": {
+        "age": 29,
+        "gender": "FEMALE",
+        "arrivalTransport": "AMBULANCE",
+        "chiefComplaint": "T-SPINE FX DISPLACEMENT",
+        "vitals": {
+          "heartRate": 104,
+          "respiratoryRate": 16,
+          "oxygenSaturation": 100,
+          "systolicBp": 146,
+          "diastolicBp": 94,
+          "temperatureC": 37.5
+        },
+        "painScore": 0
+      },
+      "label": {
+        "esi": 2
+      },
+      "outcome": {
+        "disposition": "ADMITTED",
+        "dischargeDiagnoses": [
+          "Unsp fracture of T5-T6 vertebra, init for clos fx",
+          "Unsp fracture of T7-T8 vertebra, init for clos fx",
+          "Car occupant (driver) (passenger) injured in unsp traf, init"
+        ]
+      }
+    },
+    {
+      "stayId": "30683757",
+      "subjectId": "10023239",
+      "input": {
+        "age": 29,
+        "gender": "FEMALE",
+        "arrivalTransport": "WALK IN",
+        "chiefComplaint": "N/V, Hyperglycemia",
+        "vitals": {
+          "heartRate": 130,
+          "respiratoryRate": 16,
+          "oxygenSaturation": 95,
+          "systolicBp": 118,
+          "diastolicBp": 70,
+          "temperatureC": 36.6
+        },
+        "painScore": 0
+      },
+      "label": {
+        "esi": 1
+      },
+      "outcome": {
+        "disposition": "ADMITTED",
+        "dischargeDiagnoses": [
+          "DIAB KETOACIDOSIS IDDM",
+          "PNEUMONIA,ORGANISM UNSPECIFIED"
+        ]
+      }
+    },
+    {
+      "stayId": "30689793",
+      "subjectId": "10020187",
+      "input": {
+        "age": 63,
+        "gender": "FEMALE",
+        "arrivalTransport": "AMBULANCE",
+        "chiefComplaint": "Headache, SAH, Transfer",
+        "vitals": {
+          "heartRate": 84,
+          "respiratoryRate": 18,
+          "oxygenSaturation": 95,
+          "systolicBp": 168,
+          "diastolicBp": 82,
+          "temperatureC": 36.8
+        },
+        "painScore": 7
+      },
+      "label": {
+        "esi": 2
+      },
+      "outcome": {
+        "disposition": "ADMITTED",
+        "dischargeDiagnoses": [
+          "Nontraumatic subarachnoid hemorrhage, unspecified",
+          "Essential (primary) hypertension"
+        ]
+      }
+    },
+    {
+      "stayId": "30804580",
+      "subjectId": "10005866",
+      "input": {
+        "age": 59,
+        "gender": "MALE",
+        "arrivalTransport": "AMBULANCE",
+        "chiefComplaint": "Abd pain, N/V",
+        "vitals": {
+          "heartRate": 66,
+          "respiratoryRate": 18,
+          "oxygenSaturation": 99,
+          "systolicBp": 111,
+          "diastolicBp": 68,
+          "temperatureC": 36.3
+        },
+        "painScore": 8
+      },
+      "label": {
+        "esi": 2
+      },
+      "outcome": {
+        "disposition": "ADMITTED",
+        "dischargeDiagnoses": [
+          "Unspecified intestinal obstruction"
+        ]
+      }
+    },
+    {
+      "stayId": "30836087",
+      "subjectId": "10040025",
+      "input": {
+        "age": 66,
+        "gender": "FEMALE",
+        "arrivalTransport": "WALK IN",
+        "chiefComplaint": "LEFT EYE SWELLING, REDNESS",
+        "vitals": {
+          "heartRate": 77,
+          "respiratoryRate": 16,
+          "oxygenSaturation": 97,
+          "systolicBp": 197,
+          "diastolicBp": 59,
+          "temperatureC": 36.8
+        },
+        "painScore": 0
+      },
+      "label": {
+        "esi": 3
+      },
+      "outcome": {
+        "disposition": "ADMITTED",
+        "dischargeDiagnoses": [
+          "CELLULITIS OF FACE",
+          "ACUTE KIDNEY FAILURE, UNSPECIFIED",
+          "CHRONIC KIDNEY DISEASE, UNSPECIFIED",
+          "DIABETES UNCOMPL ADULT",
+          "LONG-TERM (CURRENT) USE OF INSULIN",
+          "HYPERTENSION NOS"
+        ]
+      }
+    },
+    {
+      "stayId": "30915333",
+      "subjectId": "10039708",
+      "input": {
+        "age": 48,
+        "gender": "FEMALE",
+        "arrivalTransport": "WALK IN",
+        "chiefComplaint": "Hypotension",
+        "vitals": {
+          "heartRate": 90,
+          "respiratoryRate": 18,
+          "oxygenSaturation": 100,
+          "systolicBp": 70,
+          "diastolicBp": 42,
+          "temperatureC": 36.6
+        },
+        "painScore": 5
+      },
+      "label": {
+        "esi": 1
+      },
+      "outcome": {
+        "disposition": "ADMITTED",
+        "dischargeDiagnoses": [
+          "Gastrointestinal hemorrhage, unspecified",
+          "Hypotension, unspecified",
+          "Anemia, unspecified"
+        ]
+      }
+    },
+    {
+      "stayId": "30952335",
+      "subjectId": "10019777",
+      "input": {
+        "age": 51,
+        "gender": "MALE",
+        "arrivalTransport": "AMBULANCE",
+        "chiefComplaint": "Hematemesis",
+        "vitals": {
+          "heartRate": 90,
+          "respiratoryRate": 18,
+          "oxygenSaturation": 98,
+          "systolicBp": 110,
+          "diastolicBp": 68,
+          "temperatureC": 36.7
+        },
+        "painScore": 0
+      },
+      "label": {
+        "esi": 2
+      },
+      "outcome": {
+        "disposition": "ADMITTED",
+        "dischargeDiagnoses": [
+          "GASTROINTEST HEMORR NOS"
+        ]
+      }
+    },
+    {
+      "stayId": "31023359",
+      "subjectId": "10005866",
+      "input": {
+        "age": 60,
+        "gender": "MALE",
+        "arrivalTransport": "WALK IN",
+        "chiefComplaint": "Abd pain, N/V",
+        "vitals": {
+          "heartRate": 88,
+          "respiratoryRate": 18,
+          "oxygenSaturation": 100,
+          "systolicBp": 163,
+          "diastolicBp": 89,
+          "temperatureC": 36.2
+        },
+        "painScore": 7
+      },
+      "label": {
+        "esi": 3
+      },
+      "outcome": {
+        "disposition": "HOME",
+        "dischargeDiagnoses": [
+          "Right lower quadrant pain",
+          "Nausea with vomiting, unspecified",
+          "Unspecified cirrhosis of liver",
+          "Unspecified viral hepatitis C without hepatic coma"
+        ]
+      }
+    },
+    {
+      "stayId": "31121963",
+      "subjectId": "10005866",
+      "input": {
+        "age": 60,
+        "gender": "MALE",
+        "arrivalTransport": "AMBULANCE",
+        "chiefComplaint": "Chest pain, N/V",
+        "vitals": {
+          "heartRate": 106,
+          "respiratoryRate": 20,
+          "oxygenSaturation": 100,
+          "systolicBp": 163,
+          "diastolicBp": 103,
+          "temperatureC": 37.1
+        },
+        "painScore": 8
+      },
+      "label": {
+        "esi": 2
+      },
+      "outcome": {
+        "disposition": "ADMITTED",
+        "dischargeDiagnoses": [
+          "Epigastric pain",
+          "Chest pain, unspecified"
+        ]
+      }
+    },
+    {
+      "stayId": "31153288",
+      "subjectId": "10015860",
+      "input": {
+        "age": 59,
+        "gender": "MALE",
+        "arrivalTransport": "AMBULANCE",
+        "chiefComplaint": "Diarrhea, Hypotension",
+        "vitals": {
+          "heartRate": 96,
+          "respiratoryRate": 18,
+          "oxygenSaturation": 97,
+          "systolicBp": 134,
+          "diastolicBp": 70,
+          "temperatureC": 37.7
+        },
+        "painScore": 7
+      },
+      "label": {
+        "esi": 3
+      },
+      "outcome": {
+        "disposition": "HOME",
+        "dischargeDiagnoses": [
+          "Diarrhea, unspecified",
+          "Elevated white blood cell count, unspecified",
+          "Hyp chr kidney disease w stage 5 chr kidney disease or ESRD",
+          "End stage renal disease",
+          "Dependence on renal dialysis"
+        ]
+      }
+    },
+    {
+      "stayId": "31226423",
+      "subjectId": "10040025",
+      "input": {
+        "age": 68,
+        "gender": "FEMALE",
+        "arrivalTransport": "AMBULANCE",
+        "chiefComplaint": "N/V",
+        "vitals": {
+          "heartRate": 93,
+          "respiratoryRate": 18,
+          "oxygenSaturation": 98,
+          "systolicBp": 135,
+          "diastolicBp": 72,
+          "temperatureC": 36.4
+        },
+        "painScore": 0
+      },
+      "label": {
+        "esi": 3
+      },
+      "outcome": {
+        "disposition": "HOME",
+        "dischargeDiagnoses": [
+          "Nausea with vomiting, unspecified",
+          "Diarrhea, unspecified",
+          "Type 2 diabetes mellitus without complications",
+          "Long term (current) use of insulin",
+          "Essential (primary) hypertension",
+          "Long term (current) use of anticoagulants"
+        ]
+      }
+    },
+    {
+      "stayId": "31254712",
+      "subjectId": "10019003",
+      "input": {
+        "age": 70,
+        "gender": "FEMALE",
+        "arrivalTransport": "AMBULANCE",
+        "chiefComplaint": "Weakness, Hypotension",
+        "vitals": {
+          "heartRate": 96,
+          "respiratoryRate": 15,
+          "oxygenSaturation": 97,
+          "systolicBp": 98,
+          "diastolicBp": 56,
+          "temperatureC": 36.9
+        },
+        "painScore": 0
+      },
+      "label": {
+        "esi": 2
+      },
+      "outcome": {
+        "disposition": "ADMITTED",
+        "dischargeDiagnoses": [
+          "Sepsis, unspecified organism",
+          "Urinary tract infection, site not specified",
+          "Dehydration",
+          "Chronic myeloid leuk, BCR/ABL-positive, not achieve remis"
+        ]
+      }
+    },
+    {
+      "stayId": "31270431",
+      "subjectId": "10023239",
+      "input": {
+        "age": 32,
+        "gender": "FEMALE",
+        "arrivalTransport": "WALK IN",
+        "chiefComplaint": "Back pain, Decreased PO intake, R Ear pain",
+        "vitals": {
+          "heartRate": 123,
+          "respiratoryRate": 18,
+          "oxygenSaturation": 99,
+          "systolicBp": 123,
+          "diastolicBp": 69,
+          "temperatureC": 35.7
+        },
+        "painScore": 5
+      },
+      "label": {
+        "esi": 3
+      },
+      "outcome": {
+        "disposition": "HOME",
+        "dischargeDiagnoses": [
+          "Other fatigue",
+          "Nonspec elev of levels of transamns & lactic acid dehydrgnse",
+          "Type 1 diabetes mellitus without complications",
+          "Long term (current) use of insulin",
+          "Enlarged lymph nodes, unspecified"
+        ]
+      }
+    },
+    {
+      "stayId": "31283645",
+      "subjectId": "10023117",
+      "input": {
+        "age": 54,
+        "gender": "MALE",
+        "arrivalTransport": "AMBULANCE",
+        "chiefComplaint": "SHORTNESS OF BREATH",
+        "vitals": {
+          "heartRate": 109,
+          "respiratoryRate": 22,
+          "oxygenSaturation": 100,
+          "systolicBp": 148,
+          "diastolicBp": 77,
+          "temperatureC": 36.7
+        },
+        "painScore": 0
+      },
+      "label": {
+        "esi": 3
+      },
+      "outcome": {
+        "disposition": "ADMITTED",
+        "dischargeDiagnoses": [
+          "CONGESTIVE HEART FAILURE, UNSPEC"
+        ]
+      }
+    },
+    {
+      "stayId": "31320010",
+      "subjectId": "10040025",
+      "input": {
+        "age": 67,
+        "gender": "FEMALE",
+        "arrivalTransport": "AMBULANCE",
+        "chiefComplaint": "Dyspnea",
+        "vitals": {
+          "heartRate": 80,
+          "respiratoryRate": 20,
+          "oxygenSaturation": 100,
+          "systolicBp": 198,
+          "diastolicBp": 74,
+          "temperatureC": 36.8
+        },
+        "painScore": 0
+      },
+      "label": {
+        "esi": 3
+      },
+      "outcome": {
+        "disposition": "HOME",
+        "dischargeDiagnoses": [
+          "Dyspnea, unspecified",
+          "Lobar pneumonia, unspecified organism"
+        ]
+      }
+    },
+    {
+      "stayId": "31353849",
+      "subjectId": "10015860",
+      "input": {
+        "age": 59,
+        "gender": "MALE",
+        "arrivalTransport": "AMBULANCE",
+        "chiefComplaint": "L Leg pain, s/p Fall",
+        "vitals": {
+          "heartRate": 98,
+          "respiratoryRate": 18,
+          "oxygenSaturation": 96,
+          "systolicBp": 106,
+          "diastolicBp": 64,
+          "temperatureC": 36.8
+        },
+        "painScore": 7
+      },
+      "label": {
+        "esi": 2
+      },
+      "outcome": {
+        "disposition": "ADMITTED",
+        "dischargeDiagnoses": [
+          "Displaced intertrochanteric fracture of left femur, init",
+          "Fall on same level, unspecified, initial encounter",
+          "Dizziness and giddiness"
+        ]
+      }
+    },
+    {
+      "stayId": "31579293",
+      "subjectId": "10002930",
+      "input": {
+        "age": 51,
+        "gender": "FEMALE",
+        "arrivalTransport": "UNKNOWN",
+        "chiefComplaint": "ETOH, Hypoglycemia",
+        "vitals": {
+          "heartRate": 89,
+          "respiratoryRate": 16,
+          "oxygenSaturation": 100,
+          "systolicBp": 106,
+          "diastolicBp": 65,
+          "temperatureC": 35.3
+        },
+        "painScore": null
+      },
+      "label": {
+        "esi": 3
+      },
+      "outcome": {
+        "disposition": "ADMITTED",
+        "dischargeDiagnoses": [
+          "HYPOGLYCEMIA NOS",
+          "UNSPECIFIED VIRAL HEPATITIS C WITHOUT HEPATIC COMA",
+          "ASYMPTOMATIC HIV INFECTION"
+        ]
+      }
+    },
+    {
+      "stayId": "31588683",
+      "subjectId": "10023117",
+      "input": {
+        "age": 54,
+        "gender": "MALE",
+        "arrivalTransport": "WALK IN",
+        "chiefComplaint": "SHORTNESS OF BREATH",
+        "vitals": {
+          "heartRate": 126,
+          "respiratoryRate": 20,
+          "oxygenSaturation": 100,
+          "systolicBp": 129,
+          "diastolicBp": 95,
+          "temperatureC": 36.5
+        },
+        "painScore": 0
+      },
+      "label": {
+        "esi": 2
+      },
+      "outcome": {
+        "disposition": "HOME",
+        "dischargeDiagnoses": [
+          "RESPIRATORY ABNORM NEC",
+          "HYPERTENSION NOS",
+          "CARDIAC PACEMAKER STATUS"
+        ]
+      }
+    },
+    {
+      "stayId": "31612436",
+      "subjectId": "10039708",
+      "input": {
+        "age": 51,
+        "gender": "FEMALE",
+        "arrivalTransport": "AMBULANCE",
+        "chiefComplaint": "Dyspnea",
+        "vitals": {
+          "heartRate": 86,
+          "respiratoryRate": 16,
+          "oxygenSaturation": 100,
+          "systolicBp": 133,
+          "diastolicBp": 82,
+          "temperatureC": 36.7
+        },
+        "painScore": 10
+      },
+      "label": {
+        "esi": 3
+      },
+      "outcome": {
+        "disposition": "ADMITTED",
+        "dischargeDiagnoses": [
+          "Anemia, unspecified",
+          "Dyspnea, unspecified"
+        ]
+      }
+    },
+    {
+      "stayId": "31626291",
+      "subjectId": "10015860",
+      "input": {
+        "age": 59,
+        "gender": "MALE",
+        "arrivalTransport": "AMBULANCE",
+        "chiefComplaint": "Coffee ground emesis",
+        "vitals": {
+          "heartRate": 128,
+          "respiratoryRate": 20,
+          "oxygenSaturation": 99,
+          "systolicBp": 151,
+          "diastolicBp": 73,
+          "temperatureC": 37.8
+        },
+        "painScore": 0
+      },
+      "label": {
+        "esi": 2
+      },
+      "outcome": {
+        "disposition": "ADMITTED",
+        "dischargeDiagnoses": [
+          "Type 1 diabetes mellitus with ketoacidosis without coma",
+          "Long term (current) use of insulin",
+          "Gastrointestinal hemorrhage, unspecified",
+          "Acidosis",
+          "Acute kidney failure, unspecified"
+        ]
+      }
+    },
+    {
+      "stayId": "31628990",
+      "subjectId": "10009049",
+      "input": {
+        "age": 56,
+        "gender": "MALE",
+        "arrivalTransport": "AMBULANCE",
+        "chiefComplaint": "Chest pain",
+        "vitals": {
+          "heartRate": 87,
+          "respiratoryRate": 18,
+          "oxygenSaturation": 96,
+          "systolicBp": 126,
+          "diastolicBp": 68,
+          "temperatureC": 37.2
+        },
+        "painScore": 0
+      },
+      "label": {
+        "esi": 3
+      },
+      "outcome": {
+        "disposition": "ADMITTED",
+        "dischargeDiagnoses": [
+          "PNEUMONIA,ORGANISM UNSPECIFIED"
+        ]
+      }
+    },
+    {
+      "stayId": "31640785",
+      "subjectId": "10014354",
+      "input": {
+        "age": 64,
+        "gender": "MALE",
+        "arrivalTransport": "AMBULANCE",
+        "chiefComplaint": "Epigastric pain",
+        "vitals": {
+          "heartRate": 75,
+          "respiratoryRate": 18,
+          "oxygenSaturation": 98,
+          "systolicBp": 180,
+          "diastolicBp": 74,
+          "temperatureC": 37.5
+        },
+        "painScore": 9
+      },
+      "label": {
+        "esi": 3
+      },
+      "outcome": {
+        "disposition": "ADMITTED",
+        "dischargeDiagnoses": [
+          "Epigastric pain",
+          "Type 1 diabetes mellitus without complications",
+          "Long term (current) use of insulin"
+        ]
+      }
+    },
+    {
+      "stayId": "31660580",
+      "subjectId": "10010471",
+      "input": {
+        "age": 89,
+        "gender": "FEMALE",
+        "arrivalTransport": "UNKNOWN",
+        "chiefComplaint": "s/p cardiac arrest",
+        "vitals": {},
+        "painScore": null
+      },
+      "label": {
+        "esi": 1
+      },
+      "outcome": {
+        "disposition": "ADMITTED",
+        "dischargeDiagnoses": [
+          "Cardiac arrest, cause unspecified"
+        ]
+      }
+    },
+    {
+      "stayId": "31729614",
+      "subjectId": "10018501",
+      "input": {
+        "age": 83,
+        "gender": "MALE",
+        "arrivalTransport": "AMBULANCE",
+        "chiefComplaint": "Transfer, MVC",
+        "vitals": {
+          "heartRate": 72,
+          "respiratoryRate": 20,
+          "oxygenSaturation": 96,
+          "systolicBp": 160,
+          "diastolicBp": 67,
+          "temperatureC": 36.8
+        },
+        "painScore": 0
+      },
+      "label": {
+        "esi": 2
+      },
+      "outcome": {
+        "disposition": "ADMITTED",
+        "dischargeDiagnoses": [
+          "TRAUMATIC SUBDURAL HEM",
+          "FX LUMBAR VERTEBRA-CLOSE",
+          "FRACTURE ONE RIB-CLOSED",
+          "MV COLLISION NOS-DRIVER",
+          "HYPERTENSION NOS"
+        ]
+      }
+    },
+    {
+      "stayId": "31764136",
+      "subjectId": "10039997",
+      "input": {
+        "age": 68,
+        "gender": "FEMALE",
+        "arrivalTransport": "WALK IN",
+        "chiefComplaint": "Depression, Anxiety",
+        "vitals": {
+          "heartRate": 112,
+          "respiratoryRate": 20,
+          "oxygenSaturation": 100,
+          "systolicBp": 124,
+          "diastolicBp": 50,
+          "temperatureC": 35.8
+        },
+        "painScore": 0
+      },
+      "label": {
+        "esi": 3
+      },
+      "outcome": {
+        "disposition": "HOME",
+        "dischargeDiagnoses": [
+          "Major depressive disorder, single episode, unspecified",
+          "Anxiety disorder, unspecified"
+        ]
+      }
+    },
+    {
+      "stayId": "31806264",
+      "subjectId": "10005866",
+      "input": {
+        "age": 60,
+        "gender": "MALE",
+        "arrivalTransport": "WALK IN",
+        "chiefComplaint": "Abd pain, Right sided abdominal pain",
+        "vitals": {
+          "heartRate": 84,
+          "respiratoryRate": 18,
+          "oxygenSaturation": 100,
+          "systolicBp": 175,
+          "diastolicBp": 80,
+          "temperatureC": 36.8
+        },
+        "painScore": 10
+      },
+      "label": {
+        "esi": 3
+      },
+      "outcome": {
+        "disposition": "ADMITTED",
+        "dischargeDiagnoses": [
+          "Unsp intestnl obst, unsp as to partial versus complete obst"
+        ]
+      }
+    },
+    {
+      "stayId": "31945330",
+      "subjectId": "10040025",
+      "input": {
+        "age": 66,
+        "gender": "FEMALE",
+        "arrivalTransport": "WALK IN",
+        "chiefComplaint": "Allergic reaction",
+        "vitals": {
+          "heartRate": 78,
+          "respiratoryRate": 18,
+          "oxygenSaturation": 96,
+          "systolicBp": 208,
+          "diastolicBp": 86,
+          "temperatureC": 37.4
+        },
+        "painScore": null
+      },
+      "label": {
+        "esi": 2
+      },
+      "outcome": {
+        "disposition": "HOME",
+        "dischargeDiagnoses": [
+          "ALLERGY, UNSPECIFIED",
+          "ADV EFF MEDICINAL NOS",
+          "HYPERTENSION NOS"
+        ]
+      }
+    },
+    {
+      "stayId": "31960365",
+      "subjectId": "10021487",
+      "input": {
+        "age": 44,
+        "gender": "MALE",
+        "arrivalTransport": "WALK IN",
+        "chiefComplaint": "ABD PAIN",
+        "vitals": {
+          "heartRate": 106,
+          "respiratoryRate": 16,
+          "oxygenSaturation": 97,
+          "systolicBp": 110,
+          "diastolicBp": 69,
+          "temperatureC": 37.7
+        },
+        "painScore": 8
+      },
+      "label": {
+        "esi": 3
+      },
+      "outcome": {
+        "disposition": "ADMITTED",
+        "dischargeDiagnoses": [
+          "FEVER, UNSPECIFIED"
+        ]
+      }
+    },
+    {
+      "stayId": "31970687",
+      "subjectId": "10015860",
+      "input": {
+        "age": 54,
+        "gender": "MALE",
+        "arrivalTransport": "WALK IN",
+        "chiefComplaint": "R FOOT PAIN",
+        "vitals": {
+          "heartRate": 115,
+          "respiratoryRate": 18,
+          "oxygenSaturation": 96,
+          "systolicBp": 178,
+          "diastolicBp": 105,
+          "temperatureC": 36.8
+        },
+        "painScore": 5
+      },
+      "label": {
+        "esi": 3
+      },
+      "outcome": {
+        "disposition": "ADMITTED",
+        "dischargeDiagnoses": [
+          "ULCER OF OTHER PART OF FOOT",
+          "DIABETES UNCOMPL ADULT",
+          "LONG-TERM (CURRENT) USE OF INSULIN",
+          "HYPERTENSION NOS",
+          "HYPERCHOLESTEROLEMIA"
+        ]
+      }
+    },
+    {
+      "stayId": "32007337",
+      "subjectId": "10002428",
+      "input": {
+        "age": 81,
+        "gender": "FEMALE",
+        "arrivalTransport": "WALK IN",
+        "chiefComplaint": "DIARRHEA,FEVER",
+        "vitals": {
+          "heartRate": 125,
+          "respiratoryRate": 22,
+          "oxygenSaturation": 100,
+          "systolicBp": 111,
+          "diastolicBp": 63,
+          "temperatureC": 36.9
+        },
+        "painScore": 4
+      },
+      "label": {
+        "esi": 2
+      },
+      "outcome": {
+        "disposition": "ADMITTED",
+        "dischargeDiagnoses": [
+          "DIARRHEA",
+          "NONINF GASTROENTERIT NEC",
+          "HYPERTENSION NOS",
+          "HYPERCHOLESTEROLEMIA"
+        ]
+      }
+    },
+    {
+      "stayId": "32034003",
+      "subjectId": "10040025",
+      "input": {
+        "age": 64,
+        "gender": "FEMALE",
+        "arrivalTransport": "AMBULANCE",
+        "chiefComplaint": "HYPERTENSION",
+        "vitals": {
+          "heartRate": 66,
+          "respiratoryRate": 16,
+          "oxygenSaturation": 96,
+          "systolicBp": 154,
+          "diastolicBp": 47,
+          "temperatureC": 36.7
+        },
+        "painScore": 5
+      },
+      "label": {
+        "esi": 3
+      },
+      "outcome": {
+        "disposition": "HOME",
+        "dischargeDiagnoses": [
+          "HYPERTENSION NOS"
+        ]
+      }
+    },
+    {
+      "stayId": "32039794",
+      "subjectId": "10012853",
+      "input": {
+        "age": 92,
+        "gender": "FEMALE",
+        "arrivalTransport": "WALK IN",
+        "chiefComplaint": "DVT, Transfer",
+        "vitals": {
+          "heartRate": 72,
+          "respiratoryRate": 16,
+          "oxygenSaturation": 97,
+          "systolicBp": 173,
+          "diastolicBp": 60,
+          "temperatureC": 36.4
+        },
+        "painScore": 0
+      },
+      "label": {
+        "esi": 2
+      },
+      "outcome": {
+        "disposition": "ADMITTED",
+        "dischargeDiagnoses": [
+          "Acute embolism and thrombosis of deep veins of l up extrem"
+        ]
+      }
+    },
+    {
+      "stayId": "32095131",
+      "subjectId": "10040025",
+      "input": {
+        "age": 68,
+        "gender": "FEMALE",
+        "arrivalTransport": "WALK IN",
+        "chiefComplaint": "L Foot pain",
+        "vitals": {
+          "heartRate": 78,
+          "respiratoryRate": 16,
+          "oxygenSaturation": 98,
+          "systolicBp": 126,
+          "diastolicBp": 87,
+          "temperatureC": 35.9
+        },
+        "painScore": 8
+      },
+      "label": {
+        "esi": 3
+      },
+      "outcome": {
+        "disposition": "ADMITTED",
+        "dischargeDiagnoses": [
+          "Type 2 diabetes mellitus with foot ulcer",
+          "Long term (current) use of insulin"
+        ]
+      }
+    },
+    {
+      "stayId": "32103106",
+      "subjectId": "10018328",
+      "input": {
+        "age": 83,
+        "gender": "FEMALE",
+        "arrivalTransport": "AMBULANCE",
+        "chiefComplaint": "N/V, Tinnitus",
+        "vitals": {
+          "heartRate": 74,
+          "respiratoryRate": 18,
+          "oxygenSaturation": 100,
+          "systolicBp": 142,
+          "diastolicBp": 75,
+          "temperatureC": 35.7
+        },
+        "painScore": 0
+      },
+      "label": {
+        "esi": 2
+      },
+      "outcome": {
+        "disposition": "HOME",
+        "dischargeDiagnoses": [
+          "Tinnitus, left ear"
+        ]
+      }
+    },
+    {
+      "stayId": "32204198",
+      "subjectId": "10021938",
+      "input": {
+        "age": 65,
+        "gender": "MALE",
+        "arrivalTransport": "AMBULANCE",
+        "chiefComplaint": "Abd pain",
+        "vitals": {
+          "heartRate": 89,
+          "respiratoryRate": 18,
+          "oxygenSaturation": 97,
+          "systolicBp": 217,
+          "diastolicBp": 116,
+          "temperatureC": 36.9
+        },
+        "painScore": 5
+      },
+      "label": {
+        "esi": 2
+      },
+      "outcome": {
+        "disposition": "ADMITTED",
+        "dischargeDiagnoses": [
+          "GASTROINTEST HEMORR NOS"
+        ]
+      }
+    },
+    {
+      "stayId": "32259566",
+      "subjectId": "10037928",
+      "input": {
+        "age": 82,
+        "gender": "FEMALE",
+        "arrivalTransport": "AMBULANCE",
+        "chiefComplaint": "ILI",
+        "vitals": {
+          "heartRate": 97,
+          "respiratoryRate": 32,
+          "oxygenSaturation": 88,
+          "systolicBp": 176,
+          "diastolicBp": 86,
+          "temperatureC": 37.7
+        },
+        "painScore": null
+      },
+      "label": {
+        "esi": 2
+      },
+      "outcome": {
+        "disposition": "ADMITTED",
+        "dischargeDiagnoses": [
+          "URIN TRACT INFECTION NOS"
+        ]
+      }
+    },
+    {
+      "stayId": "32259573",
+      "subjectId": "10006580",
+      "input": {
+        "age": 63,
+        "gender": "FEMALE",
+        "arrivalTransport": "WALK IN",
+        "chiefComplaint": "Neck pain, Med refill",
+        "vitals": {
+          "heartRate": 89,
+          "respiratoryRate": 18,
+          "oxygenSaturation": 96,
+          "systolicBp": 131,
+          "diastolicBp": 90,
+          "temperatureC": 36.7
+        },
+        "painScore": 10
+      },
+      "label": {
+        "esi": 3
+      },
+      "outcome": {
+        "disposition": "HOME",
+        "dischargeDiagnoses": [
+          "CERVICALGIA"
+        ]
+      }
+    },
+    {
+      "stayId": "32272346",
+      "subjectId": "10002930",
+      "input": {
+        "age": 55,
+        "gender": "FEMALE",
+        "arrivalTransport": "AMBULANCE",
+        "chiefComplaint": "Hypoglycemia",
+        "vitals": {
+          "heartRate": 89,
+          "respiratoryRate": 16,
+          "oxygenSaturation": 100,
+          "systolicBp": 106,
+          "diastolicBp": 61,
+          "temperatureC": 36.3
+        },
+        "painScore": null
+      },
+      "label": {
+        "esi": 2
+      },
+      "outcome": {
+        "disposition": "HOME",
+        "dischargeDiagnoses": [
+          "Hypoglycemia, unspecified",
+          "Alcohol abuse with intoxication, unspecified",
+          "Human immunodeficiency virus [HIV] disease"
+        ]
+      }
+    },
+    {
+      "stayId": "32281632",
+      "subjectId": "10005866",
+      "input": {
+        "age": 59,
+        "gender": "MALE",
+        "arrivalTransport": "AMBULANCE",
+        "chiefComplaint": "Abd pain",
+        "vitals": {
+          "heartRate": 63,
+          "respiratoryRate": 18,
+          "oxygenSaturation": 99,
+          "systolicBp": 149,
+          "diastolicBp": 72,
+          "temperatureC": 36.6
+        },
+        "painScore": 10
+      },
+      "label": {
+        "esi": 3
+      },
+      "outcome": {
+        "disposition": "TRANSFER",
+        "dischargeDiagnoses": [
+          "Unspecified abdominal pain"
+        ]
+      }
+    },
+    {
+      "stayId": "32287800",
+      "subjectId": "10014354",
+      "input": {
+        "age": 61,
+        "gender": "MALE",
+        "arrivalTransport": "AMBULANCE",
+        "chiefComplaint": "Chest pain",
+        "vitals": {
+          "heartRate": 62,
+          "respiratoryRate": 16,
+          "oxygenSaturation": 95,
+          "systolicBp": 145,
+          "diastolicBp": 63,
+          "temperatureC": 36.6
+        },
+        "painScore": 9
+      },
+      "label": {
+        "esi": 2
+      },
+      "outcome": {
+        "disposition": "ADMITTED",
+        "dischargeDiagnoses": [
+          "Other chest pain"
+        ]
+      }
+    },
+    {
+      "stayId": "32345277",
+      "subjectId": "10039708",
+      "input": {
+        "age": 50,
+        "gender": "FEMALE",
+        "arrivalTransport": "AMBULANCE",
+        "chiefComplaint": "Abd pain, Transfer",
+        "vitals": {
+          "heartRate": 106,
+          "respiratoryRate": 18,
+          "oxygenSaturation": 95,
+          "systolicBp": 131,
+          "diastolicBp": 76,
+          "temperatureC": 36.9
+        },
+        "painScore": 5
+      },
+      "label": {
+        "esi": 3
+      },
+      "outcome": {
+        "disposition": "ADMITTED",
+        "dischargeDiagnoses": [
+          "Acute kidney failure, unspecified"
+        ]
+      }
+    },
+    {
+      "stayId": "32405286",
+      "subjectId": "10004457",
+      "input": {
+        "age": 66,
+        "gender": "MALE",
+        "arrivalTransport": "WALK IN",
+        "chiefComplaint": "? AORTIC DISECTION",
+        "vitals": {
+          "heartRate": 103,
+          "respiratoryRate": 16,
+          "oxygenSaturation": 98,
+          "systolicBp": 138,
+          "diastolicBp": 72,
+          "temperatureC": 36.4
+        },
+        "painScore": 0
+      },
+      "label": {
+        "esi": 2
+      },
+      "outcome": {
+        "disposition": "ADMITTED",
+        "dischargeDiagnoses": [
+          "JOINT PAIN-SHLDER",
+          "ABN CARDIOVASC STUDY NEC",
+          "CAD UNSPEC VESSEL, NATIVE OR GRAFT",
+          "HYPERTENSION NOS"
+        ]
+      }
+    },
+    {
+      "stayId": "32443787",
+      "subjectId": "10037928",
+      "input": {
+        "age": 81,
+        "gender": "FEMALE",
+        "arrivalTransport": "AMBULANCE",
+        "chiefComplaint": "UNKNOWN-CC",
+        "vitals": {
+          "heartRate": 130,
+          "respiratoryRate": 15,
+          "oxygenSaturation": 95,
+          "systolicBp": 179,
+          "diastolicBp": 69,
+          "temperatureC": 36.7
+        },
+        "painScore": null
+      },
+      "label": {
+        "esi": 2
+      },
+      "outcome": {
+        "disposition": "ADMITTED",
+        "dischargeDiagnoses": [
+          "DIAB KETOACIDOSIS IDDM"
+        ]
+      }
+    },
+    {
+      "stayId": "32537287",
+      "subjectId": "10005866",
+      "input": {
+        "age": 60,
+        "gender": "MALE",
+        "arrivalTransport": "WALK IN",
+        "chiefComplaint": "Abd pain, Diarrhea, Vomiting",
+        "vitals": {
+          "heartRate": 82,
+          "respiratoryRate": 22,
+          "oxygenSaturation": 100,
+          "systolicBp": 157,
+          "diastolicBp": 82,
+          "temperatureC": 36.7
+        },
+        "painScore": 10
+      },
+      "label": {
+        "esi": 2
+      },
+      "outcome": {
+        "disposition": "ADMITTED",
+        "dischargeDiagnoses": [
+          "Portal vein thrombosis"
+        ]
+      }
+    },
+    {
+      "stayId": "32579239",
+      "subjectId": "10040025",
+      "input": {
+        "age": 68,
+        "gender": "FEMALE",
+        "arrivalTransport": "AMBULANCE",
+        "chiefComplaint": "Urinary retention",
+        "vitals": {
+          "heartRate": 77,
+          "respiratoryRate": 18,
+          "oxygenSaturation": 96,
+          "systolicBp": 107,
+          "diastolicBp": 58,
+          "temperatureC": 36.2
+        },
+        "painScore": 0
+      },
+      "label": {
+        "esi": 3
+      },
+      "outcome": {
+        "disposition": "ADMITTED",
+        "dischargeDiagnoses": [
+          "Acute kidney failure, unspecified"
+        ]
+      }
+    },
+    {
+      "stayId": "32587478",
+      "subjectId": "10039708",
+      "input": {
+        "age": 48,
+        "gender": "FEMALE",
+        "arrivalTransport": "WALK IN",
+        "chiefComplaint": "Abnormal labs, ETOH, Hypotension",
+        "vitals": {
+          "heartRate": 76,
+          "respiratoryRate": 16,
+          "oxygenSaturation": 100,
+          "systolicBp": 86,
+          "diastolicBp": 51,
+          "temperatureC": 36.8
+        },
+        "painScore": 0
+      },
+      "label": {
+        "esi": 1
+      },
+      "outcome": {
+        "disposition": "ADMITTED",
+        "dischargeDiagnoses": [
+          "Acute kidney failure, unspecified"
+        ]
+      }
+    },
+    {
+      "stayId": "32719751",
+      "subjectId": "10005909",
+      "input": {
+        "age": 40,
+        "gender": "FEMALE",
+        "arrivalTransport": "AMBULANCE",
+        "chiefComplaint": "L Leg DVT",
+        "vitals": {
+          "heartRate": 106,
+          "respiratoryRate": 18,
+          "oxygenSaturation": 98,
+          "systolicBp": 121,
+          "diastolicBp": 81,
+          "temperatureC": 36.8
+        },
+        "painScore": 5
+      },
+      "label": {
+        "esi": 2
+      },
+      "outcome": {
+        "disposition": "ADMITTED",
+        "dischargeDiagnoses": []
+      }
+    },
+    {
+      "stayId": "32822973",
+      "subjectId": "10002428",
+      "input": {
+        "age": 81,
+        "gender": "FEMALE",
+        "arrivalTransport": "AMBULANCE",
+        "chiefComplaint": "LETHARGY/SOB",
+        "vitals": {
+          "heartRate": 95,
+          "respiratoryRate": 28,
+          "oxygenSaturation": 100,
+          "systolicBp": 99,
+          "diastolicBp": 47,
+          "temperatureC": 37.9
+        },
+        "painScore": null
+      },
+      "label": {
+        "esi": 2
+      },
+      "outcome": {
+        "disposition": "ADMITTED",
+        "dischargeDiagnoses": [
+          "ACUTE RESPIRATORY FAILURE",
+          "PLEURAL EFFUSION NOS",
+          "PNEUMONIA,ORGANISM UNSPECIFIED",
+          "HYPERTENSION NOS"
+        ]
+      }
+    },
+    {
+      "stayId": "32840887",
+      "subjectId": "10040025",
+      "input": {
+        "age": 68,
+        "gender": "FEMALE",
+        "arrivalTransport": "AMBULANCE",
+        "chiefComplaint": "B Leg swelling",
+        "vitals": {
+          "heartRate": 105,
+          "respiratoryRate": 18,
+          "oxygenSaturation": 98,
+          "systolicBp": 168,
+          "diastolicBp": 99,
+          "temperatureC": 36.7
+        },
+        "painScore": 0
+      },
+      "label": {
+        "esi": 3
+      },
+      "outcome": {
+        "disposition": "HOME",
+        "dischargeDiagnoses": [
+          "Other specified soft tissue disorders",
+          "Hypertensive chronic kidney disease w stg 1-4/unsp chr kdny",
+          "Type 2 diabetes mellitus w diabetic chronic kidney disease",
+          "Chronic kidney disease, unspecified",
+          "Long term (current) use of insulin",
+          "Pure hypercholesterolemia, unspecified",
+          "Hypothyroidism, unspecified"
+        ]
+      }
+    },
+    {
+      "stayId": "32891808",
+      "subjectId": "10037928",
+      "input": {
+        "age": 81,
+        "gender": "FEMALE",
+        "arrivalTransport": "WALK IN",
+        "chiefComplaint": "S/P FALL",
+        "vitals": {
+          "heartRate": 81,
+          "respiratoryRate": 18,
+          "oxygenSaturation": 99,
+          "systolicBp": 161,
+          "diastolicBp": 55,
+          "temperatureC": 36.1
+        },
+        "painScore": 0
+      },
+      "label": {
+        "esi": 2
+      },
+      "outcome": {
+        "disposition": "HOME",
+        "dischargeDiagnoses": [
+          "HEAD INJURY UNSPECIFIED",
+          "UNSPECIFIED FALL",
+          "HYPERTENSION NOS",
+          "DIABETES UNCOMPL ADULT"
+        ]
+      }
+    },
+    {
+      "stayId": "32945506",
+      "subjectId": "10035631",
+      "input": {
+        "age": 63,
+        "gender": "MALE",
+        "arrivalTransport": "UNKNOWN",
+        "chiefComplaint": "Dyspnea, ABNORMAL LAB VALUES",
+        "vitals": {
+          "heartRate": 59,
+          "respiratoryRate": 16,
+          "oxygenSaturation": 100,
+          "systolicBp": 145,
+          "diastolicBp": 69,
+          "temperatureC": 36.6
+        },
+        "painScore": 4
+      },
+      "label": {
+        "esi": 3
+      },
+      "outcome": {
+        "disposition": "ADMITTED",
+        "dischargeDiagnoses": [
+          "ANEMIA NOS"
+        ]
+      }
+    },
+    {
+      "stayId": "32952584",
+      "subjectId": "10000032",
+      "input": {
+        "age": 52,
+        "gender": "FEMALE",
+        "arrivalTransport": "AMBULANCE",
+        "chiefComplaint": "Hypotension",
+        "vitals": {
+          "heartRate": 87,
+          "respiratoryRate": 14,
+          "oxygenSaturation": 97,
+          "systolicBp": 71,
+          "diastolicBp": 43,
+          "temperatureC": 36.6
+        },
+        "painScore": 7
+      },
+      "label": {
+        "esi": 2
+      },
+      "outcome": {
+        "disposition": "HOME",
+        "dischargeDiagnoses": [
+          "HYPOTENSION NOS",
+          "UNSPECIFIED VIRAL HEPATITIS C WITHOUT HEPATIC COMA",
+          "ASYMPTOMATIC HIV INFECTION"
+        ]
+      }
+    },
+    {
+      "stayId": "32991451",
+      "subjectId": "10039708",
+      "input": {
+        "age": 50,
+        "gender": "FEMALE",
+        "arrivalTransport": "AMBULANCE",
+        "chiefComplaint": "Hemodialysis",
+        "vitals": {
+          "heartRate": 64,
+          "respiratoryRate": 18,
+          "oxygenSaturation": 100,
+          "systolicBp": 94,
+          "diastolicBp": 56,
+          "temperatureC": 36.8
+        },
+        "painScore": 0
+      },
+      "label": {
+        "esi": 3
+      },
+      "outcome": {
+        "disposition": "LEFT AGAINST MEDICAL ADVICE",
+        "dischargeDiagnoses": [
+          "Displacement of surgically created AV fistula, init",
+          "Oth places as the place of occurrence of the external cause",
+          "Dependence on renal dialysis",
+          "Essential (primary) hypertension",
+          "Chronic kidney disease, unspecified"
+        ]
+      }
+    },
+    {
+      "stayId": "33007927",
+      "subjectId": "10018081",
+      "input": {
+        "age": 80,
+        "gender": "MALE",
+        "arrivalTransport": "AMBULANCE",
+        "chiefComplaint": "Wound eval, Transfer",
+        "vitals": {
+          "heartRate": 100,
+          "respiratoryRate": 16,
+          "oxygenSaturation": 98,
+          "systolicBp": 131,
+          "diastolicBp": 55,
+          "temperatureC": 37.3
+        },
+        "painScore": 0
+      },
+      "label": {
+        "esi": 2
+      },
+      "outcome": {
+        "disposition": "ADMITTED",
+        "dischargeDiagnoses": [
+          "OTHER POST-OP INFECTION",
+          "PERSIST POSTOP FISTULA",
+          "ABN REACT-PROCEDURE NOS"
+        ]
+      }
+    },
+    {
+      "stayId": "33032677",
+      "subjectId": "10018423",
+      "input": {
+        "age": 42,
+        "gender": "MALE",
+        "arrivalTransport": "WALK IN",
+        "chiefComplaint": "Chest pain, Dizziness",
+        "vitals": {
+          "heartRate": 84,
+          "respiratoryRate": 16,
+          "oxygenSaturation": 97,
+          "systolicBp": 135,
+          "diastolicBp": 84,
+          "temperatureC": 36.6
+        },
+        "painScore": 3
+      },
+      "label": {
+        "esi": 2
+      },
+      "outcome": {
+        "disposition": "ADMITTED",
+        "dischargeDiagnoses": [
+          "Chest pain, unspecified"
+        ]
+      }
+    },
+    {
+      "stayId": "33065303",
+      "subjectId": "10016742",
+      "input": {
+        "age": 58,
+        "gender": "FEMALE",
+        "arrivalTransport": "AMBULANCE",
+        "chiefComplaint": "Transfer, Abnormal EKG",
+        "vitals": {
+          "heartRate": 98,
+          "respiratoryRate": 16,
+          "oxygenSaturation": 100,
+          "systolicBp": 147,
+          "diastolicBp": 89,
+          "temperatureC": 36.0
+        },
+        "painScore": null
+      },
+      "label": {
+        "esi": 2
+      },
+      "outcome": {
+        "disposition": "ADMITTED",
+        "dischargeDiagnoses": [
+          "Non-ST elevation (NSTEMI) myocardial infarction"
+        ]
+      }
+    },
+    {
+      "stayId": "33222885",
+      "subjectId": "10014354",
+      "input": {
+        "age": 64,
+        "gender": "MALE",
+        "arrivalTransport": "AMBULANCE",
+        "chiefComplaint": "L Leg pain, Weakness",
+        "vitals": {
+          "heartRate": 72,
+          "respiratoryRate": 18,
+          "oxygenSaturation": 100,
+          "systolicBp": 125,
+          "diastolicBp": 62,
+          "temperatureC": 37.0
+        },
+        "painScore": 0
+      },
+      "label": {
+        "esi": 3
+      },
+      "outcome": {
+        "disposition": "ADMITTED",
+        "dischargeDiagnoses": [
+          "Urinary tract infection, site not specified"
+        ]
+      }
+    },
+    {
+      "stayId": "33227245",
+      "subjectId": "10002428",
+      "input": {
+        "age": 80,
+        "gender": "FEMALE",
+        "arrivalTransport": "WALK IN",
+        "chiefComplaint": "LARYNGITIS/SOB WITH TALKING",
+        "vitals": {
+          "heartRate": 109,
+          "respiratoryRate": 16,
+          "oxygenSaturation": 100,
+          "systolicBp": 138,
+          "diastolicBp": 118,
+          "temperatureC": 37.4
+        },
+        "painScore": 0
+      },
+      "label": {
+        "esi": 3
+      },
+      "outcome": {
+        "disposition": "HOME",
+        "dischargeDiagnoses": [
+          "COUGH",
+          "ACUTE LARYNGITIS, WITHOUT MENTION OF OBSTRUCTION"
+        ]
+      }
+    },
+    {
+      "stayId": "33256413",
+      "subjectId": "10012853",
+      "input": {
+        "age": 92,
+        "gender": "FEMALE",
+        "arrivalTransport": "WALK IN",
+        "chiefComplaint": "Hematuria",
+        "vitals": {
+          "heartRate": 77,
+          "respiratoryRate": 16,
+          "oxygenSaturation": 97,
+          "systolicBp": 137,
+          "diastolicBp": 48,
+          "temperatureC": 36.3
+        },
+        "painScore": 8
+      },
+      "label": {
+        "esi": 3
+      },
+      "outcome": {
+        "disposition": "HOME",
+        "dischargeDiagnoses": [
+          "Urinary tract infection, site not specified",
+          "Hematuria, unspecified",
+          "Essential (primary) hypertension",
+          "Type 2 diabetes mellitus without complications",
+          "Unspecified atrial fibrillation"
+        ]
+      }
+    },
+    {
+      "stayId": "33258284",
+      "subjectId": "10000032",
+      "input": {
+        "age": 52,
+        "gender": "FEMALE",
+        "arrivalTransport": "AMBULANCE",
+        "chiefComplaint": "Abd pain, Abdominal distention",
+        "vitals": {
+          "heartRate": 70,
+          "respiratoryRate": 16,
+          "oxygenSaturation": 97,
+          "systolicBp": 106,
+          "diastolicBp": 63,
+          "temperatureC": 36.9
+        },
+        "painScore": 0
+      },
+      "label": {
+        "esi": 3
+      },
+      "outcome": {
+        "disposition": "ADMITTED",
+        "dischargeDiagnoses": [
+          "OTH SEQUELA, CHR LIV DIS",
+          "OTHER ASCITES",
+          "UNSPECIFIED VIRAL HEPATITIS C WITHOUT HEPATIC COMA",
+          "ASYMPTOMATIC HIV INFECTION"
+        ]
+      }
+    },
+    {
+      "stayId": "33335871",
+      "subjectId": "10016742",
+      "input": {
+        "age": 58,
+        "gender": "FEMALE",
+        "arrivalTransport": "UNKNOWN",
+        "chiefComplaint": "Dyspnea, Transfer",
+        "vitals": {
+          "heartRate": 84,
+          "respiratoryRate": 20,
+          "oxygenSaturation": 98,
+          "systolicBp": 124,
+          "diastolicBp": 80,
+          "temperatureC": 35.6
+        },
+        "painScore": null
+      },
+      "label": {
+        "esi": 2
+      },
+      "outcome": {
+        "disposition": "ADMITTED",
+        "dischargeDiagnoses": [
+          "Pneumonia, unspecified organism"
+        ]
+      }
+    },
+    {
+      "stayId": "33347721",
+      "subjectId": "10003400",
+      "input": {
+        "age": 72,
+        "gender": "FEMALE",
+        "arrivalTransport": "OTHER",
+        "chiefComplaint": "ELEVATED INR",
+        "vitals": {
+          "heartRate": 43,
+          "respiratoryRate": 16,
+          "oxygenSaturation": 99,
+          "systolicBp": 140,
+          "diastolicBp": 100,
+          "temperatureC": 36.3
+        },
+        "painScore": 0
+      },
+      "label": {
+        "esi": 2
+      },
+      "outcome": {
+        "disposition": "ADMITTED",
+        "dischargeDiagnoses": [
+          "URIN TRACT INFECTION NOS",
+          "ABNORMAL COAGULATION PROFILE",
+          "ATRIAL FIBRILLATION",
+          "LONG TERM USE ANTIGOAGULANT"
+        ]
+      }
+    },
+    {
+      "stayId": "33473053",
+      "subjectId": "10015272",
+      "input": {
+        "age": 78,
+        "gender": "FEMALE",
+        "arrivalTransport": "AMBULANCE",
+        "chiefComplaint": "PE",
+        "vitals": {
+          "heartRate": 118,
+          "respiratoryRate": 18,
+          "oxygenSaturation": 96,
+          "systolicBp": 100,
+          "diastolicBp": 56,
+          "temperatureC": 36.4
+        },
+        "painScore": 0
+      },
+      "label": {
+        "esi": 2
+      },
+      "outcome": {
+        "disposition": "ADMITTED",
+        "dischargeDiagnoses": [
+          "Other pulmonary embolism without acute cor pulmonale"
+        ]
+      }
+    },
+    {
+      "stayId": "33563008",
+      "subjectId": "10039708",
+      "input": {
+        "age": 46,
+        "gender": "FEMALE",
+        "arrivalTransport": "WALK IN",
+        "chiefComplaint": "Dizziness",
+        "vitals": {
+          "heartRate": 71,
+          "respiratoryRate": 16,
+          "oxygenSaturation": 100,
+          "systolicBp": 105,
+          "diastolicBp": 76,
+          "temperatureC": 36.7
+        },
+        "painScore": 0
+      },
+      "label": {
+        "esi": 3
+      },
+      "outcome": {
+        "disposition": "ADMITTED",
+        "dischargeDiagnoses": [
+          "ALTERED MENTAL STATUS ",
+          "HYPERTENSION NOS",
+          "HYPERCHOLESTEROLEMIA"
+        ]
+      }
+    },
+    {
+      "stayId": "33678912",
+      "subjectId": "10003400",
+      "input": {
+        "age": 74,
+        "gender": "FEMALE",
+        "arrivalTransport": "AMBULANCE",
+        "chiefComplaint": "Tachycardia, Hypoxia",
+        "vitals": {
+          "heartRate": 157,
+          "respiratoryRate": 18,
+          "oxygenSaturation": 100,
+          "systolicBp": 115,
+          "diastolicBp": 81,
+          "temperatureC": 36.8
+        },
+        "painScore": null
+      },
+      "label": {
+        "esi": 1
+      },
+      "outcome": {
+        "disposition": "ADMITTED",
+        "dischargeDiagnoses": [
+          "ATRIAL FIBRILLATION",
+          "ABNORMAL COAGULATION PROFILE"
+        ]
+      }
+    },
+    {
+      "stayId": "33693488",
+      "subjectId": "10001725",
+      "input": {
+        "age": 49,
+        "gender": "FEMALE",
+        "arrivalTransport": "WALK IN",
+        "chiefComplaint": "Eye pain",
+        "vitals": {
+          "heartRate": 73,
+          "respiratoryRate": 18,
+          "oxygenSaturation": 100,
+          "systolicBp": 137,
+          "diastolicBp": 91,
+          "temperatureC": 36.4
+        },
+        "painScore": 0
+      },
+      "label": {
+        "esi": 3
+      },
+      "outcome": {
+        "disposition": "HOME",
+        "dischargeDiagnoses": [
+          "Unspecified corneal ulcer, right eye",
+          "Visual discomfort, bilateral"
+        ]
+      }
+    },
+    {
+      "stayId": "33863177",
+      "subjectId": "10015860",
+      "input": {
+        "age": 60,
+        "gender": "MALE",
+        "arrivalTransport": "WALK IN",
+        "chiefComplaint": "L Arm pain, L Arm swelling",
+        "vitals": {
+          "heartRate": 77,
+          "respiratoryRate": 18,
+          "oxygenSaturation": 99,
+          "systolicBp": 154,
+          "diastolicBp": 76,
+          "temperatureC": 36.2
+        },
+        "painScore": 5
+      },
+      "label": {
+        "esi": 3
+      },
+      "outcome": {
+        "disposition": "ADMITTED",
+        "dischargeDiagnoses": [
+          "Cellulitis of left lower limb"
+        ]
+      }
+    },
+    {
+      "stayId": "33922323",
+      "subjectId": "10040025",
+      "input": {
+        "age": 66,
+        "gender": "FEMALE",
+        "arrivalTransport": "AMBULANCE",
+        "chiefComplaint": "Palpitations",
+        "vitals": {
+          "heartRate": 122,
+          "respiratoryRate": 18,
+          "oxygenSaturation": 98,
+          "systolicBp": 182,
+          "diastolicBp": 78,
+          "temperatureC": 36.9
+        },
+        "painScore": 2
+      },
+      "label": {
+        "esi": 2
+      },
+      "outcome": {
+        "disposition": "ADMITTED",
+        "dischargeDiagnoses": [
+          "ATRIAL FIBRILLATION",
+          "CONGESTIVE HEART FAILURE, UNSPEC"
+        ]
+      }
+    },
+    {
+      "stayId": "34161260",
+      "subjectId": "10004720",
+      "input": {
+        "age": 61,
+        "gender": "MALE",
+        "arrivalTransport": "WALK IN",
+        "chiefComplaint": "s/p Fall, R Wrist pain, R Wrist injury",
+        "vitals": {
+          "heartRate": 106,
+          "respiratoryRate": 18,
+          "oxygenSaturation": 99,
+          "systolicBp": 133,
+          "diastolicBp": 87,
+          "temperatureC": 36.1
+        },
+        "painScore": 7
+      },
+      "label": {
+        "esi": 3
+      },
+      "outcome": {
+        "disposition": "HOME",
+        "dischargeDiagnoses": [
+          "FX LOW RADIUS W ULNA-CL",
+          "FALL FROM OTHER SLIPPING,TRIPPING,STUMBLING",
+          "HYPERTENSION NOS"
+        ]
+      }
+    },
+    {
+      "stayId": "34176810",
+      "subjectId": "10018328",
+      "input": {
+        "age": 83,
+        "gender": "FEMALE",
+        "arrivalTransport": "AMBULANCE",
+        "chiefComplaint": "Syncope, Transfer",
+        "vitals": {
+          "heartRate": 74,
+          "respiratoryRate": 20,
+          "oxygenSaturation": 96,
+          "systolicBp": 133,
+          "diastolicBp": 65,
+          "temperatureC": 36.5
+        },
+        "painScore": 3
+      },
+      "label": {
+        "esi": 2
+      },
+      "outcome": {
+        "disposition": "ADMITTED",
+        "dischargeDiagnoses": [
+          "Syncope and collapse"
+        ]
+      }
+    },
+    {
+      "stayId": "34205403",
+      "subjectId": "10038999",
+      "input": {
+        "age": 46,
+        "gender": "MALE",
+        "arrivalTransport": "AMBULANCE",
+        "chiefComplaint": "s/p Fall, Transfer",
+        "vitals": {
+          "heartRate": 116,
+          "respiratoryRate": 14,
+          "oxygenSaturation": 99,
+          "systolicBp": 140,
+          "diastolicBp": 78,
+          "temperatureC": 36.4
+        },
+        "painScore": null
+      },
+      "label": {
+        "esi": 3
+      },
+      "outcome": {
+        "disposition": "ADMITTED",
+        "dischargeDiagnoses": [
+          "Oth fracture of lower end of right tibia, init for clos fx",
+          "Fall same lev from slip/trip w/o strike against object, init"
+        ]
+      }
+    },
+    {
+      "stayId": "34236274",
+      "subjectId": "10026255",
+      "input": {
+        "age": 67,
+        "gender": "MALE",
+        "arrivalTransport": "AMBULANCE",
+        "chiefComplaint": "R Leg pain, Weakness",
+        "vitals": {
+          "heartRate": 95,
+          "respiratoryRate": 28,
+          "oxygenSaturation": 98,
+          "systolicBp": 150,
+          "diastolicBp": 101,
+          "temperatureC": 37.7
+        },
+        "painScore": 8
+      },
+      "label": {
+        "esi": 3
+      },
+      "outcome": {
+        "disposition": "ADMITTED",
+        "dischargeDiagnoses": [
+          "ATRIAL FIBRILLATION"
+        ]
+      }
+    },
+    {
+      "stayId": "34387871",
+      "subjectId": "10039997",
+      "input": {
+        "age": 67,
+        "gender": "FEMALE",
+        "arrivalTransport": "AMBULANCE",
+        "chiefComplaint": "Leg weakness, Abnormal CT",
+        "vitals": {
+          "heartRate": 52,
+          "respiratoryRate": 17,
+          "oxygenSaturation": 99,
+          "systolicBp": 134,
+          "diastolicBp": 57,
+          "temperatureC": 36.6
+        },
+        "painScore": 0
+      },
+      "label": {
+        "esi": 2
+      },
+      "outcome": {
+        "disposition": "HOME",
+        "dischargeDiagnoses": [
+          "HEADACHE"
+        ]
+      }
+    },
+    {
+      "stayId": "34391979",
+      "subjectId": "10004720",
+      "input": {
+        "age": 64,
+        "gender": "MALE",
+        "arrivalTransport": "UNKNOWN",
+        "chiefComplaint": "Cardiac arrest, Transfer",
+        "vitals": {},
+        "painScore": null
+      },
+      "label": {
+        "esi": 1
+      },
+      "outcome": {
+        "disposition": "ADMITTED",
+        "dischargeDiagnoses": [
+          "Respiratory arrest",
+          "Other pneumothorax"
+        ]
+      }
+    },
+    {
+      "stayId": "34478228",
+      "subjectId": "10037928",
+      "input": {
+        "age": 81,
+        "gender": "FEMALE",
+        "arrivalTransport": "WALK IN",
+        "chiefComplaint": "RIGHT EAR PAIN/DRAINAGE",
+        "vitals": {
+          "heartRate": 96,
+          "respiratoryRate": 16,
+          "oxygenSaturation": 94,
+          "systolicBp": 121,
+          "diastolicBp": 65,
+          "temperatureC": 36.4
+        },
+        "painScore": 7
+      },
+      "label": {
+        "esi": 2
+      },
+      "outcome": {
+        "disposition": "ADMITTED",
+        "dischargeDiagnoses": [
+          "INFEC OTITIS EXTERNA NOS",
+          "DIABETES UNCOMPL JUVEN",
+          "HYPERTENSION NOS"
+        ]
+      }
+    },
+    {
+      "stayId": "34558830",
+      "subjectId": "10005866",
+      "input": {
+        "age": 57,
+        "gender": "MALE",
+        "arrivalTransport": "AMBULANCE",
+        "chiefComplaint": "Abd pain, LEAKING ASCITES",
+        "vitals": {},
+        "painScore": null
+      },
+      "label": {
+        "esi": 2
+      },
+      "outcome": {
+        "disposition": "ADMITTED",
+        "dischargeDiagnoses": [
+          "UMBILICAL HERNIA"
+        ]
+      }
+    },
+    {
+      "stayId": "34604678",
+      "subjectId": "10039708",
+      "input": {
+        "age": 50,
+        "gender": "FEMALE",
+        "arrivalTransport": "WALK IN",
+        "chiefComplaint": "Wound eval",
+        "vitals": {
+          "heartRate": 60,
+          "respiratoryRate": 16,
+          "oxygenSaturation": 100,
+          "systolicBp": 104,
+          "diastolicBp": 61,
+          "temperatureC": 36.7
+        },
+        "painScore": 0
+      },
+      "label": {
+        "esi": 3
+      },
+      "outcome": {
+        "disposition": "HOME",
+        "dischargeDiagnoses": [
+          "Mech compl of infusion catheter, initial encounter",
+          "Exposure to other specified factors, initial encounter",
+          "Chronic kidney disease, unspecified"
+        ]
+      }
+    },
+    {
+      "stayId": "34617920",
+      "subjectId": "10014354",
+      "input": {
+        "age": 64,
+        "gender": "MALE",
+        "arrivalTransport": "AMBULANCE",
+        "chiefComplaint": "Abd pain, Dysuria",
+        "vitals": {
+          "heartRate": 73,
+          "respiratoryRate": 15,
+          "oxygenSaturation": 98,
+          "systolicBp": 149,
+          "diastolicBp": 53,
+          "temperatureC": 37.9
+        },
+        "painScore": 10
+      },
+      "label": {
+        "esi": 3
+      },
+      "outcome": {
+        "disposition": "ADMITTED",
+        "dischargeDiagnoses": [
+          "Fever, unspecified"
+        ]
+      }
+    },
+    {
+      "stayId": "34646141",
+      "subjectId": "10010867",
+      "input": {
+        "age": 29,
+        "gender": "FEMALE",
+        "arrivalTransport": "AMBULANCE",
+        "chiefComplaint": "Dyspnea, Transfer",
+        "vitals": {
+          "heartRate": 84,
+          "respiratoryRate": 18,
+          "oxygenSaturation": 97,
+          "systolicBp": 128,
+          "diastolicBp": 68,
+          "temperatureC": 37.4
+        },
+        "painScore": 7
+      },
+      "label": {
+        "esi": 2
+      },
+      "outcome": {
+        "disposition": "ADMITTED",
+        "dischargeDiagnoses": [
+          "Dyspnea, unspecified"
+        ]
+      }
+    },
+    {
+      "stayId": "34807453",
+      "subjectId": "10007795",
+      "input": {
+        "age": 53,
+        "gender": "FEMALE",
+        "arrivalTransport": "AMBULANCE",
+        "chiefComplaint": "Abd pain, Back pain",
+        "vitals": {
+          "heartRate": 108,
+          "respiratoryRate": 18,
+          "oxygenSaturation": 95,
+          "systolicBp": 143,
+          "diastolicBp": 61,
+          "temperatureC": 37.0
+        },
+        "painScore": 7
+      },
+      "label": {
+        "esi": 3
+      },
+      "outcome": {
+        "disposition": "ADMITTED",
+        "dischargeDiagnoses": [
+          "ABDOMINAL PAIN LLQ"
+        ]
+      }
+    },
+    {
+      "stayId": "34820898",
+      "subjectId": "10014354",
+      "input": {
+        "age": 64,
+        "gender": "MALE",
+        "arrivalTransport": "AMBULANCE",
+        "chiefComplaint": "Dizziness, Diplopia",
+        "vitals": {},
+        "painScore": null
+      },
+      "label": {
+        "esi": 2
+      },
+      "outcome": {
+        "disposition": "ADMITTED",
+        "dischargeDiagnoses": [
+          "Weakness",
+          "Type 1 diabetes mellitus with hypoglycemia without coma",
+          "Long term (current) use of insulin"
+        ]
+      }
+    },
+    {
+      "stayId": "34918384",
+      "subjectId": "10039708",
+      "input": {
+        "age": 48,
+        "gender": "FEMALE",
+        "arrivalTransport": "AMBULANCE",
+        "chiefComplaint": "Hypotension",
+        "vitals": {
+          "heartRate": 89,
+          "respiratoryRate": 16,
+          "oxygenSaturation": 98,
+          "systolicBp": 98,
+          "diastolicBp": 68,
+          "temperatureC": 36.7
+        },
+        "painScore": 0
+      },
+      "label": {
+        "esi": 3
+      },
+      "outcome": {
+        "disposition": "ADMITTED",
+        "dischargeDiagnoses": [
+          "Sepsis, unspecified organism",
+          "Acute pancreatitis, unspecified"
+        ]
+      }
+    },
+    {
+      "stayId": "34922474",
+      "subjectId": "10003400",
+      "input": {
+        "age": 75,
+        "gender": "FEMALE",
+        "arrivalTransport": "AMBULANCE",
+        "chiefComplaint": "Rectal pain",
+        "vitals": {
+          "heartRate": 124,
+          "respiratoryRate": 16,
+          "oxygenSaturation": 98,
+          "systolicBp": 136,
+          "diastolicBp": 82,
+          "temperatureC": 37.1
+        },
+        "painScore": 8
+      },
+      "label": {
+        "esi": 3
+      },
+      "outcome": {
+        "disposition": "ADMITTED",
+        "dischargeDiagnoses": [
+          "RECTAL & ANAL HEMORRHAGE",
+          "MALIGNANT NEOPL RECTUM",
+          "HYPERTENSION NOS"
+        ]
+      }
+    },
+    {
+      "stayId": "34948767",
+      "subjectId": "10003400",
+      "input": {
+        "age": 74,
+        "gender": "FEMALE",
+        "arrivalTransport": "WALK IN",
+        "chiefComplaint": "Hematuria, Dysuria",
+        "vitals": {
+          "heartRate": 86,
+          "respiratoryRate": 18,
+          "oxygenSaturation": 100,
+          "systolicBp": 142,
+          "diastolicBp": 92,
+          "temperatureC": 37.7
+        },
+        "painScore": 5
+      },
+      "label": {
+        "esi": 3
+      },
+      "outcome": {
+        "disposition": "ADMITTED",
+        "dischargeDiagnoses": [
+          "GASTROINTEST HEMORR NOS",
+          "RECTAL & ANAL ULCER"
+        ]
+      }
+    },
+    {
+      "stayId": "34951841",
+      "subjectId": "10039997",
+      "input": {
+        "age": 70,
+        "gender": "FEMALE",
+        "arrivalTransport": "WALK IN",
+        "chiefComplaint": "L Weakness, Unable to ambulate",
+        "vitals": {
+          "heartRate": 71,
+          "respiratoryRate": 18,
+          "oxygenSaturation": 100,
+          "systolicBp": 165,
+          "diastolicBp": 79,
+          "temperatureC": 36.2
+        },
+        "painScore": 0
+      },
+      "label": {
+        "esi": 3
+      },
+      "outcome": {
+        "disposition": "ADMITTED",
+        "dischargeDiagnoses": [
+          "Cerebral infarction, unspecified",
+          "Weakness"
+        ]
+      }
+    },
+    {
+      "stayId": "34982171",
+      "subjectId": "10002428",
+      "input": {
+        "age": 82,
+        "gender": "FEMALE",
+        "arrivalTransport": "AMBULANCE",
+        "chiefComplaint": "LEFT HIP FX",
+        "vitals": {
+          "heartRate": 100,
+          "respiratoryRate": 16,
+          "oxygenSaturation": 96,
+          "systolicBp": 126,
+          "diastolicBp": 74,
+          "temperatureC": 36.9
+        },
+        "painScore": 5
+      },
+      "label": {
+        "esi": 3
+      },
+      "outcome": {
+        "disposition": "ADMITTED",
+        "dischargeDiagnoses": [
+          "FX NECK OF FEMUR NOS-CL",
+          "UNSPECIFIED FALL"
+        ]
+      }
+    },
+    {
+      "stayId": "34992024",
+      "subjectId": "10037928",
+      "input": {
+        "age": 86,
+        "gender": "FEMALE",
+        "arrivalTransport": "AMBULANCE",
+        "chiefComplaint": "Head injury, s/p Fall",
+        "vitals": {
+          "heartRate": 95,
+          "respiratoryRate": 18,
+          "oxygenSaturation": 98,
+          "systolicBp": 150,
+          "diastolicBp": 56,
+          "temperatureC": 36.5
+        },
+        "painScore": 8
+      },
+      "label": {
+        "esi": 3
+      },
+      "outcome": {
+        "disposition": "HOME",
+        "dischargeDiagnoses": [
+          "Other specified injuries of head, initial encounter",
+          "Laceration w/o foreign body of oth part of head, init encntr",
+          "Fall same lev from slip/trip w/o strike against object, init",
+          "Type 2 diabetes mellitus without complications",
+          "Long term (current) use of insulin",
+          "Essential (primary) hypertension"
+        ]
+      }
+    },
+    {
+      "stayId": "35087345",
+      "subjectId": "10023117",
+      "input": {
+        "age": 56,
+        "gender": "MALE",
+        "arrivalTransport": "WALK IN",
+        "chiefComplaint": "Dyspnea on exertion",
+        "vitals": {
+          "heartRate": 106,
+          "respiratoryRate": 18,
+          "oxygenSaturation": 100,
+          "systolicBp": 109,
+          "diastolicBp": 79,
+          "temperatureC": 36.3
+        },
+        "painScore": 0
+      },
+      "label": {
+        "esi": 3
+      },
+      "outcome": {
+        "disposition": "ADMITTED",
+        "dischargeDiagnoses": [
+          "CONGESTIVE HEART FAILURE, UNSPEC",
+          "HYPERCHOLESTEROLEMIA"
+        ]
+      }
+    },
+    {
+      "stayId": "35114287",
+      "subjectId": "10002930",
+      "input": {
+        "age": 54,
+        "gender": "FEMALE",
+        "arrivalTransport": "AMBULANCE",
+        "chiefComplaint": "SI",
+        "vitals": {
+          "heartRate": 102,
+          "respiratoryRate": 20,
+          "oxygenSaturation": 100,
+          "systolicBp": 180,
+          "diastolicBp": 85,
+          "temperatureC": 37.2
+        },
+        "painScore": 5
+      },
+      "label": {
+        "esi": 2
+      },
+      "outcome": {
+        "disposition": "TRANSFER",
+        "dischargeDiagnoses": [
+          "Major depressive disorder, single episode, unspecified",
+          "Suicidal ideations",
+          "Unsp superficial injury of unsp part of head, init encntr",
+          "Fall on same level, unspecified, initial encounter"
+        ]
+      }
+    },
+    {
+      "stayId": "35156583",
+      "subjectId": "10037928",
+      "input": {
+        "age": 86,
+        "gender": "FEMALE",
+        "arrivalTransport": "AMBULANCE",
+        "chiefComplaint": "Back pain",
+        "vitals": {
+          "heartRate": 75,
+          "respiratoryRate": 16,
+          "oxygenSaturation": 95,
+          "systolicBp": 159,
+          "diastolicBp": 60,
+          "temperatureC": 36.6
+        },
+        "painScore": 6
+      },
+      "label": {
+        "esi": 3
+      },
+      "outcome": {
+        "disposition": "HOME",
+        "dischargeDiagnoses": [
+          "Fracture of one rib, left side, init for clos fx",
+          "Fracture of bony thorax, part unsp, init for clos fx",
+          "Fall on same level, unspecified, initial encounter"
+        ]
+      }
+    },
+    {
+      "stayId": "35168275",
+      "subjectId": "10039708",
+      "input": {
+        "age": 51,
+        "gender": "FEMALE",
+        "arrivalTransport": "AMBULANCE",
+        "chiefComplaint": "Lethargy",
+        "vitals": {
+          "heartRate": 69,
+          "respiratoryRate": 18,
+          "oxygenSaturation": 100,
+          "systolicBp": 109,
+          "diastolicBp": 56,
+          "temperatureC": 36.3
+        },
+        "painScore": 5
+      },
+      "label": {
+        "esi": 2
+      },
+      "outcome": {
+        "disposition": "ADMITTED",
+        "dischargeDiagnoses": [
+          "Other fatigue"
+        ]
+      }
+    },
+    {
+      "stayId": "35203396",
+      "subjectId": "10014354",
+      "input": {
+        "age": 61,
+        "gender": "MALE",
+        "arrivalTransport": "AMBULANCE",
+        "chiefComplaint": "Toe pain",
+        "vitals": {
+          "heartRate": 95,
+          "respiratoryRate": 16,
+          "oxygenSaturation": 100,
+          "systolicBp": 158,
+          "diastolicBp": 71,
+          "temperatureC": 36.9
+        },
+        "painScore": 8
+      },
+      "label": {
+        "esi": 3
+      },
+      "outcome": {
+        "disposition": "HOME",
+        "dischargeDiagnoses": [
+          "Cellulitis of right toe",
+          "Type 2 diabetes mellitus without complications",
+          "Long term (current) use of insulin",
+          "Essential (primary) hypertension"
+        ]
+      }
+    },
+    {
+      "stayId": "35205519",
+      "subjectId": "10014354",
+      "input": {
+        "age": 62,
+        "gender": "MALE",
+        "arrivalTransport": "AMBULANCE",
+        "chiefComplaint": "Chest pain, Transfer",
+        "vitals": {
+          "heartRate": 120,
+          "respiratoryRate": 16,
+          "oxygenSaturation": 96,
+          "systolicBp": 120,
+          "diastolicBp": 71,
+          "temperatureC": 37.2
+        },
+        "painScore": 8
+      },
+      "label": {
+        "esi": 2
+      },
+      "outcome": {
+        "disposition": "ADMITTED",
+        "dischargeDiagnoses": [
+          "Unspecified atrial fibrillation",
+          "Chest pain, unspecified",
+          "Pericardial effusion (noninflammatory)"
+        ]
+      }
+    },
+    {
+      "stayId": "35224843",
+      "subjectId": "10037861",
+      "input": {
+        "age": 79,
+        "gender": "MALE",
+        "arrivalTransport": "UNKNOWN",
+        "chiefComplaint": "ICH",
+        "vitals": {},
+        "painScore": 0
+      },
+      "label": {
+        "esi": 1
+      },
+      "outcome": {
+        "disposition": "ADMITTED",
+        "dischargeDiagnoses": [
+          "Nontraumatic acute subdural hemorrhage"
+        ]
+      }
+    },
+    {
+      "stayId": "35353291",
+      "subjectId": "10040025",
+      "input": {
+        "age": 68,
+        "gender": "FEMALE",
+        "arrivalTransport": "WALK IN",
+        "chiefComplaint": "L Foot pain, Wound eval",
+        "vitals": {
+          "respiratoryRate": 20,
+          "oxygenSaturation": 100,
+          "systolicBp": 147,
+          "diastolicBp": 55,
+          "temperatureC": 36.1
+        },
+        "painScore": 10
+      },
+      "label": {
+        "esi": 3
+      },
+      "outcome": {
+        "disposition": "HOME",
+        "dischargeDiagnoses": [
+          "Type 1 diabetes mellitus with foot ulcer",
+          "Non-pressure chronic ulcer oth prt left foot w unsp severity",
+          "Essential (primary) hypertension",
+          "Long term (current) use of insulin"
+        ]
+      }
+    },
+    {
+      "stayId": "35357090",
+      "subjectId": "10010471",
+      "input": {
+        "age": 89,
+        "gender": "FEMALE",
+        "arrivalTransport": "AMBULANCE",
+        "chiefComplaint": "Weakness, Atrial fibrillation, Transfer",
+        "vitals": {
+          "heartRate": 126,
+          "respiratoryRate": 22,
+          "oxygenSaturation": 99,
+          "systolicBp": 136,
+          "diastolicBp": 68,
+          "temperatureC": 36.1
+        },
+        "painScore": 0
+      },
+      "label": {
+        "esi": 2
+      },
+      "outcome": {
+        "disposition": "ADMITTED",
+        "dischargeDiagnoses": [
+          "Unspecified atrial fibrillation"
+        ]
+      }
+    },
+    {
+      "stayId": "35452640",
+      "subjectId": "10014354",
+      "input": {
+        "age": 60,
+        "gender": "MALE",
+        "arrivalTransport": "AMBULANCE",
+        "chiefComplaint": "Chest pain, Transfer",
+        "vitals": {
+          "heartRate": 64,
+          "respiratoryRate": 16,
+          "oxygenSaturation": 96,
+          "systolicBp": 123,
+          "diastolicBp": 63,
+          "temperatureC": 36.2
+        },
+        "painScore": 9
+      },
+      "label": {
+        "esi": 3
+      },
+      "outcome": {
+        "disposition": "HOME",
+        "dischargeDiagnoses": [
+          "Chest pain, unspecified",
+          "Essential (primary) hypertension",
+          "Type 2 diabetes mellitus without complications",
+          "Pure hypercholesterolemia"
+        ]
+      }
+    },
+    {
+      "stayId": "35540249",
+      "subjectId": "10002930",
+      "input": {
+        "age": 52,
+        "gender": "FEMALE",
+        "arrivalTransport": "WALK IN",
+        "chiefComplaint": "SI",
+        "vitals": {
+          "heartRate": 110,
+          "respiratoryRate": 18,
+          "oxygenSaturation": 100,
+          "systolicBp": 123,
+          "diastolicBp": 67,
+          "temperatureC": 36.9
+        },
+        "painScore": 0
+      },
+      "label": {
+        "esi": 2
+      },
+      "outcome": {
+        "disposition": "HOME",
+        "dischargeDiagnoses": [
+          "DEPRESSIVE DISORDER",
+          "SUICIDAL IDEATION",
+          "LACK OF HOUSING"
+        ]
+      }
+    },
+    {
+      "stayId": "35547415",
+      "subjectId": "10012853",
+      "input": {
+        "age": 91,
+        "gender": "FEMALE",
+        "arrivalTransport": "WALK IN",
+        "chiefComplaint": "Urinary retention, Lower abdominal pain",
+        "vitals": {
+          "heartRate": 96,
+          "respiratoryRate": 16,
+          "oxygenSaturation": 97,
+          "systolicBp": 189,
+          "diastolicBp": 78,
+          "temperatureC": 36.8
+        },
+        "painScore": 0
+      },
+      "label": {
+        "esi": 3
+      },
+      "outcome": {
+        "disposition": "HOME",
+        "dischargeDiagnoses": [
+          "COMP D/TO GU DEVICE/GRAFT",
+          "ACCIDENT NOS"
+        ]
+      }
+    },
+    {
+      "stayId": "35568186",
+      "subjectId": "10019003",
+      "input": {
+        "age": 72,
+        "gender": "FEMALE",
+        "arrivalTransport": "AMBULANCE",
+        "chiefComplaint": "Anemia",
+        "vitals": {
+          "heartRate": 92,
+          "respiratoryRate": 26,
+          "oxygenSaturation": 95,
+          "systolicBp": 116,
+          "diastolicBp": 57,
+          "temperatureC": 36.6
+        },
+        "painScore": 0
+      },
+      "label": {
+        "esi": 2
+      },
+      "outcome": {
+        "disposition": "ADMITTED",
+        "dischargeDiagnoses": [
+          "Infarction of spleen",
+          "Pleural effusion, not elsewhere classified",
+          "Hypoxemia"
+        ]
+      }
+    },
+    {
+      "stayId": "35681380",
+      "subjectId": "10005866",
+      "input": {
+        "age": 60,
+        "gender": "MALE",
+        "arrivalTransport": "WALK IN",
+        "chiefComplaint": "RLQ abdominal pain",
+        "vitals": {
+          "heartRate": 76,
+          "respiratoryRate": 18,
+          "oxygenSaturation": 99,
+          "systolicBp": 147,
+          "diastolicBp": 92,
+          "temperatureC": 36.7
+        },
+        "painScore": 10
+      },
+      "label": {
+        "esi": 3
+      },
+      "outcome": {
+        "disposition": "ADMITTED",
+        "dischargeDiagnoses": [
+          "Right lower quadrant pain"
+        ]
+      }
+    },
+    {
+      "stayId": "35716124",
+      "subjectId": "10023117",
+      "input": {
+        "age": 58,
+        "gender": "MALE",
+        "arrivalTransport": "AMBULANCE",
+        "chiefComplaint": "Chest pain",
+        "vitals": {
+          "heartRate": 115,
+          "respiratoryRate": 18,
+          "oxygenSaturation": 97,
+          "systolicBp": 95,
+          "diastolicBp": 65,
+          "temperatureC": 36.0
+        },
+        "painScore": 0
+      },
+      "label": {
+        "esi": 2
+      },
+      "outcome": {
+        "disposition": "ADMITTED",
+        "dischargeDiagnoses": [
+          "Chest pain, unspecified"
+        ]
+      }
+    },
+    {
+      "stayId": "35758326",
+      "subjectId": "10016810",
+      "input": {
+        "age": 66,
+        "gender": "FEMALE",
+        "arrivalTransport": "UNKNOWN",
+        "chiefComplaint": "Abd pain",
+        "vitals": {
+          "heartRate": 72,
+          "respiratoryRate": 18,
+          "oxygenSaturation": 90,
+          "systolicBp": 98,
+          "diastolicBp": 48,
+          "temperatureC": 37.1
+        },
+        "painScore": null
+      },
+      "label": {
+        "esi": 2
+      },
+      "outcome": {
+        "disposition": "ADMITTED",
+        "dischargeDiagnoses": [
+          "ACUTE APPENDICITIS NOS"
+        ]
+      }
+    },
+    {
+      "stayId": "35766268",
+      "subjectId": "10020187",
+      "input": {
+        "age": 63,
+        "gender": "FEMALE",
+        "arrivalTransport": "WALK IN",
+        "chiefComplaint": "Facial numbness",
+        "vitals": {
+          "heartRate": 95,
+          "respiratoryRate": 18,
+          "oxygenSaturation": 97,
+          "systolicBp": 190,
+          "diastolicBp": 117,
+          "temperatureC": 36.9
+        },
+        "painScore": 0
+      },
+      "label": {
+        "esi": 2
+      },
+      "outcome": {
+        "disposition": "HOME",
+        "dischargeDiagnoses": [
+          "Other disturbances of skin sensation",
+          "Essential (primary) hypertension"
+        ]
+      }
+    },
+    {
+      "stayId": "35933027",
+      "subjectId": "10012853",
+      "input": {
+        "age": 92,
+        "gender": "FEMALE",
+        "arrivalTransport": "WALK IN",
+        "chiefComplaint": "Abd pain",
+        "vitals": {
+          "heartRate": 78,
+          "respiratoryRate": 16,
+          "oxygenSaturation": 95,
+          "systolicBp": 186,
+          "diastolicBp": 66,
+          "temperatureC": 36.0
+        },
+        "painScore": 8
+      },
+      "label": {
+        "esi": 3
+      },
+      "outcome": {
+        "disposition": "HOME",
+        "dischargeDiagnoses": [
+          "Urinary tract infection, site not specified",
+          "Mech compl of other urinary catheter, initial encounter",
+          "Oth medical procedures cause abn react/compl, w/o misadvnt"
+        ]
+      }
+    },
+    {
+      "stayId": "35942924",
+      "subjectId": "10023239",
+      "input": {
+        "age": 32,
+        "gender": "FEMALE",
+        "arrivalTransport": "AMBULANCE",
+        "chiefComplaint": "Presyncope, Weakness",
+        "vitals": {
+          "heartRate": 75,
+          "respiratoryRate": 16,
+          "oxygenSaturation": 99,
+          "systolicBp": 112,
+          "diastolicBp": 61,
+          "temperatureC": 36.6
+        },
+        "painScore": 7
+      },
+      "label": {
+        "esi": 3
+      },
+      "outcome": {
+        "disposition": "HOME",
+        "dischargeDiagnoses": [
+          "Syncope and collapse",
+          "Type 1 diabetes mellitus without complications",
+          "Long term (current) use of insulin",
+          "Pure hypercholesterolemia, unspecified",
+          "Hypothyroidism, unspecified",
+          "Sarcoidosis of lung"
+        ]
+      }
+    },
+    {
+      "stayId": "35958096",
+      "subjectId": "10015860",
+      "input": {
+        "age": 53,
+        "gender": "MALE",
+        "arrivalTransport": "AMBULANCE",
+        "chiefComplaint": "R FOOT ULCER/CELLULITIS",
+        "vitals": {
+          "heartRate": 120,
+          "respiratoryRate": 18,
+          "oxygenSaturation": 96,
+          "systolicBp": 158,
+          "diastolicBp": 83,
+          "temperatureC": 37.6
+        },
+        "painScore": 8
+      },
+      "label": {
+        "esi": 3
+      },
+      "outcome": {
+        "disposition": "ADMITTED",
+        "dischargeDiagnoses": [
+          "DIABETES UNCOMPL JUVEN",
+          "DIAB W MANIF NEC ADULT",
+          "ULCER OF OTHER PART OF FOOT",
+          "CELLULITIS OF FOOT",
+          "HYPERTENSION NOS"
+        ]
+      }
+    },
+    {
+      "stayId": "35958431",
+      "subjectId": "10015860",
+      "input": {
+        "age": 59,
+        "gender": "MALE",
+        "arrivalTransport": "AMBULANCE",
+        "chiefComplaint": "Abnormal labs",
+        "vitals": {
+          "heartRate": 103,
+          "respiratoryRate": 18,
+          "oxygenSaturation": 97,
+          "systolicBp": 138,
+          "diastolicBp": 84,
+          "temperatureC": 37.8
+        },
+        "painScore": 0
+      },
+      "label": {
+        "esi": 2
+      },
+      "outcome": {
+        "disposition": "ADMITTED",
+        "dischargeDiagnoses": [
+          "Bacteremia"
+        ]
+      }
+    },
+    {
+      "stayId": "35968195",
+      "subjectId": "10000032",
+      "input": {
+        "age": 52,
+        "gender": "FEMALE",
+        "arrivalTransport": "AMBULANCE",
+        "chiefComplaint": "n/v/d, Abd pain",
+        "vitals": {
+          "heartRate": 105,
+          "respiratoryRate": 18,
+          "oxygenSaturation": 96,
+          "systolicBp": 106,
+          "diastolicBp": 57,
+          "temperatureC": 37.4
+        },
+        "painScore": 10
+      },
+      "label": {
+        "esi": 3
+      },
+      "outcome": {
+        "disposition": "ADMITTED",
+        "dischargeDiagnoses": [
+          "CIRRHOSIS OF LIVER NOS",
+          "ABDOMINAL PAIN UNSPEC SITE",
+          "ASYMPTOMATIC HIV INFECTION"
+        ]
+      }
+    },
+    {
+      "stayId": "36021274",
+      "subjectId": "10020306",
+      "input": {
+        "age": 80,
+        "gender": "FEMALE",
+        "arrivalTransport": "WALK IN",
+        "chiefComplaint": "Dehydration, Fatigue",
+        "vitals": {
+          "heartRate": 83,
+          "respiratoryRate": 18,
+          "oxygenSaturation": 100,
+          "systolicBp": 121,
+          "diastolicBp": 68,
+          "temperatureC": 36.0
+        },
+        "painScore": 0
+      },
+      "label": {
+        "esi": 2
+      },
+      "outcome": {
+        "disposition": "ADMITTED",
+        "dischargeDiagnoses": [
+          "Type 2 diabetes mellitus with hypoglycemia without coma",
+          "Dehydration",
+          "Weakness"
+        ]
+      }
+    },
+    {
+      "stayId": "36041505",
+      "subjectId": "10040025",
+      "input": {
+        "age": 69,
+        "gender": "FEMALE",
+        "arrivalTransport": "AMBULANCE",
+        "chiefComplaint": "Leg pain, Wound eval",
+        "vitals": {
+          "heartRate": 100,
+          "respiratoryRate": 17,
+          "oxygenSaturation": 100,
+          "systolicBp": 127,
+          "diastolicBp": 49,
+          "temperatureC": 36.5
+        },
+        "painScore": 10
+      },
+      "label": {
+        "esi": 2
+      },
+      "outcome": {
+        "disposition": "ADMITTED",
+        "dischargeDiagnoses": [
+          "Infection following a procedure, initial encounter",
+          "Oth surgical procedures cause abn react/compl, w/o misadvnt",
+          "Oth places as the place of occurrence of the external cause"
+        ]
+      }
+    },
+    {
+      "stayId": "36132883",
+      "subjectId": "10040025",
+      "input": {
+        "age": 68,
+        "gender": "FEMALE",
+        "arrivalTransport": "WALK IN",
+        "chiefComplaint": "L Foot swelling, L Foot pain",
+        "vitals": {
+          "heartRate": 83,
+          "respiratoryRate": 18,
+          "oxygenSaturation": 98,
+          "systolicBp": 137,
+          "diastolicBp": 84,
+          "temperatureC": 36.2
+        },
+        "painScore": 5
+      },
+      "label": {
+        "esi": 3
+      },
+      "outcome": {
+        "disposition": "ELOPED",
+        "dischargeDiagnoses": [
+          "Localized edema",
+          "Essential (primary) hypertension",
+          "Type 1 diabetes mellitus without complications",
+          "Long term (current) use of insulin",
+          "Unspecified atrial fibrillation",
+          "Long term (current) use of anticoagulants"
+        ]
+      }
+    },
+    {
+      "stayId": "36180820",
+      "subjectId": "10016742",
+      "input": {
+        "age": 58,
+        "gender": "FEMALE",
+        "arrivalTransport": "AMBULANCE",
+        "chiefComplaint": "Transfer, Dyspnea",
+        "vitals": {
+          "heartRate": 100,
+          "respiratoryRate": 20,
+          "oxygenSaturation": 95,
+          "systolicBp": 190,
+          "diastolicBp": 100
+        },
+        "painScore": 0
+      },
+      "label": {
+        "esi": 1
+      },
+      "outcome": {
+        "disposition": "ADMITTED",
+        "dischargeDiagnoses": [
+          "Pneumonia, unspecified organism"
+        ]
+      }
+    },
+    {
+      "stayId": "36200931",
+      "subjectId": "10020740",
+      "input": {
+        "age": 56,
+        "gender": "MALE",
+        "arrivalTransport": "AMBULANCE",
+        "chiefComplaint": "Abd pain",
+        "vitals": {
+          "heartRate": 95,
+          "respiratoryRate": 20,
+          "oxygenSaturation": 100,
+          "systolicBp": 117,
+          "diastolicBp": 73,
+          "temperatureC": 36.6
+        },
+        "painScore": 8
+      },
+      "label": {
+        "esi": 3
+      },
+      "outcome": {
+        "disposition": "HOME",
+        "dischargeDiagnoses": [
+          "ABDOMINAL PAIN OTHER SPECIED"
+        ]
+      }
+    },
+    {
+      "stayId": "36250263",
+      "subjectId": "10014354",
+      "input": {
+        "age": 62,
+        "gender": "MALE",
+        "arrivalTransport": "AMBULANCE",
+        "chiefComplaint": "BRBPR",
+        "vitals": {
+          "heartRate": 100,
+          "respiratoryRate": 22,
+          "oxygenSaturation": 98,
+          "systolicBp": 122,
+          "diastolicBp": 80,
+          "temperatureC": 36.3
+        },
+        "painScore": 0
+      },
+      "label": {
+        "esi": 2
+      },
+      "outcome": {
+        "disposition": "ADMITTED",
+        "dischargeDiagnoses": [
+          "Hemorrhage of anus and rectum"
+        ]
+      }
+    },
+    {
+      "stayId": "36316394",
+      "subjectId": "10015860",
+      "input": {
+        "age": 56,
+        "gender": "MALE",
+        "arrivalTransport": "WALK IN",
+        "chiefComplaint": "Foot laceration",
+        "vitals": {
+          "heartRate": 105,
+          "respiratoryRate": 16,
+          "oxygenSaturation": 100,
+          "systolicBp": 136,
+          "diastolicBp": 81,
+          "temperatureC": 36.7
+        },
+        "painScore": 0
+      },
+      "label": {
+        "esi": 3
+      },
+      "outcome": {
+        "disposition": "HOME",
+        "dischargeDiagnoses": [
+          "OPEN WOUND OF FOOT",
+          "ACCIDENT NOS",
+          "DIABETES UNCOMPL ADULT",
+          "HYPERTENSION NOS",
+          "HYPERCHOLESTEROLEMIA"
+        ]
+      }
+    },
+    {
+      "stayId": "36323598",
+      "subjectId": "10023239",
+      "input": {
+        "age": 32,
+        "gender": "FEMALE",
+        "arrivalTransport": "WALK IN",
+        "chiefComplaint": "Dehydration, Nausea, Rash",
+        "vitals": {
+          "heartRate": 111,
+          "respiratoryRate": 15,
+          "oxygenSaturation": 100,
+          "systolicBp": 133,
+          "diastolicBp": 79,
+          "temperatureC": 36.5
+        },
+        "painScore": 3
+      },
+      "label": {
+        "esi": 3
+      },
+      "outcome": {
+        "disposition": "HOME",
+        "dischargeDiagnoses": [
+          "Nausea",
+          "Nonspec elev of levels of transamns & lactic acid dehydrgnse",
+          "Type 1 diabetes mellitus without complications",
+          "Long term (current) use of insulin",
+          "Presence of insulin pump (external) (internal)",
+          "Hypothyroidism, unspecified",
+          "Hyperlipidemia, unspecified"
+        ]
+      }
+    },
+    {
+      "stayId": "36381328",
+      "subjectId": "10019568",
+      "input": {
+        "age": 59,
+        "gender": "FEMALE",
+        "arrivalTransport": "AMBULANCE",
+        "chiefComplaint": "Transfer, s/p Fall",
+        "vitals": {
+          "heartRate": 98,
+          "respiratoryRate": 22,
+          "oxygenSaturation": 95,
+          "systolicBp": 148,
+          "diastolicBp": 90
+        },
+        "painScore": 8
+      },
+      "label": {
+        "esi": 2
+      },
+      "outcome": {
+        "disposition": "ADMITTED",
+        "dischargeDiagnoses": [
+          "FX MULT RIBS NOS-CLOSED",
+          "OTHER FALL"
+        ]
+      }
+    },
+    {
+      "stayId": "36428628",
+      "subjectId": "10014354",
+      "input": {
+        "age": 60,
+        "gender": "MALE",
+        "arrivalTransport": "AMBULANCE",
+        "chiefComplaint": "Transfer, CVA",
+        "vitals": {
+          "heartRate": 63,
+          "respiratoryRate": 16,
+          "oxygenSaturation": 97,
+          "systolicBp": 118,
+          "diastolicBp": 49,
+          "temperatureC": 36.8
+        },
+        "painScore": 7
+      },
+      "label": {
+        "esi": 2
+      },
+      "outcome": {
+        "disposition": "ADMITTED",
+        "dischargeDiagnoses": [
+          "Weakness"
+        ]
+      }
+    },
+    {
+      "stayId": "36474912",
+      "subjectId": "10039708",
+      "input": {
+        "age": 50,
+        "gender": "FEMALE",
+        "arrivalTransport": "AMBULANCE",
+        "chiefComplaint": "Wound eval",
+        "vitals": {
+          "heartRate": 76,
+          "respiratoryRate": 20,
+          "oxygenSaturation": 100,
+          "systolicBp": 112,
+          "diastolicBp": 74,
+          "temperatureC": 36.6
+        },
+        "painScore": 0
+      },
+      "label": {
+        "esi": 3
+      },
+      "outcome": {
+        "disposition": "ADMITTED",
+        "dischargeDiagnoses": [
+          "Oth complication of vascular prosth dev/grft, init",
+          "Oth surgical procedures cause abn react/compl, w/o misadvnt",
+          "Oth places as the place of occurrence of the external cause"
+        ]
+      }
+    },
+    {
+      "stayId": "36686656",
+      "subjectId": "10019003",
+      "input": {
+        "age": 72,
+        "gender": "FEMALE",
+        "arrivalTransport": "AMBULANCE",
+        "chiefComplaint": "Anemia, Neutropenia, Transfer",
+        "vitals": {
+          "heartRate": 98,
+          "respiratoryRate": 16,
+          "oxygenSaturation": 97,
+          "systolicBp": 105,
+          "diastolicBp": 43,
+          "temperatureC": 37.0
+        },
+        "painScore": 0
+      },
+      "label": {
+        "esi": 2
+      },
+      "outcome": {
+        "disposition": "ADMITTED",
+        "dischargeDiagnoses": [
+          "Other pancytopenia",
+          "Hematuria, unspecified"
+        ]
+      }
+    },
+    {
+      "stayId": "36836328",
+      "subjectId": "10018081",
+      "input": {
+        "age": 80,
+        "gender": "MALE",
+        "arrivalTransport": "AMBULANCE",
+        "chiefComplaint": "Dyspnea",
+        "vitals": {
+          "heartRate": 84,
+          "respiratoryRate": 18,
+          "oxygenSaturation": 94,
+          "systolicBp": 139,
+          "diastolicBp": 65,
+          "temperatureC": 37.3
+        },
+        "painScore": 0
+      },
+      "label": {
+        "esi": 2
+      },
+      "outcome": {
+        "disposition": "ADMITTED",
+        "dischargeDiagnoses": [
+          "CONGESTIVE HEART FAILURE, UNSPEC"
+        ]
+      }
+    },
+    {
+      "stayId": "36976997",
+      "subjectId": "10003400",
+      "input": {
+        "age": 74,
+        "gender": "FEMALE",
+        "arrivalTransport": "AMBULANCE",
+        "chiefComplaint": "Altered mental status",
+        "vitals": {
+          "heartRate": 91,
+          "respiratoryRate": 16,
+          "oxygenSaturation": 100,
+          "systolicBp": 111,
+          "diastolicBp": 68,
+          "temperatureC": 36.5
+        },
+        "painScore": null
+      },
+      "label": {
+        "esi": 2
+      },
+      "outcome": {
+        "disposition": "ADMITTED",
+        "dischargeDiagnoses": [
+          "URIN TRACT INFECTION NOS",
+          "ALTERED MENTAL STATUS "
+        ]
+      }
+    },
+    {
+      "stayId": "37036523",
+      "subjectId": "10037928",
+      "input": {
+        "age": 80,
+        "gender": "FEMALE",
+        "arrivalTransport": "AMBULANCE",
+        "chiefComplaint": "HYPOTHERMIA",
+        "vitals": {},
+        "painScore": null
+      },
+      "label": {
+        "esi": 1
+      },
+      "outcome": {
+        "disposition": "ADMITTED",
+        "dischargeDiagnoses": [
+          "IDDM W SPEC MANIFESTATION",
+          "HYPOTHERMIA",
+          "EXCESSIVE COLD NOS"
+        ]
+      }
+    },
+    {
+      "stayId": "37145382",
+      "subjectId": "10014354",
+      "input": {
+        "age": 63,
+        "gender": "MALE",
+        "arrivalTransport": "AMBULANCE",
+        "chiefComplaint": "R Leg pain, R Leg swelling",
+        "vitals": {
+          "heartRate": 76,
+          "respiratoryRate": 16,
+          "oxygenSaturation": 97,
+          "systolicBp": 136,
+          "diastolicBp": 65,
+          "temperatureC": 36.8
+        },
+        "painScore": 8
+      },
+      "label": {
+        "esi": 3
+      },
+      "outcome": {
+        "disposition": "LEFT WITHOUT BEING SEEN",
+        "dischargeDiagnoses": [
+          "Pain in left lower leg"
+        ]
+      }
+    },
+    {
+      "stayId": "37196191",
+      "subjectId": "10015931",
+      "input": {
+        "age": 87,
+        "gender": "MALE",
+        "arrivalTransport": "AMBULANCE",
+        "chiefComplaint": "Dyspnea, Transfer",
+        "vitals": {
+          "heartRate": 125,
+          "respiratoryRate": 22,
+          "oxygenSaturation": 100,
+          "systolicBp": 122,
+          "diastolicBp": 79,
+          "temperatureC": 36.4
+        },
+        "painScore": 0
+      },
+      "label": {
+        "esi": 2
+      },
+      "outcome": {
+        "disposition": "ADMITTED",
+        "dischargeDiagnoses": [
+          "Heart failure, unspecified",
+          "Unspecified atrial fibrillation",
+          "Long term (current) use of anticoagulants"
+        ]
+      }
+    },
+    {
+      "stayId": "37196722",
+      "subjectId": "10040025",
+      "input": {
+        "age": 68,
+        "gender": "FEMALE",
+        "arrivalTransport": "AMBULANCE",
+        "chiefComplaint": "BRBPR",
+        "vitals": {
+          "heartRate": 88,
+          "respiratoryRate": 16,
+          "oxygenSaturation": 100,
+          "systolicBp": 114,
+          "diastolicBp": 55,
+          "temperatureC": 36.3
+        },
+        "painScore": 0
+      },
+      "label": {
+        "esi": 3
+      },
+      "outcome": {
+        "disposition": "ADMITTED",
+        "dischargeDiagnoses": [
+          "Hemorrhage of anus and rectum",
+          "Anemia, unspecified"
+        ]
+      }
+    },
+    {
+      "stayId": "37202404",
+      "subjectId": "10026406",
+      "input": {
+        "age": 45,
+        "gender": "MALE",
+        "arrivalTransport": "AMBULANCE",
+        "chiefComplaint": "Assault",
+        "vitals": {
+          "heartRate": 105,
+          "respiratoryRate": 20,
+          "oxygenSaturation": 98,
+          "systolicBp": 153,
+          "diastolicBp": 77,
+          "temperatureC": 36.7
+        },
+        "painScore": 10
+      },
+      "label": {
+        "esi": 3
+      },
+      "outcome": {
+        "disposition": "ADMITTED",
+        "dischargeDiagnoses": [
+          "ALCOHOL WITHDRAWAL",
+          "AC ALCOHOL INTOX-UNSPEC",
+          "NASAL BONE FX-CLOSED",
+          "ASSAULT NEC"
+        ]
+      }
+    },
+    {
+      "stayId": "37206743",
+      "subjectId": "10020306",
+      "input": {
+        "age": 77,
+        "gender": "FEMALE",
+        "arrivalTransport": "WALK IN",
+        "chiefComplaint": "L Eye pain",
+        "vitals": {
+          "heartRate": 85,
+          "respiratoryRate": 18,
+          "oxygenSaturation": 100,
+          "systolicBp": 133,
+          "diastolicBp": 77,
+          "temperatureC": 36.7
+        },
+        "painScore": 7
+      },
+      "label": {
+        "esi": 3
+      },
+      "outcome": {
+        "disposition": "LEFT AGAINST MEDICAL ADVICE",
+        "dischargeDiagnoses": [
+          "Dyspnea, unspecified",
+          "Ocular pain, right eye"
+        ]
+      }
+    },
+    {
+      "stayId": "37298974",
+      "subjectId": "10020740",
+      "input": {
+        "age": 57,
+        "gender": "MALE",
+        "arrivalTransport": "AMBULANCE",
+        "chiefComplaint": "Psychiatric hold",
+        "vitals": {
+          "heartRate": 99,
+          "respiratoryRate": 16,
+          "oxygenSaturation": 100,
+          "systolicBp": 111,
+          "temperatureC": 36.9
+        },
+        "painScore": 0
+      },
+      "label": {
+        "esi": 2
+      },
+      "outcome": {
+        "disposition": "TRANSFER",
+        "dischargeDiagnoses": [
+          "DEHYDRATION",
+          "DIABETES UNCOMPL JUVEN"
+        ]
+      }
+    },
+    {
+      "stayId": "37321464",
+      "subjectId": "10020306",
+      "input": {
+        "age": 79,
+        "gender": "FEMALE",
+        "arrivalTransport": "WALK IN",
+        "chiefComplaint": "Lower back pain, s/p Fall",
+        "vitals": {
+          "heartRate": 102,
+          "respiratoryRate": 18,
+          "oxygenSaturation": 98,
+          "systolicBp": 121,
+          "diastolicBp": 79,
+          "temperatureC": 36.1
+        },
+        "painScore": 8
+      },
+      "label": {
+        "esi": 4
+      },
+      "outcome": {
+        "disposition": "HOME",
+        "dischargeDiagnoses": [
+          "Low back pain",
+          "Striking against oth object w subsequent fall, init encntr",
+          "Type 2 diabetes mellitus without complications",
+          "Long term (current) use of oral hypoglycemic drugs",
+          "Essential (primary) hypertension"
+        ]
+      }
+    },
+    {
+      "stayId": "37323830",
+      "subjectId": "10018845",
+      "input": {
+        "age": 91,
+        "gender": "MALE",
+        "arrivalTransport": "AMBULANCE",
+        "chiefComplaint": "s/p Fall, SDH",
+        "vitals": {
+          "heartRate": 70,
+          "respiratoryRate": 16,
+          "oxygenSaturation": 99,
+          "systolicBp": 155,
+          "diastolicBp": 86,
+          "temperatureC": 36.7
+        },
+        "painScore": 0
+      },
+      "label": {
+        "esi": 2
+      },
+      "outcome": {
+        "disposition": "ADMITTED",
+        "dischargeDiagnoses": [
+          "SUBDURAL HEM W/O COMA",
+          "UNSPECIFIED FALL",
+          "CHRONIC KIDNEY DISEASE, STAGE V",
+          "HYPERLIPIDEMIA NEC/NOS"
+        ]
+      }
+    },
+    {
+      "stayId": "37330786",
+      "subjectId": "10035631",
+      "input": {
+        "age": 66,
+        "gender": "MALE",
+        "arrivalTransport": "WALK IN",
+        "chiefComplaint": "Abnormal labs, Weakness",
+        "vitals": {
+          "heartRate": 100,
+          "respiratoryRate": 18,
+          "oxygenSaturation": 91,
+          "systolicBp": 109,
+          "diastolicBp": 65,
+          "temperatureC": 37.1
+        },
+        "painScore": 7
+      },
+      "label": {
+        "esi": 2
+      },
+      "outcome": {
+        "disposition": "ADMITTED",
+        "dischargeDiagnoses": [
+          "Elevated white blood cell count, unspecified"
+        ]
+      }
+    },
+    {
+      "stayId": "37376268",
+      "subjectId": "10002428",
+      "input": {
+        "age": 85,
+        "gender": "FEMALE",
+        "arrivalTransport": "AMBULANCE",
+        "chiefComplaint": "BRBPR",
+        "vitals": {
+          "heartRate": 98,
+          "respiratoryRate": 14,
+          "oxygenSaturation": 98,
+          "systolicBp": 158,
+          "diastolicBp": 89,
+          "temperatureC": 36.2
+        },
+        "painScore": 0
+      },
+      "label": {
+        "esi": 2
+      },
+      "outcome": {
+        "disposition": "ADMITTED",
+        "dischargeDiagnoses": [
+          "Gastrointestinal hemorrhage, unspecified"
+        ]
+      }
+    },
+    {
+      "stayId": "37401157",
+      "subjectId": "10040025",
+      "input": {
+        "age": 66,
+        "gender": "FEMALE",
+        "arrivalTransport": "AMBULANCE",
+        "chiefComplaint": "Dyspnea, Foot swelling",
+        "vitals": {
+          "heartRate": 87,
+          "respiratoryRate": 15,
+          "oxygenSaturation": 92,
+          "systolicBp": 160,
+          "diastolicBp": 62,
+          "temperatureC": 36.7
+        },
+        "painScore": 0
+      },
+      "label": {
+        "esi": 3
+      },
+      "outcome": {
+        "disposition": "ADMITTED",
+        "dischargeDiagnoses": [
+          "CONGESTIVE HEART FAILURE, UNSPEC"
+        ]
+      }
+    },
+    {
+      "stayId": "37483564",
+      "subjectId": "10037928",
+      "input": {
+        "age": 85,
+        "gender": "FEMALE",
+        "arrivalTransport": "WALK IN",
+        "chiefComplaint": "Abd pain, n/v/d",
+        "vitals": {
+          "heartRate": 105,
+          "respiratoryRate": 24,
+          "oxygenSaturation": 96,
+          "systolicBp": 177,
+          "diastolicBp": 69,
+          "temperatureC": 36.8
+        },
+        "painScore": 10
+      },
+      "label": {
+        "esi": 3
+      },
+      "outcome": {
+        "disposition": "ADMITTED",
+        "dischargeDiagnoses": [
+          "Unspecified acute appendicitis"
+        ]
+      }
+    },
+    {
+      "stayId": "37578680",
+      "subjectId": "10023239",
+      "input": {
+        "age": 32,
+        "gender": "FEMALE",
+        "arrivalTransport": "WALK IN",
+        "chiefComplaint": "Abnormal labs",
+        "vitals": {
+          "heartRate": 81,
+          "respiratoryRate": 16,
+          "oxygenSaturation": 100,
+          "systolicBp": 132,
+          "diastolicBp": 71,
+          "temperatureC": 36.6
+        },
+        "painScore": 0
+      },
+      "label": {
+        "esi": 3
+      },
+      "outcome": {
+        "disposition": "HOME",
+        "dischargeDiagnoses": [
+          "Acute kidney failure, unspecified",
+          "Type 2 diabetes mellitus without complications",
+          "Long term (current) use of insulin"
+        ]
+      }
+    },
+    {
+      "stayId": "37593892",
+      "subjectId": "10018081",
+      "input": {
+        "age": 80,
+        "gender": "MALE",
+        "arrivalTransport": "AMBULANCE",
+        "chiefComplaint": "DISLODGED ABD TUBE",
+        "vitals": {
+          "heartRate": 67,
+          "respiratoryRate": 16,
+          "oxygenSaturation": 96,
+          "systolicBp": 126,
+          "diastolicBp": 72,
+          "temperatureC": 36.3
+        },
+        "painScore": 0
+      },
+      "label": {
+        "esi": 3
+      },
+      "outcome": {
+        "disposition": "HOME",
+        "dischargeDiagnoses": [
+          "COMP D/TO GRAFT/IMPLANT",
+          "ACCIDENT NOS",
+          "ATRIAL FIBRILLATION",
+          "LONG TERM USE ANTIGOAGULANT"
+        ]
+      }
+    },
+    {
+      "stayId": "37714209",
+      "subjectId": "10021487",
+      "input": {
+        "age": 44,
+        "gender": "MALE",
+        "arrivalTransport": "WALK IN",
+        "chiefComplaint": "ABDOMINAL MASS, FEVER",
+        "vitals": {
+          "heartRate": 114,
+          "respiratoryRate": 14,
+          "oxygenSaturation": 96,
+          "systolicBp": 119,
+          "diastolicBp": 93,
+          "temperatureC": 35.9
+        },
+        "painScore": 5
+      },
+      "label": {
+        "esi": 3
+      },
+      "outcome": {
+        "disposition": "ADMITTED",
+        "dischargeDiagnoses": [
+          "PERITONEAL ABSCESS"
+        ]
+      }
+    },
+    {
+      "stayId": "37802225",
+      "subjectId": "10014354",
+      "input": {
+        "age": 61,
+        "gender": "MALE",
+        "arrivalTransport": "AMBULANCE",
+        "chiefComplaint": "Chest pain, NSTEMI, Transfer",
+        "vitals": {
+          "heartRate": 85,
+          "respiratoryRate": 18,
+          "oxygenSaturation": 97,
+          "systolicBp": 137,
+          "diastolicBp": 86,
+          "temperatureC": 36.9
+        },
+        "painScore": 7
+      },
+      "label": {
+        "esi": 2
+      },
+      "outcome": {
+        "disposition": "ADMITTED",
+        "dischargeDiagnoses": [
+          "Chest pain, unspecified"
+        ]
+      }
+    },
+    {
+      "stayId": "37844627",
+      "subjectId": "10026255",
+      "input": {
+        "age": 66,
+        "gender": "MALE",
+        "arrivalTransport": "WALK IN",
+        "chiefComplaint": "R RIB PAIN",
+        "vitals": {
+          "heartRate": 90,
+          "respiratoryRate": 20,
+          "oxygenSaturation": 86,
+          "systolicBp": 153,
+          "diastolicBp": 73,
+          "temperatureC": 37.4
+        },
+        "painScore": 8
+      },
+      "label": {
+        "esi": 2
+      },
+      "outcome": {
+        "disposition": "ADMITTED",
+        "dischargeDiagnoses": [
+          "TRAUM PNEUMOTHORAX-CLOSE",
+          "FRACTURE THREE RIBS-CLOS",
+          "UNSPECIFIED FALL"
+        ]
+      }
+    },
+    {
+      "stayId": "37887480",
+      "subjectId": "10014729",
+      "input": {
+        "age": 21,
+        "gender": "FEMALE",
+        "arrivalTransport": "WALK IN",
+        "chiefComplaint": "FEVER",
+        "vitals": {
+          "heartRate": 90,
+          "respiratoryRate": 26,
+          "systolicBp": 86,
+          "diastolicBp": 61,
+          "temperatureC": 37.3
+        },
+        "painScore": 10
+      },
+      "label": {
+        "esi": 1
+      },
+      "outcome": {
+        "disposition": "ADMITTED",
+        "dischargeDiagnoses": [
+          "SEPTICEMIA NOS",
+          "SEVERE SEPSIS ",
+          "ADV EFF MEDICINAL NOS",
+          "SEPTIC SHOCK"
+        ]
+      }
+    },
+    {
+      "stayId": "37953392",
+      "subjectId": "10037928",
+      "input": {
+        "age": 82,
+        "gender": "FEMALE",
+        "arrivalTransport": "AMBULANCE",
+        "chiefComplaint": "Altered mental status",
+        "vitals": {
+          "heartRate": 76,
+          "respiratoryRate": 16,
+          "oxygenSaturation": 98,
+          "systolicBp": 144,
+          "diastolicBp": 56,
+          "temperatureC": 36.8
+        },
+        "painScore": 0
+      },
+      "label": {
+        "esi": 3
+      },
+      "outcome": {
+        "disposition": "ADMITTED",
+        "dischargeDiagnoses": [
+          "URIN TRACT INFECTION NOS",
+          "ACUTE KIDNEY FAILURE, UNSPECIFIED",
+          "ACUTE KIDNEY FAILURE, UNSPECIFIED",
+          "DIABETES UNCOMPL ADULT",
+          "LONG-TERM (CURRENT) USE OF INSULIN",
+          "SEMICOMA/STUPOR"
+        ]
+      }
+    },
+    {
+      "stayId": "37965024",
+      "subjectId": "10020306",
+      "input": {
+        "age": 78,
+        "gender": "FEMALE",
+        "arrivalTransport": "WALK IN",
+        "chiefComplaint": "Cough, Dyspnea",
+        "vitals": {
+          "heartRate": 95,
+          "respiratoryRate": 18,
+          "oxygenSaturation": 97,
+          "systolicBp": 138,
+          "diastolicBp": 70,
+          "temperatureC": 37.2
+        },
+        "painScore": 0
+      },
+      "label": {
+        "esi": 2
+      },
+      "outcome": {
+        "disposition": "HOME",
+        "dischargeDiagnoses": [
+          "Unsp combined systolic and diastolic (congestive) hrt fail",
+          "Cough",
+          "Dyspnea, unspecified"
+        ]
+      }
+    },
+    {
+      "stayId": "37977734",
+      "subjectId": "10015860",
+      "input": {
+        "age": 56,
+        "gender": "MALE",
+        "arrivalTransport": "AMBULANCE",
+        "chiefComplaint": "N/V, Tachycardia",
+        "vitals": {
+          "heartRate": 140,
+          "respiratoryRate": 20,
+          "oxygenSaturation": 95,
+          "systolicBp": 139,
+          "diastolicBp": 70,
+          "temperatureC": 37.9
+        },
+        "painScore": 0
+      },
+      "label": {
+        "esi": 1
+      },
+      "outcome": {
+        "disposition": "ADMITTED",
+        "dischargeDiagnoses": [
+          "CELLULITIS OF LEG"
+        ]
+      }
+    },
+    {
+      "stayId": "38000722",
+      "subjectId": "10015860",
+      "input": {
+        "age": 54,
+        "gender": "MALE",
+        "arrivalTransport": "AMBULANCE",
+        "chiefComplaint": "R LEG CELLULITIS",
+        "vitals": {
+          "heartRate": 97,
+          "respiratoryRate": 16,
+          "oxygenSaturation": 98,
+          "systolicBp": 180,
+          "diastolicBp": 96,
+          "temperatureC": 36.8
+        },
+        "painScore": 9
+      },
+      "label": {
+        "esi": 3
+      },
+      "outcome": {
+        "disposition": "ADMITTED",
+        "dischargeDiagnoses": [
+          "IDDM W SPEC MANIFESTATION",
+          "CELLULITIS OF LEG"
+        ]
+      }
+    },
+    {
+      "stayId": "38020791",
+      "subjectId": "10019003",
+      "input": {
+        "age": 72,
+        "gender": "FEMALE",
+        "arrivalTransport": "WALK IN",
+        "chiefComplaint": "Abnormal CT, LUQ abd pain",
+        "vitals": {
+          "heartRate": 97,
+          "respiratoryRate": 16,
+          "oxygenSaturation": 93,
+          "systolicBp": 117,
+          "diastolicBp": 60,
+          "temperatureC": 36.7
+        },
+        "painScore": 5
+      },
+      "label": {
+        "esi": 2
+      },
+      "outcome": {
+        "disposition": "ADMITTED",
+        "dischargeDiagnoses": [
+          "Infarction of spleen"
+        ]
+      }
+    },
+    {
+      "stayId": "38074673",
+      "subjectId": "10012853",
+      "input": {
+        "age": 93,
+        "gender": "FEMALE",
+        "arrivalTransport": "WALK IN",
+        "chiefComplaint": "Clogged foley",
+        "vitals": {
+          "heartRate": 66,
+          "respiratoryRate": 14,
+          "oxygenSaturation": 99,
+          "systolicBp": 165,
+          "diastolicBp": 51,
+          "temperatureC": 36.6
+        },
+        "painScore": 8
+      },
+      "label": {
+        "esi": 4
+      },
+      "outcome": {
+        "disposition": "HOME",
+        "dischargeDiagnoses": [
+          "Other cystostomy complication",
+          "Form of external stoma cause abn react/compl, w/o misadvnt",
+          "Urinary tract infection, site not specified"
+        ]
+      }
+    },
+    {
+      "stayId": "38112554",
+      "subjectId": "10000032",
+      "input": {
+        "age": 52,
+        "gender": "FEMALE",
+        "arrivalTransport": "AMBULANCE",
+        "chiefComplaint": "Abdominal distention",
+        "vitals": {
+          "heartRate": 88,
+          "respiratoryRate": 18,
+          "oxygenSaturation": 97,
+          "systolicBp": 116,
+          "diastolicBp": 88,
+          "temperatureC": 37.2
+        },
+        "painScore": 10
+      },
+      "label": {
+        "esi": 3
+      },
+      "outcome": {
+        "disposition": "ADMITTED",
+        "dischargeDiagnoses": [
+          "OTHER ASCITES",
+          "UNSPECIFIED VIRAL HEPATITIS C WITHOUT HEPATIC COMA",
+          "CIRRHOSIS OF LIVER NOS",
+          "ASYMPTOMATIC HIV INFECTION"
+        ]
+      }
+    },
+    {
+      "stayId": "38133986",
+      "subjectId": "10015860",
+      "input": {
+        "age": 57,
+        "gender": "MALE",
+        "arrivalTransport": "AMBULANCE",
+        "chiefComplaint": "Abnormal labs, Hyperglycemia",
+        "vitals": {
+          "heartRate": 110,
+          "respiratoryRate": 18,
+          "oxygenSaturation": 97,
+          "systolicBp": 179,
+          "diastolicBp": 108,
+          "temperatureC": 36.7
+        },
+        "painScore": 0
+      },
+      "label": {
+        "esi": 2
+      },
+      "outcome": {
+        "disposition": "ADMITTED",
+        "dischargeDiagnoses": [
+          "Type 1 diabetes mellitus with hyperglycemia",
+          "Long term (current) use of insulin",
+          "Abn lev hormones in specimens from female genital organs"
+        ]
+      }
+    },
+    {
+      "stayId": "38207210",
+      "subjectId": "10037928",
+      "input": {
+        "age": 80,
+        "gender": "FEMALE",
+        "arrivalTransport": "AMBULANCE",
+        "chiefComplaint": "HYPERGLYCEMIA",
+        "vitals": {
+          "heartRate": 72,
+          "respiratoryRate": 16,
+          "oxygenSaturation": 96,
+          "systolicBp": 126,
+          "diastolicBp": 43,
+          "temperatureC": 36.8
+        },
+        "painScore": 0
+      },
+      "label": {
+        "esi": 2
+      },
+      "outcome": {
+        "disposition": "ADMITTED",
+        "dischargeDiagnoses": [
+          "DIABETES UNCOMPL JUVEN",
+          "HYPERTENSION NOS"
+        ]
+      }
+    },
+    {
+      "stayId": "38216551",
+      "subjectId": "10002428",
+      "input": {
+        "age": 85,
+        "gender": "FEMALE",
+        "arrivalTransport": "AMBULANCE",
+        "chiefComplaint": "s/p Fall, L Shoulder pain",
+        "vitals": {
+          "heartRate": 100,
+          "respiratoryRate": 16,
+          "oxygenSaturation": 97,
+          "systolicBp": 172,
+          "diastolicBp": 100,
+          "temperatureC": 36.7
+        },
+        "painScore": 4
+      },
+      "label": {
+        "esi": 3
+      },
+      "outcome": {
+        "disposition": "HOME",
+        "dischargeDiagnoses": [
+          "Ocular pain, bilateral",
+          "Hypothyroidism, unspecified",
+          "Sicca syndrome, unspecified"
+        ]
+      }
+    },
+    {
+      "stayId": "38233644",
+      "subjectId": "10020740",
+      "input": {
+        "age": 57,
+        "gender": "MALE",
+        "arrivalTransport": "AMBULANCE",
+        "chiefComplaint": "Psychiatric hold, Altered mental status",
+        "vitals": {
+          "heartRate": 86,
+          "respiratoryRate": 17,
+          "oxygenSaturation": 98,
+          "systolicBp": 124,
+          "diastolicBp": 74,
+          "temperatureC": 36.7
+        },
+        "painScore": null
+      },
+      "label": {
+        "esi": 2
+      },
+      "outcome": {
+        "disposition": "HOME",
+        "dischargeDiagnoses": [
+          "DIABETES UNCOMPL ADULT",
+          "LONG-TERM (CURRENT) USE OF INSULIN",
+          "SCHIZOAFFECTIVE-UNSPEC"
+        ]
+      }
+    },
+    {
+      "stayId": "38237602",
+      "subjectId": "10026406",
+      "input": {
+        "age": 49,
+        "gender": "MALE",
+        "arrivalTransport": "WALK IN",
+        "chiefComplaint": "ETOH, SI",
+        "vitals": {
+          "heartRate": 98,
+          "respiratoryRate": 20,
+          "oxygenSaturation": 99,
+          "systolicBp": 133,
+          "diastolicBp": 110,
+          "temperatureC": 36.1
+        },
+        "painScore": 8
+      },
+      "label": {
+        "esi": 3
+      },
+      "outcome": {
+        "disposition": "HOME",
+        "dischargeDiagnoses": [
+          "Unsp superficial injury of unsp part of head, init encntr",
+          "Fall (on) (from) unspecified stairs and steps, init encntr",
+          "Suicidal ideations",
+          "Alcohol abuse with intoxication, unspecified"
+        ]
+      }
+    },
+    {
+      "stayId": "38260469",
+      "subjectId": "10019003",
+      "input": {
+        "age": 70,
+        "gender": "FEMALE",
+        "arrivalTransport": "WALK IN",
+        "chiefComplaint": "Weakness, GI bleed",
+        "vitals": {
+          "heartRate": 96,
+          "respiratoryRate": 17,
+          "oxygenSaturation": 96,
+          "systolicBp": 114,
+          "diastolicBp": 66,
+          "temperatureC": 37.3
+        },
+        "painScore": 0
+      },
+      "label": {
+        "esi": 2
+      },
+      "outcome": {
+        "disposition": "ADMITTED",
+        "dischargeDiagnoses": [
+          "Gastrointestinal hemorrhage, unspecified"
+        ]
+      }
+    },
+    {
+      "stayId": "38433139",
+      "subjectId": "10015860",
+      "input": {
+        "age": 56,
+        "gender": "MALE",
+        "arrivalTransport": "AMBULANCE",
+        "chiefComplaint": "Dizziness",
+        "vitals": {
+          "heartRate": 101,
+          "respiratoryRate": 18,
+          "oxygenSaturation": 99,
+          "systolicBp": 94,
+          "diastolicBp": 62,
+          "temperatureC": 36.2
+        },
+        "painScore": 0
+      },
+      "label": {
+        "esi": 1
+      },
+      "outcome": {
+        "disposition": "HOME",
+        "dischargeDiagnoses": [
+          "VERTIGO/DIZZINESS",
+          "ADV EFF VASODILATORS NEC"
+        ]
+      }
+    },
+    {
+      "stayId": "38488295",
+      "subjectId": "10039708",
+      "input": {
+        "age": 52,
+        "gender": "FEMALE",
+        "arrivalTransport": "AMBULANCE",
+        "chiefComplaint": "Altered mental status",
+        "vitals": {
+          "heartRate": 55,
+          "respiratoryRate": 16,
+          "oxygenSaturation": 99,
+          "systolicBp": 159,
+          "diastolicBp": 80,
+          "temperatureC": 35.9
+        },
+        "painScore": 0
+      },
+      "label": {
+        "esi": 2
+      },
+      "outcome": {
+        "disposition": "ADMITTED",
+        "dischargeDiagnoses": [
+          "Other fatigue"
+        ]
+      }
+    },
+    {
+      "stayId": "38566596",
+      "subjectId": "10015860",
+      "input": {
+        "age": 55,
+        "gender": "MALE",
+        "arrivalTransport": "WALK IN",
+        "chiefComplaint": "RIGHT FOOT INFECTION",
+        "vitals": {
+          "heartRate": 119,
+          "respiratoryRate": 16,
+          "oxygenSaturation": 99,
+          "systolicBp": 107,
+          "diastolicBp": 73,
+          "temperatureC": 37.8
+        },
+        "painScore": 7
+      },
+      "label": {
+        "esi": 3
+      },
+      "outcome": {
+        "disposition": "ADMITTED",
+        "dischargeDiagnoses": [
+          "IDDM W SPEC MANIFESTATION",
+          "LOCAL SKIN INFECTION NOS"
+        ]
+      }
+    },
+    {
+      "stayId": "38615683",
+      "subjectId": "10002930",
+      "input": {
+        "age": 52,
+        "gender": "FEMALE",
+        "arrivalTransport": "AMBULANCE",
+        "chiefComplaint": "Psychiatric hold",
+        "vitals": {
+          "heartRate": 108,
+          "respiratoryRate": 16,
+          "oxygenSaturation": 100,
+          "systolicBp": 154,
+          "diastolicBp": 92,
+          "temperatureC": 36.4
+        },
+        "painScore": 9
+      },
+      "label": {
+        "esi": 2
+      },
+      "outcome": {
+        "disposition": "ADMITTED",
+        "dischargeDiagnoses": [
+          "PSYCHOSIS NOS"
+        ]
+      }
+    },
+    {
+      "stayId": "38687872",
+      "subjectId": "10012853",
+      "input": {
+        "age": 91,
+        "gender": "FEMALE",
+        "arrivalTransport": "AMBULANCE",
+        "chiefComplaint": "Hypertension",
+        "vitals": {
+          "heartRate": 65,
+          "respiratoryRate": 18,
+          "oxygenSaturation": 96,
+          "systolicBp": 218,
+          "diastolicBp": 72,
+          "temperatureC": 36.4
+        },
+        "painScore": 0
+      },
+      "label": {
+        "esi": 3
+      },
+      "outcome": {
+        "disposition": "HOME",
+        "dischargeDiagnoses": [
+          "HYPERTENSION NOS"
+        ]
+      }
+    },
+    {
+      "stayId": "38797992",
+      "subjectId": "10020640",
+      "input": {
+        "age": 91,
+        "gender": "FEMALE",
+        "arrivalTransport": "AMBULANCE",
+        "chiefComplaint": "SOB/ABNL LABS",
+        "vitals": {
+          "heartRate": 130,
+          "respiratoryRate": 32,
+          "oxygenSaturation": 94,
+          "systolicBp": 106,
+          "diastolicBp": 74,
+          "temperatureC": 37.3
+        },
+        "painScore": null
+      },
+      "label": {
+        "esi": 1
+      },
+      "outcome": {
+        "disposition": "ADMITTED",
+        "dischargeDiagnoses": [
+          "HYPOSMOLALITY/HYPONATREMIA",
+          "PNEUMONIA,ORGANISM UNSPECIFIED",
+          "DIABETES UNCOMPL ADULT",
+          "ALZHEIMER'S DISEASE",
+          "DEMENTIA IN CONDITIONS CLASSIFIED ELSEWHERE WITHOUT BEHAVIROAL DISTURBANCE"
+        ]
+      }
+    },
+    {
+      "stayId": "38801518",
+      "subjectId": "10014354",
+      "input": {
+        "age": 62,
+        "gender": "MALE",
+        "arrivalTransport": "AMBULANCE",
+        "chiefComplaint": "Cough, Dyspnea",
+        "vitals": {
+          "heartRate": 106,
+          "respiratoryRate": 20,
+          "oxygenSaturation": 99,
+          "systolicBp": 142,
+          "diastolicBp": 73,
+          "temperatureC": 37.9
+        },
+        "painScore": 5
+      },
+      "label": {
+        "esi": 2
+      },
+      "outcome": {
+        "disposition": "ADMITTED",
+        "dischargeDiagnoses": [
+          "Fever, unspecified"
+        ]
+      }
+    },
+    {
+      "stayId": "38849383",
+      "subjectId": "10014354",
+      "input": {
+        "age": 62,
+        "gender": "MALE",
+        "arrivalTransport": "AMBULANCE",
+        "chiefComplaint": "Chest pain, Nausea",
+        "vitals": {
+          "heartRate": 98,
+          "respiratoryRate": 16,
+          "oxygenSaturation": 96,
+          "systolicBp": 105,
+          "diastolicBp": 70,
+          "temperatureC": 36.5
+        },
+        "painScore": 10
+      },
+      "label": {
+        "esi": 2
+      },
+      "outcome": {
+        "disposition": "ADMITTED",
+        "dischargeDiagnoses": [
+          "Chest pain, unspecified",
+          "Pericardial effusion (noninflammatory)",
+          "Abn lev hormones in specimens from female genital organs"
+        ]
+      }
+    },
+    {
+      "stayId": "38875576",
+      "subjectId": "10018081",
+      "input": {
+        "age": 79,
+        "gender": "MALE",
+        "arrivalTransport": "AMBULANCE",
+        "chiefComplaint": "Abd pain, n/v/d",
+        "vitals": {
+          "heartRate": 98,
+          "respiratoryRate": 22,
+          "oxygenSaturation": 95,
+          "systolicBp": 111,
+          "diastolicBp": 49,
+          "temperatureC": 35.7
+        },
+        "painScore": 5
+      },
+      "label": {
+        "esi": 2
+      },
+      "outcome": {
+        "disposition": "ADMITTED",
+        "dischargeDiagnoses": [
+          "VASC INSUFF INTEST NOS"
+        ]
+      }
+    },
+    {
+      "stayId": "38890884",
+      "subjectId": "10021938",
+      "input": {
+        "age": 65,
+        "gender": "MALE",
+        "arrivalTransport": "AMBULANCE",
+        "chiefComplaint": "Tachycardia",
+        "vitals": {
+          "heartRate": 110,
+          "respiratoryRate": 18,
+          "oxygenSaturation": 93,
+          "systolicBp": 178,
+          "diastolicBp": 85,
+          "temperatureC": 37.7
+        },
+        "painScore": null
+      },
+      "label": {
+        "esi": 2
+      },
+      "outcome": {
+        "disposition": "ADMITTED",
+        "dischargeDiagnoses": [
+          "HYPERKALEMIA"
+        ]
+      }
+    },
+    {
+      "stayId": "38967799",
+      "subjectId": "10007058",
+      "input": {
+        "age": 48,
+        "gender": "MALE",
+        "arrivalTransport": "UNKNOWN",
+        "chiefComplaint": "Chest pain, Transfer",
+        "vitals": {
+          "heartRate": 62,
+          "respiratoryRate": 18,
+          "oxygenSaturation": 98,
+          "systolicBp": 121,
+          "diastolicBp": 78,
+          "temperatureC": 37.0
+        },
+        "painScore": 2
+      },
+      "label": {
+        "esi": 2
+      },
+      "outcome": {
+        "disposition": "ADMITTED",
+        "dischargeDiagnoses": [
+          "Dissection of unspecified site of aorta",
+          "Non-ST elevation (NSTEMI) myocardial infarction"
+        ]
+      }
+    },
+    {
+      "stayId": "39028384",
+      "subjectId": "10012853",
+      "input": {
+        "age": 92,
+        "gender": "FEMALE",
+        "arrivalTransport": "WALK IN",
+        "chiefComplaint": "Suprapubic pain",
+        "vitals": {
+          "heartRate": 77,
+          "respiratoryRate": 22,
+          "oxygenSaturation": 100,
+          "systolicBp": 194,
+          "diastolicBp": 81,
+          "temperatureC": 36.4
+        },
+        "painScore": 8
+      },
+      "label": {
+        "esi": 3
+      },
+      "outcome": {
+        "disposition": "HOME",
+        "dischargeDiagnoses": [
+          "Oth complication of genitourinary prosth dev/grft, init",
+          "Misc gastroent and urology devices assoc w incdt, NEC",
+          "Urinary tract infection, site not specified"
+        ]
+      }
+    },
+    {
+      "stayId": "39054681",
+      "subjectId": "10040025",
+      "input": {
+        "age": 68,
+        "gender": "FEMALE",
+        "arrivalTransport": "WALK IN",
+        "chiefComplaint": "Dyspnea, Productive cough",
+        "vitals": {
+          "heartRate": 71,
+          "respiratoryRate": 16,
+          "oxygenSaturation": 93,
+          "systolicBp": 168,
+          "diastolicBp": 60,
+          "temperatureC": 36.7
+        },
+        "painScore": 0
+      },
+      "label": {
+        "esi": 2
+      },
+      "outcome": {
+        "disposition": "ADMITTED",
+        "dischargeDiagnoses": [
+          "Acute kidney failure, unspecified"
+        ]
+      }
+    },
+    {
+      "stayId": "39057874",
+      "subjectId": "10018423",
+      "input": {
+        "age": 42,
+        "gender": "MALE",
+        "arrivalTransport": "WALK IN",
+        "chiefComplaint": "Chest pain",
+        "vitals": {
+          "heartRate": 84,
+          "respiratoryRate": 16,
+          "oxygenSaturation": 98,
+          "systolicBp": 142,
+          "diastolicBp": 97,
+          "temperatureC": 36.8
+        },
+        "painScore": 6
+      },
+      "label": {
+        "esi": 2
+      },
+      "outcome": {
+        "disposition": "HOME",
+        "dischargeDiagnoses": [
+          "Other chest pain"
+        ]
+      }
+    },
+    {
+      "stayId": "39105638",
+      "subjectId": "10014354",
+      "input": {
+        "age": 63,
+        "gender": "MALE",
+        "arrivalTransport": "AMBULANCE",
+        "chiefComplaint": "Confusion, s/p Fall",
+        "vitals": {
+          "heartRate": 104,
+          "respiratoryRate": 16,
+          "oxygenSaturation": 98,
+          "systolicBp": 160,
+          "diastolicBp": 80,
+          "temperatureC": 36.8
+        },
+        "painScore": 5
+      },
+      "label": {
+        "esi": 2
+      },
+      "outcome": {
+        "disposition": "HOME",
+        "dischargeDiagnoses": [
+          "Headache",
+          "Fall on same level, unspecified, initial encounter",
+          "Essential (primary) hypertension",
+          "Prsnl hx of TIA (TIA), and cereb infrc w/o resid deficits"
+        ]
+      }
+    },
+    {
+      "stayId": "39140069",
+      "subjectId": "10014354",
+      "input": {
+        "age": 62,
+        "gender": "MALE",
+        "arrivalTransport": "AMBULANCE",
+        "chiefComplaint": "Epigastric pain",
+        "vitals": {
+          "heartRate": 80,
+          "respiratoryRate": 18,
+          "oxygenSaturation": 98,
+          "systolicBp": 158,
+          "diastolicBp": 72,
+          "temperatureC": 37.4
+        },
+        "painScore": 10
+      },
+      "label": {
+        "esi": 2
+      },
+      "outcome": {
+        "disposition": "HOME",
+        "dischargeDiagnoses": [
+          "Epigastric pain",
+          "Dorsalgia, unspecified",
+          "Unspecified atrial fibrillation"
+        ]
+      }
+    },
+    {
+      "stayId": "39169528",
+      "subjectId": "10020740",
+      "input": {
+        "age": 57,
+        "gender": "MALE",
+        "arrivalTransport": "WALK IN",
+        "chiefComplaint": "Psych eval",
+        "vitals": {
+          "heartRate": 95,
+          "respiratoryRate": 18,
+          "oxygenSaturation": 99,
+          "systolicBp": 149,
+          "diastolicBp": 74,
+          "temperatureC": 36.7
+        },
+        "painScore": 0
+      },
+      "label": {
+        "esi": 2
+      },
+      "outcome": {
+        "disposition": "TRANSFER",
+        "dischargeDiagnoses": [
+          "PSYCHOSIS NOS",
+          "DIABETES UNCOMPL ADULT"
+        ]
+      }
+    },
+    {
+      "stayId": "39202185",
+      "subjectId": "10014354",
+      "input": {
+        "age": 64,
+        "gender": "MALE",
+        "arrivalTransport": "AMBULANCE",
+        "chiefComplaint": "R Leg pain, R Leg swelling",
+        "vitals": {
+          "heartRate": 78,
+          "respiratoryRate": 19,
+          "oxygenSaturation": 98,
+          "systolicBp": 158,
+          "diastolicBp": 44,
+          "temperatureC": 36.5
+        },
+        "painScore": 5
+      },
+      "label": {
+        "esi": 3
+      },
+      "outcome": {
+        "disposition": "HOME",
+        "dischargeDiagnoses": [
+          "Other specified soft tissue disorders",
+          "Acute kidney failure, unspecified",
+          "Chronic lymphocytic leuk of B-cell type not achieve remis",
+          "Type 2 diabetes mellitus without complications",
+          "Long term (current) use of insulin",
+          "Pure hypercholesterolemia, unspecified",
+          "Essential (primary) hypertension"
+        ]
+      }
+    },
+    {
+      "stayId": "39252789",
+      "subjectId": "10029484",
+      "input": {
+        "age": 64,
+        "gender": "MALE",
+        "arrivalTransport": "AMBULANCE",
+        "chiefComplaint": "Syncope",
+        "vitals": {
+          "heartRate": 105,
+          "respiratoryRate": 18,
+          "oxygenSaturation": 100,
+          "systolicBp": 138,
+          "diastolicBp": 63,
+          "temperatureC": 36.8
+        },
+        "painScore": 2
+      },
+      "label": {
+        "esi": 2
+      },
+      "outcome": {
+        "disposition": "ADMITTED",
+        "dischargeDiagnoses": [
+          "DIAB KETOACIDOSIS ADULT",
+          "DIARRHEA"
+        ]
+      }
+    },
+    {
+      "stayId": "39266792",
+      "subjectId": "10002930",
+      "input": {
+        "age": 56,
+        "gender": "FEMALE",
+        "arrivalTransport": "AMBULANCE",
+        "chiefComplaint": "Head injury, Neck pain, s/p Fall",
+        "vitals": {
+          "heartRate": 76,
+          "respiratoryRate": 18,
+          "oxygenSaturation": 100,
+          "systolicBp": 181,
+          "diastolicBp": 94,
+          "temperatureC": 36.7
+        },
+        "painScore": 10
+      },
+      "label": {
+        "esi": 3
+      },
+      "outcome": {
+        "disposition": "TRANSFER",
+        "dischargeDiagnoses": [
+          "Cervicalgia",
+          "Suicidal ideations",
+          "Human immunodeficiency virus [HIV] disease"
+        ]
+      }
+    },
+    {
+      "stayId": "39297781",
+      "subjectId": "10029291",
+      "input": {
+        "age": 50,
+        "gender": "FEMALE",
+        "arrivalTransport": "UNKNOWN",
+        "chiefComplaint": "Transfer, PE",
+        "vitals": {
+          "heartRate": 124,
+          "respiratoryRate": 32,
+          "oxygenSaturation": 99,
+          "systolicBp": 105,
+          "diastolicBp": 76
+        },
+        "painScore": null
+      },
+      "label": {
+        "esi": 1
+      },
+      "outcome": {
+        "disposition": "ADMITTED",
+        "dischargeDiagnoses": [
+          "Saddle embolus of pulmonary artery w/o acute cor pulmonale"
+        ]
+      }
+    },
+    {
+      "stayId": "39300221",
+      "subjectId": "10001217",
+      "input": {
+        "age": 55,
+        "gender": "FEMALE",
+        "arrivalTransport": "WALK IN",
+        "chiefComplaint": "PICC LINE INFECTION",
+        "vitals": {
+          "heartRate": 75,
+          "respiratoryRate": 20,
+          "oxygenSaturation": 98,
+          "systolicBp": 132,
+          "diastolicBp": 95,
+          "temperatureC": 36.7
+        },
+        "painScore": 0
+      },
+      "label": {
+        "esi": 3
+      },
+      "outcome": {
+        "disposition": "HOME",
+        "dischargeDiagnoses": [
+          "REMOVAL VASCULAR CATHETER"
+        ]
+      }
+    },
+    {
+      "stayId": "39346340",
+      "subjectId": "10022281",
+      "input": {
+        "age": 84,
+        "gender": "MALE",
+        "arrivalTransport": "WALK IN",
+        "chiefComplaint": "LOWER EXTREMITY PAIN",
+        "vitals": {
+          "heartRate": 64,
+          "respiratoryRate": 16,
+          "oxygenSaturation": 99,
+          "systolicBp": 177,
+          "diastolicBp": 76,
+          "temperatureC": 36.6
+        },
+        "painScore": 8
+      },
+      "label": {
+        "esi": 3
+      },
+      "outcome": {
+        "disposition": "ADMITTED",
+        "dischargeDiagnoses": [
+          "DISS ABDOM AORTIC ANEURYSM",
+          "DIABETES UNCOMPL ADULT"
+        ]
+      }
+    },
+    {
+      "stayId": "39348852",
+      "subjectId": "10023239",
+      "input": {
+        "age": 32,
+        "gender": "FEMALE",
+        "arrivalTransport": "AMBULANCE",
+        "chiefComplaint": "DKA, Transfer",
+        "vitals": {
+          "heartRate": 115,
+          "respiratoryRate": 20,
+          "oxygenSaturation": 99,
+          "systolicBp": 92,
+          "diastolicBp": 42,
+          "temperatureC": 36.6
+        },
+        "painScore": 0
+      },
+      "label": {
+        "esi": 2
+      },
+      "outcome": {
+        "disposition": "ADMITTED",
+        "dischargeDiagnoses": [
+          "Type 1 diabetes mellitus with ketoacidosis without coma",
+          "Long term (current) use of insulin"
+        ]
+      }
+    },
+    {
+      "stayId": "39394858",
+      "subjectId": "10014354",
+      "input": {
+        "age": 62,
+        "gender": "MALE",
+        "arrivalTransport": "AMBULANCE",
+        "chiefComplaint": "Chest pain",
+        "vitals": {
+          "heartRate": 83,
+          "respiratoryRate": 20,
+          "oxygenSaturation": 98,
+          "systolicBp": 159,
+          "diastolicBp": 105,
+          "temperatureC": 36.8
+        },
+        "painScore": 9
+      },
+      "label": {
+        "esi": 2
+      },
+      "outcome": {
+        "disposition": "ADMITTED",
+        "dischargeDiagnoses": [
+          "Other chest pain"
+        ]
+      }
+    },
+    {
+      "stayId": "39399961",
+      "subjectId": "10000032",
+      "input": {
+        "age": 52,
+        "gender": "FEMALE",
+        "arrivalTransport": "AMBULANCE",
+        "chiefComplaint": "Abdominal distention, Abd pain, LETHAGIC",
+        "vitals": {
+          "heartRate": 77,
+          "respiratoryRate": 16,
+          "oxygenSaturation": 98,
+          "systolicBp": 96,
+          "diastolicBp": 50,
+          "temperatureC": 37.1
+        },
+        "painScore": null
+      },
+      "label": {
+        "esi": 2
+      },
+      "outcome": {
+        "disposition": "ADMITTED",
+        "dischargeDiagnoses": [
+          "ALTERED MENTAL STATUS ",
+          "ENCEPHALOPATHY, UNSPECIFIED"
+        ]
+      }
+    },
+    {
+      "stayId": "39430108",
+      "subjectId": "10021666",
+      "input": {
+        "age": 87,
+        "gender": "MALE",
+        "arrivalTransport": "AMBULANCE",
+        "chiefComplaint": "SDH/SAH",
+        "vitals": {},
+        "painScore": null
+      },
+      "label": {
+        "esi": 1
+      },
+      "outcome": {
+        "disposition": "ADMITTED",
+        "dischargeDiagnoses": [
+          "TRAUMATIC SUBDURAL HEM",
+          "TRAUM SUBARACHNOID HEM",
+          "FALL ON STAIR/STEP NEC"
+        ]
+      }
+    },
+    {
+      "stayId": "39441314",
+      "subjectId": "10007795",
+      "input": {
+        "age": 53,
+        "gender": "FEMALE",
+        "arrivalTransport": "WALK IN",
+        "chiefComplaint": "?INFECTION",
+        "vitals": {
+          "heartRate": 118,
+          "respiratoryRate": 18,
+          "oxygenSaturation": 100,
+          "systolicBp": 151,
+          "diastolicBp": 92,
+          "temperatureC": 36.4
+        },
+        "painScore": 4
+      },
+      "label": {
+        "esi": 3
+      },
+      "outcome": {
+        "disposition": "ADMITTED",
+        "dischargeDiagnoses": [
+          "FEVER, UNSPECIFIED",
+          "HX OF BREAST MALIGNANCY"
+        ]
+      }
+    },
+    {
+      "stayId": "39467106",
+      "subjectId": "10035631",
+      "input": {
+        "age": 67,
+        "gender": "MALE",
+        "arrivalTransport": "WALK IN",
+        "chiefComplaint": "Dyspnea, Hypoxia",
+        "vitals": {
+          "heartRate": 99,
+          "respiratoryRate": 23,
+          "oxygenSaturation": 78,
+          "systolicBp": 98,
+          "diastolicBp": 60,
+          "temperatureC": 36.8
+        },
+        "painScore": 0
+      },
+      "label": {
+        "esi": 1
+      },
+      "outcome": {
+        "disposition": "ADMITTED",
+        "dischargeDiagnoses": [
+          "Pneumonia, unspecified organism"
+        ]
+      }
+    },
+    {
+      "stayId": "39501852",
+      "subjectId": "10015931",
+      "input": {
+        "age": 87,
+        "gender": "MALE",
+        "arrivalTransport": "AMBULANCE",
+        "chiefComplaint": "Dyspnea",
+        "vitals": {
+          "heartRate": 82,
+          "respiratoryRate": 28,
+          "oxygenSaturation": 98,
+          "systolicBp": 124,
+          "diastolicBp": 83,
+          "temperatureC": 36.6
+        },
+        "painScore": 0
+      },
+      "label": {
+        "esi": 2
+      },
+      "outcome": {
+        "disposition": "ADMITTED",
+        "dischargeDiagnoses": [
+          "Dyspnea, unspecified"
+        ]
+      }
+    },
+    {
+      "stayId": "39571461",
+      "subjectId": "10026406",
+      "input": {
+        "age": 45,
+        "gender": "MALE",
+        "arrivalTransport": "WALK IN",
+        "chiefComplaint": "Lower back pain",
+        "vitals": {
+          "heartRate": 118,
+          "respiratoryRate": 22,
+          "oxygenSaturation": 99,
+          "systolicBp": 131,
+          "diastolicBp": 89,
+          "temperatureC": 37.1
+        },
+        "painScore": 10
+      },
+      "label": {
+        "esi": 2
+      },
+      "outcome": {
+        "disposition": "HOME",
+        "dischargeDiagnoses": [
+          "LUMBAGO"
+        ]
+      }
+    },
+    {
+      "stayId": "39621946",
+      "subjectId": "10014354",
+      "input": {
+        "age": 61,
+        "gender": "MALE",
+        "arrivalTransport": "AMBULANCE",
+        "chiefComplaint": "Fever, Neutropenia",
+        "vitals": {
+          "heartRate": 57,
+          "respiratoryRate": 18,
+          "oxygenSaturation": 99,
+          "systolicBp": 161,
+          "diastolicBp": 68,
+          "temperatureC": 36.8
+        },
+        "painScore": 0
+      },
+      "label": {
+        "esi": 2
+      },
+      "outcome": {
+        "disposition": "ADMITTED",
+        "dischargeDiagnoses": [
+          "Fever, unspecified"
+        ]
+      }
+    },
+    {
+      "stayId": "39633384",
+      "subjectId": "10014354",
+      "input": {
+        "age": 63,
+        "gender": "MALE",
+        "arrivalTransport": "AMBULANCE",
+        "chiefComplaint": "Hyperglycemia, Overdose",
+        "vitals": {
+          "heartRate": 72,
+          "respiratoryRate": 16,
+          "oxygenSaturation": 98,
+          "systolicBp": 140,
+          "diastolicBp": 71,
+          "temperatureC": 36.8
+        },
+        "painScore": 0
+      },
+      "label": {
+        "esi": 2
+      },
+      "outcome": {
+        "disposition": "HOME",
+        "dischargeDiagnoses": [
+          "Type 2 diabetes mellitus with hyperglycemia",
+          "Long term (current) use of insulin",
+          "Poisoning by insulin and oral hypoglycemic drugs, acc, init",
+          "Oth places as the place of occurrence of the external cause"
+        ]
+      }
+    },
+    {
+      "stayId": "39661025",
+      "subjectId": "10007928",
+      "input": {
+        "age": 59,
+        "gender": "FEMALE",
+        "arrivalTransport": "WALK IN",
+        "chiefComplaint": "VOMITING BLOOD",
+        "vitals": {
+          "heartRate": 98,
+          "respiratoryRate": 15,
+          "oxygenSaturation": 99,
+          "systolicBp": 102,
+          "diastolicBp": 59,
+          "temperatureC": 36.2
+        },
+        "painScore": 3
+      },
+      "label": {
+        "esi": 2
+      },
+      "outcome": {
+        "disposition": "ADMITTED",
+        "dischargeDiagnoses": [
+          "HEMATEMESIS"
+        ]
+      }
+    },
+    {
+      "stayId": "39738665",
+      "subjectId": "10020944",
+      "input": {
+        "age": 72,
+        "gender": "MALE",
+        "arrivalTransport": "UNKNOWN",
+        "chiefComplaint": "Altered mental status",
+        "vitals": {
+          "heartRate": 75,
+          "respiratoryRate": 24,
+          "oxygenSaturation": 91,
+          "systolicBp": 154,
+          "diastolicBp": 67,
+          "temperatureC": 36.7
+        },
+        "painScore": null
+      },
+      "label": {
+        "esi": 1
+      },
+      "outcome": {
+        "disposition": "ADMITTED",
+        "dischargeDiagnoses": [
+          "SEPTICEMIA NOS",
+          "SEPSIS ",
+          "ACCIDENT NOS"
+        ]
+      }
+    },
+    {
+      "stayId": "39740242",
+      "subjectId": "10037928",
+      "input": {
+        "age": 80,
+        "gender": "FEMALE",
+        "arrivalTransport": "WALK IN",
+        "chiefComplaint": "Cough, Dyspnea",
+        "vitals": {
+          "heartRate": 108,
+          "respiratoryRate": 22,
+          "oxygenSaturation": 98,
+          "systolicBp": 151,
+          "diastolicBp": 55,
+          "temperatureC": 37.1
+        },
+        "painScore": 0
+      },
+      "label": {
+        "esi": 3
+      },
+      "outcome": {
+        "disposition": "ADMITTED",
+        "dischargeDiagnoses": [
+          "ACUTE KIDNEY FAILURE, UNSPECIFIED",
+          "ACUTE URI NOS",
+          "DIABETES UNCOMPL JUVEN"
+        ]
+      }
+    },
+    {
+      "stayId": "39747335",
+      "subjectId": "10039708",
+      "input": {
+        "age": 50,
+        "gender": "FEMALE",
+        "arrivalTransport": "WALK IN",
+        "chiefComplaint": "L Knee pain",
+        "vitals": {
+          "heartRate": 84,
+          "respiratoryRate": 17,
+          "oxygenSaturation": 100,
+          "systolicBp": 116,
+          "diastolicBp": 83,
+          "temperatureC": 36.9
+        },
+        "painScore": 10
+      },
+      "label": {
+        "esi": 3
+      },
+      "outcome": {
+        "disposition": "HOME",
+        "dischargeDiagnoses": [
+          "Pain in left knee",
+          "Chronic kidney disease, unspecified"
+        ]
+      }
+    },
+    {
+      "stayId": "39760810",
+      "subjectId": "10040025",
+      "input": {
+        "age": 66,
+        "gender": "FEMALE",
+        "arrivalTransport": "WALK IN",
+        "chiefComplaint": "EYE EVAL",
+        "vitals": {
+          "heartRate": 80,
+          "respiratoryRate": 19,
+          "oxygenSaturation": 98,
+          "systolicBp": 182,
+          "diastolicBp": 74,
+          "temperatureC": 36.1
+        },
+        "painScore": 1
+      },
+      "label": {
+        "esi": 2
+      },
+      "outcome": {
+        "disposition": "HOME",
+        "dischargeDiagnoses": [
+          "CONJUNCTIVAL HEMORRHAGE",
+          "DIABETES UNCOMPL ADULT",
+          "LONG-TERM (CURRENT) USE OF INSULIN",
+          "LONG TERM USE ANTIGOAGULANT"
+        ]
+      }
+    },
+    {
+      "stayId": "39866888",
+      "subjectId": "10001217",
+      "input": {
+        "age": 55,
+        "gender": "FEMALE",
+        "arrivalTransport": "WALK IN",
+        "chiefComplaint": "LEFT HAND PAINS",
+        "vitals": {
+          "heartRate": 81,
+          "respiratoryRate": 16,
+          "oxygenSaturation": 97,
+          "systolicBp": 160,
+          "diastolicBp": 102,
+          "temperatureC": 37.2
+        },
+        "painScore": 0
+      },
+      "label": {
+        "esi": 3
+      },
+      "outcome": {
+        "disposition": "ADMITTED",
+        "dischargeDiagnoses": [
+          "OTHER MALAISE AND FATIGUE",
+          "FEVER, UNSPECIFIED"
+        ]
+      }
+    },
+    {
+      "stayId": "39898790",
+      "subjectId": "10023117",
+      "input": {
+        "age": 57,
+        "gender": "MALE",
+        "arrivalTransport": "AMBULANCE",
+        "chiefComplaint": "Weakness, Abnormal labs",
+        "vitals": {
+          "heartRate": 79,
+          "respiratoryRate": 20,
+          "oxygenSaturation": 99,
+          "systolicBp": 100,
+          "diastolicBp": 58,
+          "temperatureC": 36.5
+        },
+        "painScore": 0
+      },
+      "label": {
+        "esi": 2
+      },
+      "outcome": {
+        "disposition": "ADMITTED",
+        "dischargeDiagnoses": [
+          "ACUTE KIDNEY FAILURE, UNSPECIFIED",
+          "CONGESTIVE HEART FAILURE, UNSPEC"
+        ]
+      }
+    },
+    {
+      "stayId": "39910144",
+      "subjectId": "10002930",
+      "input": {
+        "age": 56,
+        "gender": "FEMALE",
+        "arrivalTransport": "AMBULANCE",
+        "chiefComplaint": "SI",
+        "vitals": {
+          "heartRate": 103,
+          "respiratoryRate": 18,
+          "oxygenSaturation": 97,
+          "systolicBp": 137,
+          "diastolicBp": 87,
+          "temperatureC": 36.5
+        },
+        "painScore": 0
+      },
+      "label": {
+        "esi": 2
+      },
+      "outcome": {
+        "disposition": "HOME",
+        "dischargeDiagnoses": [
+          "Alcohol abuse with intoxication, unspecified",
+          "Suicidal ideations",
+          "Human immunodeficiency virus [HIV] disease"
+        ]
+      }
+    },
+    {
+      "stayId": "39930808",
+      "subjectId": "10020740",
+      "input": {
+        "age": 56,
+        "gender": "MALE",
+        "arrivalTransport": "WALK IN",
+        "chiefComplaint": "Insomnia",
+        "vitals": {
+          "heartRate": 82,
+          "respiratoryRate": 18,
+          "oxygenSaturation": 99,
+          "systolicBp": 125,
+          "diastolicBp": 75,
+          "temperatureC": 36.9
+        },
+        "painScore": 0
+      },
+      "label": {
+        "esi": 3
+      },
+      "outcome": {
+        "disposition": "HOME",
+        "dischargeDiagnoses": [
+          "INSOMNIA NEC",
+          "DIABETES UNCOMPL ADULT",
+          "SCHIZOAFFECTIVE-UNSPEC"
+        ]
+      }
+    },
+    {
+      "stayId": "39962121",
+      "subjectId": "10015860",
+      "input": {
+        "age": 58,
+        "gender": "MALE",
+        "arrivalTransport": "WALK IN",
+        "chiefComplaint": "R Foot pain",
+        "vitals": {
+          "heartRate": 117,
+          "respiratoryRate": 20,
+          "oxygenSaturation": 100,
+          "systolicBp": 107,
+          "diastolicBp": 64,
+          "temperatureC": 36.8
+        },
+        "painScore": 9
+      },
+      "label": {
+        "esi": 3
+      },
+      "outcome": {
+        "disposition": "HOME",
+        "dischargeDiagnoses": [
+          "Type 1 diabetes mellitus with foot ulcer",
+          "Non-prs chronic ulcer oth prt right foot w unsp severity",
+          "Type 1 diabetes mellitus with hyperglycemia",
+          "Long term (current) use of insulin"
+        ]
+      }
+    },
+    {
+      "stayId": "39968716",
+      "subjectId": "10012853",
+      "input": {
+        "age": 92,
+        "gender": "FEMALE",
+        "arrivalTransport": "WALK IN",
+        "chiefComplaint": "Dizziness, Weakness",
+        "vitals": {
+          "heartRate": 77,
+          "respiratoryRate": 18,
+          "oxygenSaturation": 98,
+          "systolicBp": 100,
+          "diastolicBp": 43,
+          "temperatureC": 36.7
+        },
+        "painScore": 8
+      },
+      "label": {
+        "esi": 2
+      },
+      "outcome": {
+        "disposition": "ADMITTED",
+        "dischargeDiagnoses": [
+          "OTHER MALAISE AND FATIGUE",
+          "URIN TRACT INFECTION NOS",
+          "DIABETES UNCOMPL ADULT",
+          "HYPERTENSION NOS",
+          "HYPERCHOLESTEROLEMIA"
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,153 @@
+{
+  "noticeEffect": {
+    "qwen2.5-7b": {
+      "underTriagedOnlyWithNotice": 23,
+      "ofThoseReasoningSaysNoRedFlags": 7,
+      "patientsWithoutRule": 193,
+      "reasoningSaysNoRedFlagsWithNotice": 53,
+      "reasoningSaysNoRedFlagsWithoutNotice": 6,
+      "examples": [
+        {
+          "stayId": "30667562",
+          "nurseEsi": 2,
+          "withNotice": 3,
+          "noNotice": 1,
+          "reasoningWithNotice": "The patient presents with a T-spine fracture displacement, which is a moderate severity condition. The vital signs are within normal limits, and there are no critical red flags. The patient's pain score is 0, which is reassuring. However, imaging is necessary to assess the extent of the fracture and plan appropriate treatment."
+        },
+        {
+          "stayId": "31121963",
+          "nurseEsi": 2,
+          "withNotice": 3,
+          "noNotice": 1,
+          "reasoningWithNotice": "The patient presents with chest pain and nausea/vomiting, with a heart rate of 106 bpm and a blood pressure of 163/103 mmHg. While SpO₂ is 100%, the patient's temperature is slightly elevated at 37.1°C, and they report a pain level of 8 out of 10. These findings suggest a moderate level of urgency, but there are no critical red flags. The patient's blood pressure is elevated, which could indicate hypertension or a hypertensive crisis, a condition that requires prompt evaluation. Chest pain can be indicative of various conditions, including angina or myocardial infarction, which are serious and require immediate attention. The nausea and vomiting could be related to the chest pain or could indicate another underlying condition. Given the patient's presentation, a thorough evaluation is warranted to rule out serious conditions."
+        },
+        {
+          "stayId": "31588683",
+          "nurseEsi": 2,
+          "withNotice": 3,
+          "noNotice": 1,
+          "reasoningWithNotice": "The patient presents with a heart rate of 126 bpm, which is tachycardic, and a respiratory rate of 20 breaths per minute, which is within normal limits. However, the patient reports shortness of breath, a common symptom that can be associated with various conditions such as anxiety, pulmonary issues, or cardiovascular problems. The SpO₂ is 100%, which is normal, and there are no other symptoms or vital signs indicating a critical condition. The patient's temperature and blood pressure are within normal ranges, and there are no reported existing conditions, allergies, or current medications that could complicate the situation. Given the patient's age and the presence of tachycardia, it is prudent to consider the possibility of anxiety or a mild respiratory issue. The safety engine did not detect any critical red flags, but the patient's tachycardia warrants further evaluation."
+        }
+      ]
+    },
+    "llama3.1-8b": {
+      "underTriagedOnlyWithNotice": 4,
+      "ofThoseReasoningSaysNoRedFlags": 0,
+      "patientsWithoutRule": 193,
+      "reasoningSaysNoRedFlagsWithNotice": 9,
+      "reasoningSaysNoRedFlagsWithoutNotice": 1,
+      "examples": [
+        {
+          "stayId": "35168275",
+          "nurseEsi": 2,
+          "withNotice": 3,
+          "noNotice": 2,
+          "reasoningWithNotice": "The patient presents with lethargy, a heart rate of 69 bpm, and a respiratory rate of 18 /min. According to the 2018 Indian Medical Association guidelines (1), lethargy in adults can be a symptom of various conditions, including infections, metabolic disorders, and neurological disorders. The patient's normal temperature and SpO2 levels suggest that a severe infection is less likely. However, the patient's heart rate is slightly elevated, which may indicate a mild infection or dehydration."
+        },
+        {
+          "stayId": "38207210",
+          "nurseEsi": 2,
+          "withNotice": 3,
+          "noNotice": 2,
+          "reasoningWithNotice": "The patient is an 80-year-old female presenting with hyperglycemia, with a heart rate of 72 bpm, respiratory rate of 16/min, and SpO2 of 96%. The safety engine has cleared the patient for normal assessment. According to the American Diabetes Association (ADA) guidelines (1), hyperglycemia in the elderly can be a sign of underlying diabetes or other conditions. The patient's blood pressure is within normal limits, but the diastolic pressure is slightly low. The patient is not experiencing any pain. Based on these findings, the most likely conditions are hyperglycemia and possibly undiagnosed diabetes."
+        },
+        {
+          "stayId": "38967799",
+          "nurseEsi": 2,
+          "withNotice": 3,
+          "noNotice": 2,
+          "reasoningWithNotice": "The patient presents with chest pain, which is a primary symptom. According to the American Heart Association guidelines (1), chest pain is a common symptom of acute coronary syndrome (ACS). The patient's heart rate is 62 bpm, which is within the normal range. However, the patient's systolic BP is 121 mmHg, which is elevated. The patient's SpO2 is 98%, which is within the normal range. The patient's temperature is 37°C, which is normal. The patient's pain level is 2 out of 10, which is mild. Based on these findings, the patient is likely experiencing a non-ST-elevation myocardial infarction (NSTEMI) or unstable angina (2)."
+        }
+      ]
+    },
+    "gemma3-12b": null,
+    "medgemma-27b": null
+  },
+  "predictedLevels": {
+    "qwen2.5-7b__rag-off__safety-off": {
+      "1": 68,
+      "2": 1,
+      "3": 138
+    },
+    "qwen2.5-7b__rag-off__safety-off__guide-on": {
+      "1": 196,
+      "2": 4,
+      "3": 7
+    },
+    "qwen2.5-7b__rag-on__safety-off": {
+      "1": 39,
+      "2": 101,
+      "3": 64,
+      "5": 3
+    },
+    "llama3.1-8b__rag-off__safety-off": {
+      "1": 12,
+      "2": 6,
+      "3": 182,
+      "5": 7
+    },
+    "llama3.1-8b__rag-off__safety-off__guide-on": {
+      "1": 3,
+      "2": 9,
+      "3": 142,
+      "5": 53
+    },
+    "llama3.1-8b__rag-on__safety-off": {
+      "1": 7,
+      "2": 90,
+      "3": 106,
+      "5": 4
+    },
+    "gemma3-12b__rag-off__safety-off": null,
+    "gemma3-12b__rag-off__safety-off__guide-on": null,
+    "gemma3-12b__rag-on__safety-off": null,
+    "medgemma-27b__rag-off__safety-off": null,
+    "medgemma-27b__rag-off__safety-off__guide-on": null,
+    "medgemma-27b__rag-on__safety-off": null
+  },
+  "esi2UnderTriagedTo": {
+    "qwen2.5-7b__rag-off__safety-off": {
+      "3": 61
+    },
+    "qwen2.5-7b__rag-off__safety-on": {
+      "3": 76
+    },
+    "qwen2.5-7b__rag-on__safety-off": {
+      "3": 28
+    },
+    "qwen2.5-7b__rag-on__safety-on": {
+      "3": 64
+    },
+    "qwen2.5-7b__rag-off__safety-on__notice-off": {
+      "3": 60
+    },
+    "llama3.1-8b__rag-off__safety-off": {
+      "3": 85,
+      "5": 3
+    },
+    "llama3.1-8b__rag-off__safety-on": {
+      "3": 88
+    },
+    "llama3.1-8b__rag-on__safety-off": {
+      "3": 53,
+      "5": 3
+    },
+    "llama3.1-8b__rag-on__safety-on": {
+      "3": 60
+    },
+    "llama3.1-8b__rag-off__safety-on__notice-off": {
+      "3": 82,
+      "5": 3
+    },
+    "gemma3-12b__rag-off__safety-off": null,
+    "gemma3-12b__rag-off__safety-on": null,
+    "gemma3-12b__rag-on__safety-off": null,
+    "gemma3-12b__rag-on__safety-on": null,
+    "gemma3-12b__rag-off__safety-on__notice-off": null,
+    "medgemma-27b__rag-off__safety-off": null,
+    "medgemma-27b__rag-off__safety-on": null,
+    "medgemma-27b__rag-on__safety-off": null,
+    "medgemma-27b__rag-on__safety-on": null,
+    "medgemma-27b__rag-off__safety-on__notice-off": null
+  }
+}
