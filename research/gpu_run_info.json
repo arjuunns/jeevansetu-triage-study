@@ -1,0 +1,17 @@
+{
+  "host": "dgxhnode1",
+  "gpu": "NVIDIA H100 80GB HBM3, [Insufficient Permissions], 535.161.08",
+  "ollama": "0.32.14",
+  "node": "v22.23.4",
+  "gitCommit": "2d4436c",
+  "esiGuideSha256": "f95fddba59552235",
+  "systemPromptSha256": "87295fd016286c01",
+  "retrievalCacheSha256": "fd56ccaf83ff4f44cc323dd5c8c8235c895c3a58c21f86da3f3ef53f97eb7581",
+  "started": "2026-11-14 03:50:02 UTC",
+  "finished": "2026-11-15 02:38:14 UTC",
+  "limit": "all 207 patients",
+  "models": {
+    "gemma3:27b": "digest 6be2e2ba6843b9255820e2de2cbbe75cfdef0294ac7a531572e654d6e0eefe7d, Q4_K_M, 27.0B",
+    "medgemma:27b": "digest 58238ae38f99827496301de22016b2f94157552971f5a38db226f13802c2437e, Q4_K_M, 27.4B"
+  }
+}

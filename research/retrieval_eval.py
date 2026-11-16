@@ -26,13 +26,25 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-OUT_DIR = ROOT / "research" / "retrieval_eval"
 COHORT = ROOT / "data" / "mimic_ed_cohort.json"
-CORPUS = ROOT / "medical-pdf" / "ingestion" / "index" / "guidelines.metadata.jsonl"
-SYSTEMS = {
-    "baseline": ROOT / "research" / "retrieval_cache_baseline.json",
-    "improved": ROOT / "research" / "retrieval_cache.json",
-}
+# Pipeline v2 (9 Nov 2026): ESI v4 handbook corpus, local reranker. The earlier retrieval was rebuilt
+# over the same corpus (build_retrieval_cache.ts --baseline-queries). `--v1` after the command uses
+# the first evaluation (ESI v5 handbook corpus, Gemini reranker), kept in research/retrieval_eval/.
+if "--v1" in sys.argv:
+    sys.argv.remove("--v1")
+    OUT_DIR = ROOT / "research" / "retrieval_eval"
+    CORPUS = ROOT / "medical-pdf" / "ingestion" / "index" / "guidelines.metadata.jsonl"
+    SYSTEMS = {
+        "baseline": ROOT / "research" / "retrieval_cache_baseline.json",
+        "improved": ROOT / "research" / "retrieval_cache.json",
+    }
+else:
+    OUT_DIR = ROOT / "research" / "retrieval_eval_v2"
+    CORPUS = ROOT / "medical-pdf" / "ingestion" / "index_v4" / "guidelines.metadata.jsonl"
+    SYSTEMS = {
+        "baseline": ROOT / "research" / "retrieval_cache_baseline.v2.json",
+        "improved": ROOT / "research" / "retrieval_cache.v2.json",
+    }
 N_CASES = 30
 SEED = 2026
 N_CHECK = 50
@@ -99,8 +111,10 @@ def make():
     (OUT_DIR / "pool.json").write_text(json.dumps({"seed": SEED, "systems": {k: str(v.relative_to(ROOT)) for k, v in SYSTEMS.items()}, "cases": pool}, indent=2) + "\n")
     html = RATER_HTML.replace("__DATA__", json.dumps(cases).replace("</", "<\\/"))
     (OUT_DIR / "rate.html").write_text(html)
+    # The same blinded data as rate.html (patients and shuffled passages, no system or rank).
+    (OUT_DIR / "blinded_cases.json").write_text(json.dumps(cases, indent=1) + "\n")
     total = sum(len(c["passages"]) for c in cases)
-    print(f"Wrote research/retrieval_eval/rate.html ({N_CASES} cases, {total} passages to rate) and pool.json")
+    print(f"Wrote {OUT_DIR.relative_to(ROOT)}/rate.html ({N_CASES} cases, {total} passages to rate), blinded_cases.json and pool.json")
 
 
 def dcg(gains):
@@ -110,6 +124,21 @@ def dcg(gains):
 def bootstrap_ci(values, n=2000, seed=42):
     rng = random.Random(seed)
     means = sorted(sum(rng.choice(values) for _ in values) / len(values) for _ in range(n))
+    return [means[int(0.025 * n)], means[int(0.975 * n)]]
+
+
+def bootstrap_ci_patient(values, subjects, n=2000, seed=42):
+    """Resample patients (with all their rated visits); the 30 visits come from fewer patients."""
+    groups = {}
+    for v, s in zip(values, subjects):
+        groups.setdefault(s, []).append(v)
+    clusters = list(groups.values())
+    rng = random.Random(seed)
+    means = []
+    for _ in range(n):
+        sample = [v for _ in clusters for v in rng.choice(clusters)]
+        means.append(sum(sample) / len(sample))
+    means.sort()
     return [means[int(0.025 * n)], means[int(0.975 * n)]]
 
 
@@ -140,14 +169,22 @@ def score(path):
             per_case[name]["meanRel"].append(sum(gains) / 5)
             per_case[name]["ndcg5"].append(dcg(gains) / ideal)
 
-    results = {"cases": len(pool["cases"]), "systems": {}}
+    cohort = {c["stayId"]: c["subjectId"] for c in json.loads(COHORT.read_text())["cases"]}
+    subjects = [cohort[c["stayId"]] for c in pool["cases"]]
+    results = {"cases": len(pool["cases"]), "patients": len(set(subjects)), "systems": {}}
     for name, metrics in per_case.items():
         results["systems"][name] = {
-            m: {"mean": sum(v) / len(v), "ci95": bootstrap_ci(v)} for m, v in metrics.items()
+            m: {"mean": sum(v) / len(v), "ci95": bootstrap_ci(v), "ci95Patient": bootstrap_ci_patient(v, subjects)}
+            for m, v in metrics.items()
         }
     diffs = [b - a for a, b in zip(per_case["baseline"]["p5"], per_case["improved"]["p5"])]
     better, worse, p = sign_test(diffs)
     results["signTestP5"] = {"improvedBetter": better, "baselineBetter": worse, "p": p}
+    per_patient = {}
+    for d, s in zip(diffs, subjects):
+        per_patient.setdefault(s, []).append(d)
+    better, worse, p = sign_test([sum(v) / len(v) for v in per_patient.values()])
+    results["signTestP5Patient"] = {"improvedBetter": better, "baselineBetter": worse, "p": p}
     (OUT_DIR / "results.json").write_text(json.dumps(results, indent=2) + "\n")
 
     print(f"Retrieval quality on {results['cases']} cases (95% bootstrap CI)")
@@ -155,7 +192,7 @@ def score(path):
         cells = "  ".join(f"{k} {v['mean']:.3f} [{v['ci95'][0]:.3f}, {v['ci95'][1]:.3f}]" for k, v in m.items())
         print(f"  {name:9} {cells}")
     print(f"  sign test on P@5: improved better in {better}, baseline better in {worse}, p = {p:.4f}")
-    print("Wrote research/retrieval_eval/results.json")
+    print(f"Wrote {OUT_DIR.relative_to(ROOT)}/results.json")
 
 
 def check():

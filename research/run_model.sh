@@ -3,8 +3,8 @@
 # given models, e.g. MedGemma 27B on the university GPU server. Safe to re-run:
 # each run resumes from its results file.
 #
-#   ollama pull medgemma:27b
-#   research/run_model.sh medgemma:27b
+#   ollama pull gemma3:27b && ollama pull medgemma:27b
+#   research/run_model.sh gemma3:27b medgemma:27b
 #
 # Needs data/mimic_ed_cohort.json and research/retrieval_cache.json from this
 # repository (the cached excerpts keep RAG identical across machines), and

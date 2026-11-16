@@ -106,14 +106,20 @@ export function describeAbnormalVitals(vitals: Record<string, number | boolean |
   const rr = num('respiratoryRate');
   const spo2 = num('oxygenSaturation');
   const sbp = num('systolicBp');
+  const dbp = num('diastolicBp');
   const temp = num('temperatureC');
   const pain = num('painScore');
   const out: string[] = [];
   if (hr !== undefined && hr > zone.hr) out.push(`tachycardia (heart rate ${hr})`);
   if (hr !== undefined && hr < 50) out.push(`bradycardia (heart rate ${hr})`);
   if (rr !== undefined && rr > zone.rr) out.push(`tachypnea (respiratory rate ${rr})`);
+  // Also named when a safety rule would fire (9 Nov 2026), so the retriever sees every vital sign the rules treat as critical.
+  if (rr !== undefined && rr <= 6) out.push(`very slow breathing (respiratory rate ${rr})`);
   if (spo2 !== undefined && spo2 < 92) out.push(`hypoxia (SpO2 ${spo2}%)`);
   if (sbp !== undefined && sbp < 90) out.push(`hypotension (systolic ${sbp})`);
+  if ((sbp !== undefined && sbp >= 220) || (dbp !== undefined && dbp >= 120)) {
+    out.push(`severe hypertension (blood pressure ${sbp ?? '?'}/${dbp ?? '?'})`);
+  }
   if (temp !== undefined && temp >= 38) out.push(`fever (${temp} C)`);
   if (temp !== undefined && temp <= 35) out.push(`hypothermia (${temp} C)`);
   if (pain !== undefined && pain >= 7) out.push(`severe pain (${pain}/10)`);

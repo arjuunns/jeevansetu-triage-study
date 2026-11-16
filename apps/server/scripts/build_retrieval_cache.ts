@@ -25,7 +25,11 @@ import {
  * Retrieve guideline excerpts once per cohort case and save them, so every
  * model and condition sees identical retrieval and the runs need no network.
  *
- *   pnpm mimic:retrieval-cache [--rerank=off] [--embedding=gemini]
+ *   pnpm mimic:retrieval-cache [--rerank=gemini|local|off] [--embedding=gemini]
+ *
+ * --rerank=local uses the bge-reranker-v2-m3 cross-encoder served by
+ * research/rerank_server.py, so no step needs a cloud service; its default
+ * output is research/retrieval_cache.local.json (the Gemini cache is kept).
  *
  * Pipeline (no evaluation labels are used anywhere):
  *   1. Corpus: chunks from medical-pdf/ingestion (minus excluded sources) plus
@@ -33,8 +37,10 @@ import {
  *   2. Query: buildRetrievalQuery (age, sex, expanded complaint, abnormal vitals).
  *   3. Hybrid candidates: dense cosine (bge-m3 via Ollama by default) and BM25,
  *      fused with reciprocal rank fusion; top 20 kept.
- *   4. Rerank: an LLM picks the 5 passages most useful for assigning an ESI
- *      level. Falls back to fusion order if the reranker fails (recorded).
+ *   4. Rerank: an LLM (gemini) picks the 5 passages most useful for assigning
+ *      an ESI level, or a local cross-encoder (local) scores every candidate and
+ *      the 5 highest are kept. Falls back to fusion order if the reranker fails
+ *      (recorded).
  *   5. Each excerpt carries the full chunk text (up to 2000 characters).
  */
 
@@ -56,12 +62,20 @@ const { values } = parseArgs({
     // Local by default: no API quota, and retrieval runs on the same machine as the triage model.
     embedding: { type: 'string', default: 'ollama' },
     'embedding-model': { type: 'string', default: 'bge-m3' },
-    rerank: { type: 'string', default: 'on' },
+    // gemini (cloud LLM, the original runs), local (cross-encoder, research/rerank_server.py) or off. "on" = gemini.
+    rerank: { type: 'string', default: 'gemini' },
     'rerank-model': { type: 'string', default: 'gemini-3.5-flash-lite' },
+    'rerank-url': { type: 'string', default: 'http://127.0.0.1:8765' },
     dataset: { type: 'string', default: DEFAULT_COHORT },
-    out: { type: 'string', default: DEFAULT_RETRIEVAL_CACHE },
+    out: { type: 'string' },
+    // Rebuilds the earlier retrieval (dense search only, 600-character excerpts) over --corpus, with
+    // the query strings stored in this earlier cache (research/retrieval_cache_baseline.json). Used for
+    // the retrieval-quality comparison after the corpus changed to the ESI v4 handbook (9 Nov 2026).
+    'baseline-queries': { type: 'string' },
   },
 });
+
+const BASELINE_EXCERPT_CHARS = 600;
 
 const excludedSources = values.exclude
   .split(',')
@@ -268,6 +282,41 @@ ${passages}`;
   return picked;
 }
 
+// ── local cross-encoder reranker ─────────────────────────────────────────────
+
+/** Text the cross-encoder scores: section title plus the excerpt the triage model would see. */
+function localRerankPassage(c: CorpusChunk): string {
+  return `${c.section_title ? `${c.section_title}\n` : ''}${c.content.slice(0, MAX_EXCERPT_CHARS)}`;
+}
+
+async function localRerankerInfo(): Promise<{ model: string; revision: string; device: string; max_length: number }> {
+  const res = await fetch(`${values['rerank-url']}/info`).catch(() => {
+    throw new Error(`Local reranker not reachable at ${values['rerank-url']}. Start it: research/.venv-rerank/bin/python research/rerank_server.py`);
+  });
+  if (!res.ok) throw new Error(`Local reranker /info (${res.status})`);
+  return (await res.json()) as { model: string; revision: string; device: string; max_length: number };
+}
+
+/** Candidate indices ordered by cross-encoder score; ties keep fusion order. */
+async function rerankLocal(query: string, candidates: CorpusChunk[]): Promise<{ order: number[]; scores: number[] }> {
+  const res = await fetch(`${values['rerank-url']}/rerank`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      query: `Emergency Severity Index (ESI) triage guidance for this patient: ${query}`,
+      documents: candidates.map(localRerankPassage),
+    }),
+  });
+  if (!res.ok) throw new Error(`Local rerank (${res.status}): ${await res.text()}`);
+  const { scores } = (await res.json()) as { scores: number[] };
+  if (!Array.isArray(scores) || scores.length !== candidates.length) throw new Error('Local rerank returned wrong number of scores');
+  const order = scores
+    .map((s, i) => ({ s, i }))
+    .sort((a, b) => b.s - a.s || a.i - b.i)
+    .map(({ i }) => i);
+  return { order, scores };
+}
+
 // ── main ─────────────────────────────────────────────────────────────────────
 
 function toCitation(c: CorpusChunk, score: number): GuidelineCitation {
@@ -283,9 +332,21 @@ function toCitation(c: CorpusChunk, score: number): GuidelineCitation {
 }
 
 async function main(): Promise<void> {
-  if (values.rerank !== 'on' && values.rerank !== 'off') throw new Error('--rerank must be "on" or "off"');
+  const rerankMode = values.rerank === 'on' ? 'gemini' : values.rerank;
+  if (rerankMode !== 'gemini' && rerankMode !== 'local' && rerankMode !== 'off') {
+    throw new Error('--rerank must be "gemini", "local" or "off"');
+  }
   if (values.embedding !== 'ollama' && values.embedding !== 'gemini') throw new Error('--embedding must be "ollama" or "gemini"');
-  const useRerank = values.rerank === 'on';
+  const useRerank = rerankMode !== 'off';
+  const outFile = values.out ?? (rerankMode === 'local' ? DEFAULT_RETRIEVAL_CACHE.replace(/\.json$/, '.local.json') : DEFAULT_RETRIEVAL_CACHE);
+  let rerankName = rerankMode === 'gemini' ? values['rerank-model'] : 'none';
+  let rerankInfo: Record<string, unknown> | null = null;
+  if (rerankMode === 'local') {
+    const info = await localRerankerInfo();
+    rerankName = `${info.model.split('/').pop()} (local cross-encoder)`;
+    rerankInfo = info;
+    console.log(`Local reranker: ${JSON.stringify(info)}`);
+  }
   const cases = loadCohort(values.dataset);
   const chunks = loadCorpus();
   const embed = cachedEmbedder(values.embedding === 'ollama' ? ollamaEmbedder(values['embedding-model']) : geminiEmbedder());
@@ -296,7 +357,50 @@ async function main(): Promise<void> {
 
   const entries: Record<string, unknown> = {};
   let rerankFallbacks = 0;
-  console.log(`Retrieving for ${cases.length} cases (hybrid${useRerank ? ` + ${values['rerank-model']} rerank` : ''})`);
+
+  if (values['baseline-queries']) {
+    const earlier = JSON.parse(fs.readFileSync(values['baseline-queries'], 'utf-8')).entries as Record<string, { query: string }>;
+    const outBaseline = path.resolve(values.out ?? path.join(REPO_ROOT, 'research/retrieval_cache_baseline.v2.json'));
+    console.log(`Earlier retrieval (dense only, stored queries) for ${cases.length} cases`);
+    for (const c of cases) {
+      const query = earlier[c.stayId]?.query;
+      if (query === undefined) throw new Error(`No stored query for stay ${c.stayId} in ${values['baseline-queries']}`);
+      const q = await embed.query(query);
+      const dense = vectors.map((v) => v.reduce((sum, x, k) => sum + x * q[k]!, 0));
+      entries[c.stayId] = {
+        query,
+        backend: 'local-dense-baseline',
+        reranker: 'none',
+        citations: ranked(dense)
+          .slice(0, TOP_K)
+          .map((d) => ({ ...toCitation(chunks[d]!, dense[d]!), snippet: chunks[d]!.content.slice(0, BASELINE_EXCERPT_CHARS) })),
+      };
+    }
+    fs.writeFileSync(
+      outBaseline,
+      JSON.stringify(
+        {
+          meta: {
+            createdAt: new Date().toISOString(),
+            dataset: path.relative(REPO_ROOT, path.resolve(values.dataset)),
+            corpus: path.relative(REPO_ROOT, path.resolve(values.corpus)),
+            excludedSources,
+            curatedChunks: esiGuideChunks().length,
+            corpusChunks: chunks.length,
+            embeddingModel: embed.name,
+            method: `earlier retrieval: dense search only, query strings from ${path.relative(REPO_ROOT, path.resolve(values['baseline-queries']))}, top ${TOP_K}, ${BASELINE_EXCERPT_CHARS}-character excerpts`,
+          },
+          entries,
+        },
+        null,
+        2,
+      ) + '\n',
+    );
+    console.log(`Wrote ${path.relative(REPO_ROOT, outBaseline)}`);
+    process.exit(0);
+  }
+
+  console.log(`Retrieving for ${cases.length} cases (hybrid${useRerank ? ` + ${rerankName} rerank` : ''})`);
 
   for (const [i, c] of cases.entries()) {
     const ctx = toTriageContext(c.input, runSafetyScreen(toSafetyInput(c.input), SAFETY_TIMESTAMP));
@@ -319,11 +423,18 @@ async function main(): Promise<void> {
 
     let order = candidates.map((_, k) => k);
     let reranker = 'none';
+    let rerankScores: number[] | undefined;
     if (useRerank) {
       try {
-        const picked = await withRetry(() => rerankWithGemini(query, candidates.map((d) => chunks[d]!)), 'rerank');
-        order = [...picked, ...order.filter((k) => !picked.includes(k))];
-        reranker = values['rerank-model'];
+        if (rerankMode === 'local') {
+          const r = await withRetry(() => rerankLocal(query, candidates.map((d) => chunks[d]!)), 'rerank');
+          order = r.order;
+          rerankScores = r.scores;
+        } else {
+          const picked = await withRetry(() => rerankWithGemini(query, candidates.map((d) => chunks[d]!)), 'rerank');
+          order = [...picked, ...order.filter((k) => !picked.includes(k))];
+        }
+        reranker = rerankName;
       } catch (err) {
         rerankFallbacks++;
         reranker = 'fallback-fusion-order';
@@ -337,10 +448,11 @@ async function main(): Promise<void> {
       backend: 'local-hybrid',
       reranker,
       citations: top.map((d) => toCitation(chunks[d]!, dense[d]!)),
-      candidates: candidates.map((d) => ({
+      candidates: candidates.map((d, k) => ({
         chunkId: chunks[d]!.id,
         denseRank: denseRank.indexOf(d) + 1 || null,
         bm25Rank: bm25Rank.indexOf(d) + 1 || null,
+        ...(rerankScores ? { rerankScore: rerankScores[k] } : {}),
       })),
     };
     if ((i + 1) % 25 === 0 || i + 1 === cases.length) console.log(`  ${i + 1}/${cases.length}`);
@@ -351,7 +463,7 @@ async function main(): Promise<void> {
     for (const cit of e.citations) sources[cit.guidelineId] = (sources[cit.guidelineId] ?? 0) + 1;
   }
 
-  const out = path.resolve(values.out);
+  const out = path.resolve(outFile);
   fs.mkdirSync(path.dirname(out), { recursive: true });
   fs.writeFileSync(
     out,
@@ -365,7 +477,8 @@ async function main(): Promise<void> {
           curatedChunks: esiGuideChunks().length,
           corpusChunks: chunks.length,
           embeddingModel: embed.name,
-          method: `dense + BM25, reciprocal rank fusion (k=${RRF_K}, depth ${FUSION_DEPTH}), top ${CANDIDATES} candidates${useRerank ? `, reranked by ${values['rerank-model']}` : ''}, top ${TOP_K} kept`,
+          method: `dense + BM25, reciprocal rank fusion (k=${RRF_K}, depth ${FUSION_DEPTH}), top ${CANDIDATES} candidates${useRerank ? `, reranked by ${rerankName}` : ''}, top ${TOP_K} kept`,
+          reranker: rerankMode === 'off' ? null : (rerankInfo ?? { model: values['rerank-model'], provider: 'Gemini API' }),
           maxExcerptChars: MAX_EXCERPT_CHARS,
           rerankFallbacks,
           retrievedSources: sources,

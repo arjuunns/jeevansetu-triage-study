@@ -29,17 +29,12 @@
     "benchmark:100": "pnpm --filter @jeevansetu/server benchmark:100",
     "benchmark:100:gemini": "pnpm --filter @jeevansetu/server benchmark:100:gemini",
     "start:aws": "node -e \"const { spawn } = require('child_process'); const isWin = process.platform === 'win32'; const shell = isWin ? 'powershell.exe' : 'bash'; const script = isWin ? './scripts/start_aws_services.ps1' : './scripts/start_aws_services.sh'; spawn(shell, [script], { stdio: 'inherit' });\"",
-    "stop:aws": "node -e \"const { spawn } = require('child_process'); const isWin = process.platform === 'win32'; const shell = isWin ? 'powershell.exe' : 'bash'; const script = isWin ? './scripts/stop_aws_services.ps1' : './scripts/stop_aws_services.sh'; spawn(shell, [script], { stdio: 'inherit' });\"",
-    "prepare": "husky"
+    "stop:aws": "node -e \"const { spawn } = require('child_process'); const isWin = process.platform === 'win32'; const shell = isWin ? 'powershell.exe' : 'bash'; const script = isWin ? './scripts/stop_aws_services.ps1' : './scripts/stop_aws_services.sh'; spawn(shell, [script], { stdio: 'inherit' });\""
   },
   "devDependencies": {
-    "@commitlint/cli": "^19.6.1",
-    "@commitlint/config-conventional": "^19.6.0",
-    "husky": "^9.1.7",
-    "lint-staged": "^15.3.0",
+    "@jeevansetu/config": "workspace:*",
     "prettier": "^3.4.2",
     "turbo": "^2.3.3",
-    "typescript": "^5.7.3",
-    "@jeevansetu/config": "workspace:*"
+    "typescript": "^5.7.3"
   }
 }

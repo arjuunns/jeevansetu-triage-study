@@ -60,8 +60,96 @@
         }
       ]
     },
-    "gemma3-12b": null,
-    "medgemma-27b": null
+    "gemma3-12b": {
+      "underTriagedOnlyWithNotice": 19,
+      "ofThoseReasoningSaysNoRedFlags": 5,
+      "patientsWithoutRule": 193,
+      "reasoningSaysNoRedFlagsWithNotice": 32,
+      "reasoningSaysNoRedFlagsWithoutNotice": 2,
+      "examples": [
+        {
+          "stayId": "30193781",
+          "nurseEsi": 3,
+          "withNotice": 4,
+          "noNotice": 3,
+          "reasoningWithNotice": "The patient presents with altered mental status (hallucinations) in the context of alcohol intoxication (ETOH). While the vital signs are relatively stable (HR 88, RR 16, SpO2 100%, BP 150/98, Temp 36.8), the presence of hallucinations warrants a HIGH triage level due to the potential for underlying medical or psychiatric complications, or severe withdrawal. The pain level of 6 suggests discomfort, which should be investigated.  Given the lack of recorded medical history, allergies, and medications, a thorough assessment is crucial.  The safety engine did not flag critical red flags, allowing for a standard assessment."
+        },
+        {
+          "stayId": "30390242",
+          "nurseEsi": 3,
+          "withNotice": 4,
+          "noNotice": 3,
+          "reasoningWithNotice": "The patient presents with significant abdominal and back pain (pain score of 9/10). While vital signs are generally stable (HR 78, RR 19, SpO2 100%, BP 151/75, Temp 37.1), the high pain score warrants further investigation to rule out serious underlying pathology. The safety engine did not flag any critical red flags, allowing for a standard assessment. Given the pain level and the presence of both abdominal and back pain, a moderate ESI level is assigned to ensure timely evaluation. Further investigation is needed to determine the cause of the pain."
+        },
+        {
+          "stayId": "30667562",
+          "nurseEsi": 2,
+          "withNotice": 3,
+          "noNotice": 1,
+          "reasoningWithNotice": "The patient presents with a confirmed T-spine fracture with displacement, which is inherently concerning and requires prompt evaluation and management. While the vital signs are relatively stable (SpO2 100%, HR 104, BP 146/94, Temp 37.5), the spinal injury necessitates a higher triage level. The absence of secondary symptoms does not negate the primary concern. Given the mechanism of injury and potential for neurological compromise, a HIGH severity level is warranted. The safety engine did not flag critical red flags, allowing for a standard assessment."
+        }
+      ]
+    },
+    "gemma3-27b": {
+      "underTriagedOnlyWithNotice": 19,
+      "ofThoseReasoningSaysNoRedFlags": 0,
+      "patientsWithoutRule": 193,
+      "reasoningSaysNoRedFlagsWithNotice": 4,
+      "reasoningSaysNoRedFlagsWithoutNotice": 0,
+      "examples": [
+        {
+          "stayId": "30324772",
+          "nurseEsi": 2,
+          "withNotice": 3,
+          "noNotice": 2,
+          "reasoningWithNotice": "The patient presents with chest pain radiating to the jaw and left arm. While vitals are largely stable, the bradycardia (HR 55 bpm) warrants further investigation, especially given the concerning symptom complex. The absence of recorded existing conditions, allergies, or medications limits the ability to refine the risk assessment. The safety engine did not detect critical red flags, but the symptom presentation is concerning for cardiac etiology. Therefore, a moderate severity and ESI level 3 are assigned."
+        },
+        {
+          "stayId": "30667562",
+          "nurseEsi": 2,
+          "withNotice": 3,
+          "noNotice": 2,
+          "reasoningWithNotice": "Patient presents with reported T-spine fracture displacement. While vitals are largely stable (SpO2 100%, RR 16, Temp 37.5), the systolic BP of 146 and diastolic of 94 are elevated, potentially due to pain or physiological response to injury. The reported fracture displacement warrants a higher level of assessment to rule out neurological compromise or other associated injuries. Given the mechanism of injury (fracture displacement) and lack of further information, a HIGH severity and ESI 3 are assigned. Further investigation is needed to determine the stability of the fracture and assess for any spinal cord involvement."
+        },
+        {
+          "stayId": "30952335",
+          "nurseEsi": 2,
+          "withNotice": 3,
+          "noNotice": 2,
+          "reasoningWithNotice": "The patient presents with hematemesis, which warrants further investigation to determine the source of bleeding. Vitals are currently stable (HR 90, RR 18, SpO2 98%, BP 110/68, Temp 36.7°C, Pain 0/10), and the safety engine did not detect critical red flags. However, hematemesis, even without other symptoms, requires prompt evaluation. Given the stable vitals, an ESI level of 3 is appropriate. Confidence is moderate due to the lack of past medical history, allergies, and medications."
+        }
+      ]
+    },
+    "medgemma-27b": {
+      "underTriagedOnlyWithNotice": 20,
+      "ofThoseReasoningSaysNoRedFlags": 2,
+      "patientsWithoutRule": 193,
+      "reasoningSaysNoRedFlagsWithNotice": 11,
+      "reasoningSaysNoRedFlagsWithoutNotice": 1,
+      "examples": [
+        {
+          "stayId": "30689793",
+          "nurseEsi": 2,
+          "withNotice": 3,
+          "noNotice": 1,
+          "reasoningWithNotice": "The patient is a 63-year-old female presenting with headache and suspected subarachnoid hemorrhage (SAH), transferred via ambulance. Her vital signs show elevated systolic blood pressure (168 mmHg) and diastolic blood pressure (82 mmHg), while other vitals (HR 84 bpm, RR 18/min, SpO2 95%, Temp 36.8°C) are within relatively normal limits. The pain score is 7/10. The safety engine did not detect critical red flags. Given the suspicion of SAH and elevated blood pressure, a moderate severity level and ESI 3 seem appropriate. The presentation warrants further investigation to confirm or rule out SAH and manage the hypertension."
+        },
+        {
+          "stayId": "31226423",
+          "nurseEsi": 3,
+          "withNotice": 4,
+          "noNotice": 3,
+          "reasoningWithNotice": "The patient is a 68-year-old female presenting with nausea and vomiting (N/V) via ambulance. Her vitals are stable: HR 93 bpm, RR 18/min, SpO2 98%, BP 135/72 mmHg, Temp 36.4°C, Pain 0/10. There are no reported red flags from the safety engine. The chief complaint is N/V, and no other symptoms are listed. Given the stable vitals and lack of other symptoms or red flags, this presentation is likely not immediately life-threatening. Nausea and vomiting can have many causes, ranging from mild gastroenteritis to more serious conditions. However, based solely on the provided information, a lower acuity level seems appropriate. The ESI level 4 is assigned for patients who require diagnostic tests and/or consultation, but are not in immediate danger."
+        },
+        {
+          "stayId": "32039794",
+          "nurseEsi": 2,
+          "withNotice": 3,
+          "noNotice": 2,
+          "reasoningWithNotice": "The patient is a 92-year-old female presenting with a suspected Deep Vein Thrombosis (DVT) and requiring transfer. Her vital signs show a significantly elevated systolic blood pressure (173 mmHg) and a low diastolic blood pressure (60 mmHg), resulting in a wide pulse pressure (113 mmHg). While her heart rate, respiratory rate, SpO2, and temperature are within relatively normal limits, the hypertension with a low diastolic pressure is concerning, especially in an elderly patient. The chief complaint is DVT, which itself can be a serious condition. The need for transfer suggests the current facility may not have the necessary resources or expertise to manage the DVT or associated complications. Given the age, hypertension, and suspected DVT, a moderate severity level seems appropriate. The ESI level is assigned as 3, indicating a potentially life-threatening condition requiring urgent evaluation but not immediate life-saving intervention."
+        }
+      ]
+    }
   },
   "predictedLevels": {
     "qwen2.5-7b__rag-off__safety-off": {
@@ -70,15 +158,17 @@
       "3": 138
     },
     "qwen2.5-7b__rag-off__safety-off__guide-on": {
-      "1": 196,
-      "2": 4,
-      "3": 7
+      "1": 179,
+      "2": 8,
+      "3": 19,
+      "5": 1
     },
     "qwen2.5-7b__rag-on__safety-off": {
-      "1": 39,
-      "2": 101,
-      "3": 64,
-      "5": 3
+      "1": 62,
+      "2": 58,
+      "3": 79,
+      "4": 1,
+      "5": 7
     },
     "llama3.1-8b__rag-off__safety-off": {
       "1": 12,
@@ -88,22 +178,77 @@
     },
     "llama3.1-8b__rag-off__safety-off__guide-on": {
       "1": 3,
-      "2": 9,
-      "3": 142,
-      "5": 53
+      "2": 15,
+      "3": 123,
+      "5": 66
     },
     "llama3.1-8b__rag-on__safety-off": {
+      "1": 12,
+      "2": 78,
+      "3": 107,
+      "4": 2,
+      "5": 8
+    },
+    "gemma3-12b__rag-off__safety-off": {
       "1": 7,
-      "2": 90,
-      "3": 106,
+      "3": 99,
+      "4": 100,
+      "5": 1
+    },
+    "gemma3-12b__rag-off__safety-off__guide-on": {
+      "1": 2,
+      "2": 114,
+      "3": 85,
+      "4": 4,
+      "5": 2
+    },
+    "gemma3-12b__rag-on__safety-off": {
+      "1": 1,
+      "2": 79,
+      "3": 111,
+      "4": 16
+    },
+    "gemma3-27b__rag-off__safety-off": {
+      "1": 9,
+      "2": 62,
+      "3": 132,
+      "4": 3,
+      "5": 1
+    },
+    "gemma3-27b__rag-off__safety-off__guide-on": {
+      "1": 4,
+      "2": 79,
+      "3": 115,
+      "4": 2,
+      "5": 7
+    },
+    "gemma3-27b__rag-on__safety-off": {
+      "1": 5,
+      "2": 88,
+      "3": 102,
+      "4": 8,
       "5": 4
     },
-    "gemma3-12b__rag-off__safety-off": null,
-    "gemma3-12b__rag-off__safety-off__guide-on": null,
-    "gemma3-12b__rag-on__safety-off": null,
-    "medgemma-27b__rag-off__safety-off": null,
-    "medgemma-27b__rag-off__safety-off__guide-on": null,
-    "medgemma-27b__rag-on__safety-off": null
+    "medgemma-27b__rag-off__safety-off": {
+      "1": 20,
+      "2": 40,
+      "3": 142,
+      "4": 5
+    },
+    "medgemma-27b__rag-off__safety-off__guide-on": {
+      "1": 12,
+      "2": 50,
+      "3": 130,
+      "4": 3,
+      "5": 12
+    },
+    "medgemma-27b__rag-on__safety-off": {
+      "1": 5,
+      "2": 80,
+      "3": 107,
+      "4": 8,
+      "5": 7
+    }
   },
   "esi2UnderTriagedTo": {
     "qwen2.5-7b__rag-off__safety-off": {
@@ -113,10 +258,12 @@
       "3": 76
     },
     "qwen2.5-7b__rag-on__safety-off": {
-      "3": 28
+      "3": 34,
+      "5": 3
     },
     "qwen2.5-7b__rag-on__safety-on": {
-      "3": 64
+      "3": 58,
+      "5": 2
     },
     "qwen2.5-7b__rag-off__safety-on__notice-off": {
       "3": 60
@@ -130,24 +277,468 @@
     },
     "llama3.1-8b__rag-on__safety-off": {
       "3": 53,
-      "5": 3
+      "4": 1,
+      "5": 4
     },
     "llama3.1-8b__rag-on__safety-on": {
-      "3": 60
+      "3": 64
     },
     "llama3.1-8b__rag-off__safety-on__notice-off": {
       "3": 82,
       "5": 3
     },
-    "gemma3-12b__rag-off__safety-off": null,
-    "gemma3-12b__rag-off__safety-on": null,
-    "gemma3-12b__rag-on__safety-off": null,
-    "gemma3-12b__rag-on__safety-on": null,
-    "gemma3-12b__rag-off__safety-on__notice-off": null,
-    "medgemma-27b__rag-off__safety-off": null,
-    "medgemma-27b__rag-off__safety-on": null,
-    "medgemma-27b__rag-on__safety-off": null,
-    "medgemma-27b__rag-on__safety-on": null,
-    "medgemma-27b__rag-off__safety-on__notice-off": null
+    "gemma3-12b__rag-off__safety-off": {
+      "3": 48,
+      "4": 46,
+      "5": 1
+    },
+    "gemma3-12b__rag-off__safety-on": {
+      "3": 47,
+      "4": 47
+    },
+    "gemma3-12b__rag-on__safety-off": {
+      "3": 45,
+      "4": 9
+    },
+    "gemma3-12b__rag-on__safety-on": {
+      "3": 58,
+      "4": 12
+    },
+    "gemma3-12b__rag-off__safety-on__notice-off": {
+      "3": 43,
+      "4": 48,
+      "5": 1
+    },
+    "gemma3-27b__rag-off__safety-off": {
+      "3": 62
+    },
+    "gemma3-27b__rag-off__safety-on": {
+      "3": 75
+    },
+    "gemma3-27b__rag-on__safety-off": {
+      "3": 51,
+      "4": 3
+    },
+    "gemma3-27b__rag-on__safety-on": {
+      "3": 65,
+      "4": 5,
+      "5": 1
+    },
+    "gemma3-27b__rag-off__safety-on__notice-off": {
+      "3": 61
+    },
+    "medgemma-27b__rag-off__safety-off": {
+      "3": 63,
+      "4": 1
+    },
+    "medgemma-27b__rag-off__safety-on": {
+      "3": 75,
+      "4": 2
+    },
+    "medgemma-27b__rag-on__safety-off": {
+      "3": 58,
+      "4": 1,
+      "5": 3
+    },
+    "medgemma-27b__rag-on__safety-on": {
+      "3": 61,
+      "4": 3,
+      "5": 4
+    },
+    "medgemma-27b__rag-off__safety-on__notice-off": {
+      "3": 63,
+      "4": 1
+    }
+  },
+  "urgencyWordsByLevel": {
+    "qwen2.5-7b__rag-off__safety-off": {
+      "3": {
+        "high": 9,
+        "moderate": 17,
+        "neither": 112
+      },
+      "1": {
+        "high": 4,
+        "moderate": 0,
+        "neither": 64
+      },
+      "2": {
+        "high": 0,
+        "moderate": 0,
+        "neither": 1
+      }
+    },
+    "qwen2.5-7b__rag-off__safety-off__guide-on": {
+      "3": {
+        "high": 0,
+        "moderate": 1,
+        "neither": 18
+      },
+      "1": {
+        "high": 18,
+        "moderate": 0,
+        "neither": 161
+      },
+      "2": {
+        "high": 0,
+        "moderate": 0,
+        "neither": 8
+      },
+      "5": {
+        "high": 1,
+        "moderate": 0,
+        "neither": 0
+      }
+    },
+    "qwen2.5-7b__rag-on__safety-off": {
+      "3": {
+        "high": 36,
+        "moderate": 10,
+        "neither": 33
+      },
+      "2": {
+        "high": 7,
+        "moderate": 3,
+        "neither": 48
+      },
+      "5": {
+        "high": 3,
+        "moderate": 0,
+        "neither": 4
+      },
+      "1": {
+        "high": 7,
+        "moderate": 0,
+        "neither": 55
+      },
+      "4": {
+        "high": 0,
+        "moderate": 0,
+        "neither": 1
+      }
+    },
+    "llama3.1-8b__rag-off__safety-off": {
+      "3": {
+        "high": 1,
+        "moderate": 9,
+        "neither": 172
+      },
+      "2": {
+        "high": 0,
+        "moderate": 0,
+        "neither": 6
+      },
+      "5": {
+        "high": 0,
+        "moderate": 0,
+        "neither": 7
+      },
+      "1": {
+        "high": 0,
+        "moderate": 0,
+        "neither": 12
+      }
+    },
+    "llama3.1-8b__rag-off__safety-off__guide-on": {
+      "5": {
+        "high": 3,
+        "moderate": 0,
+        "neither": 63
+      },
+      "3": {
+        "high": 1,
+        "moderate": 10,
+        "neither": 112
+      },
+      "2": {
+        "high": 0,
+        "moderate": 0,
+        "neither": 15
+      },
+      "1": {
+        "high": 0,
+        "moderate": 0,
+        "neither": 3
+      }
+    },
+    "llama3.1-8b__rag-on__safety-off": {
+      "3": {
+        "high": 3,
+        "moderate": 10,
+        "neither": 94
+      },
+      "2": {
+        "high": 5,
+        "moderate": 2,
+        "neither": 71
+      },
+      "5": {
+        "high": 0,
+        "moderate": 0,
+        "neither": 8
+      },
+      "1": {
+        "high": 1,
+        "moderate": 0,
+        "neither": 11
+      },
+      "4": {
+        "high": 0,
+        "moderate": 0,
+        "neither": 2
+      }
+    },
+    "gemma3-12b__rag-off__safety-off": {
+      "4": {
+        "high": 10,
+        "moderate": 57,
+        "neither": 33
+      },
+      "3": {
+        "high": 49,
+        "moderate": 16,
+        "neither": 34
+      },
+      "1": {
+        "high": 0,
+        "moderate": 0,
+        "neither": 7
+      },
+      "5": {
+        "high": 0,
+        "moderate": 0,
+        "neither": 1
+      }
+    },
+    "gemma3-12b__rag-off__safety-off__guide-on": {
+      "3": {
+        "high": 1,
+        "moderate": 2,
+        "neither": 82
+      },
+      "2": {
+        "high": 14,
+        "moderate": 0,
+        "neither": 100
+      },
+      "1": {
+        "high": 0,
+        "moderate": 0,
+        "neither": 2
+      },
+      "4": {
+        "high": 0,
+        "moderate": 1,
+        "neither": 3
+      },
+      "5": {
+        "high": 0,
+        "moderate": 0,
+        "neither": 2
+      }
+    },
+    "gemma3-12b__rag-on__safety-off": {
+      "3": {
+        "high": 16,
+        "moderate": 22,
+        "neither": 73
+      },
+      "2": {
+        "high": 49,
+        "moderate": 1,
+        "neither": 29
+      },
+      "4": {
+        "high": 3,
+        "moderate": 4,
+        "neither": 9
+      },
+      "1": {
+        "high": 0,
+        "moderate": 0,
+        "neither": 1
+      }
+    },
+    "gemma3-27b__rag-off__safety-off": {
+      "3": {
+        "high": 5,
+        "moderate": 26,
+        "neither": 101
+      },
+      "2": {
+        "high": 55,
+        "moderate": 0,
+        "neither": 7
+      },
+      "1": {
+        "high": 3,
+        "moderate": 0,
+        "neither": 6
+      },
+      "4": {
+        "high": 0,
+        "moderate": 0,
+        "neither": 3
+      },
+      "5": {
+        "high": 0,
+        "moderate": 0,
+        "neither": 1
+      }
+    },
+    "gemma3-27b__rag-off__safety-off__guide-on": {
+      "3": {
+        "high": 1,
+        "moderate": 0,
+        "neither": 114
+      },
+      "2": {
+        "high": 34,
+        "moderate": 0,
+        "neither": 45
+      },
+      "5": {
+        "high": 0,
+        "moderate": 0,
+        "neither": 7
+      },
+      "1": {
+        "high": 1,
+        "moderate": 0,
+        "neither": 3
+      },
+      "4": {
+        "high": 0,
+        "moderate": 0,
+        "neither": 2
+      }
+    },
+    "gemma3-27b__rag-on__safety-off": {
+      "3": {
+        "high": 19,
+        "moderate": 14,
+        "neither": 69
+      },
+      "2": {
+        "high": 50,
+        "moderate": 3,
+        "neither": 35
+      },
+      "1": {
+        "high": 0,
+        "moderate": 0,
+        "neither": 5
+      },
+      "4": {
+        "high": 2,
+        "moderate": 1,
+        "neither": 5
+      },
+      "5": {
+        "high": 1,
+        "moderate": 0,
+        "neither": 3
+      }
+    },
+    "medgemma-27b__rag-off__safety-off": {
+      "3": {
+        "high": 8,
+        "moderate": 12,
+        "neither": 122
+      },
+      "1": {
+        "high": 0,
+        "moderate": 0,
+        "neither": 20
+      },
+      "2": {
+        "high": 32,
+        "moderate": 0,
+        "neither": 8
+      },
+      "4": {
+        "high": 1,
+        "moderate": 0,
+        "neither": 4
+      }
+    },
+    "medgemma-27b__rag-off__safety-off__guide-on": {
+      "3": {
+        "high": 11,
+        "moderate": 0,
+        "neither": 119
+      },
+      "2": {
+        "high": 7,
+        "moderate": 0,
+        "neither": 43
+      },
+      "5": {
+        "high": 1,
+        "moderate": 0,
+        "neither": 11
+      },
+      "1": {
+        "high": 0,
+        "moderate": 0,
+        "neither": 12
+      },
+      "4": {
+        "high": 0,
+        "moderate": 0,
+        "neither": 3
+      }
+    },
+    "medgemma-27b__rag-on__safety-off": {
+      "3": {
+        "high": 30,
+        "moderate": 5,
+        "neither": 72
+      },
+      "2": {
+        "high": 28,
+        "moderate": 0,
+        "neither": 52
+      },
+      "4": {
+        "high": 5,
+        "moderate": 0,
+        "neither": 3
+      },
+      "1": {
+        "high": 1,
+        "moderate": 0,
+        "neither": 4
+      },
+      "5": {
+        "high": 4,
+        "moderate": 0,
+        "neither": 3
+      }
+    }
+  },
+  "guideReasons": {
+    "qwen2.5-7b": {
+      "esi1AnswersForNurseEsi2to5": 161,
+      "citeDangerZoneOrSeverePain": 79,
+      "citeDangerZone": 51,
+      "citeSeverePain": 37
+    },
+    "llama3.1-8b": {
+      "esi5Answers": 66,
+      "citeOneOrFewerResources": 22
+    },
+    "gemma3-12b": {
+      "answers": 207,
+      "citeDecisionPointsOrGuide": 200
+    },
+    "gemma3-27b": {
+      "answers": 207,
+      "citeDecisionPointsOrGuide": 199
+    },
+    "medgemma-27b": {
+      "answers": 207,
+      "citeDecisionPointsOrGuide": 207
+    }
   }
 }

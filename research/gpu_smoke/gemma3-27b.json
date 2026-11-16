@@ -1,0 +1,66 @@
+{
+  "config": {
+    "run": "gemma3-27b__rag-off__safety-off",
+    "mode": "llm",
+    "provider": "ollama",
+    "model": "gemma3:27b",
+    "useRag": false,
+    "useSafety": false,
+    "useGuide": false,
+    "temperature": 0,
+    "seed": 42,
+    "dataset": "data/mimic_ed_cohort.json",
+    "retrievalCache": null,
+    "retrievalCacheCreatedAt": null,
+    "esiGuideSha256": null,
+    "systemPromptSha256": "87295fd016286c01"
+  },
+  "startedAt": "2026-11-14T04:07:53.798Z",
+  "updatedAt": "2026-11-14T04:08:48.772Z",
+  "complete": true,
+  "counts": {
+    "total": 2,
+    "done": 2,
+    "ok": 2,
+    "fallback": 0,
+    "error": 0
+  },
+  "results": [
+    {
+      "stayId": "30094124",
+      "groundTruthEsi": 2,
+      "safetyTriggered": false,
+      "safetyRules": [],
+      "status": "ok",
+      "predictedEsi": 3,
+      "modelEsi": 3,
+      "safetyOverridden": false,
+      "retrievalBackend": "disabled",
+      "citationCount": 0,
+      "attempts": 1,
+      "latencyMs": 36245,
+      "model": "gemma3:27b",
+      "confidence": 0.6,
+      "recommendedDepartment": "Emergency Medicine",
+      "reasoning": "The patient presents with fatigue and a history of a fall. Vitals are largely within normal limits, with slightly elevated systolic blood pressure (138 mmHg). Fatigue following a fall warrants investigation to rule out underlying causes and complications from the fall. Given the lack of recorded medical history, allergies, or medications, a moderate level of caution is warranted. The ESI level is set to 3, indicating a need for further evaluation but not immediate resuscitation."
+    },
+    {
+      "stayId": "30193781",
+      "groundTruthEsi": 3,
+      "safetyTriggered": false,
+      "safetyRules": [],
+      "status": "ok",
+      "predictedEsi": 2,
+      "modelEsi": 2,
+      "safetyOverridden": false,
+      "retrievalBackend": "disabled",
+      "citationCount": 0,
+      "attempts": 1,
+      "latencyMs": 18726,
+      "model": "gemma3:27b",
+      "confidence": 0.7,
+      "recommendedDepartment": "Emergency Medicine / Psychiatry",
+      "reasoning": "Patient presents with a history of ETOH use and new-onset hallucinations. While vitals are largely stable (HR 88, RR 16, SpO2 100, Temp 36.8), the elevated blood pressure (150/98) warrants attention. Hallucinations, in the context of ETOH use, could indicate alcohol withdrawal, delirium tremens, or another underlying psychiatric or medical condition. Given the potential for rapid deterioration with alcohol withdrawal syndromes, a higher triage category is appropriate. The pain score of 6 is noted but less concerning than the acute altered mental status. Further investigation is needed to determine the etiology of the hallucinations and rule out life-threatening conditions."
+    }
+  ]
+}

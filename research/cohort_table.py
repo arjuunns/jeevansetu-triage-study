@@ -20,6 +20,7 @@ VITALS = [
     ("respiratoryRate", "Respiratory rate (/min)"),
     ("oxygenSaturation", "SpO$_2$ (\\%)"),
     ("systolicBp", "Systolic BP (mmHg)"),
+    ("diastolicBp", "Diastolic BP (mmHg)"),
     ("temperatureC", "Temperature ($^\\circ$C)"),
 ]
 ARRIVAL = [("AMBULANCE", "Ambulance"), ("WALK IN", "Walk in"), ("UNKNOWN", "Unknown"), ("OTHER", "Other")]

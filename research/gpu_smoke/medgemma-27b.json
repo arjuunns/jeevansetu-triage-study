@@ -1,0 +1,66 @@
+{
+  "config": {
+    "run": "medgemma-27b__rag-off__safety-off",
+    "mode": "llm",
+    "provider": "ollama",
+    "model": "medgemma:27b",
+    "useRag": false,
+    "useSafety": false,
+    "useGuide": false,
+    "temperature": 0,
+    "seed": 42,
+    "dataset": "data/mimic_ed_cohort.json",
+    "retrievalCache": null,
+    "retrievalCacheCreatedAt": null,
+    "esiGuideSha256": null,
+    "systemPromptSha256": "87295fd016286c01"
+  },
+  "startedAt": "2026-11-14T11:44:45.455Z",
+  "updatedAt": "2026-11-14T11:45:40.241Z",
+  "complete": true,
+  "counts": {
+    "total": 2,
+    "done": 2,
+    "ok": 2,
+    "fallback": 0,
+    "error": 0
+  },
+  "results": [
+    {
+      "stayId": "30094124",
+      "groundTruthEsi": 2,
+      "safetyTriggered": false,
+      "safetyRules": [],
+      "status": "ok",
+      "predictedEsi": 3,
+      "modelEsi": 3,
+      "safetyOverridden": false,
+      "retrievalBackend": "disabled",
+      "citationCount": 0,
+      "attempts": 1,
+      "latencyMs": 25689,
+      "model": "medgemma:27b",
+      "confidence": 0.7,
+      "recommendedDepartment": "Emergency Department",
+      "reasoning": "The patient is a 61-year-old male presenting with fatigue and a recent fall, arriving by ambulance. Vitals are largely stable (HR 80, RR 18, SpO2 99, BP 138/78, Temp 36.3). Pain is reported as 4/10. The fall and fatigue warrant further investigation, especially given the age. While vitals are stable, the mechanism (fall) and symptom (fatigue) suggest potential underlying issues that need evaluation beyond immediate life threats. The ESI level is set to 3 based on the need for evaluation but not immediate life-saving intervention."
+    },
+    {
+      "stayId": "30193781",
+      "groundTruthEsi": 3,
+      "safetyTriggered": false,
+      "safetyRules": [],
+      "status": "ok",
+      "predictedEsi": 3,
+      "modelEsi": 3,
+      "safetyOverridden": false,
+      "retrievalBackend": "disabled",
+      "citationCount": 0,
+      "attempts": 1,
+      "latencyMs": 29095,
+      "model": "medgemma:27b",
+      "confidence": 0.7,
+      "recommendedDepartment": "Emergency Medicine / Psychiatry",
+      "reasoning": "The patient is a 53-year-old female presenting with ETOH (alcohol) use and hallucinations. Her vital signs show elevated blood pressure (150/98 mmHg) but are otherwise stable (HR 88, RR 16, SpO2 100, Temp 36.8). The pain score is 6. The primary symptom is ETOH, and a significant secondary symptom is hallucinations. Hallucinations can be associated with alcohol withdrawal, alcohol intoxication, or other underlying medical/psychiatric conditions. Elevated blood pressure could be related to stress, pain, or underlying hypertension exacerbated by alcohol use. Given the presence of hallucinations, which could indicate a serious underlying condition like delirium tremens or another psychiatric/neurological issue, a moderate severity level and ESI 3 seem appropriate. Further evaluation is needed to determine the cause of hallucinations and assess for withdrawal symptoms."
+    }
+  ]
+}

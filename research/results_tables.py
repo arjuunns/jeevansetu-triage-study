@@ -20,7 +20,9 @@ MODELS = [
     ("qwen2.5:7b", "Qwen2.5 7B"),
     ("llama3.1:8b", "Llama 3.1 8B"),
     ("gemma3:12b", "Gemma 3 12B"),
-    ("medgemma:27b", "MedGemma 27B"),  # mid-sized medical model, run on the university GPU
+    # Run on the GPU server (NVIDIA H100, MIG 3g.40gb slice), same Ollama version, prompts and settings: research/gpu_run_info.json.
+    ("gemma3:27b", "Gemma 3 27B"),
+    ("medgemma:27b", "MedGemma 27B"),
 ]
 
 # (label in the tables, label used by analyze.py, (useRag, useSafety, useGuide, safetyNotice))
@@ -48,6 +50,7 @@ MARKS = {  # black-and-white markers, one per model
     "qwen2.5:7b": ("circle", "fill=black", "draw=black"),
     "llama3.1:8b": ("rectangle", "fill=white", "draw=black, thick"),
     "gemma3:12b": ("regular polygon, regular polygon sides=3", "fill=gray!50", "draw=black"),
+    "gemma3:27b": ("regular polygon, regular polygon sides=3", "fill=black", "draw=black"),
     "medgemma:27b": ("diamond", "fill=white", "draw=black, thick"),
 }
 
@@ -85,6 +88,22 @@ PRIOR = [
         "Hong Kong triage guidelines (5 levels); consensus of blinded senior triage nurses",
         "QWK 0.801 without and 0.902 with retrieval; accuracy 0.542 and 0.802",
     ),
+    # Lee et al. (arXiv 2504.16273v2, full text read 15 Nov 2026): Sections 3.1 and 3.3, Table 1 (MIMIC columns).
+    (
+        "Lee et al.~\\cite{leePromisingCapabilityPervasive2025}",
+        "GPT-4o, alone and with 40 similar training patients as examples; o3-mini; fine-tuned Llama 3.1 8B",
+        "1{,}000 MIMIC-IV-ED test visits (training: 10{,}000 earlier visits); vital signs, pain score and chief complaint",
+        "ESI by the triage nurse",
+        "Accuracy 0.568 (GPT-4o), 0.678 with similar patients, 0.637 (fine-tuned Llama 3.1 8B), 0.491 (o3-mini); logistic regression 0.564",
+    ),
+    # Zhang et al. (arXiv 2608.10273v1, full text read 14 Nov 2026): Methods (cohort, Table 1) and Table 2.
+    (
+        "Zhang et al.~\\cite{zhangLocallyDeployableSmall2026}",
+        "Claude Haiku 4.5 and Sonnet 4.5; eight open models of 1 to 8 billion parameters, zero-shot and fine-tuned",
+        "2{,}083 MIMIC-IV-ED cases (20\\% for testing); history of present illness from the discharge notes, demographics and triage vital signs",
+        "ESI by the triage nurse",
+        "Exact 62.68\\% (Sonnet 4.5), 57.89\\% (Haiku 4.5), 51.91\\% (Qwen2.5 7B), 53.59\\% (Llama 3.1 8B); up to 65.98\\% after fine-tuning",
+    ),
 ]
 
 
@@ -106,7 +125,8 @@ def rules_only(summary):
 
 def pct(m, ci=True):
     v = f"{100 * m['value']:.1f}"
-    return f"{v} {{\\scriptsize({100 * m['ci95'][0]:.1f}--{100 * m['ci95'][1]:.1f})}}" if ci else v
+    lo, hi = m["ci95Patient"]  # patient-level bootstrap: the 207 visits come from 56 patients
+    return f"{v} {{\\scriptsize({100 * lo:.1f}--{100 * hi:.1f})}}" if ci else v
 
 
 def signed(v, fmt):
@@ -114,7 +134,7 @@ def signed(v, fmt):
 
 
 def kappa(m):
-    lo, hi = m["ci95"]
+    lo, hi = m["ci95Patient"]
     return f"{signed(m['value'], '.2f')} {{\\scriptsize({signed(lo, '.2f')} to {signed(hi, '.2f')})}}"
 
 
@@ -193,7 +213,7 @@ def comparisons(summary):
                 continue
             u, e = c["underTriage"], c["exact"]
             rows.append(
-                f"{pair} & {100 * u['a']:.1f} & {100 * u['b']:.1f} & {pval(u['pHolm'])} & {100 * e['a']:.1f} & {100 * e['b']:.1f} & {pval(e['pHolm'])} \\\\"
+                f"{pair} & {100 * u['a']:.1f} & {100 * u['b']:.1f} & {pval(u['pPatientHolm'])} & {100 * e['a']:.1f} & {100 * e['b']:.1f} & {pval(e['pPatientHolm'])} \\\\"
             )
         if i < len(MODELS) - 1:
             rows.append("\\midrule")
@@ -202,8 +222,9 @@ def comparisons(summary):
         "\\cmidrule(lr){2-4}\\cmidrule(l){5-7}\nComparison (A vs B) & A & B & $p$ & A & B & $p$"
     )
     note = (
-        "Exact McNemar test on the same 207 patients; $p$ values Holm-adjusted within each model and measure, "
-        "with the exploratory comparisons as a separate family. " + NOTE_A
+        "Paired permutation test with the patient as the unit (207 visits from 56 patients); $p$ values Holm-adjusted within each model and measure, "
+        "with the exploratory comparisons as a separate family (9 planned and 2 exploratory comparisons per model and measure). "
+        "Unadjusted $p$ values are in research/results/summary.json (comparisons, pPatient). " + NOTE_A
     )
     return table("table*", "tab:comparisons", "Paired comparisons between setups.", "lcccccc", head, "\n".join(rows), note)
 
@@ -238,7 +259,7 @@ def prior_studies(summary):
     col = lambda w: f">{{\\raggedright\\arraybackslash}}p{{{w}\\linewidth}}"
     colspec = "".join(col(w) for w in (0.10, 0.19, 0.21, 0.14, 0.30))
     note = (
-        "QWK: quadratic-weighted kappa. Exact or accuracy: share of patients given the same level as the reference. "
+        "QWK: quadratic-weighted kappa. Exact or accuracy: share of visits or cases given the same level as the reference. "
         "For this study, ``alone'' is the LLM-only setup and ``best'' the highest value over the six main setups in Table~\\ref{tab:main}."
     )
     return table(
@@ -258,7 +279,7 @@ def effect_values(summary, model, a, b):
     rb = find(summary, model, next(k for _, l, k in SETUPS if l == b))
     sens = 100 * (rb["metrics"]["highAcuitySensitivity"]["value"] - ra["metrics"]["highAcuitySensitivity"]["value"])
     u = c["underTriage"]
-    return {"under": 100 * (u["b"] - u["a"]), "pHolm": u["pHolm"], "sens": sens}
+    return {"under": 100 * (u["b"] - u["a"]), "pHolm": u["pPatientHolm"], "sens": sens}
 
 
 def tick(t):
@@ -331,9 +352,9 @@ def components(summary):
         + "\\begin{figure}[t]\n\\centering\n\\begin{tikzpicture}\n"
         + "\n".join(lines)
         + "\n\\end{tikzpicture}\n"
-        "\\caption{Change when each component is added, for each model (B minus A, same 207 patients). "
+        "\\caption{Change when each component is added, for each model (B minus A, same 207 visits). "
         "``With RAG'' and ``with guide'' add the safety rules to a setup that already has that component. "
-        "*Holm-adjusted McNemar $p<0.05$ for under-triage. $^{a}$Exploratory.}\n"
+        "*Holm-adjusted $p<0.05$ for under-triage (patient-level permutation test). $^{a}$Exploratory.}\n"
         "\\label{fig:components}\n\\end{figure}\n"
     )
 
@@ -342,7 +363,7 @@ def validity_note(summary):
     done = [r for r in summary["runs"] if r["complete"] and r["config"].get("mode") == "llm"]
     bad = sum(r["fallback"] + r["error"] for r in done)
     if bad == 0:
-        return f"All {len(done)} finished LLM runs had valid model output for all 207 patients (no fallback or error cases)."
+        return f"All {len(done)} finished LLM runs had valid model output for all 207 visits (no fallback or error cases)."
     return f"Fallback or error cases across the {len(done)} finished LLM runs: {bad}."
 
 
@@ -350,13 +371,97 @@ def admitted_n(summary):
     return rules_only(summary)["admitted"]["n"]
 
 
+def level_row(summary, model, label, key):
+    r = find(summary, model, key)
+    if r is None:
+        return f"\\quad {label} & \\multicolumn{{8}}{{c}}{{{PENDING}}} \\\\"
+    pred = " & ".join(str(r["predictedLevels"][str(k)]) for k in range(1, 6))
+    exact = " & ".join(f"{100 * r['perLevel'][str(k)]['exact']:.1f}" for k in (1, 2, 3))
+    return f"\\quad {label} & {pred} & {exact} \\\\"
+
+
+def levels(summary):
+    """Predicted-level counts and exact agreement within each nurse level (the confusion matrices are in summary.json)."""
+    rows = []
+    rules = rules_only(summary)
+    pred = " & ".join(str(rules["predictedLevels"][str(k)]) for k in range(1, 6))
+    exact = " & ".join(f"{100 * rules['perLevel'][str(k)]['exact']:.1f}" for k in (1, 2, 3))
+    rows.append(f"Rules only & {pred} & {exact} \\\\")
+    nurse = " & ".join(str(sum(rules["confusion"][str(t)][str(p)] for p in range(1, 6))) for t in range(1, 6))
+    rows.insert(0, f"Nurse (reference) & {nurse} & & & \\\\")
+    rows.append("\\midrule")
+    for i, (model, name) in enumerate(MODELS):
+        rows.append(f"\\multicolumn{{9}}{{@{{}}l}}{{\\emph{{{name}}}}} \\\\")
+        for label, _, key in SETUPS:
+            rows.append(level_row(summary, model, label, key))
+        if i < len(MODELS) - 1:
+            rows.append("\\midrule")
+    head = (
+        "& \\multicolumn{5}{c}{Visits given each level} & \\multicolumn{3}{c}{Exact within nurse level (\\%)} \\\\\n"
+        "\\cmidrule(lr){2-6}\\cmidrule(l){7-9}\nSetup & ESI 1 & ESI 2 & ESI 3 & ESI 4 & ESI 5 & ESI 1 & ESI 2 & ESI 3"
+    )
+    return table(
+        "table*", "tab:levels", "How each setup spread its answers over the five levels, and exact agreement within each nurse level.",
+        "lcccccccc", head, "\n".join(rows),
+        "Nurse levels: 18 visits at ESI 1, 97 at ESI 2, 90 at ESI 3, 2 at ESI 4 and none at ESI 5, so exact agreement is shown only for ESI 1 to 3. "
+        "Full confusion matrices for every run are in the code repository (research/results/summary.json). " + NOTE_A,
+    )
+
+
+BASELINES = ROOT / "research" / "results" / "baselines_subgroups.json"
+
+
+def baselines(summary):
+    """Non-LLM baselines (research/baselines_subgroups.py) next to the best LLM setup of each model."""
+    b = json.loads(BASELINES.read_text())
+    dash = "--"
+
+    def row(label, m, ci=True):
+        get = lambda k: pct(m[k], ci) if k in m else dash
+        q = kappa(m["quadraticKappa"]) if "quadraticKappa" in m else dash
+        return f"{label} & {get('exact')} & {get('underTriage')} & {q} & {get('highAcuitySensitivity')} & {get('highAcuitySpecificity')} \\\\"
+
+    rows = [row("Rules only (safety engine and vital-sign rule)", rules_only(summary)["metrics"])]
+    news = b["news"]["NEWS >= 5"]
+    rows.append(row(f"NEWS $\\geq$ 5 (flags {news['flagged']} visits)", news))
+    rows.append(row("Always ESI 2", b["ml"]["Always ESI 2"]["metrics"]))
+    rows.append(row("Logistic regression$^{a}$", b["ml"]["Logistic regression"]["metrics"]))
+    rows.append(row("Gradient boosting$^{a}$", b["ml"]["Gradient boosting"]["metrics"]))
+    rows.append("\\midrule")
+    rows.append("\\multicolumn{6}{@{}l}{\\emph{Best LLM setup of each model (highest exact agreement, Table~\\ref{tab:main})}} \\\\")
+    for model, name in MODELS:
+        runs = [(label, find(summary, model, key)) for label, _, key in SETUPS if key[3]]
+        runs = [(label, r) for label, r in runs if r]
+        if not runs:
+            rows.append(f"\\quad {name} & \\multicolumn{{5}}{{c}}{{{PENDING}}} \\\\")
+            continue
+        label, best = max(runs, key=lambda lr: lr[1]["metrics"]["exact"]["value"])
+        rows.append(row(f"\\quad {name}, {label}", best["metrics"]))
+    # Added 15 Nov 2026 (review): the retrieval setup of each model, the main setup that lowered under-triage most often.
+    rows.append("\\multicolumn{6}{@{}l}{\\emph{Retrieval setup of each model (+ RAG)}} \\\\")
+    for model, name in MODELS:
+        rag = find(summary, model, (True, False, False, True))
+        rows.append(row(f"\\quad {name}, + RAG", rag["metrics"]) if rag else f"\\quad {name} & \\multicolumn{{5}}{{c}}{{{PENDING}}} \\\\")
+    head = "Method & Exact & Under-triage & QWK & Sensitivity & Specificity"
+    note = (
+        "Same 207 visits and nurse levels as Table~\\ref{tab:main} (\\%, 95\\% CI from a bootstrap over patients); sensitivity and "
+        "specificity for ESI 1 or 2. NEWS: National Early Warning Score from the triage vital signs (level of consciousness and oxygen "
+        "use are not recorded at triage and score 0), used only to flag high-priority visits. Always ESI 2 counts as a true positive for "
+        "every ESI 1 visit in sensitivity, but under-triages all 18 ESI 1 visits by one level. $^{a}$From the same triage information as "
+        "the LLMs (age, sex, arrival, vital signs, pain score and the words of the main complaint), with out-of-fold predictions from "
+        "5-fold cross-validation grouped by patient, so the model is always tested on patients it was not trained on."
+    )
+    return table("table*", "tab:baselines", "Non-LLM baselines.", "lccccc", head, "\n".join(rows), note)
+
+
 def main():
     summary = json.loads(SUMMARY.read_text())
+    (TABLES / "baselines.tex").write_text(baselines(summary))
     TABLES.mkdir(exist_ok=True)
     main_head = "Setup & Exact & Within one & Under-triage & Over-triage & QWK"
     (TABLES / "main_results.tex").write_text(
         table(
-            "table*", "tab:main", "Agreement with the triage nurse's ESI level (\\%, with 95\\% bootstrap CI). QWK: quadratic-weighted kappa.",
+            "table*", "tab:main", "Agreement with the triage nurse's ESI level (\\%, with 95\\% CI from a bootstrap over patients). QWK: quadratic-weighted kappa.",
             "lccccc", main_head, body(summary, main_row, 5),
             validity_note(summary) + " " + NOTE_A,
         )
@@ -367,16 +472,17 @@ def main():
     (TABLES / "high_acuity.tex").write_text(
         table(
             "table*", "tab:acuity",
-            "Finding high-priority patients (ESI 1 or 2 against 3 to 5, \\%, with 95\\% CI for sensitivity and specificity).",
+            "Finding high-priority visits (ESI 1 or 2 against 3 to 5, \\%, with 95\\% CI for sensitivity and specificity).",
             "lcccccccc", acuity_head, body(summary, acuity_row, 8),
-            f"Severe UT: under-triage by two or more levels. UT, admitted: under-triage among the {admitted_n(summary)} patients later admitted. "
-            "Missed: admitted ESI 1 or 2 patients rated ESI 3 or lower. ECE: expected calibration error of the model's stated confidence. " + NOTE_A,
+            f"Severe UT: under-triage by two or more levels. UT, admitted: under-triage among the {admitted_n(summary)} visits that ended in admission. "
+            "Missed: admitted visits at nurse ESI 1 or 2 rated ESI 3 or lower. ECE: expected calibration error of the model's stated confidence. " + NOTE_A,
         )
     )
     (TABLES / "comparisons.tex").write_text(comparisons(summary))
     (TABLES / "prior_studies.tex").write_text(prior_studies(summary))
+    (TABLES / "levels.tex").write_text(levels(summary))
     (FIGURES / "components.tex").write_text(components(summary))
-    print("wrote paper/tables/main_results.tex, high_acuity.tex, comparisons.tex, prior_studies.tex and paper/figures/components.tex")
+    print("wrote paper/tables/main_results.tex, high_acuity.tex, comparisons.tex, prior_studies.tex, levels.tex and paper/figures/components.tex")
 
 
 if __name__ == "__main__":

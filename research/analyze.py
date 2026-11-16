@@ -8,9 +8,14 @@ and research/results/summary.md.
 
   * Headline metrics use cases with status "ok" (a valid model output).
     Fallback and error cases are counted per run, never dropped silently.
-  * 95% confidence intervals: percentile bootstrap over cases.
-  * Paired comparisons: exact McNemar test on cases that are "ok" in both runs,
-    with Holm-adjusted p values within each model and metric (pre-specified and
+  * 95% confidence intervals: percentile bootstrap over cases ("ci95") and,
+    because the 207 visits come from only 56 patients (one has 23 visits), a
+    patient-level bootstrap that resamples patients with all their visits
+    ("ci95Patient").
+  * Paired comparisons: exact McNemar test on cases that are "ok" in both runs
+    ("p"), and a patient-level paired permutation test ("pPatient") that swaps
+    the two runs' outcomes for all of a patient's visits together. Holm-adjusted
+    p values for both, within each model and metric (pre-specified and
     exploratory comparisons are separate families).
   * Under-triage = predicted ESI number higher (less urgent) than the reference.
   * High-acuity detection treats ESI 1-2 as positive and ESI 3-5 as negative.
@@ -28,6 +33,7 @@ ROOT = Path(__file__).resolve().parent.parent
 RESULTS = ROOT / "research" / "results"
 COHORT = ROOT / "data" / "mimic_ed_cohort.json"
 BOOTSTRAP_SAMPLES = 2000
+PERMUTATIONS = 20000
 SEED = 42
 LEVELS = [1, 2, 3, 4, 5]
 
@@ -173,6 +179,48 @@ def bootstrap_ci(pairs, fn):
     return [stats[int(0.025 * len(stats))], stats[min(len(stats) - 1, int(0.975 * len(stats)))]]
 
 
+def bootstrap_ci_patient(pairs, subjects, fn):
+    """Percentile bootstrap that resamples patients, keeping all of each patient's visits."""
+    groups = defaultdict(list)
+    for pair, subject in zip(pairs, subjects):
+        groups[subject].append(pair)
+    clusters = list(groups.values())
+    rng = random.Random(SEED)
+    k = len(clusters)
+    stats = []
+    for _ in range(BOOTSTRAP_SAMPLES):
+        sample = [pair for _ in range(k) for pair in clusters[rng.randrange(k)]]
+        value = fn(sample)
+        if value is not None:
+            stats.append(value)
+    if not stats:
+        return None
+    stats.sort()
+    return [stats[int(0.025 * len(stats))], stats[min(len(stats) - 1, int(0.975 * len(stats)))]]
+
+
+def paired_permutation_patient(a, b, subjects):
+    """Two-sided paired permutation test with patients as the unit.
+
+    Under the null the two runs are exchangeable within each patient, so each
+    patient's summed difference (a - b over their visits) keeps or flips its sign.
+    Patients whose visits never differ contribute nothing.
+    """
+    diff = defaultdict(int)
+    for x, y, subject in zip(a, b, subjects):
+        diff[subject] += int(x) - int(y)
+    d = [v for v in diff.values() if v != 0]
+    observed = abs(sum(d))
+    if not d:
+        return 1.0
+    rng = random.Random(SEED)
+    hits = 0
+    for _ in range(PERMUTATIONS):
+        if abs(sum(v if rng.random() < 0.5 else -v for v in d)) >= observed:
+            hits += 1
+    return (hits + 1) / (PERMUTATIONS + 1)
+
+
 def mcnemar_exact(a, b):
     """Two-sided exact McNemar test on paired binary outcomes."""
     only_a = sum(x and not y for x, y in zip(a, b))
@@ -194,7 +242,7 @@ def load_runs():
     labels = {sid: c["label"]["esi"] for sid, c in load_cohort().items()}
     runs = []
     for path in sorted(RESULTS.glob("*.json")):
-        if path.name in ("summary.json", "failure_examples.json"):
+        if path.name in ("summary.json", "failure_examples.json", "baselines_subgroups.json"):
             continue
         run = json.loads(path.read_text())
         for r in run["results"]:
@@ -238,8 +286,16 @@ def summarise_run(run, cohort):
     }
     if not pairs:
         return out
+    subjects = [cohort[r["stayId"]]["subjectId"] for r in ok]
+    out["patients"] = len(set(subjects))
     for name, fn in METRICS.items():
-        out["metrics"][name] = {"value": fn(pairs), "ci95": bootstrap_ci(pairs, fn)}
+        out["metrics"][name] = {
+            "value": fn(pairs),
+            "ci95": bootstrap_ci(pairs, fn),
+            "ci95Patient": bootstrap_ci_patient(pairs, subjects, fn),
+        }
+    out["confusion"] = {str(t): {str(p): sum(1 for x in pairs if x == (t, p)) for p in LEVELS} for t in LEVELS}
+    out["predictedLevels"] = {str(p): sum(1 for _, q in pairs if q == p) for p in LEVELS}
     for level in LEVELS:
         lp = [(t, p) for t, p in pairs if t == level]
         if lp:
@@ -247,7 +303,7 @@ def summarise_run(run, cohort):
     return out
 
 
-def paired_comparisons(runs):
+def paired_comparisons(runs, cohort):
     by_model = defaultdict(dict)
     rules = None
     for run in runs:
@@ -261,7 +317,8 @@ def paired_comparisons(runs):
         a = {r["stayId"]: r for r in run_a["results"] if r["status"] == "ok"}
         b = {r["stayId"]: r for r in run_b["results"] if r["status"] == "ok"}
         shared = sorted(a.keys() & b.keys())
-        row = {"model": model, "a": name_a, "b": name_b, "n": len(shared)}
+        subjects = [cohort[s]["subjectId"] for s in shared]
+        row = {"model": model, "a": name_a, "b": name_b, "n": len(shared), "patients": len(set(subjects))}
         for metric, test in (("underTriage", lambda r: r["predictedEsi"] > r["groundTruthEsi"]),
                              ("exact", lambda r: r["predictedEsi"] == r["groundTruthEsi"])):
             xa = [test(a[s]) for s in shared]
@@ -273,6 +330,7 @@ def paired_comparisons(runs):
                 "onlyA": only_a,
                 "onlyB": only_b,
                 "p": p,
+                "pPatient": paired_permutation_patient(xa, xb, subjects),
             }
         return row
 
@@ -295,6 +353,8 @@ def paired_comparisons(runs):
         for metric in ("underTriage", "exact"):
             for row, adjusted in zip(family, holm([r[metric]["p"] for r in family])):
                 row[metric]["pHolm"] = adjusted
+            for row, adjusted in zip(family, holm([r[metric]["pPatient"] for r in family])):
+                row[metric]["pPatientHolm"] = adjusted
     return rows
 
 
@@ -485,9 +545,12 @@ def main():
     cohort = load_cohort()
     summary = {
         "bootstrapSamples": BOOTSTRAP_SAMPLES,
+        "permutations": PERMUTATIONS,
         "seed": SEED,
+        "cohortVisits": len(cohort),
+        "cohortPatients": len({c["subjectId"] for c in cohort.values()}),
         "runs": [summarise_run(r, cohort) for r in runs],
-        "comparisons": paired_comparisons(runs),
+        "comparisons": paired_comparisons(runs, cohort),
         "safety": safety_analysis(runs),
         "overrides": override_analysis(runs),
     }
