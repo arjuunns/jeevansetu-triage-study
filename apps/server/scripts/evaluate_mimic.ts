@@ -13,6 +13,7 @@ import {
   toSafetyInput,
   toTriageContext,
 } from './mimic_cohort.js';
+import { buildExamplesBlock, loadNeighbours } from './example_neighbours.js';
 
 /**
  * Ablation runner for the MIMIC-IV-ED cohort. One invocation = one condition,
@@ -29,6 +30,15 @@ import {
  * override as usual, but the prompt says nothing when no rule fires, instead of
  * "no critical red flags detected".
  *
+ * Opt-in flags added on 16 Nov 2026 (extension experiments; with their defaults every earlier
+ * setup gives exactly the same prompt, checked with scripts/prompt_fingerprints.ts):
+ *   --safety-notice=neutral|caution   another wording of the line shown when no rule fires
+ *                                     (SAFETY_NOTICE_WORDINGS in triage.prompts.ts); rules,
+ *                                     CRITICAL verdict and override unchanged.
+ *   --examples=<k>                    adds the k most similar visits of other patients, with the
+ *                                     nurse's ESI level, to the user prompt. The neighbours come
+ *                                     from --examples-file (scripts/build_example_neighbours.ts).
+ *
  * Case status: "ok" (valid model output), "fallback" (model failed every
  * attempt, heuristic answered) or "error" (exception). Only "ok" cases count as
  * the model's predictions; the other two are reported, never silently dropped.
@@ -43,6 +53,8 @@ const { values } = parseArgs({
     safety: { type: 'string', default: 'on' },
     guide: { type: 'string', default: 'off' },
     'safety-notice': { type: 'string', default: 'on' },
+    examples: { type: 'string', default: '0' },
+    'examples-file': { type: 'string', default: path.join(REPO_ROOT, 'research/results_ext/examples/neighbours.json') },
     temperature: { type: 'string', default: '0' },
     seed: { type: 'string', default: '42' },
     limit: { type: 'string' },
@@ -53,7 +65,7 @@ const { values } = parseArgs({
   },
 });
 
-function onOff(name: 'rag' | 'safety' | 'guide' | 'safety-notice'): boolean {
+function onOff(name: 'rag' | 'safety' | 'guide'): boolean {
   const v = values[name];
   if (v !== 'on' && v !== 'off') throw new Error(`--${name} must be "on" or "off", got "${v}"`);
   return v === 'on';
@@ -66,8 +78,17 @@ const model =
 const useRag = !rulesOnly && onOff('rag');
 const useSafety = rulesOnly || onOff('safety');
 const useGuide = !rulesOnly && onOff('guide');
-const safetyNotice = rulesOnly || onOff('safety-notice');
+const noticeValue = values['safety-notice'];
+if (!['on', 'off', 'neutral', 'caution'].includes(noticeValue)) {
+  throw new Error(`--safety-notice must be "on", "off", "neutral" or "caution", got "${noticeValue}"`);
+}
+const safetyNotice = rulesOnly || noticeValue !== 'off';
 if (!safetyNotice && !useSafety) throw new Error('--safety-notice=off needs --safety=on');
+/** Set only for the two opt-in wordings; undefined keeps the original line. */
+const noticeWording = !rulesOnly && (noticeValue === 'neutral' || noticeValue === 'caution') ? noticeValue : undefined;
+if (noticeWording && !useSafety) throw new Error(`--safety-notice=${noticeWording} needs --safety=on`);
+const examplesK = rulesOnly ? 0 : Number(values.examples);
+if (!Number.isInteger(examplesK) || examplesK < 0) throw new Error(`--examples must be a whole number of 0 or more, got "${values.examples}"`);
 const temperature = Number(values.temperature);
 const seed = Number(values.seed);
 
@@ -111,7 +132,7 @@ interface CaseResult {
 const slug = (s: string) => s.replace(/[^a-zA-Z0-9.]+/g, '-');
 const runName = rulesOnly
   ? 'rules-only'
-  : `${slug(model ?? 'unknown')}__rag-${useRag ? 'on' : 'off'}__safety-${useSafety ? 'on' : 'off'}${useGuide ? '__guide-on' : ''}${safetyNotice ? '' : '__notice-off'}`;
+  : `${slug(model ?? 'unknown')}__rag-${useRag ? 'on' : 'off'}__safety-${useSafety ? 'on' : 'off'}${useGuide ? '__guide-on' : ''}${safetyNotice ? '' : '__notice-off'}${noticeWording ? `__notice-${noticeWording}` : ''}${examplesK ? `__examples-${examplesK}` : ''}`;
 const outPath = path.resolve(values.out ?? path.join(REPO_ROOT, 'research/results', `${runName}.json`));
 const rel = (p: string) => path.relative(REPO_ROOT, path.resolve(p));
 
@@ -128,6 +149,9 @@ const config = {
   useGuide,
   // Only recorded when off, so configs of runs made before this flag still match on resume.
   ...(safetyNotice ? {} : { safetyNotice: false }),
+  // The opt-in flags of 16 Nov 2026 are recorded only when used, for the same reason.
+  ...(noticeWording ? { safetyNoticeWording: noticeWording } : {}),
+  ...(examplesK ? { examples: examplesK, examplesFile: rel(values['examples-file']), examplesCreatedAt: readExamplesCreatedAt() } : {}),
   temperature: rulesOnly ? null : temperature,
   seed: rulesOnly ? null : seed,
   dataset: rel(values.dataset),
@@ -144,6 +168,11 @@ function sha256(text: string): string {
 
 function readCacheCreatedAt(): string | null {
   const file = values['retrieval-cache'];
+  return fs.existsSync(file) ? (JSON.parse(fs.readFileSync(file, 'utf-8')).meta?.createdAt ?? null) : null;
+}
+
+function readExamplesCreatedAt(): string | null {
+  const file = values['examples-file'];
   return fs.existsSync(file) ? (JSON.parse(fs.readFileSync(file, 'utf-8')).meta?.createdAt ?? null) : null;
 }
 
@@ -201,6 +230,12 @@ async function main(): Promise<void> {
   const done = new Set(previous.map((r) => r.stayId));
   const byStay = new Map(previous.map((r) => [r.stayId, r]));
   const startedAt = new Date().toISOString();
+  // Similar earlier patients (--examples): the stored neighbours of every visit, other patients only.
+  const neighbourFile = examplesK ? loadNeighbours(values['examples-file']) : null;
+  const byStayCase = new Map(loadCohort(values.dataset).map((c) => [c.stayId, c]));
+  if (neighbourFile && neighbourFile.meta.dataset !== rel(values.dataset)) {
+    throw new Error(`${rel(values['examples-file'])} was built for ${neighbourFile.meta.dataset}, not ${rel(values.dataset)}`);
+  }
 
   console.log(`\nRun: ${runName}  (${cases.length} cases, ${done.size} already done)`);
   console.log(`Output: ${rel(outPath)}\n`);
@@ -244,6 +279,8 @@ async function main(): Promise<void> {
           useRag,
           useAlgorithmGuide: useGuide,
           citations: retrieval?.[c.stayId]?.citations,
+          safetyNoticeWording: noticeWording,
+          examplesBlock: neighbourFile ? buildExamplesBlock(c, examplesK, neighbourFile, byStayCase) : undefined,
         });
         record = {
           ...base,

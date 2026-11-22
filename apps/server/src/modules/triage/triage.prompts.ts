@@ -4,7 +4,15 @@ import { ESI_ALGORITHM_GUIDE } from './esi.guide.js';
 
 export interface TriageContext {
   /** History fields are `undefined` when the source does not record them (shown as "not recorded"). */
-  patient: { age: number; gender: string; allergies?: string[]; existingDiseases?: string[]; medications?: string[] };
+  patient: {
+    age: number;
+    /** Opt-in (16 Nov 2026, handbook vignettes): shown instead of `age` when set, e.g. "2 weeks" or "not stated". */
+    ageText?: string;
+    gender: string;
+    allergies?: string[];
+    existingDiseases?: string[];
+    medications?: string[];
+  };
   vitals: Record<string, number | boolean | undefined>;
   primarySymptom: string;
   secondarySymptoms: string[];
@@ -21,7 +29,25 @@ export interface PromptSections {
   algorithm?: boolean;
   /** Show the "no critical red flags" verdict when no rule fires (default true; false = silent unless a rule fires). */
   safetyNotice?: boolean;
+  /**
+   * Opt-in (16 Nov 2026, robustness check): another wording for the line shown when no rule fires.
+   * Unset = the original line. Rules, the CRITICAL verdict and the override are not affected.
+   */
+  safetyNoticeWording?: SafetyNoticeWording;
+  /**
+   * Opt-in (16 Nov 2026): a ready-made block listing similar earlier patients with the level the
+   * triage nurse gave them (evaluate_mimic.ts --examples). Unset = no such block.
+   */
+  examplesBlock?: string;
 }
+
+/** Alternative texts for the no-rule-fired line (evaluate_mimic.ts --safety-notice=neutral|caution). */
+export const SAFETY_NOTICE_WORDINGS = {
+  neutral: 'Safety engine: none of the red-flag rules applied to this patient.',
+  caution:
+    'Safety engine: none of the red-flag rules applied. This does not mean the patient is low risk; assess every finding as usual.',
+} as const;
+export type SafetyNoticeWording = keyof typeof SAFETY_NOTICE_WORDINGS;
 
 /**
  * System prompt for the triage agent. It is explicit about the non-negotiable
@@ -65,19 +91,22 @@ export function buildTriageUserPrompt(
     ? `SAFETY ENGINE VERDICT: CRITICAL (authoritative). Triggered rules: ${ctx.safety.triggeredRules
         .map((r) => r.label)
         .join('; ')}. You must not assign a severity below CRITICAL.`
-    : 'SAFETY ENGINE VERDICT: no critical red flags detected. Assess normally.';
+    : sections.safetyNoticeWording
+      ? SAFETY_NOTICE_WORDINGS[sections.safetyNoticeWording]
+      : 'SAFETY ENGINE VERDICT: no critical red flags detected. Assess normally.';
 
   const optionalBlocks = [
     sections.algorithm ? `ESI ALGORITHM REFERENCE\n${ESI_ALGORITHM_GUIDE.replace(/^## /gm, '')}` : null,
     sections.safety && (ctx.safety.isCritical || sections.safetyNotice !== false) ? safetyBlock : null,
     sections.guidelines ? `RETRIEVED GUIDELINE EXCERPTS\n${guidelineBlock}` : null,
+    sections.examplesBlock ? sections.examplesBlock : null,
   ]
     .filter(Boolean)
     .map((block) => `${block}\n\n`)
     .join('');
 
   return `PATIENT
-Age: ${ctx.patient.age}; Gender: ${ctx.patient.gender}${ctx.arrivalTransport ? `\nArrival: ${ctx.arrivalTransport}` : ''}
+Age: ${ctx.patient.ageText ?? ctx.patient.age}; Gender: ${ctx.patient.gender}${ctx.arrivalTransport ? `\nArrival: ${ctx.arrivalTransport}` : ''}
 Existing conditions: ${formatList(ctx.patient.existingDiseases)}
 Allergies: ${formatList(ctx.patient.allergies)}
 Current medications: ${formatList(ctx.patient.medications)}

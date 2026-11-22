@@ -1,0 +1,3 @@
+{"model":"qwen2.5:7b","setup":{"rag":"on","safety":"on","guide":"on","examples":0},"dataset":"data/esi_handbook_cases.json","numCtx":8192,"longest":[{"stayId":"P071","chars":17576,"promptTokens":4136},{"stayId":"P077","chars":17368,"promptTokens":4216}]}
+{"model":"llama3.1:8b","setup":{"rag":"on","safety":"on","guide":"on","examples":0},"dataset":"data/esi_handbook_cases.json","numCtx":8192,"longest":[{"stayId":"P071","chars":17576,"promptTokens":4058},{"stayId":"P077","chars":17368,"promptTokens":4127}]}
+{"model":"gemma3:12b","setup":{"rag":"on","safety":"on","guide":"on","examples":0},"dataset":"data/esi_handbook_cases.json","numCtx":8192,"longest":[{"stayId":"P071","chars":17576,"promptTokens":4064},{"stayId":"P077","chars":17368,"promptTokens":4170}]}

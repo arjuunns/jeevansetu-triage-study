@@ -180,7 +180,7 @@ def body(summary, row_fn, ncols):
 
 def table(env, label, caption, colspec, head, rows, note):
     return (
-        HEADER + f"\\begin{{{env}}}[t]\n\\centering\n\\caption{{{caption}}}\n\\label{{{label}}}\n\\footnotesize\n"
+        HEADER + f"\\begin{{{env}}}[tp]\n\\centering\n\\caption{{{caption}}}\n\\label{{{label}}}\n\\footnotesize\n"
         "\\setlength{\\tabcolsep}{3.5pt}\n"
         f"\\begin{{tabular}}{{@{{}}{colspec}@{{}}}}\n\\toprule\n{head} \\\\\n\\midrule\n{rows}\n\\bottomrule\n"
         f"\\end{{tabular}}\n\n\\vspace{{2pt}}\n{{\\scriptsize {note}}}\n\\end{{{env}}}\n"
@@ -349,13 +349,273 @@ def components(summary):
     lines = p1 + p2 + legend
     return (
         HEADER
-        + "\\begin{figure}[t]\n\\centering\n\\begin{tikzpicture}\n"
+        + "\\begin{figure}[!tbp]\n\\centering\n\\begin{tikzpicture}\n"
         + "\n".join(lines)
         + "\n\\end{tikzpicture}\n"
         "\\caption{Change when each component is added, for each model (B minus A, same 207 visits). "
         "``With RAG'' and ``with guide'' add the safety rules to a setup that already has that component. "
         "*Holm-adjusted $p<0.05$ for under-triage (patient-level permutation test). $^{a}$Exploratory.}\n"
         "\\label{fig:components}\n\\end{figure}\n"
+    )
+
+
+# ---------------------------------------------------------------- overview and level-spread figures (19 Nov 2026)
+OVERVIEW_SETUPS = [s for s in SETUPS]  # the six main setups and the exploratory one, in table order
+LEVEL_SETUPS = [("LLM only", (False, False, False, True)), ("+ ESI guide", (False, False, True, True)), ("+ RAG", (True, False, False, True))]
+LEVEL_FILLS = ["fill=black", "fill=gray!55", "fill=gray!22", "fill=gray!6", "fill=white"]  # ESI 1 (darkest) to ESI 5
+LEVEL_INK = ["white", "black", "black", "black", "black"]
+
+
+def levels_of_reference(summary):
+    """Nurse level counts, from the rules-only run's confusion matrix (rows are the nurse's levels)."""
+    conf = rules_only(summary)["confusion"]
+    return [sum(conf[str(t)][str(p)] for p in range(1, 6)) for t in range(1, 6)]
+
+
+def legend_rows(y, have=None):
+    out = []
+    for k, (model, name) in enumerate(MODELS):  # two columns, as in Fig. components
+        lx, ly = -3.0 + 4.0 * (k % 2), y - 0.4 * (k // 2)
+        shape, fill, draw = MARKS[model]
+        out.append(f"\\node[{shape}, {fill}, {draw}, inner sep=0, minimum size={marker_size(shape)}] at ({lx:.2f}, {ly:.2f}) {{}};")
+        out.append(f"\\node[font=\\scriptsize, anchor=west, inner sep=1.5pt] at ({lx + 0.1:.2f}, {ly:.2f}) {{{name}}};")
+    return out
+
+
+def overview_panel(summary, metric, title, refs, y0):
+    """Dot plot of one measure (%, 0 to 100) for every model and setup; refs = [(value %, short label, line style)]."""
+    width, row_h = 4.3, 0.75
+    x = lambda v: width * v / 100
+    n = len(OVERVIEW_SETUPS)
+    bottom = y0 - row_h * n
+    out = [f"\\node[font=\\scriptsize\\bfseries, anchor=south west, inner sep=0] at (-3.0, {y0 + 0.45:.2f}) {{{title}}};"]
+    for t in range(0, 101, 20):
+        out.append(f"\\draw[gray!35] ({x(t):.3f}, {bottom:.2f}) -- ({x(t):.3f}, {y0:.2f});")
+        out.append(f"\\draw ({x(t):.3f}, {bottom:.2f}) -- ++(0, -0.07) node[below, font=\\tiny, inner sep=1.5pt] {{{t}}};")
+    out.append(f"\\draw ({x(0):.3f}, {bottom:.2f}) -- ({x(100):.3f}, {bottom:.2f});")
+    for k, (v, lab, style) in enumerate(refs):
+        out.append(f"\\draw[{style}] ({x(v):.3f}, {bottom:.2f}) -- ({x(v):.3f}, {y0 + 0.05:.2f});")
+        out.append(f"\\node[font=\\tiny, anchor=south, inner sep=1pt] at ({x(v):.3f}, {y0 + 0.05 + 0.17 * (k % 2):.2f}) {{{lab}}};")
+    for i, (label, _, key) in enumerate(OVERVIEW_SETUPS):
+        yc = y0 - row_h * (i + 0.5)
+        out.append(f"\\node[font=\\scriptsize, anchor=east, inner sep=1pt] at (-0.10, {yc:.2f}) {{{label}}};")
+        for j, (model, _) in enumerate(MODELS):
+            r = find(summary, model, key)
+            if not (r and r["complete"]):
+                continue
+            v = 100 * r["metrics"][metric]["value"]
+            yy = yc + 0.13 * ((len(MODELS) - 1) / 2 - j)
+            shape, fill, draw = MARKS[model]
+            out.append(f"\\node[{shape}, {fill}, {draw}, inner sep=0, minimum size={marker_size(shape)}] at ({x(v):.3f}, {yy:.3f}) {{}};")
+    return out, bottom
+
+
+def overview(summary):
+    b = json.loads(BASELINES.read_text())["ml"]
+    rules = rules_only(summary)["metrics"]
+    pct = lambda m, k: 100 * m[k]["value"]
+    refs_exact = [(pct(rules, "exact"), "Rules", "densely dotted"), (pct(b["Always ESI 2"]["metrics"], "exact"), "ESI 2", "dashed"),
+                  (pct(b["Logistic regression"]["metrics"], "exact"), "LR", "thick, gray")]
+    refs_under = [(pct(b["Always ESI 2"]["metrics"], "underTriage"), "ESI 2", "dashed"),
+                  (pct(b["Logistic regression"]["metrics"], "underTriage"), "LR", "thick, gray"), (pct(rules, "underTriage"), "Rules", "densely dotted")]
+    p1, b1 = overview_panel(summary, "exact", "(a) Exact agreement with the nurse (\\%, higher is better)", refs_exact, 0.0)
+    p2, b2 = overview_panel(summary, "underTriage", "(b) Under-triage (\\%, lower is safer)", refs_under, b1 - 1.3)
+    lines = p1 + p2 + legend_rows(b2 - 0.75)
+    return (
+        HEADER
+        + "\\begin{figure}[!tbp]\n\\centering\n\\begin{tikzpicture}\n" + "\n".join(lines) + "\n\\end{tikzpicture}\n"
+        "\\caption{Exact agreement and under-triage of every setup for each model (207 visits; the values of Table~\\ref{tab:main}). "
+        "Vertical lines: Rules, the rules-only baseline; ESI 2, answering ESI 2 for every visit; LR, the logistic regression "
+        "(Table~\\ref{tab:baselines}). $^{a}$Exploratory.}\n"
+        "\\label{fig:overview}\n\\end{figure}\n"
+    )
+
+
+def level_chart(summary):
+    """Stacked bars: how many of the 207 visits each setup put at each ESI level."""
+    width, bar_h, gap = 5.0, 0.30, 0.10
+    x = lambda n: width * n / 207
+    rows = [("Nurse (reference)", None, None), ("Rules only", "rules", None)]
+    for model, name in MODELS:
+        rows.append((f"\\textbf{{{name}}}", "head", None))
+        for label, key in LEVEL_SETUPS:
+            rows.append((label, model, key))
+    out, y = [], 0.0
+    for label, model, key in rows:
+        if model == "head":
+            out.append(f"\\node[font=\\scriptsize, anchor=west, inner sep=0] at (-3.0, {y - bar_h / 2:.2f}) {{{label}}};")
+            y -= bar_h + gap
+            continue
+        if model is None:
+            counts = levels_of_reference(summary)
+        elif model == "rules":
+            counts = [rules_only(summary)["predictedLevels"].get(str(l), 0) for l in range(1, 6)]
+        else:
+            r = find(summary, model, key)
+            if not (r and r["complete"]):
+                continue
+            counts = [r["predictedLevels"].get(str(l), 0) for l in range(1, 6)]
+        indent = 0.25 if model not in (None, "rules") else 0.0
+        out.append(f"\\node[font=\\scriptsize, anchor=west, inner sep=0] at ({-3.0 + indent:.2f}, {y - bar_h / 2:.2f}) {{{label}}};")
+        left = 0
+        for lvl, c in enumerate(counts):
+            if c == 0:
+                continue
+            x0, x1 = x(left), x(left + c)
+            out.append(f"\\draw[{LEVEL_FILLS[lvl]}, draw=black, line width=0.2pt] ({x0:.3f}, {y - bar_h:.3f}) rectangle ({x1:.3f}, {y:.3f});")
+            if c >= 12:
+                out.append(f"\\node[font=\\tiny, text={LEVEL_INK[lvl]}, inner sep=0] at ({(x0 + x1) / 2:.3f}, {y - bar_h / 2:.3f}) {{{c}}};")
+            left += c
+        y -= bar_h + gap
+    for t in (0, 50, 100, 150, 207):
+        out.append(f"\\draw ({x(t):.3f}, {y + gap:.2f}) -- ++(0, -0.07) node[below, font=\\tiny, inner sep=1.5pt] {{{t}}};")
+    out.append(f"\\draw ({x(0):.3f}, {y + gap:.2f}) -- ({x(207):.3f}, {y + gap:.2f});")
+    ly = y - 0.55
+    for lvl in range(5):
+        lx = -3.0 + 1.6 * lvl
+        out.append(f"\\draw[{LEVEL_FILLS[lvl]}, draw=black, line width=0.2pt] ({lx:.2f}, {ly - 0.09:.2f}) rectangle ({lx + 0.25:.2f}, {ly + 0.09:.2f});")
+        out.append(f"\\node[font=\\scriptsize, anchor=west, inner sep=1.5pt] at ({lx + 0.27:.2f}, {ly:.2f}) {{ESI {lvl + 1}}};")
+    return (
+        HEADER
+        + "\\begin{figure}[!tbp]\n\\centering\n\\begin{tikzpicture}\n" + "\n".join(out) + "\n\\end{tikzpicture}\n"
+        "\\caption{How many of the 207 visits each setup put at each ESI level, for the nurse, the rules-only baseline and each "
+        "model on its own, with the ESI guide and with retrieval (numbers inside bars: visits; counts below 12 are not printed). "
+        "All setups are in Table~\\ref{tab:levels}.}\n"
+        "\\label{fig:levelchart}\n\\end{figure}\n"
+    )
+
+
+# ---------------------------------------------------------------- heatmaps and forest plot (19 Nov 2026, v23)
+SUMMARY_EXT = ROOT / "research" / "results_ext" / "summary_ext.json"
+HEAT_COLS = [("qwen2.5:7b", "Qwen2.5", "7B"), ("llama3.1:8b", "Llama 3.1", "8B"), ("gemma3:12b", "Gemma 3", "12B"),
+             ("gemma3:27b", "Gemma 3", "27B"), ("medgemma:27b", "MedGemma", "27B")]
+CELL_W, CELL_H = 1.02, 0.42
+
+
+def heat_grid(rows, title, y0, shade_fn, fmt):
+    """rows: [(label, [value or None per model], [significant flag per model] or None)]; returns TikZ lines and bottom y."""
+    out = [f"\\node[font=\\scriptsize\\bfseries, anchor=south west, inner sep=0] at (-3.0, {y0 + 0.62:.2f}) {{{title}}};"]
+    for j, (_, l1, l2) in enumerate(HEAT_COLS):
+        xc = CELL_W * (j + 0.5)
+        out.append(f"\\node[font=\\tiny, align=center, inner sep=0, anchor=south] at ({xc:.3f}, {y0 + 0.04:.2f}) {{{l1}\\\\{l2}}};")
+    for i, (label, vals, sig) in enumerate(rows):
+        yt = y0 - CELL_H * i
+        out.append(f"\\node[font=\\scriptsize, anchor=east, inner sep=1pt] at (-0.08, {yt - CELL_H / 2:.3f}) {{{label}}};")
+        for j, v in enumerate(vals):
+            x0 = CELL_W * j
+            if v is None:
+                continue
+            fill, ink, bold = shade_fn(v, sig[j] if sig else False)
+            out.append(f"\\fill[{fill}] ({x0 + 0.02:.3f}, {yt - CELL_H + 0.02:.3f}) rectangle ({x0 + CELL_W - 0.02:.3f}, {yt - 0.02:.3f});")
+            out.append(f"\\draw[gray!45, line width=0.2pt] ({x0 + 0.02:.3f}, {yt - CELL_H + 0.02:.3f}) rectangle ({x0 + CELL_W - 0.02:.3f}, {yt - 0.02:.3f});")
+            text = fmt(v) + ("$^{*}$" if sig and sig[j] else "")
+            text = f"\\textbf{{{text}}}" if bold else text
+            out.append(f"\\node[font=\\scriptsize, text={ink}, inner sep=0] at ({x0 + CELL_W / 2:.3f}, {yt - CELL_H / 2:.3f}) {{{text}}};")
+    return out, y0 - CELL_H * len(rows)
+
+
+def level_shade(v, _sig):
+    n = round(55 * min(v, 80) / 80)  # 0 to 80% maps to white to 55% black
+    return f"black!{n}", ("white" if n >= 40 else "black"), False
+
+
+def heatmap(summary):
+    b = json.loads(BASELINES.read_text())["ml"]
+    rules = rules_only(summary)["metrics"]
+    def rows_for(metric):
+        rows = []
+        for label, _, key in SETUPS:
+            vals = []
+            for model, _, _ in HEAT_COLS:
+                r = find(summary, model, key)
+                vals.append(100 * r["metrics"][metric]["value"] if r else None)
+            rows.append((label, vals, None))
+        return rows
+    fmt = lambda v: f"{v:.1f}"
+    p1, b1 = heat_grid(rows_for("exact"), "(a) Exact agreement with the nurse (\\%)", 0.0, level_shade, fmt)
+    p2, _ = heat_grid(rows_for("underTriage"), "(b) Under-triage (\\%)", b1 - 1.15, level_shade, fmt)
+    pc = lambda m, k: f"{100 * m[k]['value']:.1f}\\%"
+    ref = (f"rules only {pc(rules, 'exact')} exact and {pc(rules, 'underTriage')} under-triage; always ESI 2 "
+           f"{pc(b['Always ESI 2']['metrics'], 'exact')} and {pc(b['Always ESI 2']['metrics'], 'underTriage')}; logistic regression "
+           f"{pc(b['Logistic regression']['metrics'], 'exact')} and {pc(b['Logistic regression']['metrics'], 'underTriage')}")
+    return (
+        HEADER + "\\begin{figure}[!tbp]\n\\centering\n\\begin{tikzpicture}\n" + "\n".join(p1 + p2) + "\n\\end{tikzpicture}\n"
+        "\\caption{Exact agreement and under-triage of every setup for each model (\\% of the 207 visits; darker cells, higher values). "
+        f"For comparison ({ref}; Table~\\ref{{tab:baselines}}). All measures with 95\\% CIs are in Table~\\ref{{tab:main}} (Appendix). "
+        "$^{a}$Exploratory.}\n\\label{fig:heatmap}\n\\end{figure}\n"
+    )
+
+
+def change_heatmap(summary):
+    def rows_for(measure):
+        rows = []
+        for label, a, b in EFFECTS:
+            vals, sig = [], []
+            for model, _, _ in HEAT_COLS:
+                c = next((c for c in summary["comparisons"] if c["model"] == model and c["a"] == a and c["b"] == b), None)
+                if c is None or not comparison_ok(summary, c):
+                    vals.append(None); sig.append(False); continue
+                m = c[measure]
+                vals.append(100 * (m["b"] - m["a"])); sig.append(m["pPatientHolm"] < 0.05)
+            rows.append((label, vals, sig))
+        return rows
+    shade = lambda v, s: (("gray!30", "black", True) if s else ("white", "black", False))
+    fmt = lambda v: ("+" if v > 0.05 else ("$-$" if v < -0.05 else "")) + f"{abs(v):.1f}"
+    p1, b1 = heat_grid(rows_for("underTriage"), "(a) Under-triage, change in points (lower is safer)", 0.0, shade, fmt)
+    p2, _ = heat_grid(rows_for("exact"), "(b) Exact agreement, change in points (higher is better)", b1 - 1.15, shade, fmt)
+    return (
+        HEADER + "\\begin{figure}[!tbp]\n\\centering\n\\begin{tikzpicture}\n" + "\n".join(p1 + p2) + "\n\\end{tikzpicture}\n"
+        "\\caption{Change when each component is added, for each model (B minus A in percentage points, same 207 visits). "
+        "``With RAG'' and ``with guide'' add the safety rules to a setup that already has that component. Shaded and bold, with $^{*}$: "
+        "Holm-adjusted $p<0.05$ (patient-level permutation test); all $p$ values are in Table~\\ref{tab:comparisons} (Appendix). "
+        "$^{a}$Exploratory.}\n\\label{fig:components}\n\\end{figure}\n"
+    )
+
+
+FOREST_GROUPS = [
+    ("H1", "H1 no-red-flags line (under-triage)", ""),
+    ("H2", "H2 retrieval (under-triage)", ""),
+    ("H3", "H3 ESI guide (exact)", ""),
+    ("H4", "H4 size, medical training (exact)", ""),
+]
+MODEL_NAME = {m: n for m, n in MODELS}
+
+
+def forest(summary_ext):
+    tests = summary_ext["handbook"]["preregistered"]["tests"]
+    lo, hi, width = -40, 40, 3.0
+    x = lambda d: width * (d - lo) / (hi - lo)
+    out, y, row_h = [], 0.0, 0.36
+    label = {"H4a": "Gemma 12B vs 27B", "H4b": "Gemma 12B vs MedGemma", "H4c": "Gemma 27B vs MedGemma"}
+    for fam, head, _ in FOREST_GROUPS:
+        out.append(f"\\node[font=\\tiny\\itshape, anchor=west, inner sep=0] at (-3.6, {y - row_h / 2:.3f}) {{{head}}};")
+        y -= row_h
+        for tst in [t for t in tests if t["id"].startswith(fam)]:
+            yc = y - row_h / 2
+            model = tst["a"].split(" ")[0]
+            name = label.get(tst["id"], MODEL_NAME.get(model, model))
+            d = 100 * tst["diffBminusA"]; c0, c1 = (100 * v for v in tst["diffCi95"])
+            out.append(f"\\node[font=\\scriptsize, anchor=west, inner sep=0] at (-3.45, {yc:.3f}) {{{tst['id']}\\ \\ {name}}};")
+            out.append(f"\\draw[line width=0.6pt] ({x(c0):.3f}, {yc:.3f}) -- ({x(c1):.3f}, {yc:.3f});")
+            fill = "black" if tst["verdict"] == "supported" else "white"
+            out.append(f"\\node[circle, fill={fill}, draw=black, inner sep=0, minimum size=1.7mm] at ({x(d):.3f}, {yc:.3f}) {{}};")
+            sgn = lambda v: ("$-$" if v < 0 else "") + f"{abs(v):.1f}"
+            out.append(f"\\node[font=\\tiny, anchor=west, inner sep=0] at ({width + 0.12:.3f}, {yc:.3f}) {{{sgn(d)} [{sgn(c0)}, {sgn(c1)}]}};")
+            y -= row_h
+    for tk in range(lo, hi + 1, 10):
+        out.append(f"\\draw[gray!30] ({x(tk):.3f}, {y:.3f}) -- ({x(tk):.3f}, 0);")
+        if tk % 20 == 0:
+            out.append(f"\\draw ({x(tk):.3f}, {y:.3f}) -- ++(0, -0.06) node[below, font=\\tiny, inner sep=1.5pt] {{{tick(tk)}}};")
+    out.append(f"\\draw[dashed] ({x(0):.3f}, {y:.3f}) -- ({x(0):.3f}, 0);")
+    out.append(f"\\draw ({x(lo):.3f}, {y:.3f}) -- ({x(hi):.3f}, {y:.3f});")
+    out.append(f"\\node[font=\\tiny, anchor=north] at ({x((lo + hi) / 2):.3f}, {y - 0.32:.3f}) {{difference B $-$ A, percentage points}};")
+    return (
+        "% Generated by research/results_tables.py from research/results_ext/summary_ext.json (handbook.preregistered.tests). Do not edit by hand.\n"
+        "\\begin{figure}[!tbp]\n\\centering\n\\begin{tikzpicture}\n" + "\n".join(out) + "\n\\end{tikzpicture}\n"
+        "\\caption{The ten pre-registered tests on the 149 ESI handbook cases: difference between the two setups (B minus A, in "
+        "percentage points) with its 95\\% confidence interval. H1 and H2 compare under-triage, H3 and H4 exact agreement. Filled: "
+        "supported as pre-registered (H4c predicted no gain from medical training); open: not supported. Values, $p$ values and the "
+        "setups compared are in Table~\\ref{tab:handbook} (Appendix).}\n\\label{fig:forest}\n\\end{figure}\n"
     )
 
 
@@ -427,21 +687,7 @@ def baselines(summary):
     rows.append(row("Always ESI 2", b["ml"]["Always ESI 2"]["metrics"]))
     rows.append(row("Logistic regression$^{a}$", b["ml"]["Logistic regression"]["metrics"]))
     rows.append(row("Gradient boosting$^{a}$", b["ml"]["Gradient boosting"]["metrics"]))
-    rows.append("\\midrule")
-    rows.append("\\multicolumn{6}{@{}l}{\\emph{Best LLM setup of each model (highest exact agreement, Table~\\ref{tab:main})}} \\\\")
-    for model, name in MODELS:
-        runs = [(label, find(summary, model, key)) for label, _, key in SETUPS if key[3]]
-        runs = [(label, r) for label, r in runs if r]
-        if not runs:
-            rows.append(f"\\quad {name} & \\multicolumn{{5}}{{c}}{{{PENDING}}} \\\\")
-            continue
-        label, best = max(runs, key=lambda lr: lr[1]["metrics"]["exact"]["value"])
-        rows.append(row(f"\\quad {name}, {label}", best["metrics"]))
-    # Added 15 Nov 2026 (review): the retrieval setup of each model, the main setup that lowered under-triage most often.
-    rows.append("\\multicolumn{6}{@{}l}{\\emph{Retrieval setup of each model (+ RAG)}} \\\\")
-    for model, name in MODELS:
-        rag = find(summary, model, (True, False, False, True))
-        rows.append(row(f"\\quad {name}, + RAG", rag["metrics"]) if rag else f"\\quad {name} & \\multicolumn{{5}}{{c}}{{{PENDING}}} \\\\")
+    # 19 Nov 2026 (v20): the best-setup and + RAG rows were removed; they repeat Table main and Fig. overview.
     head = "Method & Exact & Under-triage & QWK & Sensitivity & Specificity"
     note = (
         "Same 207 visits and nurse levels as Table~\\ref{tab:main} (\\%, 95\\% CI from a bootstrap over patients); sensitivity and "
@@ -451,7 +697,7 @@ def baselines(summary):
         "the LLMs (age, sex, arrival, vital signs, pain score and the words of the main complaint), with out-of-fold predictions from "
         "5-fold cross-validation grouped by patient, so the model is always tested on patients it was not trained on."
     )
-    return table("table*", "tab:baselines", "Non-LLM baselines.", "lccccc", head, "\n".join(rows), note)
+    return table("table*", "tab:baselines", "Non-LLM baselines on the same 207 visits (the LLM setups are in Fig.~\\ref{fig:heatmap} and Table~\\ref{tab:main}).", "lccccc", head, "\n".join(rows), note)
 
 
 def main():
@@ -481,7 +727,10 @@ def main():
     (TABLES / "comparisons.tex").write_text(comparisons(summary))
     (TABLES / "prior_studies.tex").write_text(prior_studies(summary))
     (TABLES / "levels.tex").write_text(levels(summary))
-    (FIGURES / "components.tex").write_text(components(summary))
+    (FIGURES / "components.tex").write_text(change_heatmap(summary))
+    (FIGURES / "heatmap.tex").write_text(heatmap(summary))
+    (FIGURES / "forest.tex").write_text(forest(json.loads(SUMMARY_EXT.read_text())))
+    (FIGURES / "level_chart.tex").write_text(level_chart(summary))
     print("wrote paper/tables/main_results.tex, high_acuity.tex, comparisons.tex, prior_studies.tex, levels.tex and paper/figures/components.tex")
 
 

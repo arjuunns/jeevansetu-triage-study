@@ -1,0 +1,77 @@
+{
+  "corpus": "medical-pdf/ingestion/index_v4/guidelines.metadata.jsonl",
+  "corpusChunks": 397,
+  "curatedGuideIncluded": true,
+  "normalisation": "lower case, straight quotes and hyphens, single spaces",
+  "cases": 149,
+  "bySize": {
+    "50": {
+      "nVignettesWithOverlap": 1,
+      "nAnswersWithOverlap": 1,
+      "mostSharedShinglesInOneVignette": 1,
+      "mostSharedShinglesInOneAnswer": 1,
+      "vignettesWithOverlap": [
+        {
+          "stayId": "P027",
+          "sharedShingles": 1,
+          "ofShingles": 235,
+          "passages": [
+            "chunk-29e1ed5bba81b829a412"
+          ]
+        }
+      ],
+      "answersWithOverlap": [
+        {
+          "stayId": "CB010",
+          "sharedShingles": 1,
+          "ofShingles": 282,
+          "passages": [
+            "chunk-b91b0d931d50ff297dc4"
+          ]
+        }
+      ]
+    },
+    "40": {
+      "nVignettesWithOverlap": 8,
+      "nAnswersWithOverlap": 38,
+      "mostSharedShinglesInOneVignette": 11,
+      "mostSharedShinglesInOneAnswer": 15
+    },
+    "30": {
+      "nVignettesWithOverlap": 32,
+      "nAnswersWithOverlap": 58,
+      "mostSharedShinglesInOneVignette": 24,
+      "mostSharedShinglesInOneAnswer": 43
+    }
+  },
+  "casePairsSharingA50CharShingle": [
+    {
+      "cases": [
+        "P029",
+        "P031"
+      ],
+      "sharedShingles": 2
+    },
+    {
+      "cases": [
+        "P006",
+        "P061"
+      ],
+      "sharedShingles": 8
+    },
+    {
+      "cases": [
+        "CA016",
+        "CB016"
+      ],
+      "sharedShingles": 4
+    },
+    {
+      "cases": [
+        "P069",
+        "CB020"
+      ],
+      "sharedShingles": 8
+    }
+  ]
+}

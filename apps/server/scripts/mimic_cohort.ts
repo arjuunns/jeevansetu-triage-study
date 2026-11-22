@@ -23,7 +23,10 @@ export const DEFAULT_RETRIEVAL_CACHE = path.join(REPO_ROOT, 'research/retrieval_
 export const SAFETY_TIMESTAMP = '2026-01-01T00:00:00.000Z';
 
 export interface TriageInput {
+  /** Years. Always a whole number in the MIMIC cohort; in data/esi_handbook_cases.json a fraction for infants and null when the vignette gives no age. */
   age: number;
+  /** Only in data/esi_handbook_cases.json, when the age is not a whole number of years: "2 weeks", "18 months" or "not stated". */
+  ageText?: string;
   gender: string;
   arrivalTransport: string;
   chiefComplaint: string;
@@ -70,7 +73,8 @@ export function toTriageContext(input: TriageInput, safety: SafetyScreenResult):
   const [primary, ...secondary] = splitComplaint(input.chiefComplaint);
   return {
     // History, allergies and medications are not recorded at MIMIC triage.
-    patient: { age: input.age, gender: input.gender },
+    // ageText is passed on only when the dataset has it (never for MIMIC), so MIMIC prompts are unchanged.
+    patient: { age: input.age, gender: input.gender, ...(input.ageText !== undefined ? { ageText: input.ageText } : {}) },
     vitals: { ...input.vitals, painScore: input.painScore ?? undefined },
     primarySymptom: primary ?? input.chiefComplaint,
     secondarySymptoms: secondary,

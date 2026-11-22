@@ -1,8 +1,8 @@
 # Safety rules, algorithm prompts and guideline retrieval for local language models in emergency triage
 
-Code, prompts, data and results for the paper *Safety Rules, Algorithm Prompts and Guideline Retrieval for Local Language Models in Emergency Triage* by Arjun Singh and Garima Singh (Department of Computer Science and Engineering, Thapar Institute of Engineering and Technology). A link to the paper will be added when it is published.
+Code, prompts, data and results for the paper *Safety Rules, Algorithm Prompts and Guideline Retrieval for Local Language Models in Emergency Triage* by Arjun Singh, Priyanshu Patel, Bhumika Bandyopadhyay and Garima Singh (Department of Computer Science and Engineering, Thapar Institute of Engineering and Technology). A link to the paper will be added when it is published.
 
-The study takes the triage pipeline of JeevanSetu, a triage and referral system in which a doctor reviews every AI suggestion, and switches its parts on and off: fixed safety rules with a hard override to ESI 1, a summary of the Emergency Severity Index (ESI) algorithm in the prompt, and retrieval of guideline passages. It tests them with five open-weight models run locally through Ollama (Qwen2.5 7B, Llama 3.1 8B and Gemma 3 12B on a laptop; Gemma 3 27B and MedGemma 27B on one GPU) on 207 visits from the MIMIC-IV-ED demo, against the triage nurse's ESI level, and compares them with rule-based and machine-learning baselines. `research/README.md` has the full method notes.
+The study takes the triage pipeline of JeevanSetu, a triage and referral system in which a doctor reviews every AI suggestion, and switches its parts on and off: fixed safety rules with a hard override to ESI 1, a summary of the Emergency Severity Index (ESI) algorithm in the prompt, and retrieval of guideline passages. It tests them with five open-weight models run locally through Ollama (Qwen2.5 7B, Llama 3.1 8B and Gemma 3 12B on a laptop; Gemma 3 27B and MedGemma 27B on one GPU) on 207 visits from the MIMIC-IV-ED demo, against the triage nurse's ESI level, and compares them with rule-based and machine-learning baselines. A pre-registered second test set, 149 practice and competency cases from the ESI version 4 handbook, checks the main findings on cases with an expert answer. `research/README.md` has the full method notes.
 
 All results are from pipeline v2: the ESI guide corrected against the 2012 edition of the ESI version 4 handbook, a retrieval corpus built from that handbook and the WHO and ICRC manual, and a local reranker. Nothing in the triage pipeline calls an online service.
 
@@ -24,6 +24,9 @@ All results are from pipeline v2: the ESI guide corrected against the 2012 editi
 | `research/robustness_checks.py` | Override-only, unflagged-visit and patient-weighted checks |
 | `research/results/` | The output of all 35 runs (one JSON file per model and setup, with every answer and explanation), `summary.json` and the baseline and check results |
 | `research/gpu_run_info.json` | Hardware, Ollama version and model digests of the two 27B runs |
+| `research/preregistration_handbook.md` | Pre-registered hypotheses and analysis plan for the handbook cases, written before those runs |
+| `research/results_ext/` | Handbook confirmation and additional runs: `REPORT.md` (summary), `summary_ext.json` and `summary_ext.md` (every run and test), and one folder per task (see below) |
+| `research/handbook_cases.py`, `research/analyze_ext.py`, `research/run_ext.sh` | Build the handbook case set from the PDF, analyse the additional runs, and run them |
 | `research/retrieval_eval_v2/` | Blinded ratings of retrieved passages and their scores (`retrieval_eval/` holds the first evaluation, on the earlier pipeline) |
 | `data/` | MIMIC-IV-ED Demo and MIMIC-IV Demo files, and the cohort (`mimic_ed_cohort.json`) |
 | `medical-pdf/ingestion/` | Code that splits the guideline PDFs into passages |
@@ -53,6 +56,26 @@ A chunk ID is a hash of the file name and the passage text, and the extraction i
 
 `research/retrieval_cache.public.json` is the cache of the earlier pipeline (ESI Handbook, 5th edition, Emergency Nurses Association, 2023, and a cloud reranker). The paper mentions that pipeline but reports no results from it; `research/public_cache.py` describes how to restore it.
 
+## Handbook confirmation and additional runs
+
+`research/results_ext/` holds 80 further runs, made after the main study on the same GPU server:
+
+| Folder | What |
+|---|---|
+| `handbook/` | All five models in the main setups on the 149 ESI handbook cases, plus the rules-only baseline (pre-registered hypotheses H1 to H4) |
+| `notice/` | Two other wordings of the sentence that tells the model the safety rules exist (neutral, caution), on MIMIC and on the handbook |
+| `factorial/` | ESI guide and retrieval together, with and without the safety rules (MIMIC) |
+| `examples/` | Twenty similar past patients from the cohort as examples in the prompt (MIMIC); `neighbours.json` lists them per visit |
+| `precision/` | Gemma 3 27B at 8 bits (Q8_0) against the 4-bit build (MIMIC) |
+| `hw/` | The laptop models rerun on the GPU, to check that the hardware does not change the answers (MIMIC) |
+
+The handbook cases are the handbook's text, so `data/esi_handbook_cases.json` is not in this repository. The run files in `handbook/` and `notice/handbook__*` keep every answer (predicted level, official level, safety rules, confidence) but not the model's explanation, which retells the case. To rebuild the case set from your own copy of the 114-page handbook PDF (placed at `medical-pdf/originals/ESI_v4_Implementation_Handbook_2012_AHRQ_12-0014_full.pdf`):
+
+```bash
+python3 -m venv research/.venv-ext && research/.venv-ext/bin/pip install pymupdf
+research/.venv-ext/bin/python -I research/handbook_cases.py     # writes data/esi_handbook_cases.json
+```
+
 ## Reproducing the results
 
 Requirements: Python 3.9 or later and [Ollama](https://ollama.com) 0.32.14. `research/run_gpu.sh` installs Node.js and the packages itself if they are missing. Restore the retrieval cache first (above).
@@ -68,6 +91,7 @@ cd apps/server && pnpm mimic:eval --rules-only --fresh && cd ../..   # rules-onl
 python3 -I research/analyze.py                     # research/results/summary.json and summary.md
 python3 -I research/baselines_subgroups.py         # non-LLM baselines (needs scikit-learn)
 python3 -I research/robustness_checks.py
+python3 -I research/analyze_ext.py                 # handbook and additional runs (needs data/esi_handbook_cases.json, rebuilt as above)
 ```
 
 Runs resume where they stopped, and a finished result file is skipped. To repeat a run, move its file out of `research/results/` first. All runs use temperature 0, seed 42, a context window of 8,192 tokens and 4-bit (Q4_K_M) Ollama builds; the paper and `research/gpu_run_info.json` list the exact versions. Answers can differ slightly on other hardware.

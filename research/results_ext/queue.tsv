@@ -1,0 +1,87 @@
+# Extension experiments queue (research/run_ext.sh). <output file><TAB><evaluate_mimic.ts arguments>
+# Task 1: hardware check, LLM only for the three small models on the GPU (laptop runs: research/results/)
+research/results_ext/hw/qwen2.5-7b__rag-off__safety-off.json	--model=qwen2.5:7b --rag=off --safety=off
+research/results_ext/hw/llama3.1-8b__rag-off__safety-off.json	--model=llama3.1:8b --rag=off --safety=off
+research/results_ext/hw/gemma3-12b__rag-off__safety-off.json	--model=gemma3:12b --rag=off --safety=off
+# Task 2: guide + retrieval together (MIMIC demo, saved passages of research/retrieval_cache.v2.json)
+research/results_ext/factorial/qwen2.5-7b__rag-on__safety-off__guide-on.json	--model=qwen2.5:7b --guide=on --rag=on --safety=off --retrieval-cache=/workspace/JeevanSetu/research/retrieval_cache.v2.json
+research/results_ext/factorial/qwen2.5-7b__rag-on__safety-on__guide-on.json	--model=qwen2.5:7b --guide=on --rag=on --safety=on --retrieval-cache=/workspace/JeevanSetu/research/retrieval_cache.v2.json
+research/results_ext/factorial/llama3.1-8b__rag-on__safety-off__guide-on.json	--model=llama3.1:8b --guide=on --rag=on --safety=off --retrieval-cache=/workspace/JeevanSetu/research/retrieval_cache.v2.json
+research/results_ext/factorial/llama3.1-8b__rag-on__safety-on__guide-on.json	--model=llama3.1:8b --guide=on --rag=on --safety=on --retrieval-cache=/workspace/JeevanSetu/research/retrieval_cache.v2.json
+research/results_ext/factorial/gemma3-12b__rag-on__safety-off__guide-on.json	--model=gemma3:12b --guide=on --rag=on --safety=off --retrieval-cache=/workspace/JeevanSetu/research/retrieval_cache.v2.json
+research/results_ext/factorial/gemma3-12b__rag-on__safety-on__guide-on.json	--model=gemma3:12b --guide=on --rag=on --safety=on --retrieval-cache=/workspace/JeevanSetu/research/retrieval_cache.v2.json
+research/results_ext/factorial/gemma3-27b__rag-on__safety-off__guide-on.json	--model=gemma3:27b --guide=on --rag=on --safety=off --retrieval-cache=/workspace/JeevanSetu/research/retrieval_cache.v2.json
+research/results_ext/factorial/gemma3-27b__rag-on__safety-on__guide-on.json	--model=gemma3:27b --guide=on --rag=on --safety=on --retrieval-cache=/workspace/JeevanSetu/research/retrieval_cache.v2.json
+research/results_ext/factorial/medgemma-27b__rag-on__safety-off__guide-on.json	--model=medgemma:27b --guide=on --rag=on --safety=off --retrieval-cache=/workspace/JeevanSetu/research/retrieval_cache.v2.json
+research/results_ext/factorial/medgemma-27b__rag-on__safety-on__guide-on.json	--model=medgemma:27b --guide=on --rag=on --safety=on --retrieval-cache=/workspace/JeevanSetu/research/retrieval_cache.v2.json
+# Task 3f: handbook cases. Pre-registered contrasts first (research/preregistration_handbook.md); run_ext.sh holds these until the push is confirmed.
+research/results_ext/handbook/qwen2.5-7b__rag-off__safety-off.json	--model=qwen2.5:7b --rag=off --safety=off --guide=off --dataset=/workspace/JeevanSetu/data/esi_handbook_cases.json
+research/results_ext/handbook/qwen2.5-7b__rag-off__safety-on.json	--model=qwen2.5:7b --rag=off --safety=on --guide=off --dataset=/workspace/JeevanSetu/data/esi_handbook_cases.json
+research/results_ext/handbook/qwen2.5-7b__rag-off__safety-on__notice-off.json	--model=qwen2.5:7b --rag=off --safety=on --guide=off --safety-notice=off --dataset=/workspace/JeevanSetu/data/esi_handbook_cases.json
+research/results_ext/handbook/qwen2.5-7b__rag-on__safety-off.json	--model=qwen2.5:7b --rag=on --safety=off --guide=off --dataset=/workspace/JeevanSetu/data/esi_handbook_cases.json --retrieval-cache=/workspace/JeevanSetu/research/results_ext/handbook/retrieval_cache_handbook.json
+research/results_ext/handbook/llama3.1-8b__rag-off__safety-off.json	--model=llama3.1:8b --rag=off --safety=off --guide=off --dataset=/workspace/JeevanSetu/data/esi_handbook_cases.json
+research/results_ext/handbook/llama3.1-8b__rag-on__safety-off.json	--model=llama3.1:8b --rag=on --safety=off --guide=off --dataset=/workspace/JeevanSetu/data/esi_handbook_cases.json --retrieval-cache=/workspace/JeevanSetu/research/results_ext/handbook/retrieval_cache_handbook.json
+research/results_ext/handbook/gemma3-12b__rag-off__safety-off.json	--model=gemma3:12b --rag=off --safety=off --guide=off --dataset=/workspace/JeevanSetu/data/esi_handbook_cases.json
+research/results_ext/handbook/gemma3-12b__rag-on__safety-off.json	--model=gemma3:12b --rag=on --safety=off --guide=off --dataset=/workspace/JeevanSetu/data/esi_handbook_cases.json --retrieval-cache=/workspace/JeevanSetu/research/results_ext/handbook/retrieval_cache_handbook.json
+research/results_ext/handbook/gemma3-12b__rag-off__safety-off__guide-on.json	--model=gemma3:12b --rag=off --safety=off --guide=on --dataset=/workspace/JeevanSetu/data/esi_handbook_cases.json
+research/results_ext/handbook/gemma3-27b__rag-off__safety-off.json	--model=gemma3:27b --rag=off --safety=off --guide=off --dataset=/workspace/JeevanSetu/data/esi_handbook_cases.json
+research/results_ext/handbook/gemma3-27b__rag-off__safety-on.json	--model=gemma3:27b --rag=off --safety=on --guide=off --dataset=/workspace/JeevanSetu/data/esi_handbook_cases.json
+research/results_ext/handbook/gemma3-27b__rag-off__safety-on__notice-off.json	--model=gemma3:27b --rag=off --safety=on --guide=off --safety-notice=off --dataset=/workspace/JeevanSetu/data/esi_handbook_cases.json
+research/results_ext/handbook/medgemma-27b__rag-off__safety-off.json	--model=medgemma:27b --rag=off --safety=off --guide=off --dataset=/workspace/JeevanSetu/data/esi_handbook_cases.json
+research/results_ext/handbook/medgemma-27b__rag-off__safety-on.json	--model=medgemma:27b --rag=off --safety=on --guide=off --dataset=/workspace/JeevanSetu/data/esi_handbook_cases.json
+research/results_ext/handbook/medgemma-27b__rag-off__safety-on__notice-off.json	--model=medgemma:27b --rag=off --safety=on --guide=off --safety-notice=off --dataset=/workspace/JeevanSetu/data/esi_handbook_cases.json
+# Task 7: rules-only baseline on the handbook (no model)
+research/results_ext/handbook/rules-only.json	--rules-only --dataset=/workspace/JeevanSetu/data/esi_handbook_cases.json
+# Task 3f: the other handbook setups (exploratory)
+research/results_ext/handbook/qwen2.5-7b__rag-off__safety-off__guide-on.json	--model=qwen2.5:7b --rag=off --safety=off --guide=on --dataset=/workspace/JeevanSetu/data/esi_handbook_cases.json
+research/results_ext/handbook/qwen2.5-7b__rag-off__safety-on__guide-on.json	--model=qwen2.5:7b --rag=off --safety=on --guide=on --dataset=/workspace/JeevanSetu/data/esi_handbook_cases.json
+research/results_ext/handbook/qwen2.5-7b__rag-on__safety-on.json	--model=qwen2.5:7b --rag=on --safety=on --guide=off --dataset=/workspace/JeevanSetu/data/esi_handbook_cases.json --retrieval-cache=/workspace/JeevanSetu/research/results_ext/handbook/retrieval_cache_handbook.json
+research/results_ext/handbook/qwen2.5-7b__rag-on__safety-off__guide-on.json	--model=qwen2.5:7b --rag=on --safety=off --guide=on --dataset=/workspace/JeevanSetu/data/esi_handbook_cases.json --retrieval-cache=/workspace/JeevanSetu/research/results_ext/handbook/retrieval_cache_handbook.json
+research/results_ext/handbook/qwen2.5-7b__rag-on__safety-on__guide-on.json	--model=qwen2.5:7b --rag=on --safety=on --guide=on --dataset=/workspace/JeevanSetu/data/esi_handbook_cases.json --retrieval-cache=/workspace/JeevanSetu/research/results_ext/handbook/retrieval_cache_handbook.json
+research/results_ext/handbook/llama3.1-8b__rag-off__safety-on.json	--model=llama3.1:8b --rag=off --safety=on --guide=off --dataset=/workspace/JeevanSetu/data/esi_handbook_cases.json
+research/results_ext/handbook/llama3.1-8b__rag-off__safety-on__notice-off.json	--model=llama3.1:8b --rag=off --safety=on --guide=off --safety-notice=off --dataset=/workspace/JeevanSetu/data/esi_handbook_cases.json
+research/results_ext/handbook/llama3.1-8b__rag-off__safety-off__guide-on.json	--model=llama3.1:8b --rag=off --safety=off --guide=on --dataset=/workspace/JeevanSetu/data/esi_handbook_cases.json
+research/results_ext/handbook/llama3.1-8b__rag-off__safety-on__guide-on.json	--model=llama3.1:8b --rag=off --safety=on --guide=on --dataset=/workspace/JeevanSetu/data/esi_handbook_cases.json
+research/results_ext/handbook/llama3.1-8b__rag-on__safety-on.json	--model=llama3.1:8b --rag=on --safety=on --guide=off --dataset=/workspace/JeevanSetu/data/esi_handbook_cases.json --retrieval-cache=/workspace/JeevanSetu/research/results_ext/handbook/retrieval_cache_handbook.json
+research/results_ext/handbook/llama3.1-8b__rag-on__safety-off__guide-on.json	--model=llama3.1:8b --rag=on --safety=off --guide=on --dataset=/workspace/JeevanSetu/data/esi_handbook_cases.json --retrieval-cache=/workspace/JeevanSetu/research/results_ext/handbook/retrieval_cache_handbook.json
+research/results_ext/handbook/llama3.1-8b__rag-on__safety-on__guide-on.json	--model=llama3.1:8b --rag=on --safety=on --guide=on --dataset=/workspace/JeevanSetu/data/esi_handbook_cases.json --retrieval-cache=/workspace/JeevanSetu/research/results_ext/handbook/retrieval_cache_handbook.json
+research/results_ext/handbook/gemma3-12b__rag-off__safety-on.json	--model=gemma3:12b --rag=off --safety=on --guide=off --dataset=/workspace/JeevanSetu/data/esi_handbook_cases.json
+research/results_ext/handbook/gemma3-12b__rag-off__safety-on__notice-off.json	--model=gemma3:12b --rag=off --safety=on --guide=off --safety-notice=off --dataset=/workspace/JeevanSetu/data/esi_handbook_cases.json
+research/results_ext/handbook/gemma3-12b__rag-off__safety-on__guide-on.json	--model=gemma3:12b --rag=off --safety=on --guide=on --dataset=/workspace/JeevanSetu/data/esi_handbook_cases.json
+research/results_ext/handbook/gemma3-12b__rag-on__safety-on.json	--model=gemma3:12b --rag=on --safety=on --guide=off --dataset=/workspace/JeevanSetu/data/esi_handbook_cases.json --retrieval-cache=/workspace/JeevanSetu/research/results_ext/handbook/retrieval_cache_handbook.json
+research/results_ext/handbook/gemma3-12b__rag-on__safety-off__guide-on.json	--model=gemma3:12b --rag=on --safety=off --guide=on --dataset=/workspace/JeevanSetu/data/esi_handbook_cases.json --retrieval-cache=/workspace/JeevanSetu/research/results_ext/handbook/retrieval_cache_handbook.json
+research/results_ext/handbook/gemma3-12b__rag-on__safety-on__guide-on.json	--model=gemma3:12b --rag=on --safety=on --guide=on --dataset=/workspace/JeevanSetu/data/esi_handbook_cases.json --retrieval-cache=/workspace/JeevanSetu/research/results_ext/handbook/retrieval_cache_handbook.json
+research/results_ext/handbook/gemma3-27b__rag-off__safety-off__guide-on.json	--model=gemma3:27b --rag=off --safety=off --guide=on --dataset=/workspace/JeevanSetu/data/esi_handbook_cases.json
+research/results_ext/handbook/gemma3-27b__rag-off__safety-on__guide-on.json	--model=gemma3:27b --rag=off --safety=on --guide=on --dataset=/workspace/JeevanSetu/data/esi_handbook_cases.json
+research/results_ext/handbook/gemma3-27b__rag-on__safety-off.json	--model=gemma3:27b --rag=on --safety=off --guide=off --dataset=/workspace/JeevanSetu/data/esi_handbook_cases.json --retrieval-cache=/workspace/JeevanSetu/research/results_ext/handbook/retrieval_cache_handbook.json
+research/results_ext/handbook/gemma3-27b__rag-on__safety-on.json	--model=gemma3:27b --rag=on --safety=on --guide=off --dataset=/workspace/JeevanSetu/data/esi_handbook_cases.json --retrieval-cache=/workspace/JeevanSetu/research/results_ext/handbook/retrieval_cache_handbook.json
+research/results_ext/handbook/gemma3-27b__rag-on__safety-off__guide-on.json	--model=gemma3:27b --rag=on --safety=off --guide=on --dataset=/workspace/JeevanSetu/data/esi_handbook_cases.json --retrieval-cache=/workspace/JeevanSetu/research/results_ext/handbook/retrieval_cache_handbook.json
+research/results_ext/handbook/gemma3-27b__rag-on__safety-on__guide-on.json	--model=gemma3:27b --rag=on --safety=on --guide=on --dataset=/workspace/JeevanSetu/data/esi_handbook_cases.json --retrieval-cache=/workspace/JeevanSetu/research/results_ext/handbook/retrieval_cache_handbook.json
+research/results_ext/handbook/medgemma-27b__rag-off__safety-off__guide-on.json	--model=medgemma:27b --rag=off --safety=off --guide=on --dataset=/workspace/JeevanSetu/data/esi_handbook_cases.json
+research/results_ext/handbook/medgemma-27b__rag-off__safety-on__guide-on.json	--model=medgemma:27b --rag=off --safety=on --guide=on --dataset=/workspace/JeevanSetu/data/esi_handbook_cases.json
+research/results_ext/handbook/medgemma-27b__rag-on__safety-off.json	--model=medgemma:27b --rag=on --safety=off --guide=off --dataset=/workspace/JeevanSetu/data/esi_handbook_cases.json --retrieval-cache=/workspace/JeevanSetu/research/results_ext/handbook/retrieval_cache_handbook.json
+research/results_ext/handbook/medgemma-27b__rag-on__safety-on.json	--model=medgemma:27b --rag=on --safety=on --guide=off --dataset=/workspace/JeevanSetu/data/esi_handbook_cases.json --retrieval-cache=/workspace/JeevanSetu/research/results_ext/handbook/retrieval_cache_handbook.json
+research/results_ext/handbook/medgemma-27b__rag-on__safety-off__guide-on.json	--model=medgemma:27b --rag=on --safety=off --guide=on --dataset=/workspace/JeevanSetu/data/esi_handbook_cases.json --retrieval-cache=/workspace/JeevanSetu/research/results_ext/handbook/retrieval_cache_handbook.json
+research/results_ext/handbook/medgemma-27b__rag-on__safety-on__guide-on.json	--model=medgemma:27b --rag=on --safety=on --guide=on --dataset=/workspace/JeevanSetu/data/esi_handbook_cases.json --retrieval-cache=/workspace/JeevanSetu/research/results_ext/handbook/retrieval_cache_handbook.json
+# Task 4: notice wordings, handbook (held until the push is confirmed)
+research/results_ext/notice/handbook__qwen2.5-7b__rag-off__safety-on__notice-neutral.json	--model=qwen2.5:7b --rag=off --safety=on --guide=off --safety-notice=neutral --dataset=/workspace/JeevanSetu/data/esi_handbook_cases.json
+research/results_ext/notice/handbook__qwen2.5-7b__rag-off__safety-on__notice-caution.json	--model=qwen2.5:7b --rag=off --safety=on --guide=off --safety-notice=caution --dataset=/workspace/JeevanSetu/data/esi_handbook_cases.json
+research/results_ext/notice/handbook__gemma3-27b__rag-off__safety-on__notice-neutral.json	--model=gemma3:27b --rag=off --safety=on --guide=off --safety-notice=neutral --dataset=/workspace/JeevanSetu/data/esi_handbook_cases.json
+research/results_ext/notice/handbook__gemma3-27b__rag-off__safety-on__notice-caution.json	--model=gemma3:27b --rag=off --safety=on --guide=off --safety-notice=caution --dataset=/workspace/JeevanSetu/data/esi_handbook_cases.json
+research/results_ext/notice/handbook__medgemma-27b__rag-off__safety-on__notice-neutral.json	--model=medgemma:27b --rag=off --safety=on --guide=off --safety-notice=neutral --dataset=/workspace/JeevanSetu/data/esi_handbook_cases.json
+research/results_ext/notice/handbook__medgemma-27b__rag-off__safety-on__notice-caution.json	--model=medgemma:27b --rag=off --safety=on --guide=off --safety-notice=caution --dataset=/workspace/JeevanSetu/data/esi_handbook_cases.json
+# Task 4: notice wordings, MIMIC demo
+research/results_ext/notice/qwen2.5-7b__rag-off__safety-on__notice-neutral.json	--model=qwen2.5:7b --rag=off --safety=on --guide=off --safety-notice=neutral
+research/results_ext/notice/qwen2.5-7b__rag-off__safety-on__notice-caution.json	--model=qwen2.5:7b --rag=off --safety=on --guide=off --safety-notice=caution
+research/results_ext/notice/gemma3-27b__rag-off__safety-on__notice-neutral.json	--model=gemma3:27b --rag=off --safety=on --guide=off --safety-notice=neutral
+research/results_ext/notice/gemma3-27b__rag-off__safety-on__notice-caution.json	--model=gemma3:27b --rag=off --safety=on --guide=off --safety-notice=caution
+research/results_ext/notice/medgemma-27b__rag-off__safety-on__notice-neutral.json	--model=medgemma:27b --rag=off --safety=on --guide=off --safety-notice=neutral
+research/results_ext/notice/medgemma-27b__rag-off__safety-on__notice-caution.json	--model=medgemma:27b --rag=off --safety=on --guide=off --safety-notice=caution
+# Task 5: 20 similar earlier patients (other patients only), MIMIC demo; neighbours in research/results_ext/examples/neighbours.json
+research/results_ext/examples/qwen2.5-7b__rag-off__safety-off__examples-20.json	--model=qwen2.5:7b --rag=off --safety=off --guide=off --examples=20
+research/results_ext/examples/llama3.1-8b__rag-off__safety-off__examples-20.json	--model=llama3.1:8b --rag=off --safety=off --guide=off --examples=20
+research/results_ext/examples/gemma3-12b__rag-off__safety-off__examples-20.json	--model=gemma3:12b --rag=off --safety=off --guide=off --examples=20
+research/results_ext/examples/gemma3-27b__rag-off__safety-off__examples-20.json	--model=gemma3:27b --rag=off --safety=off --guide=off --examples=20
+research/results_ext/examples/medgemma-27b__rag-off__safety-off__examples-20.json	--model=medgemma:27b --rag=off --safety=off --guide=off --examples=20
+research/results_ext/examples/gemma3-27b__rag-off__safety-on__notice-off__examples-20.json	--model=gemma3:27b --rag=off --safety=on --guide=off --safety-notice=off --examples=20
+research/results_ext/examples/medgemma-27b__rag-off__safety-on__notice-off__examples-20.json	--model=medgemma:27b --rag=off --safety=on --guide=off --safety-notice=off --examples=20

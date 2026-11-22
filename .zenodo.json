@@ -1,10 +1,18 @@
 {
   "title": "Code, prompts, data and results for: Safety Rules, Algorithm Prompts and Guideline Retrieval for Local Language Models in Emergency Triage",
   "upload_type": "software",
-  "description": "Code, prompts, data and results for an ablation study of the JeevanSetu triage pipeline: fixed safety rules with a hard override, a summary of the Emergency Severity Index (ESI) algorithm in the prompt, and guideline retrieval, tested with five open-weight language models (Qwen2.5 7B, Llama 3.1 8B and Gemma 3 12B on a laptop; Gemma 3 27B and MedGemma 27B on one GPU) run locally through Ollama on 207 visits from the MIMIC-IV-ED demo dataset, against the triage nurse's ESI level. The code is under the MIT licence. The MIMIC-IV-ED Demo and MIMIC-IV Demo files and the run results derived from them are under the Open Database License (ODbL) 1.0. ESI handbook text is withheld from the retrieval caches; the README explains how to restore it from the handbook PDF.",
+  "description": "Code, prompts, data and results for an ablation study of the JeevanSetu triage pipeline: fixed safety rules with a hard override, a summary of the Emergency Severity Index (ESI) algorithm in the prompt, and guideline retrieval, tested with five open-weight language models (Qwen2.5 7B, Llama 3.1 8B and Gemma 3 12B on a laptop; Gemma 3 27B and MedGemma 27B on one GPU) run locally through Ollama on 207 visits from the MIMIC-IV-ED demo dataset, against the triage nurse's ESI level, with pre-registered confirmation tests on 149 practice and competency cases from the ESI version 4 handbook and additional exploratory runs. The code is under the MIT licence. The MIMIC-IV-ED Demo and MIMIC-IV Demo files and the run results derived from them are under the Open Database License (ODbL) 1.0. ESI handbook text is withheld: the retrieval caches keep only passage IDs, and the results on the handbook cases keep the answers without the models' explanations. The README explains how to rebuild both from the handbook PDF.",
   "creators": [
     {
       "name": "Singh, Arjun",
+      "affiliation": "Department of Computer Science and Engineering, Thapar Institute of Engineering and Technology, Patiala, India"
+    },
+    {
+      "name": "Patel, Priyanshu",
+      "affiliation": "Department of Computer Science and Engineering, Thapar Institute of Engineering and Technology, Patiala, India"
+    },
+    {
+      "name": "Bandyopadhyay, Bhumika",
       "affiliation": "Department of Computer Science and Engineering, Thapar Institute of Engineering and Technology, Patiala, India"
     },
     {

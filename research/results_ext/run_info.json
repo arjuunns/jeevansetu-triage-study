@@ -1,0 +1,89 @@
+{
+  "firstRun": "2026-11-16 12:04:55 UTC",
+  "lastRun": "2026-11-19 10:02:49 UTC",
+  "host": "dgxhnode1",
+  "gpu": "NVIDIA H100 80GB HBM3, 535.161.08",
+  "gpuDevices": [
+    "GPU 0: NVIDIA H100 80GB HBM3 (UUID: GPU-cf88db6c-3ead-4c9d-6e43-4a7af6152c5e)",
+    "  MIG 3g.40gb     Device  0: (UUID: MIG-43a7b6d4-b756-5239-aa81-b395782cab0b)"
+  ],
+  "ollama": "0.32.14",
+  "ollamaServer": {
+    "url": "http://127.0.0.1:11535",
+    "OLLAMA_MODELS": "/workspace/ollama-models",
+    "OLLAMA_NUM_PARALLEL": 1,
+    "OLLAMA_MAX_LOADED_MODELS": 1
+  },
+  "settings": {
+    "temperature": 0,
+    "seed": 42,
+    "numCtx": 8192
+  },
+  "node": "v22.23.4",
+  "gitCommits": [
+    "32c5980",
+    "a778a59",
+    "071d1ca",
+    "eb3f706",
+    "817ef95"
+  ],
+  "models": {
+    "qwen2.5:7b": {
+      "digest": "845dbda0ea48ed749caafd9e6037047aa19acfcfd82e704d7ca97d631a0b697e",
+      "quantization": "Q4_K_M",
+      "parameters": "7.6B",
+      "family": "qwen2",
+      "sizeBytes": 4683087332,
+      "firstUsed": "2026-11-16 12:04:55 UTC"
+    },
+    "llama3.1:8b": {
+      "digest": "46e0c10c039e019119339687c3c1757cc81b9da49709a3b3924863ba87ca666e",
+      "quantization": "Q4_K_M",
+      "parameters": "8.0B",
+      "family": "llama",
+      "sizeBytes": 4920753328,
+      "firstUsed": "2026-11-16 12:37:50 UTC"
+    },
+    "gemma3:12b": {
+      "digest": "b92b218582c521ba287f38f1d6057dcd3c6cbff036f13cac97b5d861f5e58ec3",
+      "quantization": "Q4_K_M",
+      "parameters": "11.8B",
+      "family": "gemma3",
+      "sizeBytes": 8164039732,
+      "firstUsed": "2026-11-16 13:05:04 UTC"
+    },
+    "gemma3:27b": {
+      "digest": "6be2e2ba6843b9255820e2de2cbbe75cfdef0294ac7a531572e654d6e0eefe7d",
+      "quantization": "Q4_K_M",
+      "parameters": "27.0B",
+      "family": "gemma3",
+      "sizeBytes": 17413409652,
+      "firstUsed": "2026-11-16 20:08:00 UTC"
+    },
+    "medgemma:27b": {
+      "digest": "58238ae38f99827496301de22016b2f94157552971f5a38db226f13802c2437e",
+      "quantization": "Q4_K_M",
+      "parameters": "27.4B",
+      "family": "gemma3",
+      "sizeBytes": 17397224125,
+      "firstUsed": "2026-11-16 22:51:10 UTC"
+    },
+    "gemma3:27b-it-q8_0": {
+      "digest": "62dc427fec6b7cff90352c38e3e8b14b025b39d6833e021056a212ce9d0b98b1",
+      "quantization": "Q8_0",
+      "parameters": "27.0B",
+      "family": "gemma3",
+      "sizeBytes": 29574611090,
+      "server": "http://127.0.0.1:11537",
+      "firstUsed": "2026-11-19 09:02:32 UTC"
+    }
+  },
+  "otherOllamaServers": {
+    "http://127.0.0.1:11537": {
+      "url": "http://127.0.0.1:11537",
+      "OLLAMA_MODELS": "/root/ollama-models-q8",
+      "OLLAMA_NUM_PARALLEL": 1,
+      "OLLAMA_MAX_LOADED_MODELS": 1
+    }
+  }
+}

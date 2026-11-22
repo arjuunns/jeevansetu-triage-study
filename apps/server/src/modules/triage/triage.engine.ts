@@ -17,6 +17,7 @@ import { retrieveGuidelinesWithMeta, type RetrievalBackend } from '../rag/rag.se
 import {
   buildTriageUserPrompt,
   TRIAGE_SYSTEM_PROMPT,
+  type SafetyNoticeWording,
   type TriageContext,
 } from './triage.prompts.js';
 
@@ -52,10 +53,14 @@ export interface TriageRunOptions {
   useAlgorithmGuide?: boolean;
   /** Precomputed citations to use instead of live retrieval, so retrieval is identical across runs. */
   citations?: GuidelineCitation[];
+  /** Research only, opt-in: another wording of the no-rule-fired line (see SAFETY_NOTICE_WORDINGS). Default: the original line. */
+  safetyNoticeWording?: SafetyNoticeWording;
+  /** Research only, opt-in: block of similar earlier patients with the nurse's level, added to the user prompt. Default: none. */
+  examplesBlock?: string;
 }
 
 type ResolvedOptions = Required<Pick<TriageRunOptions, 'useSafety' | 'safetyNotice' | 'useRag' | 'useAlgorithmGuide'>> &
-  Pick<TriageRunOptions, 'citations'>;
+  Pick<TriageRunOptions, 'citations' | 'safetyNoticeWording' | 'examplesBlock'>;
 
 export interface TriageEngineResult {
   result: TriageResult;
@@ -101,9 +106,27 @@ export function buildRetrievalQuery(ctx: TriageContext): string {
     if (text && !parts.some((p) => p.toLowerCase().includes(text.toLowerCase()))) parts.push(text);
   }
   const complaint = expandClinicalAbbreviations(parts.join(', '));
-  const findings = describeAbnormalVitals(ctx.vitals, ctx.patient.age);
-  const patient = `${ctx.patient.age}-year-old ${ctx.patient.gender.toLowerCase()} presenting with ${complaint}`;
+  // Without a stated age (handbook vignettes only) the adult danger-zone limits are used.
+  const findings = describeAbnormalVitals(ctx.vitals, typeof ctx.patient.age === 'number' ? ctx.patient.age : 18);
+  const patient = `${describePatient(ctx.patient)} presenting with ${complaint}`;
   return findings.length ? `${patient}. Findings: ${findings.join(', ')}.` : `${patient}.`;
+}
+
+/**
+ * "61-year-old male" for a triage record. The other forms are used only for the handbook
+ * vignettes (16 Nov 2026), where the age can be in days, weeks or months ("2-week-old male") or
+ * missing, and the sex can be missing ("17-year-old patient").
+ */
+function describePatient(p: TriageContext['patient']): string {
+  if (p.ageText === undefined && p.gender !== 'NOT STATED') return `${p.age}-year-old ${p.gender.toLowerCase()}`;
+  const age =
+    p.ageText === undefined
+      ? `${p.age}-year-old`
+      : p.ageText === 'not stated'
+        ? ''
+        : p.ageText.replace(/^(\d+) (day|week|month)s?$/, '$1-$2-old');
+  const sex = p.gender === 'NOT STATED' ? 'patient' : p.gender.toLowerCase();
+  return [age, sex].filter(Boolean).join(' ');
 }
 
 async function retrieveNode(state: State): Promise<Partial<State>> {
@@ -115,7 +138,7 @@ async function retrieveNode(state: State): Promise<Partial<State>> {
 }
 
 async function assessNode(state: State): Promise<Partial<State>> {
-  const { useSafety, safetyNotice, useRag, useAlgorithmGuide } = state.options;
+  const { useSafety, safetyNotice, useRag, useAlgorithmGuide, safetyNoticeWording, examplesBlock } = state.options;
   if (!features.ai) {
     return { result: heuristicAssessment(state.context, useSafety), usedFallback: true, attempts: 0 };
   }
@@ -129,6 +152,9 @@ async function assessNode(state: State): Promise<Partial<State>> {
         safetyNotice,
         guidelines: useRag,
         algorithm: useAlgorithmGuide,
+        // Both stay undefined unless a research run asks for them, which leaves the prompt unchanged.
+        safetyNoticeWording,
+        examplesBlock,
       }),
     ),
   ];
@@ -217,6 +243,8 @@ export async function runTriage(context: TriageContext, options: TriageRunOption
     useRag: options.useRag ?? true,
     useAlgorithmGuide: options.useAlgorithmGuide ?? false,
     citations: options.citations,
+    safetyNoticeWording: options.safetyNoticeWording,
+    examplesBlock: options.examplesBlock,
   };
   const final = await graph.invoke({ context, options: resolved });
   const result = final.result ?? heuristicAssessment(context, resolved.useSafety);

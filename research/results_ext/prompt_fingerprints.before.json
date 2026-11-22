@@ -1,0 +1,51 @@
+{
+  "dataset": "data/mimic_ed_cohort.json",
+  "retrievalCache": "research/retrieval_cache.v2.json",
+  "cases": 207,
+  "systemPromptSha256": "87295fd016286c01",
+  "esiGuideSha256": "f95fddba59552235",
+  "setups": {
+    "rag-off__safety-off": {
+      "prompts": 207,
+      "sha256": "16daa362639fdb6db7eeb09f1f00d02bcc8361075391177e9b3c52ffa4f3c9ce",
+      "totalChars": 153425,
+      "maxChars": 796
+    },
+    "rag-off__safety-on": {
+      "prompts": 207,
+      "sha256": "410e49136ea91515d9b861331997f26cf9acb182a7c06a5587ffcc12a40ace34",
+      "totalChars": 169529,
+      "maxChars": 917
+    },
+    "rag-off__safety-on__notice-off": {
+      "prompts": 207,
+      "sha256": "f593d30890e8707cd304da44cc287ac9f6373f56fc3c35a639ddf4cedbf7fa45",
+      "totalChars": 155440,
+      "maxChars": 917
+    },
+    "rag-off__safety-off__guide-on": {
+      "prompts": 207,
+      "sha256": "428f76fc7c612c07c283eca19ccf47a203deea93d2c0edd9f93fa1800e529133",
+      "totalChars": 1077059,
+      "maxChars": 5258
+    },
+    "rag-off__safety-on__guide-on": {
+      "prompts": 207,
+      "sha256": "facca8cfd12526419276a400e55cf827a4cefb0865bdc4473917002fc97bbd29",
+      "totalChars": 1093163,
+      "maxChars": 5379
+    },
+    "rag-on__safety-off": {
+      "prompts": 207,
+      "sha256": "4ccec5b0d4ec65b0fdb188cd83642b78645d990634ecfb238326fa09347cdd85",
+      "totalChars": 2179062,
+      "maxChars": 12249
+    },
+    "rag-on__safety-on": {
+      "prompts": 207,
+      "sha256": "1ce75cfd208121f0644cd2c23ab57b38f3aba01cea9a0275739ea97303a16ae3",
+      "totalChars": 2195166,
+      "maxChars": 12322
+    }
+  }
+}

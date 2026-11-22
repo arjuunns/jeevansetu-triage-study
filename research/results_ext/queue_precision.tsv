@@ -1,0 +1,4 @@
+# Task 6: 8-bit check of Gemma 3 27B on MIMIC (research/run_precision.sh runs this queue on port 11537).
+# Compared with the Q4_K_M runs of the paper (research/results/gemma3-27b__rag-off__safety-{off,on}.json).
+research/results_ext/precision/gemma3-27b-q8__rag-off__safety-off.json	--model=gemma3:27b-it-q8_0 --rag=off --safety=off --guide=off
+research/results_ext/precision/gemma3-27b-q8__rag-off__safety-on.json	--model=gemma3:27b-it-q8_0 --rag=off --safety=on --guide=off

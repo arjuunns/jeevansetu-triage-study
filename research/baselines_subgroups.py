@@ -17,7 +17,17 @@ Writes research/results/baselines_subgroups.json:
     complete run, with patient-level bootstrap CIs.
 
 Metric definitions and the patient-level bootstrap are imported from analyze.py.
+
+Added 16 Nov 2026 (extension experiments; the existing numbers are computed exactly as before):
+  * --out: where to write the summary (default research/results/baselines_subgroups.json, as
+    before). The extension run writes research/results_ext/baselines_subgroups.json.
+  * --predictions: also save the out-of-fold prediction of every visit for each baseline.
+  * Extra numbers per baseline: under-triage among admitted visits, and exact agreement and
+    under-triage with every patient weighted equally (mean over each patient's visits, then over
+    patients, as in research/robustness_checks.py). Severe under-triage was already reported.
 """
+
+import argparse
 
 import json
 import sys
@@ -87,7 +97,31 @@ def features(cases, vocab_fit=None):
     return num, miss
 
 
-def ml_baselines(cases):
+def patient_weighted(pairs, subjects, fn):
+    """Mean over patients of each patient's own rate (every patient counts once)."""
+    groups = {}
+    for pair, subject in zip(pairs, subjects):
+        groups.setdefault(subject, []).append(pair)
+    return sum(fn(g) for g in groups.values()) / len(groups)
+
+
+def extra_metrics(pairs, cases):
+    subjects = [c["subjectId"] for c in cases]
+    admitted = [(t, p) for (t, p), c in zip(pairs, cases) if c["outcome"]["disposition"] == "ADMITTED"]
+    return {
+        "admitted": {
+            "n": len(admitted),
+            "underTriage": A.under(admitted) if admitted else None,
+            "missedHighAcuity": sum(t <= 2 and p >= 3 for t, p in admitted),
+        },
+        "patientWeighted": {
+            "exact": patient_weighted(pairs, subjects, A.exact),
+            "underTriage": patient_weighted(pairs, subjects, A.under),
+        },
+    }
+
+
+def ml_baselines(cases, predictions_out=None):
     y = np.array([c["label"]["esi"] for c in cases])
     groups = np.array([c["subjectId"] for c in cases])
     text = [c["input"].get("chiefComplaint") or "" for c in cases]
@@ -111,7 +145,10 @@ def ml_baselines(cases):
     out = {}
     for name, p in preds.items():
         pairs = list(zip(y.tolist(), p.tolist()))
-        out[name] = {"metrics": metrics(pairs, subjects), "predicted": {str(k): int((p == k).sum()) for k in A.LEVELS}}
+        out[name] = {"metrics": metrics(pairs, subjects), "predicted": {str(k): int((p == k).sum()) for k in A.LEVELS},
+                     **extra_metrics(pairs, cases)}
+    if predictions_out is not None:
+        predictions_out.update({name: {c["stayId"]: int(v) for c, v in zip(cases, p.tolist())} for name, p in preds.items()})
     return out
 
 
@@ -163,17 +200,47 @@ def subgroups(runs, cohort):
     return out
 
 
+def load_runs():
+    """A.load_runs() without the summary files it does not know about (robustness_checks.json was
+    added to research/results/ on 15 Nov 2026, after analyze.py's list of non-run files)."""
+    saved = A.RESULTS
+    runs = []
+    for path in sorted(saved.glob("*.json")):
+        run = json.loads(path.read_text())
+        if "results" in run and "config" in run:
+            runs.append(run)
+    labels = {sid: c["label"]["esi"] for sid, c in A.load_cohort().items()}
+    for run in runs:
+        for r in run["results"]:
+            if labels.get(r["stayId"]) != r["groundTruthEsi"]:
+                raise SystemExit(f"{run['config']['run']}: stay {r['stayId']} label does not match the cohort file")
+    return runs
+
+
 def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--out", type=Path, default=OUT)
+    ap.add_argument("--predictions", type=Path, help="also save every visit's out-of-fold prediction here")
+    args = ap.parse_args()
     cohort = A.load_cohort()
     cases = list(cohort.values())
+    predictions = {} if args.predictions else None
     result = {
         "visits": len(cases),
         "patients": len({c["subjectId"] for c in cases}),
         "news": news_baseline(cases),
-        "ml": ml_baselines(cases),
-        "subgroups": subgroups(A.load_runs(), cohort),
+        "ml": ml_baselines(cases, predictions),
+        "subgroups": subgroups(load_runs(), cohort),
     }
-    OUT.write_text(json.dumps(result, indent=2) + "\n")
+    args.out.parent.mkdir(parents=True, exist_ok=True)
+    args.out.write_text(json.dumps(result, indent=2) + "\n")
+    if args.predictions:
+        args.predictions.write_text(json.dumps({
+            "note": "out-of-fold predictions (5-fold cross-validation grouped by patient) of research/baselines_subgroups.py, keyed by stayId",
+            "labels": {c["stayId"]: c["label"]["esi"] for c in cases},
+            "subjects": {c["stayId"]: c["subjectId"] for c in cases},
+            "predictions": predictions,
+        }, indent=2) + "\n")
 
     f = lambda m: f"{100 * m['value']:.1f} ({100 * m['ci95Patient'][0]:.1f}-{100 * m['ci95Patient'][1]:.1f})"
     for name, r in result["ml"].items():
@@ -182,7 +249,7 @@ def main():
               f"sens {f(m['highAcuitySensitivity'])}  spec {f(m['highAcuitySpecificity'])}  predicted {r['predicted']}")
     for name, r in result["news"].items():
         print(f"{name:20s} flagged {r['flagged']}  sens {f(r['highAcuitySensitivity'])}  spec {f(r['highAcuitySpecificity'])}")
-    print(f"wrote {OUT.relative_to(ROOT)}")
+    print(f"wrote {args.out}")
 
 
 if __name__ == "__main__":
